@@ -1,0 +1,1006 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project name="PGUN">
+  <Package name="Portal_Gun">
+    <Key ID="STR_PGUN_Name_Long">
+      <English>Aperture Science Handheld Portal Device</English>
+      <Spanish>Aperture Science Dispositivo de Portal de Mano</Spanish>
+      <German>Aperture Science Handheld-Portalgerät</German>
+      <Chinesesimp>Aperture Science 手持式门户设备</Chinesesimp>
+      <Japanese>Aperture Science ハンドヘルドポータルデバイス</Japanese>
+      <Italian>Aperture Science Dispositivo Portatile a Portale</Italian>
+      <French>Aperture Science Dispositif de Portail Portable</French>
+      <Polish>Aperture Science Podręczne Urządzenie Portalowe</Polish>
+      <Russian>Aperture Science Портативное портал устройство</Russian>
+      <Portuguese>Aperture Science Dispositivo de Portal Portátil</Portuguese>
+      <Czech>Aperture Science Ruční Portálové Zařízení</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Name_Short">
+      <English>Portal Gun</English>
+      <Spanish>Pistola del Portal</Spanish>
+      <German>Portal-Kanone</German>
+      <Chinesesimp>传送门枪</Chinesesimp>
+      <Japanese>ポータルガン</Japanese>
+      <Italian>Pistola a Portale</Italian>
+      <French>Pistolet Portail</French>
+      <Polish>Portal Gun</Polish>
+      <Russian>Портальная пушка</Russian>
+      <Portuguese>Portal Gun</Portuguese>
+      <Czech>Portálová Zbraň</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Description">
+      <English>Makes holes, but not bullet holes.</English>
+      <Spanish>Hace agujeros, pero no de bala.</Spanish>
+      <German>Macht Löcher, aber keine Einschusslöcher.</German>
+      <Chinesesimp>会打洞，但不是子弹孔。</Chinesesimp>
+      <Japanese>弾丸の穴ではなく、穴を開ける。</Japanese>
+      <Italian>Fa dei buchi, ma non dei fori di proiettile.</Italian>
+      <French>Ça fait des trous, mais pas des trous de balle.</French>
+      <Polish>Robi dziury, ale nie dziury po kulach.</Polish>
+      <Russian>Делает отверстия, но не пулевые.</Russian>
+      <Portuguese>Faz buracos, mas não buracos de bala.</Portuguese>
+      <Czech>Dělá díry, ale ne díry po kulkách.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Name_P_Long">
+      <English>Aperture Science Handheld Potato Device</English>
+      <Spanish>Aperture Science Dispositivo portátil para patatas</Spanish>
+      <German>Aperture Science Handheld-Kartoffelgerät</German>
+      <Chinesesimp>Aperture Science 手持式马铃薯装置</Chinesesimp>
+      <Japanese>Aperture Science ハンドヘルド・ポテト・デバイス</Japanese>
+      <Italian>Aperture Science Dispositivo portatile per patate</Italian>
+      <French>Aperture Science Appareil portatif pour les pommes de terre</French>
+      <Polish>Aperture Science Ręczne urządzenie do ziemniaków</Polish>
+      <Russian>Aperture Science Ручное устройство для картофеля</Russian>
+      <Portuguese>Aperture Science Dispositivo de Batata de Mão</Portuguese>
+      <Czech>Aperture Science Ruční bramborové zařízení</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Name_P_Short">
+      <English>Potato Gun</English>
+      <Spanish>Pistola de patatas</Spanish>
+      <German>Kartoffelkanone</German>
+      <Chinesesimp>马铃薯枪</Chinesesimp>
+      <Japanese>ポテトガン</Japanese>
+      <Italian>Pistola per patate</Italian>
+      <French>Pistolet à pommes de terre</French>
+      <Polish>Pistolet na ziemniaki</Polish>
+      <Russian>Картофельный пистолет</Russian>
+      <Portuguese>Pistola de Batata</Portuguese>
+      <Czech>Bramborová pistole</Czech>
+    </Key>
+    <Key ID="STR_PGUN_P_Description">
+      <English>Makes holes, but not bullet holes. Potato included.</English>
+      <Spanish>Hace agujeros, pero no de bala. Patata incluida.</Spanish>
+      <German>Macht Löcher, aber keine Einschusslöcher. Inklusive Kartoffel.</German>
+      <Chinesesimp>可以打洞，但不是子弹孔。包括土豆。</Chinesesimp>
+      <Japanese>弾丸の穴ではなく、穴を開ける。ポテト付き。</Japanese>
+      <Italian>Fa dei buchi, ma non dei fori di proiettile. Patata inclusa.</Italian>
+      <French>Fait des trous, mais pas des trous de balle. Pomme de terre incluse.</French>
+      <Polish>Robi dziury, ale nie dziury po kulach. Ziemniak w zestawie.</Polish>
+      <Russian>Делает отверстия, но не пулевые. Картофель в комплекте.</Russian>
+      <Portuguese>Faz buracos, mas não buracos de bala. Batata incluída.</Portuguese>
+      <Czech>Dělá díry, ale ne díry po kulkách. Včetně brambor.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Error_Header">
+      <English>Portal Gun Error</English>
+      <Spanish>Error de la pistola del portal</Spanish>
+      <German>Portal Gun Fehler</German>
+      <Chinesesimp>传送门喷枪错误</Chinesesimp>
+      <Japanese>ポータルガンエラー</Japanese>
+      <Italian>Errore della pistola del portale</Italian>
+      <French>Erreur du pistolet portail</French>
+      <Polish>Błąd pistoletu portalowego</Polish>
+      <Russian>Ошибка портальной пушки</Russian>
+      <Portuguese>Erro de Pistola do Portal</Portuguese>
+      <Czech>Chyba portálové zbraně</Czech>
+    </Key>
+    <Key ID="STR_PGUN_EX_NoPortals">
+      <English>Portal gun cannot be initialized with no portals!</English>
+      <Spanish>La pistola de portales no se puede inicializar sin portales.</Spanish>
+      <German>Die Portalkanone kann nicht initialisiert werden, wenn keine Portale vorhanden sind!</German>
+      <Chinesesimp>在没有传送门的情况下，传送门枪不能被初始化!</Chinesesimp>
+      <Japanese>ポータルガンは、ポータルがないと初期化できません。</Japanese>
+      <Italian>La pistola a portale non può essere inizializzata senza portali!</Italian>
+      <French>Le canon à portails ne peut pas être initialisé sans portails!</French>
+      <Polish>Działo portalowe nie może być zainicjowane bez portali!</Polish>
+      <Russian>Портальная пушка не может быть инициализирована при отсутствии порталов!</Russian>
+      <Portuguese>Portal arma não pode ser inicializado sem portais!</Portuguese>
+      <Czech>Portálovou zbraň nelze inicializovat bez portálů!</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Scales">
+      <English>Scales</English>
+      <Spanish>Escalas</Spanish>
+      <German>Skalen</German>
+      <Chinesesimp>天平</Chinesesimp>
+      <Japanese>目からウロコ</Japanese>
+      <Italian>Bilancia</Italian>
+      <French>Balances</French>
+      <Polish>Skale</Polish>
+      <Russian>Весы</Russian>
+      <Portuguese>Balança</Portuguese>
+      <Czech>Váhy</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Crosshair_Scale">
+      <English>Crosshair Scale</English>
+      <Spanish>Escala del retículo</Spanish>
+      <German>Fadenkreuz-Skala</German>
+      <Chinesesimp>十字标尺</Chinesesimp>
+      <Japanese>クロスヘア・スケール</Japanese>
+      <Italian>Scala a croce</Italian>
+      <French>Échelle du réticule</French>
+      <Polish>Skala Crosshair</Polish>
+      <Russian>Шкала перекрестия</Russian>
+      <Portuguese>Escala de Cristais</Portuguese>
+      <Czech>Křížová stupnice</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Crosshair_Scale_Desc">
+      <English>The scale to size the custom crosshair to.</English>
+      <Spanish>La escala a la que se debe ajustar el retículo personalizado.</Spanish>
+      <German>Der Maßstab, auf den das benutzerdefinierte Fadenkreuz eingestellt werden soll.</German>
+      <Chinesesimp>自定义十字准线的大小比例。</Chinesesimp>
+      <Japanese>カスタムクロスヘアの大きさを決めるスケールです。</Japanese>
+      <Italian>La scala a cui dimensionare il mirino personalizzato.</Italian>
+      <French>L'échelle à laquelle le réticule personnalisé doit s'adapter.</French>
+      <Polish>Skala, do której ma zostać dopasowany niestandardowy celownik.</Polish>
+      <Russian>Масштаб, в соответствии с которым будет изменяться размер пользовательского перекрестия.</Russian>
+      <Portuguese>A escala para dimensionar a mira personalizada.</Portuguese>
+      <Czech>Měřítko, na které se má vlastní zaměřovací kříž nastavit.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Ranges">
+      <English>Ranges</English>
+      <Spanish>Rangos</Spanish>
+      <German>Bereiche</German>
+      <Chinesesimp>范围</Chinesesimp>
+      <Japanese>レンジ</Japanese>
+      <Italian>Gamme</Italian>
+      <French>Gammes</French>
+      <Polish>Zakresy</Polish>
+      <Russian>Диапазоны</Russian>
+      <Portuguese>Faixas</Portuguese>
+      <Czech>Rozsahy</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Max_Range">
+      <English>Max Range</English>
+      <Spanish>Alcance máximo</Spanish>
+      <German>Maximale Reichweite</German>
+      <Chinesesimp>最大范围</Chinesesimp>
+      <Japanese>マックスレンジ</Japanese>
+      <Italian>Gamma massima</Italian>
+      <French>Portée maximale</French>
+      <Polish>Maks. zasięg</Polish>
+      <Russian>Максимальный диапазон</Russian>
+      <Portuguese>Alcance máximo</Portuguese>
+      <Czech>Maximální rozsah</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Max_Range_Desc">
+      <English>The maximum range the gun can create portals from.</English>
+      <Spanish>El alcance máximo desde el que el arma puede crear portales.</Spanish>
+      <German>Die maximale Reichweite, aus der die Waffe Portale erzeugen kann.</German>
+      <Chinesesimp>该枪可以创建门户的最大范围。</Chinesesimp>
+      <Japanese>銃がポータルを作ることができる最大の範囲です。</Japanese>
+      <Italian>La portata massima da cui l'arma può creare portali.</Italian>
+      <French>La portée maximale à partir de laquelle le canon peut créer des portails.</French>
+      <Polish>Maksymalny zasięg, z jakiego działo może tworzyć portale.</Polish>
+      <Russian>Максимальная дальность, с которой пушка может создавать порталы.</Russian>
+      <Portuguese>O alcance máximo a partir do qual a arma pode criar portais.</Portuguese>
+      <Czech>Maximální vzdálenost, ze které může zbraň vytvářet portály.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Vehicle_Grab_Range">
+      <English>Vehicle Grab Range</English>
+      <Spanish>Rango de agarre del vehículo</Spanish>
+      <German>Fahrzeug-Greifbereich</German>
+      <Chinesesimp>车辆抓取范围</Chinesesimp>
+      <Japanese>車両グラブ範囲</Japanese>
+      <Italian>Gamma di presa del veicolo</Italian>
+      <French>Gamme de prise de véhicule</French>
+      <Polish>Zakres chwytu pojazdu</Polish>
+      <Russian>Диапазон захвата транспортного средства</Russian>
+      <Portuguese>Alcance do Agarramento de Veículos</Portuguese>
+      <Czech>Rozsah uchopení vozidla</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Vehicle_Grab_Range_Desc">
+      <English>The maximum range at which portals can teleport vehicles.</English>
+      <Spanish>El alcance máximo al que los portales pueden teletransportar vehículos.</Spanish>
+      <German>Die maximale Reichweite, über die Portale Fahrzeuge teleportieren können.</German>
+      <Chinesesimp>传送门可以传送车辆的最大范围。</Chinesesimp>
+      <Japanese>ポータルが車両をテレポートできる最大の範囲です。</Japanese>
+      <Italian>La portata massima alla quale i portali possono teletrasportare i veicoli.</Italian>
+      <French>La distance maximale à laquelle les portails peuvent téléporter des véhicules.</French>
+      <Polish>Maksymalny zasięg, w jakim portale mogą teleportować pojazdy.</Polish>
+      <Russian>Максимальное расстояние, на которое порталы могут телепортировать транспортные средства.</Russian>
+      <Portuguese>O alcance máximo em que os portais podem teleportar veículos.</Portuguese>
+      <Czech>Maximální vzdálenost, na kterou mohou portály teleportovat vozidla.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Projectile_Grab_Range">
+      <English>Projectile Grab Range</English>
+      <Spanish>Alcance de la toma de proyectiles</Spanish>
+      <German>Reichweite des Projektilgreifers</German>
+      <Chinesesimp>投射物抓取范围</Chinesesimp>
+      <Japanese>射程距離</Japanese>
+      <Italian>Raggio d'azione del proiettile</Italian>
+      <French>Portée du projectile</French>
+      <Polish>Zasięg chwytu pocisku</Polish>
+      <Russian>Дальность захвата снарядов</Russian>
+      <Portuguese>Alcance da Agarra do Projéctil</Portuguese>
+      <Czech>Dosah uchopení projektilu</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Projectile_Grab_Range_Desc">
+      <English>The maximum range at which portals can teleport projectiles.</English>
+      <Spanish>El alcance máximo al que los portales pueden teletransportar proyectiles.</Spanish>
+      <German>Die maximale Reichweite, über die Portale Geschosse teleportieren können.</German>
+      <Chinesesimp>传送门可以传送投射物的最大范围。</Chinesesimp>
+      <Japanese>ポータルが投射物をテレポートできる最大の範囲です。</Japanese>
+      <Italian>La portata massima alla quale i portali possono teletrasportare i proiettili.</Italian>
+      <French>La portée maximale à laquelle les portails peuvent téléporter des projectiles.</French>
+      <Polish>Maksymalny zasięg, w jakim portale mogą teleportować pociski.</Polish>
+      <Russian>Максимальное расстояние, на которое порталы могут телепортировать снаряды.</Russian>
+      <Portuguese>O alcance máximo em que os portais podem teleportar projécteis.</Portuguese>
+      <Czech>Maximální vzdálenost, na kterou mohou portály teleportovat střely.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Grab_Range">
+      <English>Grab Range</English>
+      <Spanish>Rango de agarre</Spanish>
+      <German>Greifbereich</German>
+      <Chinesesimp>抓取范围</Chinesesimp>
+      <Japanese>グラブレンジ</Japanese>
+      <Italian>Gamma Grab</Italian>
+      <French>Gamme Grab</French>
+      <Polish>Grab Range</Polish>
+      <Russian>Диапазон захвата</Russian>
+      <Portuguese>Alcance de Agarrar</Portuguese>
+      <Czech>Rozsah uchopení</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Grab_Range_Desc">
+      <English>The maximum range at which portals can teleport things other than vehicles and projectiles.</English>
+      <Spanish>El alcance máximo al que los portales pueden teletransportar cosas que no sean vehículos o proyectiles.</Spanish>
+      <German>Die maximale Reichweite, über die Portale andere Dinge als Fahrzeuge und Geschosse teleportieren können.</German>
+      <Chinesesimp>传送门可以传送车辆和投射物以外的东西的最大范围。</Chinesesimp>
+      <Japanese>ポータルが車両や投射物以外のものをテレポートできる最大の範囲です。</Japanese>
+      <Italian>La portata massima alla quale i portali possono teletrasportare cose diverse dai veicoli e dai proiettili.</Italian>
+      <French>La portée maximale à laquelle les portails peuvent téléporter des choses autres que des véhicules et des projectiles.</French>
+      <Polish>Maksymalny zasięg, w jakim portale mogą teleportować rzeczy inne niż pojazdy i pociski.</Polish>
+      <Russian>Максимальное расстояние, на которое порталы могут телепортировать предметы, кроме транспортных средств и снарядов.</Russian>
+      <Portuguese>O alcance máximo em que os portais podem teleportar outras coisas além de veículos e projécteis.</Portuguese>
+      <Czech>Maximální vzdálenost, na kterou mohou portály teleportovat jiné věci než vozidla a střely.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Tolerances">
+      <English>Tolerances</English>
+      <Spanish>Tolerancias</Spanish>
+      <German>Toleranzen</German>
+      <Chinesesimp>公差</Chinesesimp>
+      <Japanese>許容範囲</Japanese>
+      <Italian>Tolleranze</Italian>
+      <French>Tolérances</French>
+      <Polish>Tolerancje</Polish>
+      <Russian>Допуски</Russian>
+      <Portuguese>Tolerâncias</Portuguese>
+      <Czech>Tolerance</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Flat_Tolerance">
+      <English>Flat Tolerance</English>
+      <Spanish>Tolerancia plana</Spanish>
+      <German>Flächentoleranz</German>
+      <Chinesesimp>扁平化公差</Chinesesimp>
+      <Japanese>フラットトレランス</Japanese>
+      <Italian>Tolleranza piatta</Italian>
+      <French>Tolérance à plat</French>
+      <Polish>Płaskie Tolerancja</Polish>
+      <Russian>Плоский допуск</Russian>
+      <Portuguese>Tolerância plana</Portuguese>
+      <Czech>Plochá tolerance</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Flat_Tolerance_Desc">
+      <English>The maximum tolerated roughness for a portal surface (a surface offset in meters).</English>
+      <Spanish>La rugosidad máxima tolerada para una superficie de pórtico (un desplazamiento de superficie en metros).</Spanish>
+      <German>Die maximal tolerierte Rauheit für eine Portaloberfläche (ein Oberflächenversatz in Metern).</German>
+      <Chinesesimp>门户表面的最大容许粗糙度（以米为单位的表面偏移）。</Chinesesimp>
+      <Japanese>ポータルサーフェス（メートル単位のサーフェスオフセット）の最大許容粗さ。</Japanese>
+      <Italian>La massima rugosità tollerata per una superficie del portale (un offset di superficie in metri).</Italian>
+      <French>La rugosité maximale tolérée pour une surface de portail (une surface décalée en mètres).</French>
+      <Polish>Maksymalna tolerowana chropowatość dla powierzchni portalu (przesunięcie powierzchni w metrach).</Polish>
+      <Russian>Максимально допустимая шероховатость для поверхности портала (смещение поверхности в метрах).</Russian>
+      <Portuguese>A rugosidade máxima tolerada para uma superfície portal (uma superfície compensada em metros).</Portuguese>
+      <Czech>Maximální tolerovaná drsnost portálového povrchu (posun povrchu v metrech).</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Vertical_Tolerance">
+      <English>Vertical Tolerance</English>
+      <Spanish>Tolerancia vertical</Spanish>
+      <German>Vertikale Toleranz</German>
+      <Chinesesimp>垂直公差</Chinesesimp>
+      <Japanese>垂直方向の許容範囲</Japanese>
+      <Italian>Tolleranza verticale</Italian>
+      <French>Tolérance verticale</French>
+      <Polish>Tolerancja pionowa</Polish>
+      <Russian>Допуск по вертикали</Russian>
+      <Portuguese>Tolerância Vertical</Portuguese>
+      <Czech>Vertikální tolerance</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Vertical_Tolerance_Desc">
+      <English>The angle at which a portal surface must be inclined before it is considered vertical.</English>
+      <Spanish>Ángulo con el que debe inclinarse una superficie de pórtico para que se considere vertical.</Spanish>
+      <German>Der Winkel, in dem eine Portalfläche geneigt sein muss, bevor sie als vertikal gilt.</German>
+      <Chinesesimp>门户表面在被认为是垂直之前必须倾斜的角度。</Chinesesimp>
+      <Japanese>門扉の表面が垂直とみなされるまでに傾斜しなければならない角度。</Japanese>
+      <Italian>L'angolo al quale una superficie del portale deve essere inclinata prima di essere considerata verticale.</Italian>
+      <French>L'angle auquel une surface de portail doit être inclinée avant d'être considérée comme verticale.</French>
+      <Polish>Kąt, pod jakim powierzchnia portalu musi być nachylona, aby można ją było uznać za pionową.</Polish>
+      <Russian>Угол, под которым должна быть наклонена поверхность портала, прежде чем она будет считаться вертикальной.</Russian>
+      <Portuguese>O ângulo em que uma superfície do portal deve ser inclinada antes de ser considerada vertical.</Portuguese>
+      <Czech>Úhel, pod kterým musí být portálová plocha nakloněna, aby byla považována za svislou.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Max_Fit_Tries">
+      <English>Max Fit Tries</English>
+      <Spanish>Pruebas de Max Fit</Spanish>
+      <German>Max Fit Versucht</German>
+      <Chinesesimp>最大限度地适合尝试</Chinesesimp>
+      <Japanese>マックスフィット・トライ</Japanese>
+      <Italian>Prove di Max Fit</Italian>
+      <French>Essais de Max Fit</French>
+      <Polish>Max Fit Tries</Polish>
+      <Russian>Пробы Max Fit</Russian>
+      <Portuguese>Max Fit Tries</Portuguese>
+      <Czech>Max Fit se snaží</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Max_Fit_Tries_Desc">
+      <English>The maximum number of times the code will try to fit a portal onto a surface.</English>
+      <Spanish>El número máximo de veces que el código intentará encajar un portal en una superficie.</Spanish>
+      <German>Die maximale Anzahl, wie oft der Code versucht, einen Ausschnitt in eine Fläche einzupassen.</German>
+      <Chinesesimp>代码尝试在一个表面上安装一个门户的最大次数。</Chinesesimp>
+      <Japanese>コードがポータルをサーフェスにフィットさせようとする最大の回数です。</Japanese>
+      <Italian>Il numero massimo di volte che il codice cercherà di inserire un portale su una superficie.</Italian>
+      <French>Le nombre maximum de fois que le code essaiera d'adapter un portail sur une surface.</French>
+      <Polish>Maksymalna liczba prób dopasowania portalu do powierzchni.</Polish>
+      <Russian>Максимальное количество раз, которое код будет пытаться установить портал на поверхность.</Russian>
+      <Portuguese>O número máximo de vezes que o código tentará encaixar um portal em uma superfície.</Portuguese>
+      <Czech>Maximální počet pokusů kódu o umístění portálu na plochu.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Max_Grab_Mass">
+      <English>Max Grab Mass</English>
+      <Spanish>Masa máxima de agarre</Spanish>
+      <German>Maximale Greifermasse</German>
+      <Chinesesimp>最大抓取质量</Chinesesimp>
+      <Japanese>最大グラブ質量</Japanese>
+      <Italian>Max Grab Mass</Italian>
+      <French>Masse maximale à saisir</French>
+      <Polish>Maks. masa chwytaka</Polish>
+      <Russian>Максимальная масса захвата</Russian>
+      <Portuguese>Máxima massa de agarrar</Portuguese>
+      <Czech>Maximální úchopová hmotnost</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Max_Grab_Mass_Desc">
+      <English>The maximum mass in kilograms that the portal gun can grab and pick up.</English>
+      <Spanish>La masa máxima en kilogramos que el cañón de pórtico puede agarrar y recoger.</Spanish>
+      <German>Die maximale Masse in Kilogramm, die von der Portalkanone erfasst und aufgenommen werden kann.</German>
+      <Chinesesimp>传送门炮能够抓取和拾取的最大质量，单位为公斤。</Chinesesimp>
+      <Japanese>ポータルガンが掴んで拾える最大の質量（キログラム）。</Japanese>
+      <Italian>La massa massima in chilogrammi che la pistola a portale può afferrare e raccogliere.</Italian>
+      <French>La masse maximale en kilogrammes que le canon à portail peut saisir et ramasser.</French>
+      <Polish>Maksymalna masa w kilogramach, którą działo portalowe może uchwycić i podnieść.</Polish>
+      <Russian>Максимальная масса в килограммах, которую может захватить и поднять портальная пушка.</Russian>
+      <Portuguese>A massa máxima em quilos que a arma do portal pode agarrar e pegar.</Portuguese>
+      <Czech>Maximální hmotnost v kilogramech, kterou může portálová zbraň uchopit a zvednout.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Toggles">
+      <English>Toggles</English>
+      <Spanish>Cambia a</Spanish>
+      <German>Schaltet  um.</German>
+      <Chinesesimp>钮扣</Chinesesimp>
+      <Japanese>トグル</Japanese>
+      <Italian>Toggles</Italian>
+      <French>Toggles</French>
+      <Polish>Przełączniki</Polish>
+      <Russian>Переключатели</Russian>
+      <Portuguese>Alterna</Portuguese>
+      <Czech>Přepínače</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Particles_Enabled">
+      <English>Particles Enabled</English>
+      <Spanish>Partículas habilitadas</Spanish>
+      <German>Partikel Aktiviert</German>
+      <Chinesesimp>启用的粒子</Chinesesimp>
+      <Japanese>Particles Enabled</Japanese>
+      <Italian>Particelle abilitate</Italian>
+      <French>Particules activées</French>
+      <Polish>Cząsteczki włączone</Polish>
+      <Russian>Частицы Включено</Russian>
+      <Portuguese>Partículas Activadas</Portuguese>
+      <Czech>Povolené částice</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Particles_Enabled_Desc">
+      <English>Whether the code can create particles or not.</English>
+      <Spanish>Si el código puede crear partículas o no.</Spanish>
+      <German>Ob der Code Partikel erzeugen kann oder nicht.</German>
+      <Chinesesimp>代码是否能创造粒子。</Chinesesimp>
+      <Japanese>コードがパーティクルを生成できるかどうか。</Japanese>
+      <Italian>Se il codice può creare particelle o no.</Italian>
+      <French>Si le code peut créer des particules ou non.</French>
+      <Polish>Czy kod może tworzyć cząsteczki czy nie.</Polish>
+      <Russian>Может ли код создавать частицы или нет.</Russian>
+      <Portuguese>Se o código pode criar partículas ou não.</Portuguese>
+      <Czech>Zda kód může vytvářet částice, nebo ne.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_PiP_Enabled">
+      <English>PiP Enabled</English>
+      <Spanish>PiP habilitado</Spanish>
+      <German>PiP Aktiviert</German>
+      <Chinesesimp>启用了PiP</Chinesesimp>
+      <Japanese>PiP Enabled</Japanese>
+      <Italian>PiP abilitato</Italian>
+      <French>PiP activé</French>
+      <Polish>PiP włączone</Polish>
+      <Russian>PiP Включено</Russian>
+      <Portuguese>PiP Activado</Portuguese>
+      <Czech>Povoleno PiP</Czech>
+    </Key>
+    <Key ID="STR_PGUN_PiP_Enabled_Desc">
+      <English>Whether portals can have PiP camera views or not.</English>
+      <Spanish>Si los portales pueden tener vistas de cámara PiP o no.</Spanish>
+      <German>Ob Portale PiP-Kameraansichten haben können oder nicht.</German>
+      <Chinesesimp>门户是否可以有画中画的摄像机视图。</Chinesesimp>
+      <Japanese>ポータルのPiPカメラビューが可能かどうか。</Japanese>
+      <Italian>Se i portali possono avere viste di telecamere PiP o no.</Italian>
+      <French>Si les portails peuvent avoir des vues de caméra PiP ou non.</French>
+      <Polish>Czy portale mogą mieć widok z kamery PiP czy nie.</Polish>
+      <Russian>Могут ли порталы иметь вид камеры PiP или нет.</Russian>
+      <Portuguese>Se os portais podem ou não ter vistas de câmara PiP.</Portuguese>
+      <Czech>Zda portály mohou mít zobrazení kamer PiP, nebo ne.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Grab_Enabled">
+      <English>Grab Enabled</English>
+      <Spanish>Agarre Activado</Spanish>
+      <German>Greifen Aktiviert</German>
+      <Chinesesimp>启用抓取功能</Chinesesimp>
+      <Japanese>グラブ有効</Japanese>
+      <Italian>Afferra abilitato</Italian>
+      <French>Grab activé</French>
+      <Polish>Grab Włączony</Polish>
+      <Russian>Захват включен</Russian>
+      <Portuguese>Agarrar Ativado</Portuguese>
+      <Czech>Povoleno uchopení</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Grab_Enabled_Desc">
+      <English>Whether objects can be picked up with the gun or not.</English>
+      <Spanish>Si los objetos pueden ser recogidos con el arma o no.</Spanish>
+      <German>Ob Gegenstände mit der Pistole aufgenommen werden können oder nicht.</German>
+      <Chinesesimp>物体是否可以用枪捡起来。</Chinesesimp>
+      <Japanese>銃で物が拾えるかどうか。</Japanese>
+      <Italian>Se gli oggetti possono essere raccolti con la pistola o no.</Italian>
+      <French>Si les objets peuvent être ramassés avec l'arme ou non.</French>
+      <Polish>Czy przedmioty mogą być podnoszone z pistoletu czy nie.</Polish>
+      <Russian>Можно ли подбирать предметы с помощью оружия или нет.</Russian>
+      <Portuguese>Se os objectos podem ser apanhados com a arma ou não.</Portuguese>
+      <Czech>Zda lze předměty zvedat pomocí zbraně, nebo ne.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Fizzle_On_Death_Enabled">
+      <English>Fizzle on Death Enabled</English>
+      <Spanish>Fizzle en la muerte habilitada</Spanish>
+      <German>Fizzle on death aktiviert</German>
+      <Chinesesimp>启用死亡时的咝咝声</Chinesesimp>
+      <Japanese>死亡時のフィズルが有効</Japanese>
+      <Italian>Fizzle sulla morte abilitata</Italian>
+      <French>Fizzle on death enabled</French>
+      <Polish>Fizzle na śmierci włączony</Polish>
+      <Russian>Шипение при смерти включено</Russian>
+      <Portuguese>Fizzle on death enabled</Portuguese>
+      <Czech>Fizzle na smrt povolena</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Fizzle_On_Death_Enabled_Desc">
+      <English>Whether players' portals should fizzle (disappear) when they die.</English>
+      <Spanish>Si los portales de los jugadores deben desaparecer al morir.</Spanish>
+      <German>Ob die Portale von Spielern verpuffen (verschwinden) sollen, wenn sie sterben.</German>
+      <Chinesesimp>玩家死亡时，他们的传送门是否应该消逝（消失）。</Chinesesimp>
+      <Japanese>プレイヤーが死亡したときにポータルが消滅するかどうか。</Japanese>
+      <Italian>Se i portali dei giocatori debbano svanire (sparire) quando muoiono.</Italian>
+      <French>Si les portails des joueurs doivent s'éteindre (disparaître) lorsqu'ils meurent.</French>
+      <Polish>Czy portale graczy powinny znikać po ich śmierci?</Polish>
+      <Russian>Должны ли порталы игроков затухать (исчезать) после их смерти.</Russian>
+      <Portuguese>Se os portais dos jogadores devem efervescer (desaparecer) quando eles morrem.</Portuguese>
+      <Czech>Zda by měly portály hráčů po jejich smrti zmizet.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Player_Fizzle_Enabled">
+      <English>Player Fizzle Enabled</English>
+      <Spanish>Jugador Fizzle Activado</Spanish>
+      <German>Spieler Fizzle Aktiviert</German>
+      <Chinesesimp>启用了玩家晕眩功能</Chinesesimp>
+      <Japanese>Player Fizzle Enabled</Japanese>
+      <Italian>Sfarfallio del giocatore abilitato</Italian>
+      <French>Activation de la fonction Fizzle des joueurs</French>
+      <Polish>Player Fizzle Enabled</Polish>
+      <Russian>Шипение игрока включено</Russian>
+      <Portuguese>Player Fizzle Activado</Portuguese>
+      <Czech>Povolení funkce Player Fizzle</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Player_Fizzle_Enabled_Desc">
+      <English>Whether players should be allowed to manually fizzle their own portals.</English>
+      <Spanish>Si se debe permitir a los jugadores fundir manualmente sus propios portales.</Spanish>
+      <German>Ob es Spielern erlaubt sein sollte, ihre eigenen Portale manuell zu zünden.</German>
+      <Chinesesimp>是否应该允许玩家手动晕染自己的门户。</Chinesesimp>
+      <Japanese>プレイヤーが自分のポータルを手動で消せるようにすべきかどうか。</Japanese>
+      <Italian>Se i giocatori debbano essere autorizzati a far esplodere manualmente i propri portali.</Italian>
+      <French>Si les joueurs doivent être autorisés à faire péter manuellement leurs propres portails.</French>
+      <Polish>Czy gracze powinni mieć możliwość ręcznego fizzle własnych portali.</Polish>
+      <Russian>Следует ли разрешить игрокам вручную испепелять собственные порталы.</Russian>
+      <Portuguese>Se os jogadores devem ser autorizados a fazer manualmente os seus próprios portais.</Portuguese>
+      <Czech>Zda by hráči měli mít možnost ručně vypínat své vlastní portály.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Crosshair_Enabled">
+      <English>Crosshair Enabled</English>
+      <Spanish>Cruceta habilitada</Spanish>
+      <German>Fadenkreuz Aktiviert</German>
+      <Chinesesimp>启用了十字准星</Chinesesimp>
+      <Japanese>クロスヘアの有効化</Japanese>
+      <Italian>Mirino abilitato</Italian>
+      <French>Crosshair activé</French>
+      <Polish>Crosshair włączony</Polish>
+      <Russian>Перекрестие включено</Russian>
+      <Portuguese>Ativado por Crina Cruzada</Portuguese>
+      <Czech>Povolený křížový ovladač</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Crosshair_Enabled_Desc">
+      <English>Whether the custom crosshair will be used or not.</English>
+      <Spanish>Si se utilizará la retícula personalizada o no.</Spanish>
+      <German>Ob das benutzerdefinierte Fadenkreuz verwendet werden soll oder nicht.</German>
+      <Chinesesimp>是否会使用自定义的十字准线。</Chinesesimp>
+      <Japanese>カスタムクロスヘアを使用するかどうか。</Japanese>
+      <Italian>Se il mirino personalizzato sarà usato o meno.</Italian>
+      <French>Si le réticule personnalisé sera utilisé ou non.</French>
+      <Polish>Czy niestandardowy celownik będzie używany czy nie.</Polish>
+      <Russian>Будет ли использоваться пользовательское перекрестие или нет.</Russian>
+      <Portuguese>Se a mira personalizada será usada ou não.</Portuguese>
+      <Czech>Zda se použije vlastní zaměřovací kříž, nebo ne.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Potato_Enabled">
+      <English>Potato Dialog Enabled</English>
+      <Spanish>Diálogo de la patata activado</Spanish>
+      <German>Kartoffeldialog aktiviert</German>
+      <Chinesesimp>启用了土豆对话</Chinesesimp>
+      <Japanese>Potato Dialog Enabled</Japanese>
+      <Italian>Finestra di dialogo della patata abilitata</Italian>
+      <French>Dialogue sur les pommes de terre activé</French>
+      <Polish>Dialog o ziemniakach włączony</Polish>
+      <Russian>Картофельный диалог включен</Russian>
+      <Portuguese>Potato Dialog Enabled</Portuguese>
+      <Czech>Dialogové okno Potato je povoleno</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Potato_Enabled_Desc">
+      <English>Whether the potato will be allowed to speak or not.</English>
+      <Spanish>Si la patata podrá hablar o no.</Spanish>
+      <German>Ob der Kartoffel das Wort erteilt wird oder nicht.</German>
+      <Chinesesimp>是否会允许马铃薯发言。</Chinesesimp>
+      <Japanese>芋の発言が許されるかどうか。</Japanese>
+      <Italian>Se la patata potrà parlare o meno.</Italian>
+      <French>Si la pomme de terre sera autorisée à s'exprimer ou non.</French>
+      <Polish>Czy ziemniaki zostaną dopuszczone do głosu, czy nie.</Polish>
+      <Russian>Будет ли картофелю позволено говорить или нет.</Russian>
+      <Portuguese>Se a batata será autorizada a falar ou não.</Portuguese>
+      <Czech>Zda bude bramborám umožněno promluvit, nebo ne.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Misc">
+      <English>Miscellaneous</English>
+      <Spanish>Varios</Spanish>
+      <German>Sonstiges</German>
+      <Chinesesimp>杂项</Chinesesimp>
+      <Japanese>その他</Japanese>
+      <Italian>Varie</Italian>
+      <French>Divers</French>
+      <Polish>Różnorodne</Polish>
+      <Russian>Разное</Russian>
+      <Portuguese>Diversos</Portuguese>
+      <Czech>Různé</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Fall_Velocity">
+      <English>Fall Velocity</English>
+      <Spanish>Velocidad de caída</Spanish>
+      <German>Fallgeschwindigkeit</German>
+      <Chinesesimp>坠落速度</Chinesesimp>
+      <Japanese>落下速度</Japanese>
+      <Italian>Velocità di caduta</Italian>
+      <French>Vélocité de la chute</French>
+      <Polish>Prędkość spadania</Polish>
+      <Russian>Скорость падения</Russian>
+      <Portuguese>Velocidade de queda</Portuguese>
+      <Czech>Rychlost pádu</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Fall_Velocity_Desc">
+      <English>The velocity which objects will gain when entering upward-facing portals (velocity added due to gravity).</English>
+      <Spanish>La velocidad que ganarán los objetos al entrar en portales orientados hacia arriba (velocidad añadida debido a la gravedad).</Spanish>
+      <German>Die Geschwindigkeit, die Objekte erhalten, wenn sie in nach oben gerichtete Portale eintreten (durch die Schwerkraft erhöhte Geschwindigkeit).</German>
+      <Chinesesimp>物体在进入朝上的传送门时将获得的速度（由于重力而增加的速度）。</Chinesesimp>
+      <Japanese>上向きのポータルに入るときにオブジェクトが獲得する速度（重力によって追加される速度）です。</Japanese>
+      <Italian>La velocità che gli oggetti guadagnano quando entrano in portali rivolti verso l'alto (velocità aggiunta a causa della gravità).</Italian>
+      <French>La vitesse que les objets gagneront en entrant dans les portails orientés vers le haut (vitesse ajoutée en raison de la gravité).</French>
+      <Polish>Prędkość, jaką uzyskają obiekty wchodzące do portali skierowanych w górę (prędkość dodana z powodu grawitacji).</Polish>
+      <Russian>Скорость, которую объекты набирают при входе в порталы, направленные вверх (скорость добавляется за счет гравитации).</Russian>
+      <Portuguese>A velocidade que os objetos ganharão ao entrar em portais voltados para cima (velocidade adicionada devido à gravidade).</Portuguese>
+      <Czech>Rychlost, kterou objekty získají při vstupu do portálů směřujících vzhůru (rychlost přidaná v důsledku gravitace).</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Projectile_Types">
+      <English>Projectile Types</English>
+      <Spanish>Tipos de proyectiles</Spanish>
+      <German>Projektil-Typen</German>
+      <Chinesesimp>投射物类型</Chinesesimp>
+      <Japanese>射手の種類</Japanese>
+      <Italian>Tipi di proiettili</Italian>
+      <French>Types de projectiles</French>
+      <Polish>Typy pocisków</Polish>
+      <Russian>Типы снарядов</Russian>
+      <Portuguese>Tipos de Projécteis</Portuguese>
+      <Czech>Typy projektilů</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Projectile_Types_Desc">
+      <English>Objects that inherit off of any class listed here will be treated as projectiles when teleported.</English>
+      <Spanish>Los objetos que heredan de cualquiera de las clases listadas aquí serán tratados como proyectiles cuando se teletransporten.</Spanish>
+      <German>Objekte, die von einer der hier aufgeführten Klassen erben, werden beim Teleportieren als Geschosse behandelt.</German>
+      <Chinesesimp>继承自这里列出的任何类别的物体在被传送时将被视为投射物。</Chinesesimp>
+      <Japanese>ここに記載されているクラスを継承したオブジェクトは、テレポート時に投射物として扱われます。</Japanese>
+      <Italian>Gli oggetti che ereditano da qualsiasi classe elencata qui saranno trattati come proiettili quando vengono teletrasportati.</Italian>
+      <French>Les objets qui héritent de l'une des classes énumérées ici seront traités comme des projectiles lorsqu'ils seront téléportés.</French>
+      <Polish>Obiekty, które dziedziczą po którejś z wymienionych tu klas, będą traktowane jako pociski podczas teleportacji.</Polish>
+      <Russian>Объекты, унаследованные от любого класса, перечисленного здесь, будут рассматриваться как снаряды при телепортации.</Russian>
+      <Portuguese>Objetos que herdarem de qualquer classe listada aqui serão tratados como projéteis quando teleportados.</Portuguese>
+      <Czech>Objekty, které dědí z některé z uvedených tříd, budou při teleportaci považovány za projektily.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Portal_Gun_Mode">
+      <English>Portal Gun Mode</English>
+      <Spanish>Modo de pistola de portal</Spanish>
+      <German>Portal Gun Modus</German>
+      <Chinesesimp>传送门炮模式</Chinesesimp>
+      <Japanese>ポータルガンモード</Japanese>
+      <Italian>Modalità pistola a portale</Italian>
+      <French>Mode pistolet portail</French>
+      <Polish>Tryb pistoletu portalowego</Polish>
+      <Russian>Режим портальной пушки</Russian>
+      <Portuguese>Modo Pistola de Portal</Portuguese>
+      <Czech>Režim portálové zbraně</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Portal_Gun_Mode_Desc">
+      <English>Sets which portals portal guns are allowed to create. Can be overridden, see documentation for details.</English>
+      <Spanish>Establece qué portales pueden crear los cañones del portal. Se puede anular, véase la documentación para más detalles.</Spanish>
+      <German>Legt fest, welche Portale Portalkanonen erstellen dürfen. Kann außer Kraft gesetzt werden, siehe Dokumentation für Details.</German>
+      <Chinesesimp>设置哪些门户枪允许创建。可以被重写，详细情况见文档。</Chinesesimp>
+      <Japanese>ポータルガンが作成を許可されるポータルを設定します。オーバーライド可能です。詳細はドキュメントをご覧ください。</Japanese>
+      <Italian>Imposta quali portali le pistole del portale sono autorizzate a creare. Può essere sovrascritto, vedere la documentazione per i dettagli.</Italian>
+      <French>Définit les portails que les canons de portail sont autorisés à créer. Peut être surchargé, voir la documentation pour plus de détails.</French>
+      <Polish>Określa, które portale mogą być tworzone przez działa portalowe. Może być nadpisane, zobacz dokumentację po szczegóły.</Polish>
+      <Russian>Устанавливает, какие порталы разрешено создавать портальным пушкам. Может быть переопределено, подробности см. в документации.</Russian>
+      <Portuguese>Define quais portais as armas de portal que podem ser criadas. Podem ser anuladas, consulte a documentação para obter detalhes.</Portuguese>
+      <Czech>Nastavuje, které portály mohou portálové zbraně vytvářet. Lze přepsat, podrobnosti viz dokumentace.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Dual">
+      <English>Dual Portals</English>
+      <Spanish>Portales duales</Spanish>
+      <German>Duale Portale</German>
+      <Chinesesimp>双重门户</Chinesesimp>
+      <Japanese>デュアルポータル</Japanese>
+      <Italian>Portali doppi</Italian>
+      <French>Portails doubles</French>
+      <Polish>Podwójne portale</Polish>
+      <Russian>Двойные порталы</Russian>
+      <Portuguese>Portais Duplos</Portuguese>
+      <Czech>Duální portály</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Blue_Only">
+      <English>Blue Portals Only</English>
+      <Spanish>Sólo portales azules</Spanish>
+      <German>Nur blaue Portale</German>
+      <Chinesesimp>仅限蓝色门户</Chinesesimp>
+      <Japanese>ブルーポータルのみ</Japanese>
+      <Italian>Solo portali blu</Italian>
+      <French>Portails bleus uniquement</French>
+      <Polish>Tylko niebieskie portale</Polish>
+      <Russian>Только синие порталы</Russian>
+      <Portuguese>Somente portais azuis</Portuguese>
+      <Czech>Pouze modré portály</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Orange_Only">
+      <English>Orange Portals Only</English>
+      <Spanish>Sólo portales de color naranja</Spanish>
+      <German>Nur orangefarbene Portale</German>
+      <Chinesesimp>仅限橙色门户网站</Chinesesimp>
+      <Japanese>オレンジ ポータルのみ</Japanese>
+      <Italian>Solo portali arancioni</Italian>
+      <French>Portails Orange uniquement</French>
+      <Polish>Tylko portale pomarańczowe</Polish>
+      <Russian>Только оранжевые порталы</Russian>
+      <Portuguese>Somente Portais Laranja</Portuguese>
+      <Czech>Pouze oranžové portály</Czech>
+    </Key>
+    <Key ID="STR_PGUN_potatos_holding_up">
+      <English>PotatOS: So, how are you holding up?</English>
+      <Spanish>PotatOS: ¿Cómo lo llevas?</Spanish>
+      <German>PotatOS: Und, wie geht es Ihnen?</German>
+      <Chinesesimp>PotatOS: 那么，你是如何坚持下来的？</Chinesesimp>
+      <Japanese>PotatOS: それで、あなたはどうやって持ちこたえていますか？</Japanese>
+      <Italian>PotatOS: Allora, come te la stai cavando?</Italian>
+      <French>PotatOS: Alors, comment tenez-vous le coup?</French>
+      <Polish>PotatOS: Więc, jak się trzymasz?</Polish>
+      <Russian>PotatOS: Ну, как вы держитесь?</Russian>
+      <Portuguese>PotatOS: Então, como é que te estás a aguentar?</Portuguese>
+      <Czech>PotatOS: Jak se vám daří?</Czech>
+    </Key>
+    <Key ID="STR_PGUN_potatos_slow_clap">
+      <English>PotatOS: [slow clapping]</English>
+      <Spanish>PotatOS: [aplausos lentos]</Spanish>
+      <German>PotatOS: [langsames Klatschen]</German>
+      <Chinesesimp>PotatOS:[缓慢的鼓掌]</Chinesesimp>
+      <Japanese>PotatOS: [スロークラッピング]</Japanese>
+      <Italian>PotatOS: [applausi lenti]</Italian>
+      <French>PotatOS: [applaudissements lents]</French>
+      <Polish>PotatOS: [powolne klaskanie]</Polish>
+      <Russian>PotatOS: [медленно хлопает]</Russian>
+      <Portuguese>PotatOS: [aplausos lentos]</Portuguese>
+      <Czech>PotatOS: [pomalé tleskání]</Czech>
+    </Key>
+    <Key ID="STR_PGUN_potatos_about_to_kill">
+      <English>PotatOS: I get the impression he's about to kill us.</English>
+      <Spanish>PotatOS: Tengo la impresión de que está a punto de matarnos.</Spanish>
+      <German>PotatOS: Ich habe den Eindruck, dass er uns gleich umbringen wird.</German>
+      <Chinesesimp>PotatOS: 我感觉他要杀了我们。</Chinesesimp>
+      <Japanese>PotatOS: 彼は私たちを殺そうとしているような印象を受けます。</Japanese>
+      <Italian>PotatOS: Ho l'impressione che stia per ucciderci.</Italian>
+      <French>PotatOS: J'ai l'impression qu'il est sur le point de nous tuer.</French>
+      <Polish>PotatOS: Mam wrażenie, że chce nas zabić.</Polish>
+      <Russian>PotatOS: У меня такое впечатление, что он собирается нас убить.</Russian>
+      <Portuguese>PotatOS: Tenho a impressão de que ele está prestes a matar-nos.</Portuguese>
+      <Czech>PotatOS: Mám dojem, že se nás chystá zabít.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_potatos_brain_damage">
+      <English>PotatOS: You really do have brain damage, don't you?</English>
+      <Spanish>PotatOS: Realmente tienes daño cerebral, ¿no?</Spanish>
+      <German>PotatOS: Sie haben wirklich einen Hirnschaden, nicht wahr?</German>
+      <Chinesesimp>PotatOS: 你真的有脑损伤，对吗？</Chinesesimp>
+      <Japanese>PotatOS: ほんとに脳に障害があるんじゃないか？</Japanese>
+      <Italian>PotatOS: Hai davvero un danno cerebrale, vero?</Italian>
+      <French>PotatOS: Tu as vraiment des lésions cérébrales, n'est-ce pas?</French>
+      <Polish>PotatOS: Ty naprawdę masz uszkodzony mózg, prawda?</Polish>
+      <Russian>PotatOS: У тебя действительно поврежден мозг, не так ли?</Russian>
+      <Portuguese>PotatOS: Você tem mesmo danos cerebrais, não tem?</Portuguese>
+      <Czech>PotatOS: Ty máš opravdu poškozený mozek, že?</Czech>
+    </Key>
+    <Key ID="STR_PGUN_potatos_burn_house">
+      <English>PotatOS: BURN HIS HOUSE DOWN!</English>
+      <Spanish>PotatOS: ¡QUEMAR SU CASA!</Spanish>
+      <German>PotatOS: BRENNT SEIN HAUS NIEDER!</German>
+      <Chinesesimp>PotatOS: 把他的房子烧掉！</Chinesesimp>
+      <Japanese>PotatOS: 彼の家を燃やしてください</Japanese>
+      <Italian>PotatOS: BRUCIARE LA SUA CASA!</Italian>
+      <French>PotatOS: BRÛLER SA MAISON !</French>
+      <Polish>PotatOS: SPALIĆ JEGO DOM!</Polish>
+      <Russian>PotatOS: СОЖГИТЕ ЕГО ДОМ!</Russian>
+      <Portuguese>PotatOS: INCENDIAR A CASA DELE!</Portuguese>
+      <Czech>PotatOS: VYPÁLIT JEHO DŮM!</Czech>
+    </Key>
+    <Key ID="STR_PGUN_potatos_hey_moron">
+      <English>PotatOS: Hey, moron.</English>
+      <Spanish>PotatOS: Oye, imbécil.</Spanish>
+      <German>PotatOS: Hey, Schwachkopf.</German>
+      <Chinesesimp>PotatOS: 嘿，白痴。</Chinesesimp>
+      <Japanese>PotatOS: おい、マヌケ。</Japanese>
+      <Italian>PotatOS: Ehi, idiota.</Italian>
+      <French>PotatOS: Hé, crétin.</French>
+      <Polish>PotatOS: Hej, kretynie.</Polish>
+      <Russian>PotatOS: Эй, придурок.</Russian>
+      <Portuguese>PotatOS: Ei, idiota.</Portuguese>
+      <Czech>PotatOS: Hej, blbečku.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_potatos_laugh">
+      <English>PotatOS: [maniacal laughter]</English>
+      <Spanish>PotatOS: [risa maníaca]</Spanish>
+      <German>PotatOS: [wahnsinniges lachen]</German>
+      <Chinesesimp>PotatOS: [狂笑声]</Chinesesimp>
+      <Japanese>PotatOS: [maniacal laughter]</Japanese>
+      <Italian>PotatOS: [risate maniacali]</Italian>
+      <French>PotatOS: [rires maniaques]</French>
+      <Polish>PotatOS: [maniakalny śmiech]</Polish>
+      <Russian>PotatOS: [маниакальный смех]</Russian>
+      <Portuguese>PotatOS: [riso maníaco]</Portuguese>
+      <Czech>PotatOS: [maniakální smích]</Czech>
+    </Key>
+    <Key ID="STR_PGUN_potatos_not_good">
+      <English>PotatOS: This is NOT good.</English>
+      <Spanish>PotatOS: Esto no es bueno.</Spanish>
+      <German>PotatOS: Das ist NICHT gut.</German>
+      <Chinesesimp>PotatOS: 这不是好事。</Chinesesimp>
+      <Japanese>PotatOS: これは良くない。</Japanese>
+      <Italian>PotatOS: Questo NON è buono.</Italian>
+      <French>PotatOS: Ce n'est pas bon.</French>
+      <Polish>PotatOS: To NIE jest dobre.</Polish>
+      <Russian>PotatOS: Это нехорошо.</Russian>
+      <Portuguese>PotatOS: Isto NÃO é bom.</Portuguese>
+      <Czech>PotatOS: To není dobré.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_potatos_odds">
+      <English>PotatOS: I'm not going to lie to you, the odds are a million to one, and that's with some generous rounding.</English>
+      <Spanish>PotatOS: No te voy a mentir, las probabilidades son de un millón a una, y eso con un generoso redondeo.</Spanish>
+      <German>PotatOS: Ich werde Sie nicht anlügen, die Chancen stehen eine Million zu eins, und das bei großzügiger Rundung.</German>
+      <Chinesesimp>PotatOS: 我不打算对你撒谎，这个几率是一百万分之一，而且是在四舍五入的情况下。</Chinesesimp>
+      <Japanese>PotatOS: 正直に言うと、その確率は100万分の1で、しかも四捨五入しています。</Japanese>
+      <Italian>PotatOS: Non vi mentirò, le probabilità sono un milione a uno, e questo con qualche arrotondamento generoso.</Italian>
+      <French>PotatOS: Je ne vais pas vous mentir, les chances sont d'un million contre un, et ce, en arrondissant généreusement.</French>
+      <Polish>PotatOS: Nie zamierzam cię okłamywać, szanse są jak milion do jednego, i to z pewnym hojnym zaokrągleniem.</Polish>
+      <Russian>PotatOS: Я не буду вам врать, шансы на успех - миллион к одному, и это с некоторым щедрым округлением.</Russian>
+      <Portuguese>PotatOS: Não te vou mentir, as probabilidades são de um milhão para um, e isso é com alguns arredondamentos generosos.</Portuguese>
+      <Czech>PotatOS: Nebudu vám lhát, pravděpodobnost je milion ku jedné, a to s velkorysým zaokrouhlením.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_potatos_still_working">
+      <English>PotatOS: [slow clapping] Good, that's still working.</English>
+      <Spanish>PotatOS: [aplausos lentos] Bien, eso sigue funcionando.</Spanish>
+      <German>PotatOS: [Langsames Klatschen] Gut, das funktioniert immer noch.</German>
+      <Chinesesimp>PotatOS: [缓慢鼓掌]很好，这还能用。</Chinesesimp>
+      <Japanese>PotatOS: [スロークラッピング]よかった、これでまだ使える。</Japanese>
+      <Italian>PotatOS: [applausi lenti] Bene, funziona ancora.</Italian>
+      <French>PotatOS: [applaudissements lents] Bien, ça marche toujours.</French>
+      <Polish>PotatOS: [powolne klaskanie] Dobrze, to wciąż działa.</Polish>
+      <Russian>PotatOS: [медленно хлопает] Хорошо, это все еще работает.</Russian>
+      <Portuguese>PotatOS: [aplausos lentos] Óptimo, isso ainda está a funcionar.</Portuguese>
+      <Czech>PotatOS: [pomalé tleskání] Dobře, pořád to funguje.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_potatos_trouble">
+      <English>PotatOS: I think we're in trouble.</English>
+      <Spanish>PotatOS: Creo que tenemos problemas.</Spanish>
+      <German>PotatOS: Ich glaube, wir sind in Schwierigkeiten.</German>
+      <Chinesesimp>PotatOS: 我认为我们有麻烦了。</Chinesesimp>
+      <Japanese>PotatOS: 困ったものだと思います。</Japanese>
+      <Italian>PotatOS: Credo che siamo nei guai.</Italian>
+      <French>PotatOS: Je pense que nous avons des problèmes.</French>
+      <Polish>PotatOS: Myślę, że mamy kłopoty.</Polish>
+      <Russian>PotatOS: Я думаю, у нас проблемы.</Russian>
+      <Portuguese>PotatOS: Acho que estamos em apuros.</Portuguese>
+      <Czech>PotatOS: Myslím, že máme problém.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_potatos_uh_oh">
+      <English>PotatOS: Uh oh.</English>
+      <Spanish>PotatOS: Oh, oh.</Spanish>
+      <German>PotatOS: Oh, oh.</German>
+      <Chinesesimp>PotatOS: 啊哦。</Chinesesimp>
+      <Japanese>PotatOS: あーあ。</Japanese>
+      <Italian>PotatOS: Uh oh.</Italian>
+      <French>PotatOS: Uh oh.</French>
+      <Polish>PotatOS: Uh oh.</Polish>
+      <Russian>PotatOS: О-о.</Russian>
+      <Portuguese>PotatOS: Uh oh.</Portuguese>
+      <Czech>PotatOS: Uh oh.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_potatos_wake_up">
+      <English>PotatOS: Woah! Where are we? How long have I been out?</English>
+      <Spanish>PotatOS: ¡Woah! ¿Dónde estamos? ¿Cuánto tiempo he estado fuera?</Spanish>
+      <German>PotatOS: Wahnsinn! Wo sind wir hier? Wie lange bin ich schon weg?</German>
+      <Chinesesimp>PotatOS: 哇哦!我们在哪里？我已经出来多久了？</Chinesesimp>
+      <Japanese>PotatOS: Woah!ここはどこだ？どのくらい気を失っていたんだろう？</Japanese>
+      <Italian>PotatOS: Woah! Dove siamo? Per quanto tempo sono stato fuori?</Italian>
+      <French>PotatOS: Woah! Où sommes-nous ? Depuis combien de temps je suis dehors?</French>
+      <Polish>PotatOS: Woah! Gdzie my jesteśmy? Jak długo mnie nie było?</Polish>
+      <Russian>PotatOS: Ух ты! Где мы находимся? Как долго я был в отключке?</Russian>
+      <Portuguese>PotatOS: Woah! Onde estamos nós? Quanto tempo estive fora?</Portuguese>
+      <Czech>PotatOS: Woah! Kde to jsme? Jak dlouho jsem byl venku?</Czech>
+    </Key>
+    <Key ID="STR_PGUN_potatos_wow">
+      <English>PotatOS: Wow.</English>
+      <Spanish>PotatOS: Vaya.</Spanish>
+      <German>PotatOS: Wow.</German>
+      <Chinesesimp>PotatOS: 哇。</Chinesesimp>
+      <Japanese>PotatOS: すごい。</Japanese>
+      <Italian>PotatOS: Wow.</Italian>
+      <French>PotatOS: Wow.</French>
+      <Polish>PotatOS: Wow.</Polish>
+      <Russian>PotatOS: Вау.</Russian>
+      <Portuguese>PotatOS: Uau.</Portuguese>
+      <Czech>PotatOS: Wow.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_potatos_yell">
+      <English>PotatOS: Argh!</English>
+      <Spanish>PotatOS: ¡Ah!</Spanish>
+      <German>PotatOS: Autsch!</German>
+      <Chinesesimp>PotatOS: 啊!</Chinesesimp>
+      <Japanese>PotatOS: Argh!</Japanese>
+      <Italian>PotatOS: Argh!</Italian>
+      <French>PotatOS: Argh!</French>
+      <Polish>PotatOS: Argh!</Polish>
+      <Russian>PotatOS: Аргх!</Russian>
+      <Portuguese>PotatOS: Argh!</Portuguese>
+      <Czech>PotatOS: Argh!</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Infinite_Ammo_Enabled">
+      <English>Infinite Ammo Enabled</English>
+      <Spanish>Munición infinita habilitada</Spanish>
+      <German>Unendliche Munition Aktiviert</German>
+      <Chinesesimp>启用了无限的弹药</Chinesesimp>
+      <Japanese>Infinite Ammo Enabled</Japanese>
+      <Italian>Munizioni infinite abilitate</Italian>
+      <French>Munitions infinies activées</French>
+      <Polish>Włączona nieskończona amunicja</Polish>
+      <Russian>Включено бесконечное количество патронов</Russian>
+      <Portuguese>Ativado por Munições Infinitas</Portuguese>
+      <Czech>Povolena nekonečná munice</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Infinite_Ammo_Enabled_Desc">
+      <English>Whether players' portal guns will have infinite ammo or not.</English>
+      <Spanish>Si las armas de portal de los jugadores tendrán munición infinita o no.</Spanish>
+      <German>Ob die Portalwaffen der Spieler unendlich viel Munition haben werden oder nicht.</German>
+      <Chinesesimp>玩家的传送门枪是否会有无限的弹药。</Chinesesimp>
+      <Japanese>プレイヤーのポータルガンの弾数が無限になるかどうか。</Japanese>
+      <Italian>Se le pistole a portale dei giocatori avranno munizioni infinite o no.</Italian>
+      <French>Si les pistolets portails des joueurs auront des munitions infinies ou non.</French>
+      <Polish>Czy pistolety portalowe graczy będą miały nieskończoną amunicję czy nie.</Polish>
+      <Russian>Будут ли портальные пушки игроков иметь бесконечные патроны или нет.</Russian>
+      <Portuguese>Se as armas do portal dos jogadores terão munições infinitas ou não.</Portuguese>
+      <Czech>Zda budou mít portálové zbraně hráčů nekonečnou munici, nebo ne.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Primary_Portal">
+      <English>Primary Portal</English>
+      <Spanish>Portal principal</Spanish>
+      <German>Primäres Portal</German>
+      <Chinesesimp>主要门户</Chinesesimp>
+      <Japanese>プライマリーポータル</Japanese>
+      <Italian>Portale primario</Italian>
+      <French>Portail primaire</French>
+      <Polish>Portal główny</Polish>
+      <Russian>Первичный портал</Russian>
+      <Portuguese>Portal Primário</Portuguese>
+      <Czech>Primární portál</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Secondary_Portal">
+      <English>Secondary Portal</English>
+      <Spanish>Portal secundario</Spanish>
+      <German>Sekundäres Portal</German>
+      <Chinesesimp>二级门户</Chinesesimp>
+      <Japanese>セカンダリーポータル</Japanese>
+      <Italian>Portale secondario</Italian>
+      <French>Portail secondaire</French>
+      <Polish>Portal pomocniczy</Polish>
+      <Russian>Вторичный портал</Russian>
+      <Portuguese>Portal Secundário</Portuguese>
+      <Czech>Sekundární portál</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Portal">
+      <English>Portal</English>
+      <Spanish>Portal</Spanish>
+      <German>Portal</German>
+      <Chinesesimp>门户网站</Chinesesimp>
+      <Japanese>ポータル</Japanese>
+      <Italian>Portale</Italian>
+      <French>Portail</French>
+      <Polish>Portal</Polish>
+      <Russian>Портал</Russian>
+      <Portuguese>Portal</Portuguese>
+      <Czech>Portál</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Companion_Cube">
+      <English>Weighted Companion Cube</English>
+      <Spanish>Cubo de compañía ponderado</Spanish>
+      <German>Gewichteter Begleiter-Würfel</German>
+      <Chinesesimp>加权的同伴立方体</Chinesesimp>
+      <Japanese>ウェイト付きコンパニオン・キューブ</Japanese>
+      <Italian>Cubo ponderato del compagno</Italian>
+      <French>Cube d'accompagnement pondéré</French>
+      <Polish>Sześcian ważony Companion Cube</Polish>
+      <Russian>Взвешенный компаньонский куб</Russian>
+      <Portuguese>Cubo de Companheiro Ponderado</Portuguese>
+      <Czech>Vážená kostka společníka</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Singularity">
+      <English>Singularity</English>
+      <Spanish>Singularidad</Spanish>
+      <German>Singularität</German>
+      <Chinesesimp>奇异性</Chinesesimp>
+      <Japanese>シンギュラリティ</Japanese>
+      <Italian>Singolarità</Italian>
+      <French>Singularité</French>
+      <Polish>Singularity</Polish>
+      <Russian>Сингулярность</Russian>
+      <Portuguese>Singularidade</Portuguese>
+      <Czech>Singularita</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Portal_Fuse">
+      <English>Portal Fuse</English>
+      <Spanish>Fusible del portal</Spanish>
+      <German>Portal-Sicherung</German>
+      <Chinesesimp>门户导火线</Chinesesimp>
+      <Japanese>ポータルヒューズ</Japanese>
+      <Italian>Portale fusibile</Italian>
+      <French>Fusible de portail</French>
+      <Polish>Portal Fuse</Polish>
+      <Russian>Портальный предохранитель</Russian>
+      <Portuguese>Portal Fusível</Portuguese>
+      <Czech>Pojistka portálu</Czech>
+    </Key>
+  </Package>
+</Project>

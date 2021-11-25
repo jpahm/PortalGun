@@ -1,0 +1,32 @@
+// Copyright 2021 Sysroot/Eisenhorn
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+    // http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+class StageTI
+{
+	texture="a3\data_f\default_hot_ti_ca.paa";
+};
+ambient[]={0.30000001,0.17,0.02,0.1};
+diffuse[]={0.30000001,0.17,0.02,0.1};
+forcedDiffuse[]={0,0,0,1};
+emmisive[]={5.8,24.7,20.3,1};
+specular[]={0,0,0,0};
+specularPower=0;
+renderFlags[]=
+{
+	"NoZWrite",
+	"NoAlphaWrite",
+	"AddBlend"
+};
+PixelShaderID="Normal";
+VertexShaderID="BasicFade";
