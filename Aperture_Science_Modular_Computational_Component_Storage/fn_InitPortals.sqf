@@ -48,17 +48,5 @@ if (_bPortal && _oPortal) then {
 	};
 };
 
-// Force firemode match
-private _newMuzzle = "";
-if (PG_VAR_CURRENT_PORTAL isEqualTo PG_VAR_ORANGE_PORTAL) then {
-	_newMuzzle = "OrangePortal";
-} else {
-	_newMuzzle = (primaryWeapon player);
-};
-private _ammo = player ammo _newMuzzle; 
-player setAmmo [_newMuzzle, 0]; 
-player forceWeaponFire [_newMuzzle, "Single"]; 
-player setAmmo [_newMuzzle, _ammo];
-
 // Update crosshair to match new portal gun settings
 call PG_fnc_UpdateCrosshair;

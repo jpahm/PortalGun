@@ -963,19 +963,6 @@
       <Portuguese>Portal</Portuguese>
       <Czech>Portál</Czech>
     </Key>
-    <Key ID="STR_PGUN_Companion_Cube">
-      <English>Weighted Companion Cube</English>
-      <Spanish>Cubo de compañía ponderado</Spanish>
-      <German>Gewichteter Begleiter-Würfel</German>
-      <Chinesesimp>加权的同伴立方体</Chinesesimp>
-      <Japanese>ウェイト付きコンパニオン・キューブ</Japanese>
-      <Italian>Cubo ponderato del compagno</Italian>
-      <French>Cube d'accompagnement pondéré</French>
-      <Polish>Sześcian ważony Companion Cube</Polish>
-      <Russian>Взвешенный компаньонский куб</Russian>
-      <Portuguese>Cubo de Companheiro Ponderado</Portuguese>
-      <Czech>Vážená kostka společníka</Czech>
-    </Key>
     <Key ID="STR_PGUN_Singularity">
       <English>Singularity</English>
       <Spanish>Singularidad</Spanish>
@@ -1001,6 +988,58 @@
       <Russian>Портальный предохранитель</Russian>
       <Portuguese>Portal Fusível</Portuguese>
       <Czech>Pojistka portálu</Czech>
+    </Key>
+	<Key ID="STR_PGUN_Companion_Cube">
+      <English>Weighted Companion Cube</English>
+      <Spanish>Cubo de compañía ponderado</Spanish>
+      <German>Gewichteter Begleiter-Würfel</German>
+      <Chinesesimp>加权的同伴立方体</Chinesesimp>
+      <Japanese>ウェイト付きコンパニオン・キューブ</Japanese>
+      <Italian>Cubo ponderato del compagno</Italian>
+      <French>Cube d'accompagnement pondéré</French>
+      <Polish>Sześcian ważony Companion Cube</Polish>
+      <Russian>Взвешенный компаньонский куб</Russian>
+      <Portuguese>Cubo de Companheiro Ponderado</Portuguese>
+      <Czech>Vážená kostka společníka</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Storage_Cube">
+      <English>Weighted Storage Cube</English>
+      <Spanish>Cubo de almacenamiento ponderado</Spanish>
+      <German>Gewichteter Lagerungswürfel</German>
+      <Chinesesimp>加权存储方块</Chinesesimp>
+      <Japanese>ウェイト付きストレージキューブ</Japanese>
+      <Italian>Cubo di stoccaggio ponderato</Italian>
+      <French>Cube de rangement lesté</French>
+      <Polish>Kostka obciążnikowa</Polish>
+      <Russian>Взвешенный куб для хранения</Russian>
+      <Portuguese>Cubo de Armazenamento Ponderado</Portuguese>
+      <Czech>Zatížená úložná kostka</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Edgeless_Cube">
+      <English>Edgeless Safety Cube</English>
+      <Spanish>Cubo de seguridad sin bordes</Spanish>
+      <German>Kantenloser Sicherheitswürfel</German>
+      <Chinesesimp>无棱角的安全方块</Chinesesimp>
+      <Japanese>エッジレス・セーフティ・キューブ</Japanese>
+      <Italian>Cubo di sicurezza senza bordi</Italian>
+      <French>Cube de sécurité sans bord</French>
+      <Polish>Bezkrawędziowa kostka bezpieczeństwa</Polish>
+      <Russian>Куб безопасности без граней</Russian>
+      <Portuguese>Cubo de Segurança sem Arestas</Portuguese>
+      <Czech>Bezpečnostní kostka bez okrajů</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Cake">
+      <English>Cake</English>
+      <Spanish>Pastel</Spanish>
+      <German>Torte</German>
+      <Chinesesimp>蛋糕</Chinesesimp>
+      <Japanese>ケーキ</Japanese>
+      <Italian>Torta</Italian>
+      <French>Gâteau</French>
+      <Polish>Ciasto</Polish>
+      <Russian>Торт</Russian>
+      <Portuguese>Bolo</Portuguese>
+      <Czech>Dort</Czech>
     </Key>
   </Package>
 </Project>

@@ -108,6 +108,7 @@ class PointerSlot;
 class InventoryFlashLightItem_Base_F;
 class CfgWeapons
 {
+	class Default;
 	class acc_pointer_IR;
 	class GeneticLifeFormandDiskOperatingSystem: acc_pointer_IR
 	{
@@ -145,76 +146,6 @@ class CfgWeapons
 			};
 		};
 	};
-	class PortalLauncher: Portal_Base_F
-	{
-		displayName="PortalLauncher";
-		magazines[]=
-		{
-			"AS_MBH"
-		};
-		magazineWell[]=
-		{
-			"ASHPD_MBHCUO"
-		};
-		ballisticsComputer=0;
-		muzzlePos="usti granatometu";
-		muzzleEnd="konec granatometu";
-		cursor="EmptyCursor";
-	    reloadAction="Disable_Gesture";
-	    recoil="recoil_gm6";
-	    weaponInfoType="RscWeaponEmpty";
-		autoFire=0;
-		modes[]=
-		{
-			"Single"
-		};
-		aiDispersionCoefY=2;
-		aiDispersionCoefX=2;
-		class Single: Mode_SemiAuto
-		{
-			reloadTime=0.25;
-			sounds[]={"StandardSound"};
-			class BaseSoundModeType
-			{
-				closure1[]={"A3\Sounds_F\arsenal\weapons\UGL\Closure_UGL",
-					1,1,10};
-				soundClosure[]={"closure1",1};
-			};
-			class StandardSound: BaseSoundModeType
-			{
-				begin1[]=
-				{
-				"\PortalGun\Aperture_Science_Long_Band_Frequency_Air_Disturbance_Generator_Container\gun_fire_red.ogg",
-					0.70794576,1,200
-				};
-				begin2[]=
-				{
-				"\PortalGun\Aperture_Science_Long_Band_Frequency_Air_Disturbance_Generator_Container\gun_fire_red.ogg",
-					0.70794576,1,200
-				};
-				soundBegin[]=
-				{
-				    "begin1",0.5,
-					"begin2",0.5
-				};
-			};
-			minRange=30;
-			minRangeProbab=0.1;
-			midRange=200;
-			midRangeProbab=0.69999999;
-			maxRange=400;
-			maxRangeProbab=0.050000001;
-		};
-	    magazineReloadTime=0;
-	    reloadTime=0.25;
-	    optics=1;
-	    modelOptics="-";
-	    cameraDir="eye";
-	    memoryPointCamera="eye";
-		opticsZoomMin=0.25;
-	    opticsZoomMax=1.25;
-	    opticsZoomInit=0.75;
-	};
 	class ASHPD_MK_SUS_Base_F: Portal_Base_F
 	{
 		author="Eisenhorn/Sysroot";
@@ -238,8 +169,7 @@ class CfgWeapons
 		UiPicture="\A3\weapons_f\data\UI\icon_regular_CA.paa";
 		muzzles[]=
 		{
-			"this",
-			"OrangePortal"
+			"this"
 		};
 		handAnim[]=
 		{
@@ -271,9 +201,9 @@ class CfgWeapons
 		{
 			priority=1;
 		};
-		modes[]={"Single"};
+		modes[]={"Blue","Orange"};
 		descriptionShort="Portal_Device";
-		class Single: Mode_SemiAuto
+		class Blue: Mode_SemiAuto
 		{
 			reloadTime=0.25;
 			dispersion=0;
@@ -310,7 +240,44 @@ class CfgWeapons
 				};
 			};
 		};
-		class single_medium_optics1: Single
+		class Orange: Mode_SemiAuto
+		{
+			reloadTime=0.25;
+			dispersion=0;
+			minRange=2;
+			minRangeProbab=0.30000001;
+			midRange=150;
+			midRangeProbab=0.69999999;
+			maxRange=350;
+			maxRangeProbab=0.1;
+            displayname = "$STR_PGUN_Secondary_Portal";
+			sounds[]={"StandardSound"};
+			class BaseSoundModeType
+			{
+				closure1[]={"A3\Sounds_F\arsenal\weapons\UGL\Closure_UGL",
+					1,1,10};
+				soundClosure[]={"closure1",1};
+			};
+			class StandardSound: BaseSoundModeType
+			{
+				begin1[]=
+				{
+				"\PortalGun\Aperture_Science_Long_Band_Frequency_Air_Disturbance_Generator_Container\gun_fire_red.ogg",
+					0.70794576,1,200
+				};
+				begin2[]=
+				{
+				"\PortalGun\Aperture_Science_Long_Band_Frequency_Air_Disturbance_Generator_Container\gun_fire_red.ogg",
+					0.70794576,1,200
+				};
+				soundBegin[]=
+				{
+				    "begin1",0.5,
+					"begin2",0.5
+				};
+			};
+		};
+		class single_medium_optics1: Blue
 		{
 			showToPlayer=0;
 			reloadTime=0.25;
@@ -339,19 +306,6 @@ class CfgWeapons
 			aiRateOfFire=7;
 			aiRateOfFireDistance=700;
 		};
-        class OrangePortal : PortalLauncher 
-		{
-			reloadTime=0.25;
-			dispersion=0;
-            cameraDir = "eye";
-   		    discreteDistance[]={0,1,2,3};
-		    discreteDistanceInitIndex=0;
-            displayname = "$STR_PGUN_Secondary_Portal";
-			sounds[]={"StandardSound"};
-            reloadAction = "";
-            magazineWell[] = {"ASHPD_MBHCUO"};
-		    magazines[]={"AS_MBH"};
-        };
 		aiDispersionCoefY=6;
 		aiDispersionCoefX=4;
 	};
@@ -418,6 +372,26 @@ class CfgWeapons
 		class ItemInfo
 		{
 			priority=1;
+		};
+	};
+	class Put: Default
+	{
+		muzzles[]=
+		{
+			"Cylindrical_Baked_Substance_Muzzle"
+		};
+		displayName="$STR_A3_CfgWeapons_Put0";
+		class PutMuzzle;
+		class Cylindrical_Baked_Substance_Muzzle: PutMuzzle
+		{
+			autoreload=0;
+			displayName="$STR_PGUN_Cake";
+			magazines[]=
+			{
+				"Cylindrical_Baked_Substance_Mag"
+			};
+			enableAttack=1;
+			showToPlayer=0;
 		};
 	};
 };
@@ -791,6 +765,11 @@ class CfgVehicles
 			init="''";
 		};
 		model="PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\Weighted_Companion_Cube.p3d";
+		hiddenselections[]=
+		{
+		   "Weighted_Companion_Cube",
+		   "The_Cube_Loves_You"
+		};
 		armor=200;
 		icon="\PortalGun\ui\Data\Portal_Editor_Icon.paa";
 		destrType="DestructNo";
@@ -800,10 +779,6 @@ class CfgVehicles
 		nameSound="obj_flag";
 		class DestructionEffects {};
 		class Attributes {};
-		hiddenselections[]=
-		{
-		   "Weighted_Companion_Cube"
-		};
 	};
 	class Weighted_Companion_Cube: Weighted_Companion_Cube_Base
 	{
@@ -813,6 +788,156 @@ class CfgVehicles
 		scope=2;
 		scopeCurator=2;
 		displayName="$STR_PGUN_Companion_Cube";
+		hiddenselections[]=
+		{
+		   "Weighted_Companion_Cube",
+		   "The_Cube_Loves_You"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\ApertureScienceWeightedCompanionCube.rvmat",
+			"PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\TheCubeLovesYou.rvmat"		
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\WCC2.paa",
+			"PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\WCC2.paa"		
+		};
+	};
+	class Weighted_Storage_Cube: Weighted_Companion_Cube_Base
+	{
+		author="Sysroot/Eisenhorn";
+		editorPreview="";
+		_generalMacro="Weighted Storage Cube";
+		scope=2;
+		scopeCurator=2;
+		displayName="$STR_PGUN_Storage_Cube";
+		hiddenselections[]=
+		{
+		   "Weighted_Companion_Cube",
+		   "The_Cube_Loves_You"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\ApertureScienceWeightedCompanionCube.rvmat",
+			"PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\TheCubeDoesntLoveYou.rvmat"		
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\metal_box.paa",
+			"PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\metal_box.paa"		
+		};
+	};
+	class Edgeless_Safety_Cube_Base: ThingX
+	{
+		scope=0;
+		scopeCurator=0;
+		class SimpleObject
+		{
+			eden=1;
+			animate[]={};
+			hide[]={};
+			verticalOffset=0.5;
+			verticalOffsetWorld=0;
+			init="''";
+		};
+		model="PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\Edgeless_Safety_Cube.p3d";
+		hiddenselections[]=
+		{
+			"TheSphereCantTalk",
+			"TheSphereDoesntLoveYou"
+		};
+		armor=200;
+		icon="\PortalGun\ui\Data\Portal_Editor_Icon.paa";
+		destrType="DestructNo";
+		editorCategory="EdCat_Things";
+		editorSubcategory="EdCat_Portal";
+		accuracy=1000;
+		nameSound="obj_flag";
+		class DestructionEffects {};
+		class Attributes {};
+	};
+	class Edgeless_Safety_Cube: Edgeless_Safety_Cube_Base
+	{
+		author="Sysroot/Eisenhorn";
+		editorPreview="";
+		_generalMacro="Edge Less Safety Cube";
+		scope=2;
+		scopeCurator=2;
+		displayName="$STR_PGUN_Edgeless_Cube";
+		hiddenselections[]=
+		{
+		   "Weighted_Companion_Cube",
+		   "The_Cube_Loves_You"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"portalgun\esteemed confidant euclidean trigonal trapezohedron\thespheredoesntloveyou.rvmat",
+			"portalgun\esteemed confidant euclidean trigonal trapezohedron\thespherestilldoesntloveyou.rvmat"		
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\MP_ball_1.paa",
+			"PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\MP_ball_1.paa"		
+		};
+	};
+	class Pernicious_Sponge_Base: ThingX
+	{
+		scope=0;
+		scopeCurator=0;
+		class SimpleObject
+		{
+			eden=1;
+			animate[]={};
+			hide[]={};
+			verticalOffset=0.5;
+			verticalOffsetWorld=0;
+			init="''";
+		};
+		model="PortalGun\Celebratory_Mendacious_Moist_Consolidated_Sustenance\falsehood.p3d";
+		hiddenselections[]=
+		{
+			"Deception"
+		};
+		armor=200;
+		icon="\PortalGun\ui\Data\Portal_Editor_Icon.paa";
+		destrType="DestructNo";
+		editorCategory="EdCat_Things";
+		editorSubcategory="EdCat_Portal";
+		accuracy=1000;
+		nameSound="obj_flag";
+		init="";
+		class DestructionEffects {};
+		class Attributes {};
+	};
+	class Pernicious_Sponge: Pernicious_Sponge_Base
+	{
+		author="Sysroot/Eisenhorn";
+		editorPreview="";
+		_generalMacro="Cake";
+		scope=2;
+		scopeCurator=2;
+		displayName="$STR_PGUN_Cake";
+	};
+	class MineGeneric;
+	class Cylindrical_Baked_Substance_Base: MineGeneric
+	{
+		author="Eisenhorn/Sysroot";
+		_generalMacro="Cylindrical_Baked_Substance_Base";
+		icon="iconExplosiveGP";
+	};
+	class Cylindrical_Baked_Substance: Cylindrical_Baked_Substance_Base
+	{
+		author="Eisenhorn/Sysroot";
+		mapSize=0.43000001;
+		editorPreview="\A3\EditorPreviews_F\Data\CfgVehicles\SatchelCharge_F.jpg";
+		_generalMacro="The_Cake_Wasnt_A_Lie";
+		scope=2;
+		icon="iconExplosiveGP";
+		ammo="Cylindrical_Baked_Substance_Ammo";
+		model="PortalGun\Celebratory_Mendacious_Moist_Consolidated_Sustenance\falsehood.p3d";
+		displayName="$STR_PGUN_Cake";
+		DLC="Curator";
 	};
 	class death_base: NonStrategic
 	{
@@ -833,8 +958,7 @@ class CfgVehicles
 			"back",
 			"front",
 			"backbottom",
-			"frontbottom",
-			"ringinner"
+			"frontbottom"
 		};
 	};
 	class death: death_base
@@ -850,12 +974,10 @@ class CfgVehicles
 			"PortalGun\Aperture_Science_Woof_Containment_Vessel\accretion_disc.paa",
 			"PortalGun\Aperture_Science_Woof_Containment_Vessel\accretion_disc.paa",
 			"PortalGun\Aperture_Science_Woof_Containment_Vessel\accretion_disc.paa",
-			"PortalGun\Aperture_Science_Woof_Containment_Vessel\accretion_disc.paa",
 			"PortalGun\Aperture_Science_Woof_Containment_Vessel\accretion_disc.paa"
 		};
 		class UVAnimations
 		{
-			// Clockwise
 			class Singularity_Disc_Animation_Back
 			{
 					type			= translation;
@@ -876,23 +998,11 @@ class CfgVehicles
 			class Singularity_Disc_Animation_FrontBottom : Singularity_Disc_Animation_Back {
 				section			= frontbottom;
 			};
-			
-			// Counter-clockwise
-			class Singularity_Disc_Animation_RingInner : Singularity_Disc_Animation_Back {
-				section			= ringinner;
-				offset0[]		= {1,0};
-				offset1[]		= {0,0};
-			};
 		};
 		class AnimationSources
 		{
 			class Singularity_Disc_Source
 			{
-				source			= user;
-				initPhase		= 0;
-				animPeriod		= 10;
-			};
-			class Accretion_Debris_Source {
 				source			= user;
 				initPhase		= 0;
 				animPeriod		= 10;
@@ -1050,6 +1160,78 @@ class CfgAmmo
 		cost = 20;
 		aiAmmoUsageFlags = "64 + 128 + 256";
 	};
+    class PipeBombCore;
+	class Cylindrical_Baked_Substance_Base: PipeBombCore
+	{
+		icon="iconExplosiveGP";
+		mapsize=1;
+		explosionType="bomb";
+		soundTrigger[]=
+		{
+			"A3\Sounds_F\weapons\mines\electron_trigger_1",
+			0.56234133,
+			1,
+			30
+		};
+		soundActivation[]=
+		{
+			"A3\Sounds_F\weapons\mines\electron_activate_mine_1",
+			0.56234133,
+			1,
+			30
+		};
+		soundDeactivation[]=
+		{
+			"A3\Sounds_F\weapons\Mines\deactivate_mine_3a",
+			1.9952624,
+			1,
+			20
+		};
+		triggerWhenDestroyed=1;
+		underwaterHitRangeCoef=1;
+	};
+	class Cylindrical_Baked_Substance_Ammo: Cylindrical_Baked_Substance_Base
+	{
+		hit=9000;
+		indirectHit=9000;
+		indirectHitRange=55;
+		model="PortalGun\Celebratory_Mendacious_Moist_Consolidated_Sustenance\falsehood.p3d";
+		mineModelDisabled="PortalGun\Celebratory_Mendacious_Moist_Consolidated_Sustenance\falsehood.p3d";
+		defaultMagazine="SatchelCharge_Remote_Mag";
+		soundHit1[]=
+		{
+			"A3\Sounds_F\arsenal\explosives\bombs\Explosion_satchel_01",
+			3.1622777,
+			1,
+			1500
+		};
+		soundHit2[]=
+		{
+			"A3\Sounds_F\arsenal\explosives\bombs\Explosion_satchel_02",
+			3.1622777,
+			1,
+			1500
+		};
+		multiSoundHit[]=
+		{
+			"soundHit1",
+			0.5,
+			"soundHit2",
+			0.5
+		};
+		soundDeactivation[]=
+		{
+			"A3\Sounds_F\weapons\Mines\deactivate_mine_3a",
+			1.9952624,
+			1,
+			20
+		};
+		ExplosionEffects="MineNondirectionalExplosion";
+		CraterEffects="MineNondirectionalCrater";
+		whistleDist=10;
+		mineInconspicuousness=2100;
+		mineTrigger="RangeTriggerShort";
+	};
 };
 class CfgMagazines
 {
@@ -1069,17 +1251,44 @@ class CfgMagazines
 		descriptionShort="";
 		mass=20;
 	};
+	class Cylindrical_Baked_Substance_Mag: CA_Magazine
+	{
+		author="Eisenhorn/Sysroot";
+		scope=2;
+		displayName="Cylindrical_Baked_Substance_Mag";
+		picture="\A3\Weapons_f\data\UI\gear_satchel_CA.paa";
+		model="PortalGun\Celebratory_Mendacious_Moist_Consolidated_Sustenance\falsehood.p3d";
+		descriptionShort="Cylindrical_Baked_Substance_Mag";
+		class Library
+		{
+			libTextDesc="Cylindrical_Baked_Substance_Mag";
+		};
+		descriptionUse="It Wasn't A Lie Afterall";
+		type="2*		256";
+		allowedSlots[]={901};
+		value=5;
+		ammo="Cylindrical_Baked_Substance_Ammo";
+		mass=80;
+		count=1;
+		initSpeed=0;
+		maxLeadSpeed=0;
+		nameSoundWeapon="satchelcharge";
+		nameSound="satchelcharge";
+		weaponPoolAvailable=1;
+		useAction=1;
+		useActionTitle="$STR_ACTION_PUTBOMB";
+		sound[]=
+		{
+			"A3\sounds_f\dummysound",
+			0.00031622776,
+			1,
+			10
+		};
+	};
 };
 class CfgMagazineWells
 {
 	class ASHPD_MBHCU
-	{
-		Aperture_Science_Magazine[]=
-		{
-			"AS_MBH"
-		};
-	};
-	class ASHPD_MBHCUO
 	{
 		Aperture_Science_Magazine[]=
 		{

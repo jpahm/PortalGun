@@ -19,7 +19,7 @@ class StageTI
 ambient[]={1,1,1,1};
 diffuse[]={1,1,1,1};
 forcedDiffuse[]={0,0,0,1};
-emmisive[]={99.2,51.0,0,1};
+emmisive[]={25.5,9.5,2.9,1};
 specular[]={0,0,0,1};
 specularPower=45;
 PixelShaderID="Super";
@@ -74,7 +74,7 @@ class Stage4
 };
 class Stage5
 {
-	texture="PortalGun\Aperture_Science_Woof_Containment_Vessel\orange_specular.paa";
+	texture="PortalGun\Aperture_Science_Woof_Containment_Vessel\blue_specular.paa";
 	uvSource="tex";
 	class uvTransform
 	{
