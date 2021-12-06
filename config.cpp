@@ -781,29 +781,29 @@ class CfgVehicles
 		class Attributes {};
 	};
 	class Weighted_Companion_Cube: Weighted_Companion_Cube_Base
-	{
-		author="Sysroot/Eisenhorn";
-		editorPreview="";
-		_generalMacro="Weighted Companion Cube";
-		scope=2;
-		scopeCurator=2;
-		displayName="$STR_PGUN_Companion_Cube";
-		hiddenselections[]=
-		{
-		   "Weighted_Companion_Cube",
-		   "The_Cube_Loves_You"
-		};
-		hiddenSelectionsMaterials[]=
-		{
-			"PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\ApertureScienceWeightedCompanionCube.rvmat",
-			"PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\TheCubeLovesYou.rvmat"		
-		};
-		hiddenSelectionsTextures[]=
-		{
-			"PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\WCC2.paa",
-			"PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\WCC2.paa"		
-		};
-	};
+    {
+        author="Sysroot/Eisenhorn";
+        editorPreview="";
+        _generalMacro="Weighted Companion Cube";
+        scope=2;
+        scopeCurator=2;
+        displayName="$STR_PGUN_Companion_Cube";
+        hiddenselections[]=
+        {
+           "Weighted_Companion_Cube",
+           "The_Cube_Loves_You"
+        };
+        hiddenSelectionsMaterials[]=
+        {
+            "PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\ApertureScienceWeightedCompanionCube.rvmat",
+            "PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\TheCubeLovesYou.rvmat"        
+        };
+        hiddenSelectionsTextures[]=
+        {
+            "PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\WCC2_co.paa",
+            "PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\WCC2_co.paa"        
+        };
+    };
 	class Weighted_Storage_Cube: Weighted_Companion_Cube_Base
 	{
 		author="Sysroot/Eisenhorn";
