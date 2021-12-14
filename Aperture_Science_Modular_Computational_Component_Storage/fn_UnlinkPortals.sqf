@@ -29,9 +29,9 @@ private _blueCam = PG_REMOTE_BLUE_CAM;
 private _orangeCam = PG_REMOTE_ORANGE_CAM;
 
 // Reset blue portal and cams
-PG_VAR_BLUE_PORTAL setObjectMaterialGlobal [1, PG_BLUE_NOISE_MAT];
-PG_VAR_BLUE_PORTAL setObjectTextureGlobal [1, PG_BLUE_NOISE_TEX];
-PG_VAR_BLUE_PORTAL animateSource ["Portal_Noise_Source", 100000, 1];
+_bPortal setObjectMaterialGlobal [1, PG_BLUE_NOISE_MAT];
+_bPortal setObjectTextureGlobal [1, PG_BLUE_NOISE_TEX];
+_bPortal animateSource ["Portal_Noise_Source", 100000, 1];
 _blueCam cameraEffect ["terminate", "back", format["piprenderbp%1", clientOwner]];
 detach _blueCam;
 camDestroy _blueCam;
@@ -39,9 +39,9 @@ _blueCam = objNull;
 PG_VAR_BLUE_SS setPosWorld [0,0,0];
 
 // Reset orange portal and cams
-PG_VAR_ORANGE_PORTAL setObjectMaterialGlobal [1, PG_ORANGE_NOISE_MAT];
-PG_VAR_ORANGE_PORTAL setObjectTextureGlobal [1, PG_ORANGE_NOISE_TEX]; 
-PG_VAR_ORANGE_PORTAL animateSource ["Portal_Noise_Source", 100000, 1];
+_oPortal setObjectMaterialGlobal [1, PG_ORANGE_NOISE_MAT];
+_oPortal setObjectTextureGlobal [1, PG_ORANGE_NOISE_TEX]; 
+_oPortal animateSource ["Portal_Noise_Source", 100000, 1];
 _orangeCam cameraEffect ["terminate", "back", format["piprenderop%1", clientOwner]];
 detach _orangeCam;
 camDestroy _orangeCam;

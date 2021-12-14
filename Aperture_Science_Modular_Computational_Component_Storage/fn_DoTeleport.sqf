@@ -53,29 +53,25 @@ if (count _nearBlue == 0 && {count _nearOrange == 0}) exitWith {};
 		private _objDir = vectorDir _object;
 		private _objUp = vectorUp _object;
 		private _objPos = getPosWorld _object;
-		private _curIncline = acos((_curDir vectorMultiply -1) vectorCos [0, 0, 1]);
-		private _otherIncline = acos((_otherDir vectorMultiply -1) vectorCos [0, 0, 1]);
+		private _isMan = _object isKindOf "Man";
 		
-		// Raycast to determine projectile trajectory
-		private _rayCast = lineIntersectsSurfaces [_objPos, _objPos vectorAdd ((_velocity) vectorMultiply PG_VAR_MAX_RANGE), _object, objNull, false, 2, "GEOM", "VIEW"];
+		// Raycast to determine trajectory
+		private _rayCast = lineIntersectsSurfaces [_objPos, _objPos vectorAdd ((_velocity) vectorMultiply PG_VAR_MAX_RANGE), _object, objNull, false, 2, "VIEW", "GEOM"];
 		private _portalIndex = _rayCast findIf {(_x#2) isEqualTo _curPortal};
 		
 		// If raycast check passed, use raycast data for positioning
 		if (_portalIndex > -1) then {
 			_posVector = [((_rayCast#_portalIndex)#0) vectorDiff _curPos, _curDir] call PG_fnc_RestrictVector;
-		} else { // Else, compute position as a simple offset from the portal
+		} else { // Else, compute position as a simple offset from the portal center, less precise than above
 			_posVector = [_objPos vectorDiff _curPos, _curDir] call PG_fnc_RestrictVector;
 		};
 		
-		// Add gravitational velocity for non-projectiles
+		// Add gravitational acceleration for non-projectiles
 		if (!_isProjectile) then {
-			if (_curIncline < PG_VAR_VERTICAL_TOLERANCE) then {
-				if (_velocity#2 == 0) then {
-					_velocity set [2, -PG_VAR_FALL_VELOCITY];
-				} else {
-					if (_velocity#2 > 0) then {
-						_velocity set [2, -(PG_VAR_FALL_VELOCITY) + (_velocity#2)];
-					};
+			// Only accelerate object if incline of surface is within vertical tolerance
+			if (acos((_curDir vectorMultiply -1) vectorCos [0, 0, 1]) < PG_VAR_VERTICAL_TOLERANCE) then {
+				if (_velocity#2 >= 0) then {
+					_velocity set [2, (_velocity#2) - PG_VAR_FALL_VELOCITY];
 				};
 			};
 		};
@@ -88,6 +84,12 @@ if (count _nearBlue == 0 && {count _nearOrange == 0}) exitWith {};
 		_outPos = [_outPos, _otherUp, 90 - _dirOffsetPos] call SUS_fnc_QRotateVec;
 		_outPos = [_outPos, _otherX, 90 + _upOffsetPos] call SUS_fnc_QRotateVec;
 		_outPos = _otherPos vectorAdd _outPos;
+		
+		if (_isMan && {acos((_otherDir vectorMultiply -1) vectorCos [0, 0, -1]) < PG_VAR_VERTICAL_TOLERANCE}) then {
+			_outPos = _outPos vectorAdd (_otherDir vectorMultiply -1);
+		} else {
+			_outPos = _outPos vectorAdd (_otherDir vectorMultiply -0.25);
+		};
 
 		private _dirOffsetVel = acos(_velocity vectorCos _curX);
 		private _upOffsetVel = acos(_velocity vectorCos _curUp);
@@ -101,9 +103,6 @@ if (count _nearBlue == 0 && {count _nearOrange == 0}) exitWith {};
 		if (_isProjectile) then {
 			PG_VAR_TP_CACHE pushBack _object;
 			_object = createVehicle [(typeOf _object), [1000,1000,1000], [], 0, "CAN_COLLIDE"];
-			_outPos = _outPos vectorAdd (_otherDir vectorMultiply -0.05);
-		} else {
-			_outPos = _outPos vectorAdd (_otherDir vectorMultiply -1);
 		};
 		
 		// Transform direction between portals
@@ -116,7 +115,17 @@ if (count _nearBlue == 0 && {count _nearOrange == 0}) exitWith {};
 		
 		// Add object to PG_VAR_TP_CACHE, set new pos, direction, and velocity
 		PG_VAR_TP_CACHE pushBack _object;
-		_object setPosWorld _outPos;
+		// Handle placement of non-unit vehicles
+		if (_object isKindOf "AllVehicles" && {!_isMan}) then {
+			// Find a spot where a copy of the vehicle fits so nothing goes horribly, horribly wrong
+			private _placementObj = createVehicle [typeOf _object, _outPos vectorAdd (_otherDir vectorMultiply -((boundingBoxReal _object)#2) * 3/4)];
+			private _newPos = getPosWorld _placementObj;
+			deleteVehicle _placementObj;
+			// Move actual vehicle and account for Z placement
+			_object setPosWorld [_newPos#0, _newPos#1, _outPos#2];
+		} else { // Handle placement of anything else
+			_object setPosWorld _outPos;
+		};
 		_object setVectorDir _outDir;
 		_object setVelocity _outVel;
 		

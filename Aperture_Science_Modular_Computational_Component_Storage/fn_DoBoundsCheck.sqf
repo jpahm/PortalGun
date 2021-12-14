@@ -42,7 +42,7 @@ while {_portalBlocked && {_tries > 0}} do {
 	_portalBlocked = false;
 	// Do collision checks around the portal location, ensuring surface is not blocked by another object
 	{
-		private _rayCast = lineIntersectsSurfaces [_pos vectorAdd _x vectorAdd (_surfNormal vectorMultiply 0.025), _pos vectorAdd _x vectorAdd ((_surfNormal vectorMultiply 0.5) vectorDiff _toleranceVector), _portalObj, objNull, true, 1, "GEOM", "VIEW"];
+		private _rayCast = lineIntersectsSurfaces [_pos vectorAdd _x vectorAdd (_surfNormal vectorMultiply 0.025), _pos vectorAdd _x vectorAdd ((_surfNormal vectorMultiply 0.5) vectorDiff _toleranceVector), _portalObj, objNull, true, 1, "VIEW", "GEOM"];
 		if (count _rayCast != 0) then {
 			_pos = _pos vectorAdd (_x vectorMultiply (-2/PG_VAR_MAX_FIT_TRIES));
 			_portalBlocked = true;
@@ -53,7 +53,7 @@ while {_portalBlocked && {_tries > 0}} do {
 	// Do depth checks around the portal location, ensuring there is a surface under the portal
 	private _depthRayCasts = [];
 	{
-		private _rayCast = (lineIntersectsSurfaces [_pos vectorAdd _x, _pos vectorAdd _x vectorAdd _inverseToleranceVector, _portalObj, objNull, true, 1, "GEOM", "VIEW"]);
+		private _rayCast = (lineIntersectsSurfaces [_pos vectorAdd _x, _pos vectorAdd _x vectorAdd _inverseToleranceVector, _portalObj, objNull, true, 1, "VIEW", "GEOM"]);
 		if (count _rayCast == 0) then {
 			_pos = _pos vectorAdd (_x vectorMultiply (-2/PG_VAR_MAX_FIT_TRIES));
 			_portalBlocked = true;

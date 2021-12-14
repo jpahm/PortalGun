@@ -28,7 +28,7 @@ private _playerPos = eyePos player;
 private _castVector = (player weaponDirection currentWeapon player) vectorMultiply PG_VAR_MAX_RANGE;
 
 // Do a raycast from the player's weapon in the direction of the weapon, out to the max range
-private _rayCast = lineIntersectsSurfaces [_playerPos, _playerPos vectorAdd _castVector, player, _portalObj, true, 1, "GEOM", "VIEW"];
+private _rayCast = lineIntersectsSurfaces [_playerPos, _playerPos vectorAdd _castVector, player, _portalObj, true, 1, "VIEW", "GEOM"];
 
  // No surface detected, spawn failed
 if (count _rayCast == 0) exitWith {false};
@@ -36,10 +36,10 @@ if (count _rayCast == 0) exitWith {false};
 _rayCast = _rayCast#0;
 
 // Putting a portal here will overlap another portal, exit
-if (_rayCast#2 isKindOf "Portal" && {!(_rayCast#2 isEqualTo PG_VAR_CURRENT_PORTAL)}) exitWith {false}; 
+if (_rayCast#2 isKindOf "Portal" && {!(_rayCast#2 isEqualTo _portalObj)}) exitWith {false}; 
 
 // Store current portal "surfaces" (objects the portals are on) for object detection filtering
-if (PG_VAR_CURRENT_PORTAL isEqualTo PG_VAR_BLUE_PORTAL) then {
+if (_portalObj isEqualTo PG_VAR_BLUE_PORTAL) then {
 	PG_VAR_PORTAL_SURFACES set [0, _rayCast#2];
 } else {
 	PG_VAR_PORTAL_SURFACES set [1, _rayCast#2];

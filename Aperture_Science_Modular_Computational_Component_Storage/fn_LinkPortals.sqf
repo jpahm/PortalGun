@@ -29,7 +29,7 @@ params["_bPortal", "_oPortal"];
 if (!isPiPEnabled || {!PG_VAR_PIP_ENABLED}) exitWith {};
 
 // Set up the blue portal and cams
-PG_VAR_BLUE_PORTAL animateSource ["Portal_Noise_Source", 0, true];
+_bPortal animateSource ["Portal_Noise_Source", 0, true];
 _bPortal setObjectMaterialGlobal [1, PG_PIP_MAT];
 _bPortal setObjectTextureGlobal [1, format[PG_BLUE_PIP_TEX, remoteExecutedOwner]];
 missionNameSpace setVariable [format["PG_VAR_BLUE_CAM_%1", remoteExecutedOwner], "camera" camCreate [0,0,0]];
@@ -48,7 +48,7 @@ _blueCam camSetFov 1;
 _blueCam camCommit 0;
 
 // Set up the orange portal and cams
-PG_VAR_ORANGE_PORTAL animateSource ["Portal_Noise_Source", 0, true];
+_oPortal animateSource ["Portal_Noise_Source", 0, true];
 _oPortal setObjectMaterialGlobal [1, PG_PIP_MAT];
 _oPortal setObjectTextureGlobal [1, format[PG_ORANGE_PIP_TEX, remoteExecutedOwner]];  
 missionNameSpace setVariable [format["PG_VAR_ORANGE_CAM_%1", remoteExecutedOwner], "camera" camCreate [0,0,0]];

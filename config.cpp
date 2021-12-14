@@ -163,7 +163,7 @@ class CfgWeapons
 		{
 			"ASHPD_MBHCU"
 		};
-		displayName="$STR_PGUN_Primary_Portal";
+		displayName="$STR_PGUN_Name_Long";
 		model="PortalGun\Aperture_Science_Three_Dimensional_Isomorphic_Volume_Chamber\ApertureScienceHandheldPortalDevice.p3d";
 		picture="\A3\weapons_F\Rifles\MX\data\UI\gear_mx_cqc_X_CA.paa";
 		UiPicture="\A3\weapons_f\data\UI\icon_regular_CA.paa";
@@ -174,7 +174,7 @@ class CfgWeapons
 		handAnim[]=
 		{
 			"OFP2_ManSkeleton",
-			"\A3\Weapons_F\Rifles\MX\data\Anim\MX_cqc.rtm"
+			"PortalGun\Aperture_Science_Eccentric_Contraction_Coordinates\ASHPD.rtm"
 		};
 		reloadAction="Disable_Gesture";
 		recoil="recoil_gm6";
@@ -385,7 +385,7 @@ class CfgWeapons
 		class Cylindrical_Baked_Substance_Muzzle: PutMuzzle
 		{
 			autoreload=0;
-			displayName="$STR_PGUN_Cake";
+			displayName="The_Cake_Is_Real";
 			magazines[]=
 			{
 				"Cylindrical_Baked_Substance_Mag"
@@ -777,33 +777,34 @@ class CfgVehicles
 		editorSubcategory="EdCat_Portal";
 		accuracy=1000;
 		nameSound="obj_flag";
+		sound="CompanionCubeAmbient"; // reference to CfgSFX class
 		class DestructionEffects {};
 		class Attributes {};
 	};
 	class Weighted_Companion_Cube: Weighted_Companion_Cube_Base
-    {
-        author="Sysroot/Eisenhorn";
-        editorPreview="";
-        _generalMacro="Weighted Companion Cube";
-        scope=2;
-        scopeCurator=2;
-        displayName="$STR_PGUN_Companion_Cube";
-        hiddenselections[]=
-        {
-           "Weighted_Companion_Cube",
-           "The_Cube_Loves_You"
-        };
-        hiddenSelectionsMaterials[]=
-        {
-            "PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\ApertureScienceWeightedCompanionCube.rvmat",
-            "PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\TheCubeLovesYou.rvmat"        
-        };
-        hiddenSelectionsTextures[]=
-        {
-            "PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\WCC2_co.paa",
-            "PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\WCC2_co.paa"        
-        };
-    };
+	{
+		author="Sysroot/Eisenhorn";
+		editorPreview="";
+		_generalMacro="Weighted Companion Cube";
+		scope=2;
+		scopeCurator=2;
+		displayName="$STR_PGUN_Companion_Cube";
+		hiddenselections[]=
+		{
+		   "Weighted_Companion_Cube",
+		   "The_Cube_Loves_You"
+		};
+		hiddenSelectionsMaterials[]=
+		{
+			"PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\ApertureScienceWeightedCompanionCube.rvmat",
+			"PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\TheCubeLovesYou.rvmat"		
+		};
+		hiddenSelectionsTextures[]=
+		{
+			"PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\WCC2_co.paa",
+			"PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\WCC2_co.paa"		
+		};
+	};
 	class Weighted_Storage_Cube: Weighted_Companion_Cube_Base
 	{
 		author="Sysroot/Eisenhorn";
@@ -828,7 +829,7 @@ class CfgVehicles
 			"PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\metal_box.paa"		
 		};
 	};
-	class Edgeless_Safety_Cube_Base: ThingX
+	class Edge_Less_Safety_Cube_Base: ThingX
 	{
 		scope=0;
 		scopeCurator=0;
@@ -841,7 +842,7 @@ class CfgVehicles
 			verticalOffsetWorld=0;
 			init="''";
 		};
-		model="PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\Edgeless_Safety_Cube.p3d";
+		model="PortalGun\Esteemed Confidant Euclidean Trigonal Trapezohedron\Edge_Less_Safety_Cube.p3d";
 		hiddenselections[]=
 		{
 			"TheSphereCantTalk",
@@ -857,11 +858,11 @@ class CfgVehicles
 		class DestructionEffects {};
 		class Attributes {};
 	};
-	class Edgeless_Safety_Cube: Edgeless_Safety_Cube_Base
+	class Edge_Less_Safety_Cube: Edge_Less_Safety_Cube_Base
 	{
 		author="Sysroot/Eisenhorn";
 		editorPreview="";
-		_generalMacro="Edge Less Safety Cube";
+		_generalMacro="Edgeless Safety Cube";
 		scope=2;
 		scopeCurator=2;
 		displayName="$STR_PGUN_Edgeless_Cube";
@@ -906,7 +907,6 @@ class CfgVehicles
 		editorSubcategory="EdCat_Portal";
 		accuracy=1000;
 		nameSound="obj_flag";
-		init="";
 		class DestructionEffects {};
 		class Attributes {};
 	};
@@ -918,6 +918,43 @@ class CfgVehicles
 		scope=2;
 		scopeCurator=2;
 		displayName="$STR_PGUN_Cake";
+	};
+	class ApertureScienceAcousticJoviationDevice_Base: ThingX
+	{
+		scope=0;
+		scopeCurator=0;
+		class SimpleObject
+		{
+			eden=1;
+			animate[]={};
+			hide[]={};
+			verticalOffset=0.5;
+			verticalOffsetWorld=0;
+			init="''";
+		};
+		model="PortalGun\Aperture_Science_Acoustic_Joviation_Device\ApertureScienceAcousticJoviationDevice.p3d";
+		hiddenselections[]=
+		{
+			"glowface2"
+		};
+		armor=200;
+		icon="\PortalGun\ui\Data\Portal_Editor_Icon.paa";
+		destrType="DestructNo";
+		editorCategory="EdCat_Things";
+		editorSubcategory="EdCat_Portal";
+		accuracy=1000;
+		sound="PortalRadio"; // reference to CfgSFX class
+		class DestructionEffects {};
+		class Attributes {};
+	};
+	class ApertureScienceAcousticJoviationDevice: ApertureScienceAcousticJoviationDevice_Base
+	{
+		author="Sysroot/Eisenhorn";
+		editorPreview="";
+		_generalMacro="Radio";
+		scope=2;
+		scopeCurator=2;
+		displayName="$STR_PGUN_Radio";
 	};
 	class MineGeneric;
 	class Cylindrical_Baked_Substance_Base: MineGeneric
@@ -936,7 +973,7 @@ class CfgVehicles
 		icon="iconExplosiveGP";
 		ammo="Cylindrical_Baked_Substance_Ammo";
 		model="PortalGun\Celebratory_Mendacious_Moist_Consolidated_Sustenance\falsehood.p3d";
-		displayName="$STR_PGUN_Cake";
+		displayName="The_Cake_Wasnt_A_Lie";
 		DLC="Curator";
 	};
 	class death_base: NonStrategic
@@ -1723,6 +1760,16 @@ class CfgSFX
 	{
 		sounds[] = {};
 		empty[] = {"\PortalGun\Aperture_Science_Long_Band_Frequency_Air_Disturbance_Generator_Container\gun_hold_loop.ogg", 1.5, 1.0, 10, 1.0, 0, 0, 0};
+	};
+	class PortalRadio
+	{
+		sounds[] = {};
+		empty[] = {"\PortalGun\Aperture_Science_Long_Band_Frequency_Air_Disturbance_Generator_Container\radio_loop.ogg", 1.5, 1.0, 20, 1.0, 0, 0, 0};
+	};
+	class CompanionCubeAmbient
+	{
+		sounds[] = {};
+		empty[] = {"\PortalGun\Aperture_Science_Long_Band_Frequency_Air_Disturbance_Generator_Container\cc_ambient.ogg", 0.5, 1.0, 2, 1.0, 0, 0, 0};
 	};
 };
 class PgunFired

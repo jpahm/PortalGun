@@ -45,6 +45,17 @@ PG_VAR_MOD_NAME = localize "$STR_PGUN_Name_Short";
 	"SLIDER",
 	["$STR_PGUN_Vehicle_Grab_Range", "$STR_PGUN_Vehicle_Grab_Range_Desc"],
 	[PG_VAR_MOD_NAME, "$STR_PGUN_Ranges"],
+	[0, 50, 6, 2, false],
+	1,
+	{},
+	false
+] call CBA_fnc_addSetting;
+
+[
+	"PG_VAR_UNIT_GRAB_RANGE",
+	"SLIDER",
+	["$STR_PGUN_Unit_Grab_Range", "$STR_PGUN_Unit_Grab_Range_Desc"],
+	[PG_VAR_MOD_NAME, "$STR_PGUN_Ranges"],
 	[0, 50, 1.5, 2, false],
 	1,
 	{},
@@ -56,7 +67,7 @@ PG_VAR_MOD_NAME = localize "$STR_PGUN_Name_Short";
 	"SLIDER",
 	["$STR_PGUN_Projectile_Grab_Range", "$STR_PGUN_Projectile_Grab_Range_Desc"],
 	[PG_VAR_MOD_NAME, "$STR_PGUN_Ranges"],
-	[0, 50, 5, 2, false],
+	[0, 50, 10, 2, false],
 	1,
 	{},
 	false
@@ -122,36 +133,6 @@ PG_VAR_MOD_NAME = localize "$STR_PGUN_Name_Short";
 /// Toggles ///
 
 [
-	"PG_VAR_PARTICLES_ENABLED",
-	"CHECKBOX",
-	["$STR_PGUN_Particles_Enabled", "$STR_PGUN_Particles_Enabled_Desc"],
-	[PG_VAR_MOD_NAME, "$STR_PGUN_Toggles"],
-	true,
-	0,
-	{},
-	false
-] call CBA_fnc_addSetting;
-
-[
-	"PG_VAR_PIP_ENABLED",
-	"CHECKBOX",
-	["$STR_PGUN_PiP_Enabled", "$STR_PGUN_PiP_Enabled_Desc"],
-	[PG_VAR_MOD_NAME, "$STR_PGUN_Toggles"],
-	true,
-	0,
-	{
-		if (PG_VAR_PORTALS_LINKED) then {
-			if (_this) then {
-				[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_LinkPortals", 0, true];
-			} else {
-				[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_UnlinkPortals", 0, true];
-			};
-		};
-	},
-	false
-] call CBA_fnc_addSetting;
-
-[
 	"PG_VAR_GRAB_ENABLED",
 	"CHECKBOX",
 	["$STR_PGUN_Grab_Enabled", "$STR_PGUN_Grab_Enabled_Desc"],
@@ -192,6 +173,25 @@ PG_VAR_MOD_NAME = localize "$STR_PGUN_Name_Short";
 	false,
 	1,
 	{},
+	false
+] call CBA_fnc_addSetting;
+
+[
+	"PG_VAR_PIP_ENABLED",
+	"CHECKBOX",
+	["$STR_PGUN_PiP_Enabled", "$STR_PGUN_PiP_Enabled_Desc"],
+	[PG_VAR_MOD_NAME, "$STR_PGUN_Toggles"],
+	true,
+	0,
+	{
+		if (PG_VAR_PORTALS_LINKED) then {
+			if (_this) then {
+				[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_LinkPortals", 0, true];
+			} else {
+				[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_UnlinkPortals", 0, true];
+			};
+		};
+	},
 	false
 ] call CBA_fnc_addSetting;
 

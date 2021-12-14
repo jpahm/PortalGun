@@ -144,32 +144,29 @@ player addEventHandler ["Hit", {
 		{!((currentWeapon player) isEqualTo "ASHPD_MK_SUS_P")}
 	) exitWith {};
 	
-	private _possibleLines = [objNull, 0.8];
+	private _possibleLines = [objNull, 1];
 	
-	if (player getHitPointDamage "HitBody" >= 0.75) then { // React differently if player is close to death
+	_possibleLines append [
+		["potatos_not_good", "This is NOT good.", 0.05], 0.1,
+		["potatos_trouble", "I think we're in trouble."], 0.1
+	];
+	if (_instigator isEqualTo objNull || {_instigator isEqualTo player}) then { // Reactions if they hurt themselves
 		_possibleLines append [
-			["potatos_not_good", "This is NOT good.", 0.05], 0.1,
-			["potatos_odds", "I'm not going to lie to you, the odds are a million to one, and that's with some generous rounding.", 0.005, [[" ", 0.2], [",", 0.15], [".", 0.8]]], 0.1,
-			["potatos_about_to_kill", "I get the impression he's about to kill us.", 0.01], 0.1,
-			["potatos_laugh", "Heh heh heh heh heh heh heh"], 0.1,
-			["potatos_trouble", "I think we're in trouble."], 0.1
+			["potatos_brain_damage", "You really do have brain damage, don't you?", 0.01, [[" ", 0.2], [",", 0.1], ["?", 0.8]]], 0.1,
+			["potatos_slow_clap", "clap,.clap,.clap"], 0.1,
+			["potatos_still_working", "clap,.clap,, good, that's still working.", 0.02, [[" ", 0.2], [",", 0.275], [".", 0.8]]], 0.1,
+			["potatos_wow", "Wow."], 0.1,
+			["potatos_hey_moron", "Hey, moron.", 0.05], 0.1,
+			["potatos_laugh", "Heh heh heh heh heh heh heh"], 0.1
 		];
-	} else {
-		if (_instigator isEqualTo objNull || {_instigator isEqualTo player}) then { // Reactions if they hurt themselves
-			_possibleLines append [
-				["potatos_brain_damage", "You really do have brain damage, don't you?", 0.01, [[" ", 0.2], [",", 0.1], ["?", 0.8]]], 0.2,
-				["potatos_slow_clap", "clap,.clap,.clap"], 0.2,
-				["potatos_still_working", "clap,.clap,, good, that's still working.", 0.02, [[" ", 0.2], [",", 0.275], [".", 0.8]]], 0.2,
-				["potatos_wow", "Wow."], 0.2
-			];
-		} else { // Reactions if something hurt them
-			_possibleLines append [
-				["potatos_burn_house", "BURN HIS HOUSE DOWN!"], 0.1,
-				["potatos_yell", "Argh!"], 0.1,
-				["potatos_uh_oh", "Uh oh."], 0.1,
-				["potatos_hey_moron", "Hey, moron.", 0.05], 0.1
-			];
-		};
+	} else { // Reactions if something hurt them
+		_possibleLines append [
+			["potatos_burn_house", "BURN HIS HOUSE DOWN!"], 0.1,
+			["potatos_yell", "Argh!"], 0.1,
+			["potatos_uh_oh", "Uh oh."], 0.1,
+			["potatos_odds", "I'm not going to lie to you, the odds are a million to one, and that's with some generous rounding.", 0.005, [[" ", 0.2], [",", 0.15], [".", 0.8]]], 0.1,
+			["potatos_about_to_kill", "I get the impression he's about to kill us.", 0.01], 0.1
+		];
 	};
 	
 	// Pick and play a random line from the pool, or don't play anything if objNull is picked

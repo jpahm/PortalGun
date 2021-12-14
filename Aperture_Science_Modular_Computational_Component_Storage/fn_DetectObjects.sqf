@@ -28,6 +28,7 @@ params[["_bPortal", objNull, [objNull]], ["_oPortal", objNull, [objNull]]];
 private _nearObjects = [[], []];
 {
 	private _portalObj = _x;
+	private _portalPos = getPosWorld _portalObj;
 	private _nearPortal = _nearObjects#_forEachIndex;
 	
 	// Detect projectiles
@@ -36,7 +37,7 @@ private _nearObjects = [[], []];
 			if (!(_x in PG_VAR_TP_CACHE)) then {
 				private _objPos = getPosWorld _x;
 				// Do a raycast to make sure we're only grabbing projectiles that are actually entering the portal
-				private _rayCast = lineIntersectsSurfaces [_objPos, _objPos vectorAdd ((velocity _x) vectorMultiply PG_VAR_MAX_RANGE), player, objNull, true, 2, "GEOM", "VIEW"];
+				private _rayCast = lineIntersectsSurfaces [_objPos, _objPos vectorAdd ((velocity _x) vectorMultiply PG_VAR_MAX_RANGE), player, objNull, true, 2, "VIEW", "GEOM"];
 				if (count _rayCast != 0 && {count (_rayCast select {(_x#2) isKindOf "Portal"}) > 0}) then {
 					// Delete the original projectile before it hits the portal, save its velocity for later
 					private _temp = [_x, velocity _x, true]; 
@@ -49,7 +50,7 @@ private _nearObjects = [[], []];
 		false;
 	} count PG_VAR_PROJECTILE_TYPES;
 	
-	// Detect grenades, PhysX objects, and vehicles
+	// Detect grenades, PhysX objects, units, and vehicles
 	{
 		_nearPortal pushBackUnique _x;
 		false;
@@ -61,10 +62,23 @@ private _nearObjects = [[], []];
 	{
 		_nearPortal pushBackUnique _x;
 		false;
+	} count (_portalObj nearObjects ["Man", PG_VAR_UNIT_GRAB_RANGE] apply {[_x, velocity _x, false]});
+	{
+		private _vehicle = _x#0;
+		// Ignore units, those are detected differently above
+		if (_vehicle isKindOf "Man") then { continue };
+		private _distance = _portalObj distance _vehicle;
+		// Bounding sphere diameter
+		private _vehicleSize = (boundingBoxReal _vehicle)#2;
+		// Only teleport the vehicle if its distance to the portal is less than a portion of its bounding diameter
+		if (_distance <= _vehicleSize * 3/4) then {
+			_nearPortal pushBackUnique _x;
+		};
+		false;
 	} count (_portalObj nearObjects ["AllVehicles", PG_VAR_VEHICLE_GRAB_RANGE] apply {[_x, velocity _x, false]});
 	
 	// Filter out portals and portal surfaces
-	_nearPortal deleteAt (_nearPortal findIf {(_x#0) in _this || {(_x#0) in PG_VAR_PORTAL_SURFACES}});
+	_nearPortal = _nearPortal select {!((_x#0) in _this) && {!((_x#0) in PG_VAR_PORTAL_SURFACES)}};
 	
 } forEach [_bPortal, _oPortal];
 

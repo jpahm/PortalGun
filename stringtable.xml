@@ -209,6 +209,32 @@
       <Portuguese>O alcance máximo em que os portais podem teleportar veículos.</Portuguese>
       <Czech>Maximální vzdálenost, na kterou mohou portály teleportovat vozidla.</Czech>
     </Key>
+    <Key ID="STR_PGUN_Unit_Grab_Range">
+      <English>Unit Grab Range</English>
+      <Spanish>Rango de agarre de la unidad</Spanish>
+      <German>Einheit Greifbereich</German>
+      <Chinesesimp>单位抓取范围</Chinesesimp>
+      <Japanese>ユニット・グラブ・レンジ</Japanese>
+      <Italian>Unità Gamma Grab</Italian>
+      <French>Unité Gamme Grab</French>
+      <Polish>Jednostka Zakres chwytu</Polish>
+      <Russian>Диапазон захвата единицы измерения</Russian>
+      <Portuguese>Alcance de Agarramento da Unidade</Portuguese>
+      <Czech>Jednotka Grab Range</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Unit_Grab_Range_Desc">
+      <English>The maximum range at which portals can teleport units.</English>
+      <Spanish>El alcance máximo al que los portales pueden teletransportar unidades.</Spanish>
+      <German>Die maximale Reichweite, über die Portale Einheiten teleportieren können.</German>
+      <Chinesesimp>传送门可以传送单位的最大范围。</Chinesesimp>
+      <Japanese>ポータルがユニットをテレポートできる最大範囲です。</Japanese>
+      <Italian>La portata massima alla quale i portali possono teletrasportare le unità.</Italian>
+      <French>La portée maximale à laquelle les portails peuvent téléporter des unités.</French>
+      <Polish>Maksymalny zasięg, na jaki portale mogą teleportować jednostki.</Polish>
+      <Russian>Максимальное расстояние, на которое порталы могут телепортировать юнитов.</Russian>
+      <Portuguese>O alcance máximo em que os portais podem teleportar unidades.</Portuguese>
+      <Czech>Maximální vzdálenost, na kterou mohou portály teleportovat jednotky.</Czech>
+    </Key>
     <Key ID="STR_PGUN_Projectile_Grab_Range">
       <English>Projectile Grab Range</English>
       <Spanish>Alcance de la toma de proyectiles</Spanish>
@@ -249,17 +275,17 @@
       <Czech>Rozsah uchopení</Czech>
     </Key>
     <Key ID="STR_PGUN_Grab_Range_Desc">
-      <English>The maximum range at which portals can teleport things other than vehicles and projectiles.</English>
-      <Spanish>El alcance máximo al que los portales pueden teletransportar cosas que no sean vehículos o proyectiles.</Spanish>
-      <German>Die maximale Reichweite, über die Portale andere Dinge als Fahrzeuge und Geschosse teleportieren können.</German>
-      <Chinesesimp>传送门可以传送车辆和投射物以外的东西的最大范围。</Chinesesimp>
-      <Japanese>ポータルが車両や投射物以外のものをテレポートできる最大の範囲です。</Japanese>
-      <Italian>La portata massima alla quale i portali possono teletrasportare cose diverse dai veicoli e dai proiettili.</Italian>
-      <French>La portée maximale à laquelle les portails peuvent téléporter des choses autres que des véhicules et des projectiles.</French>
-      <Polish>Maksymalny zasięg, w jakim portale mogą teleportować rzeczy inne niż pojazdy i pociski.</Polish>
-      <Russian>Максимальное расстояние, на которое порталы могут телепортировать предметы, кроме транспортных средств и снарядов.</Russian>
-      <Portuguese>O alcance máximo em que os portais podem teleportar outras coisas além de veículos e projécteis.</Portuguese>
-      <Czech>Maximální vzdálenost, na kterou mohou portály teleportovat jiné věci než vozidla a střely.</Czech>
+      <English>The maximum range at which portals can teleport things other than units, vehicles and projectiles.</English>
+      <Spanish>El alcance máximo al que los portales pueden teletransportar cosas que no sean unidades, vehículos o proyectiles.</Spanish>
+      <German>Die maximale Reichweite, über die Portale andere Dinge als Einheiten, Fahrzeuge und Geschosse teleportieren können.</German>
+      <Chinesesimp>传送门可以传送单位、车辆和射弹以外的东西的最大范围。</Chinesesimp>
+      <Japanese>ポータルがユニット、車両、投射物以外のものをテレポートできる最大の範囲です。</Japanese>
+      <Italian>La portata massima alla quale i portali possono teletrasportare cose diverse da unità, veicoli e proiettili.</Italian>
+      <French>La portée maximale à laquelle les portails peuvent téléporter des choses autres que des unités, des véhicules et des projectiles.</French>
+      <Polish>Maksymalny zasięg, w jakim portale mogą teleportować przedmioty inne niż jednostki, pojazdy i pociski.</Polish>
+      <Russian>Максимальное расстояние, на которое порталы могут телепортировать предметы, кроме юнитов, транспортных средств и снарядов.</Russian>
+      <Portuguese>O alcance máximo em que os portais podem teleportar coisas que não sejam unidades, veículos e projécteis.</Portuguese>
+      <Czech>Maximální vzdálenost, na kterou mohou portály teleportovat jiné věci než jednotky, vozidla a projektily.</Czech>
     </Key>
     <Key ID="STR_PGUN_Tolerances">
       <English>Tolerances</English>
@@ -391,31 +417,31 @@
       <Portuguese>Alterna</Portuguese>
       <Czech>Přepínače</Czech>
     </Key>
-    <Key ID="STR_PGUN_Particles_Enabled">
-      <English>Particles Enabled</English>
-      <Spanish>Partículas habilitadas</Spanish>
-      <German>Partikel Aktiviert</German>
-      <Chinesesimp>启用的粒子</Chinesesimp>
-      <Japanese>Particles Enabled</Japanese>
-      <Italian>Particelle abilitate</Italian>
-      <French>Particules activées</French>
-      <Polish>Cząsteczki włączone</Polish>
-      <Russian>Частицы Включено</Russian>
-      <Portuguese>Partículas Activadas</Portuguese>
-      <Czech>Povolené částice</Czech>
+    <Key ID="STR_PGUN_Infinite_Ammo_Enabled">
+      <English>Infinite Ammo Enabled</English>
+      <Spanish>Munición infinita habilitada</Spanish>
+      <German>Unendliche Munition Aktiviert</German>
+      <Chinesesimp>启用了无限的弹药</Chinesesimp>
+      <Japanese>Infinite Ammo Enabled</Japanese>
+      <Italian>Munizioni infinite abilitate</Italian>
+      <French>Munitions infinies activées</French>
+      <Polish>Włączona nieskończona amunicja</Polish>
+      <Russian>Включено бесконечное количество патронов</Russian>
+      <Portuguese>Ativado por Munições Infinitas</Portuguese>
+      <Czech>Povolena nekonečná munice</Czech>
     </Key>
-    <Key ID="STR_PGUN_Particles_Enabled_Desc">
-      <English>Whether the code can create particles or not.</English>
-      <Spanish>Si el código puede crear partículas o no.</Spanish>
-      <German>Ob der Code Partikel erzeugen kann oder nicht.</German>
-      <Chinesesimp>代码是否能创造粒子。</Chinesesimp>
-      <Japanese>コードがパーティクルを生成できるかどうか。</Japanese>
-      <Italian>Se il codice può creare particelle o no.</Italian>
-      <French>Si le code peut créer des particules ou non.</French>
-      <Polish>Czy kod może tworzyć cząsteczki czy nie.</Polish>
-      <Russian>Может ли код создавать частицы или нет.</Russian>
-      <Portuguese>Se o código pode criar partículas ou não.</Portuguese>
-      <Czech>Zda kód může vytvářet částice, nebo ne.</Czech>
+    <Key ID="STR_PGUN_Infinite_Ammo_Enabled_Desc">
+      <English>Whether players' portal guns will have infinite ammo or not.</English>
+      <Spanish>Si las armas de portal de los jugadores tendrán munición infinita o no.</Spanish>
+      <German>Ob die Portalwaffen der Spieler unendlich viel Munition haben werden oder nicht.</German>
+      <Chinesesimp>玩家的传送门枪是否会有无限的弹药。</Chinesesimp>
+      <Japanese>プレイヤーのポータルガンの弾数が無限になるかどうか。</Japanese>
+      <Italian>Se le pistole a portale dei giocatori avranno munizioni infinite o no.</Italian>
+      <French>Si les pistolets portails des joueurs auront des munitions infinies ou non.</French>
+      <Polish>Czy pistolety portalowe graczy będą miały nieskończoną amunicję czy nie.</Polish>
+      <Russian>Будут ли портальные пушки игроков иметь бесконечные патроны или нет.</Russian>
+      <Portuguese>Se as armas do portal dos jogadores terão munições infinitas ou não.</Portuguese>
+      <Czech>Zda budou mít portálové zbraně hráčů nekonečnou munici, nebo ne.</Czech>
     </Key>
     <Key ID="STR_PGUN_PiP_Enabled">
       <English>PiP Enabled</English>
@@ -898,32 +924,6 @@
       <Portuguese>PotatOS: Argh!</Portuguese>
       <Czech>PotatOS: Argh!</Czech>
     </Key>
-    <Key ID="STR_PGUN_Infinite_Ammo_Enabled">
-      <English>Infinite Ammo Enabled</English>
-      <Spanish>Munición infinita habilitada</Spanish>
-      <German>Unendliche Munition Aktiviert</German>
-      <Chinesesimp>启用了无限的弹药</Chinesesimp>
-      <Japanese>Infinite Ammo Enabled</Japanese>
-      <Italian>Munizioni infinite abilitate</Italian>
-      <French>Munitions infinies activées</French>
-      <Polish>Włączona nieskończona amunicja</Polish>
-      <Russian>Включено бесконечное количество патронов</Russian>
-      <Portuguese>Ativado por Munições Infinitas</Portuguese>
-      <Czech>Povolena nekonečná munice</Czech>
-    </Key>
-    <Key ID="STR_PGUN_Infinite_Ammo_Enabled_Desc">
-      <English>Whether players' portal guns will have infinite ammo or not.</English>
-      <Spanish>Si las armas de portal de los jugadores tendrán munición infinita o no.</Spanish>
-      <German>Ob die Portalwaffen der Spieler unendlich viel Munition haben werden oder nicht.</German>
-      <Chinesesimp>玩家的传送门枪是否会有无限的弹药。</Chinesesimp>
-      <Japanese>プレイヤーのポータルガンの弾数が無限になるかどうか。</Japanese>
-      <Italian>Se le pistole a portale dei giocatori avranno munizioni infinite o no.</Italian>
-      <French>Si les pistolets portails des joueurs auront des munitions infinies ou non.</French>
-      <Polish>Czy pistolety portalowe graczy będą miały nieskończoną amunicję czy nie.</Polish>
-      <Russian>Будут ли портальные пушки игроков иметь бесконечные патроны или нет.</Russian>
-      <Portuguese>Se as armas do portal dos jogadores terão munições infinitas ou não.</Portuguese>
-      <Czech>Zda budou mít portálové zbraně hráčů nekonečnou munici, nebo ne.</Czech>
-    </Key>
     <Key ID="STR_PGUN_Primary_Portal">
       <English>Primary Portal</English>
       <Spanish>Portal principal</Spanish>
@@ -989,7 +989,7 @@
       <Portuguese>Portal Fusível</Portuguese>
       <Czech>Pojistka portálu</Czech>
     </Key>
-	<Key ID="STR_PGUN_Companion_Cube">
+    <Key ID="STR_PGUN_Companion_Cube">
       <English>Weighted Companion Cube</English>
       <Spanish>Cubo de compañía ponderado</Spanish>
       <German>Gewichteter Begleiter-Würfel</German>
@@ -1040,6 +1040,19 @@
       <Russian>Торт</Russian>
       <Portuguese>Bolo</Portuguese>
       <Czech>Dort</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Radio">
+      <English>Radio</English>
+      <Spanish>Radio</Spanish>
+      <German>Radio</German>
+      <Chinesesimp>电台</Chinesesimp>
+      <Japanese>ラジオ</Japanese>
+      <Italian>Radio</Italian>
+      <French>Radio</French>
+      <Polish>Radio</Polish>
+      <Russian>Радио</Russian>
+      <Portuguese>Rádio</Portuguese>
+      <Czech>Rádio</Czech>
     </Key>
   </Package>
 </Project>

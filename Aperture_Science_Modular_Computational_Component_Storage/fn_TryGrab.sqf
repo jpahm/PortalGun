@@ -53,7 +53,7 @@ if (PG_VAR_GRABBING) then {
 		} forEach [_right, _forward, _up];
 		
 		// Do a raycast from the hand and check for grabable objects
-		private _rayCast = lineIntersectsSurfaces [_rightHandPos, _rightHandPos vectorAdd (_forward vectorMultiply PG_VAR_MAX_GRAB_RANGE), player, objNull, true, 1, "GEOM", "VIEW"];
+		private _rayCast = lineIntersectsSurfaces [_rightHandPos, _rightHandPos vectorAdd (_forward vectorMultiply PG_VAR_MAX_GRAB_RANGE), player, objNull, true, 1, "VIEW", "GEOM"];
 		_rayCast = _rayCast select {
 			private _mass = getMass (_x#2);
 			(_mass > 0 && {_mass <= PG_VAR_MAX_GRAB_MASS});
@@ -76,8 +76,8 @@ if (PG_VAR_GRABBING) then {
 		PG_VAR_GRAB_PARTICLES = "PortalBeams" createVehicle [0,0,0];
 		PG_VAR_GRAB_PARTICLES animateSource ["Gun_Lightning_Source", 100000, 1];
 		PG_VAR_GRAB_PARTICLES animateSource ["Gun_Lightning_Ball_Source", 100000, 1];
-		PG_VAR_GRAB_PARTICLES attachTo [player, [0.01, -0.09, -.05], "righthand", true]; 
-		PG_VAR_GRAB_PARTICLES setVectorDirAndUp [[0.5,0,0.5], [0,1,0]];
+		PG_VAR_GRAB_PARTICLES attachTo [player, [-0.01, -0.14, 0.01], "righthand", true];  
+		PG_VAR_GRAB_PARTICLES setVectorDirAndUp [[0.5,0.05,0.5], [0,1,0]];
 		
 		// Terminate any existing grab code
 		if (!(PG_VAR_GRAB_HANDLE isEqualTo objNull)) then {
