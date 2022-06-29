@@ -1,4 +1,4 @@
-// Copyright 2021 Sysroot/Eisenhorn
+// Copyright 2021/2022 Sysroot/Eisenhorn
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -15,7 +15,7 @@
 #include "macros.hpp"
 
 /// Description: Function to be called on each frame after being added to a client via remoteExec.
-///				Handles updating local functions that take remote parameters, such as PG_fnc_DoTeleport.
+///				Handles running local functions that take remote parameters, such as PG_fnc_DoTeleport.
 /// Parameters:
 ///		PARAMETER		|		EXPECTED INPUT TYPE		|		DESCRIPTION
 ///

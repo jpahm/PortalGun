@@ -1,4 +1,4 @@
-// Copyright 2021 Sysroot/Eisenhorn
+// Copyright 2021/2022 Sysroot/Eisenhorn
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -11,6 +11,10 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
+
+// Values
+#define PG_VAR_PORTAL_HEIGHT_H (PG_VAR_PORTAL_HEIGHT / 2)
+#define PG_VAR_PORTAL_WIDTH_H (PG_VAR_PORTAL_WIDTH / 2)
 
 // Error messages
 #define PG_ERROR(msg) ([] spawn {[localize msg, localize "$STR_PGUN_Error_Header", true, false, [] call BIS_fnc_displayMission, false, false] call BIS_fnc_guiMessage})
@@ -52,3 +56,6 @@
 // Portal colors
 #define PG_BLUE "0, 0.447, 0.823"
 #define PG_ORANGE "0.992, 0.510, 0"
+
+// Vital components
+#define CAKE_JPG "\PortalGun\cake.jpg"

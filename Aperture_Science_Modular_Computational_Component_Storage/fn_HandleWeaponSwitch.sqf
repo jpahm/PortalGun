@@ -1,4 +1,4 @@
-// Copyright 2021 Sysroot/Eisenhorn
+// Copyright 2021/2022 Sysroot/Eisenhorn
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -37,6 +37,13 @@ if (_isPrimary && {(primaryWeapon player) isKindOf ["ASHPD_MK_SUS_Base_F", confi
 			sleep 1;
 			// Re-initialize portal gun settings
 			PG_VAR_INIT_SETTINGS call PG_fnc_InitPortals;
+			// Make sure our current portal still matches the firemode, swap portals if not
+			if (
+				(PG_VAR_CURRENT_PORTAL == PG_VAR_BLUE_PORTAL && currentWeaponMode player != "Blue") ||
+				{PG_VAR_CURRENT_PORTAL == PG_VAR_ORANGE_PORTAL && currentWeaponMode player != "Orange"}
+			) then {
+				[] call PG_fnc_SwapPortals;
+			};
 		};
 	};
 // Player switched to different weapon

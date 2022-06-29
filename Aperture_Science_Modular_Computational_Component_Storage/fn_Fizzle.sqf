@@ -1,4 +1,4 @@
-// Copyright 2021 Sysroot/Eisenhorn
+// Copyright 2021/2022 Sysroot/Eisenhorn
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -24,14 +24,14 @@
 
 params[["_portals", [PG_VAR_CURRENT_PORTAL, PG_VAR_OTHER_PORTAL], [[]]]];
 
-// Clear the animation handle so that we don't break portals in mid-animation
-PG_VAR_ANIM_HANDLE = objNull;
 [player, "gun_fizzle"] remoteExecCall ["say3D"];
 
 {
-	[_x, "portal_fizzle"] remoteExec ["PG_fnc_PlaySound"];
-	_x setObjectScale 0;
-	_x setPosWorld [0,0,0];
+	[_x, "portal_fizzle", false] remoteExec ["PG_fnc_PlaySound"];
+	// Animate portal closing
+	[_portalObj, false] call PG_fnc_AnimatePortal;
+	detach _x;
+	_x hideObjectGlobal true;
 	
 	if (_x isEqualTo PG_VAR_BLUE_PORTAL) then {
 		PG_VAR_BLUE_SS setPosWorld [0,0,0];

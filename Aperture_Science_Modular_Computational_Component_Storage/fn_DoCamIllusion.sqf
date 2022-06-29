@@ -1,4 +1,4 @@
-// Copyright 2021 Sysroot/Eisenhorn
+// Copyright 2021/2022 Sysroot/Eisenhorn
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,13 +31,16 @@ private _orangeCam = PG_REMOTE_ORANGE_CAM;
 // Position of player should remain constant so long as they're standing in the same spot
 private _playerPos = (getPosWorld player vectorAdd [0,0,1.5]);
 
+// Get the player's position relative to both portals
 private _relPosBlue = _playerPos vectorDiff (getPosWorld _bPortal);
 private _relPosOrange = _playerPos vectorDiff (getPosWorld _oPortal);
 
+// Get the magnitudes of the relative positions
 private _relPosBMag = vectorMagnitude _relPosBlue;
 private _relPosOMag = vectorMagnitude _relPosOrange;
 
 // Constrain the relative positions to a minimum magnitude
+// (this prevents the portal view from going crazy when the player's too close)
 if (_relPosBMag < 3) then {
 	_relPosBlue = _relPosBlue vectorMultiply (3/_relPosBMag);
 };
@@ -53,6 +56,7 @@ private _orangeUp = vectorUp _oPortal;
 private _blueX = _blueDir vectorCrossProduct _blueUp;
 private _orangeX = _orangeDir vectorCrossProduct _orangeUp;
 
+// Find the angular offsets for the relative positions
 private _dirOffsetBlue = acos(_relPosBlue vectorCos _blueX);
 private _upOffsetBlue = acos(_relPosBlue vectorCos (_blueUp vectorMultiply -1));
 
@@ -60,6 +64,7 @@ private _upOffsetBlue = acos(_relPosBlue vectorCos (_blueUp vectorMultiply -1));
 private _bCamDir = [_orangeDir, _orangeUp, 270 + _dirOffsetBlue] call SUS_fnc_QRotateVec;
 _bCamDir = [_bCamDir, _orangeX, 90 + _upOffsetBlue] call SUS_fnc_QRotateVec;
 
+// Find the angular offsets for the relative positions
 private _dirOffsetOrange = acos(_relPosOrange vectorCos _orangeX);
 private _upOffsetOrange = acos(_relPosOrange vectorCos (_orangeUp vectorMultiply -1));
 

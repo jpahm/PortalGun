@@ -1,4 +1,4 @@
-// Copyright 2021 Sysroot/Eisenhorn
+// Copyright 2021/2022 Sysroot/Eisenhorn
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -31,20 +31,19 @@ if (!isPiPEnabled || {!PG_VAR_PIP_ENABLED}) exitWith {};
 private _blueAttached = attachedTo _bPortal;
 private _orangeAttached = attachedTo _oPortal;
 
-private _orangeDir = vectorDir _oPortal;
-private _blueDir = vectorDir _bPortal;
-private _orangeUp = vectorUp _oPortal;
-private _blueUp = vectorUp _bPortal;
-
 private _blueCam = PG_REMOTE_BLUE_CAM;
 private _orangeCam = PG_REMOTE_ORANGE_CAM;
 
 // If the blue or orange portals are attached to something, move the cams along with the object's velocity
-if (!isNull _blueAttached) then {
+if (!(isNull _blueAttached)) then {
 	private _attachVel = velocity _blueAttached;
-	_orangeCam setPosWorld (getPosWorld _bPortal vectorAdd (_attachVel vectorMultiply -0.1));
+	private _newPos = (getPosWorld _bPortal) vectorAdd (_attachVel vectorMultiply -0.1);
+	_orangeCam setPosWorld _newPos;
+	PG_VAR_BLUE_SS setPosWorld _newPos;
 };
-if (!isNull _orangeAttached) then {
+if (!(isNull _orangeAttached)) then {
 	private _attachVel = velocity _orangeAttached;
-	_blueCam setPosWorld (getPosWorld _oPortal vectorAdd (_attachVel vectorMultiply -0.1));
+	private _newPos = (getPosWorld _oPortal) vectorAdd (_attachVel vectorMultiply -0.1);
+	_blueCam setPosWorld _newPos;
+	PG_VAR_ORANGE_SS setPosWorld _newPos;
 };

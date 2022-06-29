@@ -1,4 +1,4 @@
-// Copyright 2021 Sysroot/Eisenhorn
+// Copyright 2021/2022 Sysroot/Eisenhorn
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -26,9 +26,9 @@
 params[["_object", objNull, [objNull]], ["_sound", "", [""]]]; 
 
 // Create shell object for playing sound
-private _obj = "HeliHEmpty" createVehicleLocal [0,0,0]; 
-_obj attachTo [_object, [0,0,0]]; 
-_obj say3D _sound;
+private _dummyObj = "HeliHEmpty" createVehicleLocal [0,0,0]; 
+_dummyObj attachTo [_object, [0,0,0]];
+_dummyObj say3D _sound;
 // Delete the shell object after 5 seconds, should be long enough for all sound effects
 uiSleep 5;
-deleteVehicle _obj; 
+deleteVehicle _dummyObj; 

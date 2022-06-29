@@ -92,19 +92,6 @@
       <Portuguese>Erro de Pistola do Portal</Portuguese>
       <Czech>Chyba portálové zbraně</Czech>
     </Key>
-    <Key ID="STR_PGUN_EX_NoPortals">
-      <English>Portal gun cannot be initialized with no portals!</English>
-      <Spanish>La pistola de portales no se puede inicializar sin portales.</Spanish>
-      <German>Die Portalkanone kann nicht initialisiert werden, wenn keine Portale vorhanden sind!</German>
-      <Chinesesimp>在没有传送门的情况下，传送门枪不能被初始化!</Chinesesimp>
-      <Japanese>ポータルガンは、ポータルがないと初期化できません。</Japanese>
-      <Italian>La pistola a portale non può essere inizializzata senza portali!</Italian>
-      <French>Le canon à portails ne peut pas être initialisé sans portails!</French>
-      <Polish>Działo portalowe nie może być zainicjowane bez portali!</Polish>
-      <Russian>Портальная пушка не может быть инициализирована при отсутствии порталов!</Russian>
-      <Portuguese>Portal arma não pode ser inicializado sem portais!</Portuguese>
-      <Czech>Portálovou zbraň nelze inicializovat bez portálů!</Czech>
-    </Key>
     <Key ID="STR_PGUN_Scales">
       <English>Scales</English>
       <Spanish>Escalas</Spanish>
@@ -442,6 +429,32 @@
       <Russian>Будут ли портальные пушки игроков иметь бесконечные патроны или нет.</Russian>
       <Portuguese>Se as armas do portal dos jogadores terão munições infinitas ou não.</Portuguese>
       <Czech>Zda budou mít portálové zbraně hráčů nekonečnou munici, nebo ne.</Czech>
+    </Key>
+	<Key ID="STR_PGUN_BlackHole_Enabled">
+      <English>Black Hole Enabled</English>
+      <Spanish>Agujero negro habilitado</Spanish>
+      <German>Schwarzes Loch Aktiviert</German>
+      <Chinesesimp>启用了黑洞</Chinesesimp>
+      <Japanese>ブラックホール有効</Japanese>
+      <Italian>Buco nero abilitato</Italian>
+      <French>Trou noir activé</French>
+      <Polish>Czarna dziura włączona</Polish>
+      <Russian>Черная дыра включена</Russian>
+      <Portuguese>Buraco Negro Activado</Portuguese>
+      <Czech>Povolená černá díra</Czech>
+    </Key>
+    <Key ID="STR_PGUN_BlackHole_Enabled_Desc">
+      <English>Whether submerging the portal gun in liquid will spawn a black hole or not.</English>
+      <Spanish>Si al sumergir la pistola de portales en líquido se genera un agujero negro o no.</Spanish>
+      <German>Ob das Eintauchen der Portalkanone in Flüssigkeit ein schwarzes Loch erzeugt oder nicht.</German>
+      <Chinesesimp>将传送门枪浸泡在液体中是否会产生黑洞。</Chinesesimp>
+      <Japanese>ポータルガンを液体に沈めるとブラックホールが発生するかどうか。</Japanese>
+      <Italian>Se immergere la pistola a portale in un liquido genera o meno un buco nero.</Italian>
+      <French>Si immerger le pistolet portail dans du liquide va engendrer un trou noir ou non.</French>
+      <Polish>Czy zanurzenie pistoletu portalowego w cieczy spowoduje powstanie czarnej dziury, czy nie.</Polish>
+      <Russian>Погружение портальной пушки в жидкость породит черную дыру или нет.</Russian>
+      <Portuguese>A submersão ou não da arma portal em líquido irá desovar um buraco negro.</Portuguese>
+      <Czech>Zda ponoření portálové zbraně do kapaliny způsobí vznik černé díry, nebo ne.</Czech>
     </Key>
     <Key ID="STR_PGUN_PiP_Enabled">
       <English>PiP Enabled</English>
@@ -1053,6 +1066,19 @@
       <Russian>Радио</Russian>
       <Portuguese>Rádio</Portuguese>
       <Czech>Rádio</Czech>
+    </Key>
+    <Key ID="STR_PGUN_EX_NoPortals">
+      <English>Portal gun cannot be initialized with no portals!</English>
+      <Spanish>La pistola de portales no se puede inicializar sin portales.</Spanish>
+      <German>Die Portalkanone kann nicht initialisiert werden, wenn keine Portale vorhanden sind!</German>
+      <Chinesesimp>在没有传送门的情况下，传送门枪不能被初始化!</Chinesesimp>
+      <Japanese>ポータルガンは、ポータルがないと初期化できません。</Japanese>
+      <Italian>La pistola a portale non può essere inizializzata senza portali!</Italian>
+      <French>Le canon à portails ne peut pas être initialisé sans portails!</French>
+      <Polish>Działo portalowe nie może być zainicjowane bez portali!</Polish>
+      <Russian>Портальная пушка не может быть инициализирована при отсутствии порталов!</Russian>
+      <Portuguese>Portal arma não pode ser inicializado sem portais!</Portuguese>
+      <Czech>Portálovou zbraň nelze inicializovat bez portálů!</Czech>
     </Key>
   </Package>
 </Project>

@@ -177,6 +177,17 @@ PG_VAR_MOD_NAME = localize "$STR_PGUN_Name_Short";
 ] call CBA_fnc_addSetting;
 
 [
+	"PG_VAR_BH_ENABLED",
+	"CHECKBOX",
+	["$STR_PGUN_BlackHole_Enabled", "$STR_PGUN_BlackHole_Enabled_Desc"],
+	[PG_VAR_MOD_NAME, "$STR_PGUN_Toggles"],
+	false,
+	1,
+	{},
+	false
+] call CBA_fnc_addSetting;
+
+[
 	"PG_VAR_PIP_ENABLED",
 	"CHECKBOX",
 	["$STR_PGUN_PiP_Enabled", "$STR_PGUN_PiP_Enabled_Desc"],

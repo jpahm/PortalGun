@@ -1,4 +1,4 @@
-// Copyright 2021 Sysroot/Eisenhorn
+// Copyright 2021/2022 Sysroot/Eisenhorn
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -33,10 +33,10 @@ private _orangeCam = PG_REMOTE_ORANGE_CAM;
 
 // If the cameras currently exist, refresh their PiP textures
 if (!isNull(_blueCam)) then {
-	_bPortal setObjectTextureGlobal [1, format["#(argb,512,512,1)r2t(piprenderbp%1,1)", clientOwner]];  
-	_blueCam cameraEffect ["Internal", "Back", format["piprenderbp%1", clientOwner]];
+	_bPortal setObjectTexture [1, format[PG_BLUE_PIP_TEX, remoteExecutedOwner]];  
+	_blueCam cameraEffect ["Internal", "Back", format["piprenderbp%1", remoteExecutedOwner]];
 };
 if (!isNull(_orangeCam)) then {
-	_oPortal setObjectTextureGlobal [1, format["#(argb,512,512,1)r2t(piprenderop%1,1)", clientOwner]];
-	_orangeCam cameraEffect ["Internal", "Back", format["piprenderop%1", clientOwner]]; 
+	_oPortal setObjectTexture [1, format[PG_ORANGE_PIP_TEX, remoteExecutedOwner]];
+	_orangeCam cameraEffect ["Internal", "Back", format["piprenderop%1", remoteExecutedOwner]]; 
 };

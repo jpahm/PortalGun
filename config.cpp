@@ -60,8 +60,8 @@ class CfgFunctions
 			tag="PG";
 			file="\PortalGun\Aperture_Science_Modular_Computational_Component_Storage";
 			class AnimatePortal {};
-			class ASHPD {};
 			class DetectObjects {};
+			class DoBlackHole {};
 			class DoBoundsCheck {};
 			class DoCamFollow {};
 			class DoCamIllusion {};
@@ -69,27 +69,39 @@ class CfgFunctions
 			class DrawCrosshair {};
 			class FixArsenalBug {};
 			class Fizzle {};
+			class GetServerTime {};
 			class GetSurfaceUpVec {};
 			class HandleWeaponSwitch {};
-			class InitASHPD
+			class Init 
 			{
 				postInit=1;
 			};
 			class InitDisconnect {};
+			class InitEvents {};
 			class InitPortals {};
 			class LinkPortals {};
 			class PlaySound {};
+			class ProjectVector {};
 			class RefreshPiP {};
 			class RemoteUpdate {};
-			class RestrictVector {};
 			class SpeakPotato {};
 			class SwapPortals {};
 			class TryGrab {};
 			class TrySpawnPortal {};
 			class UnlinkPortals {};
+			class UpdateCams {};
 			class UpdateCrosshair {};
 			class UpdatePortals {};
 		};
+	};
+};
+class CfgMusic
+{
+	tracks[] = {};
+	class BlackHoleMusic
+	{
+		name	= "Valve - Mike Morasky - Bombs for Throwing at You";
+		sound[]	= { "\PortalGun\Aperture_Science_Long_Band_Frequency_Air_Disturbance_Generator_Container\music\blackhole.ogg", db + 0, 1.0 };
 	};
 };
 
@@ -326,7 +338,7 @@ class CfgWeapons
 			1,
 			5
 		};
-		picture="\PortalGun\ui\Data\weapon-icon.paa";
+		picture="\PortalGun\ui\Data\Weapon_Icon.paa";
 		//UiPicture="PortalGun\ui\Data\weapon-icon.paa";
 		descriptionShort="$STR_PGUN_Description";
 		class WeaponSlotsInfo: WeaponSlotsInfo
@@ -355,7 +367,7 @@ class CfgWeapons
 			1,
 			5
 		};
-		picture="\PortalGun\ui\Data\weapon-icon.paa";
+		picture="\PortalGun\ui\Data\Weapon_Icon.paa";
 		//UiPicture="PortalGun\ui\Data\weapon-icon.paa";
 		descriptionShort="$STR_PGUN_P_Description";
 		class WeaponSlotsInfo: WeaponSlotsInfo
@@ -720,6 +732,30 @@ class CfgVehicles
 				angle0			= -0;
 				angle1			= rad +360; // rotate by 360 degrees
 			};
+			class Portal_Inner_Grow_Animation
+			{
+				type			= scale;
+				source			= Portal_Grow_Source;
+				section 		= portal;
+				minValue		= 0;
+				maxValue		= 1;
+				// [x,y] - coordinates defining center of scaling
+				center[]		= { 0.5, 0.5 };
+				scale0[]		= { 0, 0 };
+				scale1[]		= { 1, 1 };
+			};
+			class Portal_Outer_Grow_Animation
+			{
+				type			= scale;
+				source			= Portal_Grow_Source;
+				section 		= portaledge;
+				minValue		= 0;
+				maxValue		= 1;
+				// [x,y] - coordinates defining center of scaling
+				center[]		= { 0.5, 0.5 };
+				scale0[]		= { 0, 0 };
+				scale1[]		= { 1, 1 };
+			};
 		};
 		class AnimationSources
 		{
@@ -735,6 +771,12 @@ class CfgVehicles
 				initPhase		= 0;
 				animPeriod		= 250;
 			};
+			class Portal_Grow_Source
+			{
+				source			= user;
+				initPhase		= 0;
+				animPeriod		= 0.25;
+			};
 		};
 	};
 	
@@ -745,12 +787,22 @@ class CfgVehicles
 		scope=0;
 		sound="PortalAmbient"; // reference to CfgSFX class
 	};
-	
 	class GunHoldSource : ThingX
 	{
 		scope=0;
-		sound="GunHoldLoop";
+		sound="GunHoldLoop"; // reference to CfgSFX class
 	};
+	class PortalRadioSource : ThingX
+	{
+		scope=0;
+		sound="PortalRadio"; // reference to CfgSFX class
+	};
+	class CompanionCubeAmbientSource : ThingX
+	{
+		scope=0;
+		sound="CompanionCubeAmbient"; // reference to CfgSFX class
+	};
+	
 	class Weighted_Companion_Cube_Base: ThingX
 	{
 		scope=0;
@@ -777,12 +829,16 @@ class CfgVehicles
 		editorSubcategory="EdCat_Portal";
 		accuracy=1000;
 		nameSound="obj_flag";
-		sound="CompanionCubeAmbient"; // reference to CfgSFX class
 		class DestructionEffects {};
 		class Attributes {};
 	};
 	class Weighted_Companion_Cube: Weighted_Companion_Cube_Base
 	{
+		class Eventhandlers
+        {
+            //class CBA_Extended_EventHandlers : CBA_Extended_EventHandlers_base {};
+            init = "(createSoundSource [""CompanionCubeAmbientSource"", _this#0, [], 0]) attachTo [_this#0, [0,0,0]];";
+        };
 		author="Sysroot/Eisenhorn";
 		editorPreview="";
 		_generalMacro="Weighted Companion Cube";
@@ -943,12 +999,15 @@ class CfgVehicles
 		editorCategory="EdCat_Things";
 		editorSubcategory="EdCat_Portal";
 		accuracy=1000;
-		sound="PortalRadio"; // reference to CfgSFX class
 		class DestructionEffects {};
 		class Attributes {};
 	};
 	class ApertureScienceAcousticJoviationDevice: ApertureScienceAcousticJoviationDevice_Base
 	{
+		class Eventhandlers
+        {
+            init = "(createSoundSource [""PortalRadioSource"", _this#0, [], 0]) attachTo [_this#0, [0,0,0]];";
+        };
 		author="Sysroot/Eisenhorn";
 		editorPreview="";
 		_generalMacro="Radio";
@@ -1000,6 +1059,10 @@ class CfgVehicles
 	};
 	class death: death_base
 	{
+		class Eventhandlers
+        {
+            init = "(_this#0) setObjectScale 50; (_this#0) animateSource [""Singularity_Disc_Source"", 1000000, 1];";
+        };
 		author="Sysroot/Eisenhorn";
 		editorPreview="";
 		_generalMacro="Singularity";

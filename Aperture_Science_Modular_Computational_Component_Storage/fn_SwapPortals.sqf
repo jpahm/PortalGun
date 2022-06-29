@@ -1,4 +1,4 @@
-// Copyright 2021 Sysroot/Eisenhorn
+// Copyright 2021/2022 Sysroot/Eisenhorn
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -21,4 +21,3 @@
 private _temp = PG_VAR_CURRENT_PORTAL;
 PG_VAR_CURRENT_PORTAL = PG_VAR_OTHER_PORTAL;
 PG_VAR_OTHER_PORTAL = _temp;
-PG_VAR_ANIM_HANDLE = objNull; // Clear animation handle to prevent conflict

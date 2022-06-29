@@ -1,4 +1,4 @@
-// Copyright 2021 Sysroot/Eisenhorn
+// Copyright 2021/2022 Sysroot/Eisenhorn
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -29,10 +29,11 @@ private _nearObjects = [[], []];
 {
 	private _portalObj = _x;
 	private _portalPos = getPosWorld _portalObj;
-	private _nearPortal = _nearObjects#_forEachIndex;
+	private _nearPortal = [];
 	
-	// Detect projectiles
+	// Detect all projectile types
 	{
+		// Iterate over all projectiles of a given type near the portal
 		{
 			if (!(_x in PG_VAR_TP_CACHE)) then {
 				private _objPos = getPosWorld _x;
@@ -70,7 +71,7 @@ private _nearObjects = [[], []];
 		private _distance = _portalObj distance _vehicle;
 		// Bounding sphere diameter
 		private _vehicleSize = (boundingBoxReal _vehicle)#2;
-		// Only teleport the vehicle if its distance to the portal is less than a portion of its bounding diameter
+		// Only teleport the vehicle if its distance to the portal is less than its bounding diameter
 		if (_distance <= _vehicleSize * 3/4) then {
 			_nearPortal pushBackUnique _x;
 		};
@@ -79,12 +80,14 @@ private _nearObjects = [[], []];
 	
 	// Filter out portals and portal surfaces
 	_nearPortal = _nearPortal select {!((_x#0) in _this) && {!((_x#0) in PG_VAR_PORTAL_SURFACES)}};
+	_nearObjects set [_forEachIndex, _nearPortal];
 	
 } forEach [_bPortal, _oPortal];
 
 // Remove objects from the cache that are no longer within the detection range of the portals
 PG_VAR_TP_CACHE = PG_VAR_TP_CACHE select {_x in ((_nearObjects#0) apply {_x#0}) || {_x in ((_nearObjects#1) apply {_x#0})}};
 
+// Don't teleport any non-local objects or objects already in PG_VAR_TP_CACHE
 _nearObjects set [0, (_nearObjects#0) select {local (_x#0) && {!((_x#0) in PG_VAR_TP_CACHE)}}];
 _nearObjects set [1, (_nearObjects#1) select {local (_x#0) && {!((_x#0) in PG_VAR_TP_CACHE)}}];
 

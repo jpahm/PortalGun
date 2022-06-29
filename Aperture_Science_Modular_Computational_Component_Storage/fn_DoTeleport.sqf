@@ -1,4 +1,4 @@
-// Copyright 2021 Sysroot/Eisenhorn
+// Copyright 2021/2022 Sysroot/Eisenhorn
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -37,13 +37,21 @@ if (count _nearBlue == 0 && {count _nearOrange == 0}) exitWith {};
 	_x params ["_nearObjs", "_curPortal", "_otherPortal"];
 	
 	private ["_curPos", "_otherPos", "_curDir", "_otherDir", "_curUp", "_otherUp", "_curX", "_otherX"];
+	// The position of the current portal
 	_curPos = getPosWorld _curPortal;
+	// Position of the other portal
 	_otherPos = getPosWorld _otherPortal;
+	// Direction of the current portal (points into the portal)
 	_curDir = vectorDir _curPortal;
+	// Direction of the other portal (points into the portal)
 	_otherDir = vectorDir _otherPortal;
+	// Direction of the top of the current portal
 	_curUp = vectorUp _curPortal;
+	// Direction of the top of the other portal
 	_otherUp = vectorUp _otherPortal;
+	// Direction to the side of the current portal
 	_curX = _curDir vectorCrossProduct _curUp;
+	// Direction to the side of the other portal
 	_otherX = _otherDir vectorCrossProduct _otherUp;
 	
 	{
@@ -61,9 +69,9 @@ if (count _nearBlue == 0 && {count _nearOrange == 0}) exitWith {};
 		
 		// If raycast check passed, use raycast data for positioning
 		if (_portalIndex > -1) then {
-			_posVector = [((_rayCast#_portalIndex)#0) vectorDiff _curPos, _curDir] call PG_fnc_RestrictVector;
+			_posVector = [((_rayCast#_portalIndex)#0) vectorDiff _curPos, _curDir] call PG_fnc_ProjectVector;
 		} else { // Else, compute position as a simple offset from the portal center, less precise than above
-			_posVector = [_objPos vectorDiff _curPos, _curDir] call PG_fnc_RestrictVector;
+			_posVector = [_objPos vectorDiff _curPos, _curDir] call PG_fnc_ProjectVector;
 		};
 		
 		// Add gravitational acceleration for non-projectiles
@@ -76,28 +84,40 @@ if (count _nearBlue == 0 && {count _nearOrange == 0}) exitWith {};
 			};
 		};
 
-		private _dirOffsetPos = acos(_posVector vectorCos _curX);
-		private _upOffsetPos = acos(_posVector vectorCos _curUp);
-		
-		// Transform position between portals
-		private _outPos = _otherDir vectorMultiply (vectorMagnitude _posVector);
-		_outPos = [_outPos, _otherUp, 90 - _dirOffsetPos] call SUS_fnc_QRotateVec;
-		_outPos = [_outPos, _otherX, 90 + _upOffsetPos] call SUS_fnc_QRotateVec;
+		private _posCos = _posVector vectorCos _curUp;
+		private _upOffsetAngle = [acos(_posCos), -acos(_posCos)] select (_posCos > 0); 
+	   
+		// Transform position between portals 
+		private _outPos = _otherUp vectorMultiply (vectorMagnitude _posVector); 
+		_outPos = [_outPos, _otherDir, _upOffsetAngle] call SUS_fnc_QRotateVec;
 		_outPos = _otherPos vectorAdd _outPos;
 		
+		// Properly space the position away from the portal
 		if (_isMan && {acos((_otherDir vectorMultiply -1) vectorCos [0, 0, -1]) < PG_VAR_VERTICAL_TOLERANCE}) then {
 			_outPos = _outPos vectorAdd (_otherDir vectorMultiply -1);
 		} else {
-			_outPos = _outPos vectorAdd (_otherDir vectorMultiply -0.25);
+			if (_isProjectile) then {
+				_outPos = _outPos vectorAdd (_otherDir vectorMultiply -0.01);
+			} else {
+				_outPos = _outPos vectorAdd (_otherDir vectorMultiply -0.25);
+			};
 		};
 
-		private _dirOffsetVel = acos(_velocity vectorCos _curX);
-		private _upOffsetVel = acos(_velocity vectorCos _curUp);
+		// Project the velocity vector onto 3 planes for transform
+		//private _projectedVelocityPlane = [_velocity, _curDir] call PG_fnc_ProjectVector;
+		private _projectedVelocityDir = [_velocity, _curUp] call PG_fnc_ProjectVector;
+		private _projectedVelocityUp = [_velocity, _curX] call PG_fnc_ProjectVector;
+		
+		// Find the angular offset of each projected vector
+		//private _planeOffsetVel = acos(_projectedVelocityPlane vectorCos _curUp);
+		private _dirOffsetVel = acos(_projectedVelocityDir vectorCos _curX);
+		private _upOffsetVel = acos(_projectedVelocityUp vectorCos _curUp);
 
 		// Transform velocity between portals
 		private _outVel = _otherDir vectorMultiply (vectorMagnitude _velocity);
 		_outVel = [_outVel, _otherUp, 90 - _dirOffsetVel] call SUS_fnc_QRotateVec;
 		_outVel = [_outVel, _otherX, 90 + _upOffsetVel] call SUS_fnc_QRotateVec;
+		//_outVel = [_outVel, _otherDir, _planeOffsetVel] call SUS_fnc_QRotateVec;
 		
 		// If projectile, add the original projectile to PG_VAR_TP_CACHE and create the new projectile
 		if (_isProjectile) then {
@@ -118,11 +138,15 @@ if (count _nearBlue == 0 && {count _nearOrange == 0}) exitWith {};
 		// Handle placement of non-unit vehicles
 		if (_object isKindOf "AllVehicles" && {!_isMan}) then {
 			// Find a spot where a copy of the vehicle fits so nothing goes horribly, horribly wrong
-			private _placementObj = createVehicle [typeOf _object, _outPos vectorAdd (_otherDir vectorMultiply -((boundingBoxReal _object)#2) * 3/4)];
-			private _newPos = getPosWorld _placementObj;
-			deleteVehicle _placementObj;
-			// Move actual vehicle and account for Z placement
-			_object setPosWorld [_newPos#0, _newPos#1, _outPos#2];
+			private _testPos = _outPos vectorAdd (_otherDir vectorMultiply -((boundingBoxReal _object)#2) * 3/4);
+			private _testObj = createVehicle [typeOf _object, _testPos];
+			private _newPos = getPosWorld _testObj;
+			// Delete copy of vehicle
+			deleteVehicle _testObj;
+			// Fix Z coordinate since it isn't properly found from above testing
+			_newPos set [2, _testPos#2];
+			// Move actual vehicle
+			_object setPosWorld _newPos;
 		} else { // Handle placement of anything else
 			_object setPosWorld _outPos;
 		};

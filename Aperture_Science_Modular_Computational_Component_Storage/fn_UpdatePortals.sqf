@@ -1,4 +1,4 @@
-// Copyright 2021 Sysroot/Eisenhorn
+// Copyright 2021/2022 Sysroot/Eisenhorn
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -19,23 +19,35 @@
 ///	Return value: None.
 
 if (!PG_VAR_BLUE_SPAWNED || {!PG_VAR_ORANGE_SPAWNED}) then {
+	// Unlink the portals if they're linked but either is no longer spawned
 	if (PG_VAR_PORTALS_LINKED) then {
-		[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_UnlinkPortals", 0, true];
+		// Unlink the portals on all clients
+		[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_UnlinkPortals", [0, -2] select isDedicated, true];
+		// Stop sending remote updates
 		["PG_RU_ID", "onEachFrame"] call BIS_fnc_removeStackedEventHandler;
+		// Stop camera following (if it's running)
 		["PG_CF_ID", "onEachFrame"] call BIS_fnc_removeStackedEventHandler;
-		// End cam follow on unlink
+		// Mark cam follow as off
 		PG_VAR_CAM_FOLLOW = false;
 		// Set linked state to false
 		PG_VAR_PORTALS_LINKED = false;
 	};
 } else {
+	// Link the portals if they're unlinked but both are spawned
 	if (!PG_VAR_PORTALS_LINKED) then {
-		[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_LinkPortals", 0, true];
-		["PG_RU_ID", "onEachFrame", {[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_RemoteUpdate"]}] call BIS_fnc_addStackedEventHandler;
+		// Link the portals on all clients
+		[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_LinkPortals", [0, -2] select isDedicated, true];
+		// Start sending remote updates
+		["PG_RU_ID", "onEachFrame", {
+			[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_RemoteUpdate", [0, -2] select isDedicated];
+		}] call BIS_fnc_addStackedEventHandler;
 		// Set linked state to true
 		PG_VAR_PORTALS_LINKED = true;
 	};
 };
+
+// Update the camera positions on all clients
+[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_UpdateCams", [0, -2] select isDedicated, true];
 
 // Update custom crosshair w/ new portal info
 call PG_fnc_UpdateCrosshair;
