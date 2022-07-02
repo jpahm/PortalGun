@@ -430,7 +430,7 @@
       <Portuguese>Se as armas do portal dos jogadores terão munições infinitas ou não.</Portuguese>
       <Czech>Zda budou mít portálové zbraně hráčů nekonečnou munici, nebo ne.</Czech>
     </Key>
-	<Key ID="STR_PGUN_BlackHole_Enabled">
+    <Key ID="STR_PGUN_BlackHole_Enabled">
       <English>Black Hole Enabled</English>
       <Spanish>Agujero negro habilitado</Spanish>
       <German>Schwarzes Loch Aktiviert</German>
@@ -611,6 +611,71 @@
       <Russian>Будет ли картофелю позволено говорить или нет.</Russian>
       <Portuguese>Se a batata será autorizada a falar ou não.</Portuguese>
       <Czech>Zda bude bramborám umožněno promluvit, nebo ne.</Czech>
+    </Key>
+	<Key ID="STR_PGUN_Controls">
+      <English>Controls</English>
+      <Spanish>Controla</Spanish>
+      <German>Kontrolliert</German>
+      <Chinesesimp>控制措施</Chinesesimp>
+      <Japanese>コントロールズ</Japanese>
+      <Italian>Controlli</Italian>
+      <French>Contrôles</French>
+      <Polish>Kontrole</Polish>
+      <Russian>Управление</Russian>
+      <Portuguese>Controlos</Portuguese>
+      <Czech>Ovládací prvky</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Grab_Key">
+      <English>Grab Key</English>
+      <Spanish>Llave de agarre</Spanish>
+      <German>Taste greifen</German>
+      <Chinesesimp>抓住钥匙</Chinesesimp>
+      <Japanese>グラブキー</Japanese>
+      <Italian>Chiave di presa</Italian>
+      <French>Clé d'accès</French>
+      <Polish>Chwyć klucz</Polish>
+      <Russian>Захват ключа</Russian>
+      <Portuguese>Agarrar chave</Portuguese>
+      <Czech>Uchopit klíč</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Grab_Key_Desc">
+      <English>The key to use for grabbing things with the portal gun.</English>
+      <Spanish>La llave que hay que usar para agarrar cosas con la pistola de portales.</Spanish>
+      <German>Der Schlüssel, mit dem man Dinge mit der Portalpistole greifen kann.</German>
+      <Chinesesimp>用传送门枪抓取东西时使用的钥匙。</Chinesesimp>
+      <Japanese>ポータルガンで物をつかむときに使う鍵。</Japanese>
+      <Italian>La chiave da usare per afferrare gli oggetti con la pistola a portale.</Italian>
+      <French>La clé à utiliser pour attraper des choses avec le pistolet portail.</French>
+      <Polish>Klucz używany do chwytania przedmiotów za pomocą pistoletu portalowego.</Polish>
+      <Russian>Ключ, который можно использовать для захвата предметов с помощью портальной пушки.</Russian>
+      <Portuguese>A chave a utilizar para agarrar coisas com a arma do portal.</Portuguese>
+      <Czech>Klíč k uchopení věcí pomocí portálové pistole.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Fizzle_Key">
+      <English>Fizzle Key</English>
+      <Spanish>Llave Fizzle</Spanish>
+      <German>Fizzle Schlüssel</German>
+      <Chinesesimp>菲兹尔钥匙</Chinesesimp>
+      <Japanese>フィズル・キー</Japanese>
+      <Italian>Chiave Fizzle</Italian>
+      <French>Clé Fizzle</French>
+      <Polish>Klucz Fizzle</Polish>
+      <Russian>Шипучий ключ</Russian>
+      <Portuguese>Chave Fizzle</Portuguese>
+      <Czech>Klíč Fizzle</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Fizzle_Key_Desc">
+      <English>The key to use for fizzling portals.</English>
+      <Spanish>La clave para usar los portales que se desvanecen.</Spanish>
+      <German>Der Schlüssel für zischende Portale.</German>
+      <Chinesesimp>用于晕倒的门户网站的关键。</Chinesesimp>
+      <Japanese>ポータルの発泡に使用するキーです。</Japanese>
+      <Italian>La chiave da utilizzare per i portali che si spengono.</Italian>
+      <French>La clé à utiliser pour les portails qui pétillent.</French>
+      <Polish>Klucz, którego należy używać w przypadku portali, które nie działają.</Polish>
+      <Russian>Ключ, который следует использовать для шипящих порталов.</Russian>
+      <Portuguese>A chave a utilizar para os portais de efervescência.</Portuguese>
+      <Czech>Klíč k použití pro šumící portály.</Czech>
     </Key>
     <Key ID="STR_PGUN_Misc">
       <English>Miscellaneous</English>

@@ -160,15 +160,15 @@ addUserActionEventHandler ["SwitchPrimary", "Activate", {[true] call PG_fnc_Hand
 addUserActionEventHandler ["SwitchSecondary", "Activate", {[false] call PG_fnc_HandleWeaponSwitch}];
 addUserActionEventHandler ["SwitchHandgun", "Activate", {[false] call PG_fnc_HandleWeaponSwitch}];
 
-// Handle toggling grab
-addUserActionEventHandler ["fire", "Activate", PG_fnc_TryGrab];
+// // Handle toggling grab
+// PG_VAR_GRAB_KEY_INDEX = addUserActionEventHandler [PG_VAR_GRAB_KEY, "Activate", PG_fnc_TryGrab];
 
-// Handle player fizzling portals
-addUserActionEventHandler ["deployWeaponAuto", "Activate", {
-	if (PG_VAR_PLAYER_FIZZLE_ENABLED && {(currentWeapon player) isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]}) then {
-		[] call PG_fnc_Fizzle;
-	};
-}];
+// // Handle player fizzling portals
+// PG_VAR_FIZZLE_KEY_INDEX = addUserActionEventHandler [PG_VAR_FIZZLE_KEY, "Activate", {
+	// if (PG_VAR_PLAYER_FIZZLE_ENABLED && {(currentWeapon player) isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]}) then {
+		// [] call PG_fnc_Fizzle;
+	// };
+// }];
 
 // Fix the PiP camera bugs
 [missionnamespace, "arsenalClosed", {[] spawn PG_fnc_FixArsenalBug}] call bis_fnc_addScriptedEventhandler;

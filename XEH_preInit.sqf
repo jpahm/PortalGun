@@ -228,6 +228,62 @@ PG_VAR_MOD_NAME = localize "$STR_PGUN_Name_Short";
 	false
 ] call CBA_fnc_addSetting;
 
+/// Controls ///
+
+// Allowed keys for the grab control
+PG_VAR_GRAB_KEYS = [
+	"fire", "User1", "User2", "User3", "User4", "User5", "User6", "User7", "User8", "User9", "User10",
+	"User11", "User12", "User13", "User14", "User15", "User16", "User17", "User18", "User19", "User20"
+];
+
+// Allowed keys for the fizzle control
+PG_VAR_FIZZLE_KEYS = [
+	"deployWeaponAuto", "User1", "User2", "User3", "User4", "User5", "User6", "User7", "User8", "User9", "User10",
+	"User11", "User12", "User13", "User14", "User15", "User16", "User17", "User18", "User19", "User20"
+];
+
+[
+	"PG_VAR_GRAB_KEY",
+	"LIST",
+	["$STR_PGUN_Grab_Key", "$STR_PGUN_Grab_Key_Desc"],
+	[PG_VAR_MOD_NAME, "$STR_PGUN_Controls"],
+	[
+		PG_VAR_GRAB_KEYS,
+		PG_VAR_GRAB_KEYS apply {actionName _x},
+		0
+	],
+	0,
+	{
+		removeUserActionEventHandler [PG_VAR_OLD_GRAB_KEY, "Activate", PG_VAR_GRAB_KEY_INDEX];
+		PG_VAR_GRAB_KEY_INDEX = addUserActionEventHandler [_this, "Activate", PG_fnc_TryGrab];
+		PG_VAR_OLD_GRAB_KEY = _this;
+	},
+	false
+] call CBA_fnc_addSetting;
+
+[
+	"PG_VAR_FIZZLE_KEY",
+	"LIST",
+	["$STR_PGUN_Fizzle_Key", "$STR_PGUN_Fizzle_Key_Desc"],
+	[PG_VAR_MOD_NAME, "$STR_PGUN_Controls"],
+	[
+		PG_VAR_FIZZLE_KEYS,
+		PG_VAR_FIZZLE_KEYS apply {actionName _x},
+		0
+	],
+	0,
+	{
+		removeUserActionEventHandler [PG_VAR_OLD_FIZZLE_KEY, "Activate", PG_VAR_FIZZLE_KEY_INDEX];
+		PG_VAR_FIZZLE_KEY_INDEX = addUserActionEventHandler [_this, "Activate", {
+			if (PG_VAR_PLAYER_FIZZLE_ENABLED && {(currentWeapon player) isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]}) then {
+				[] call PG_fnc_Fizzle;
+			};
+		}];
+		PG_VAR_OLD_FIZZLE_KEY = _this;
+	},
+	false
+] call CBA_fnc_addSetting;
+
 /// Misc ///
 
 [
