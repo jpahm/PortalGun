@@ -22,6 +22,10 @@
 ///
 ///	Return value: Up vector of surface to use.
 
+#ifdef PG_DEBUG
+PG_LOG_FUNC("GetSurfaceUpVec");
+#endif
+
 params[["_surfNormal", [], [[]]]];
 
 // Find the incline of the surface

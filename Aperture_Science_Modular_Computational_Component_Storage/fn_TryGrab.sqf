@@ -18,6 +18,10 @@
 /// Parameters: None.
 ///	Return value: Boolean, whether gun is now grabbing something.
 
+#ifdef PG_DEBUG
+PG_LOG_FUNC("TryGrab");
+#endif
+
 private _primaryWeapon = primaryWeapon player;
 
 // If currently grabbing item, drop it

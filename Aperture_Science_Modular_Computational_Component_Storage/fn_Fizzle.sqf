@@ -22,6 +22,10 @@
 ///
 ///	Return value: None.
 
+#ifdef PG_DEBUG
+PG_LOG_FUNC("Fizzle");
+#endif
+
 params[["_portals", [PG_VAR_CURRENT_PORTAL, PG_VAR_OTHER_PORTAL], [[]]]];
 
 [player, "gun_fizzle"] remoteExecCall ["say3D"];

@@ -23,6 +23,10 @@
 ///
 ///	Return value: Array of arrays in format [[object, velocity, isProjectile]].
 
+#ifdef PG_VERBOSE_DEBUG
+PG_LOG_FUNC("DetectObjects");
+#endif
+
 params[["_bPortal", objNull, [objNull]], ["_oPortal", objNull, [objNull]]];
 
 private _nearObjects = [[], []];

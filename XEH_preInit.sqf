@@ -12,6 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#ifdef PG_DEBUG
+PG_LOG_FUNC("XEH_preInit");
+#endif
+
 PG_VAR_MOD_NAME = localize "$STR_PGUN_Name_Short";
 
 /// Scales ///
@@ -79,6 +83,17 @@ PG_VAR_MOD_NAME = localize "$STR_PGUN_Name_Short";
 	["$STR_PGUN_Grab_Range", "$STR_PGUN_Grab_Range_Desc"],
 	[PG_VAR_MOD_NAME, "$STR_PGUN_Ranges"],
 	[0, 50, 1.5, 2, false],
+	1,
+	{},
+	false
+] call CBA_fnc_addSetting;
+
+[
+	"PG_VAR_NUDGE_RANGE",
+	"SLIDER",
+	["$STR_PGUN_Nudge_Range", "$STR_PGUN_Nudge_Range_Desc"],
+	[PG_VAR_MOD_NAME, "$STR_PGUN_Ranges"],
+	[0, 20, 5, 2, false],
 	1,
 	{},
 	false
@@ -292,6 +307,17 @@ PG_VAR_FIZZLE_KEYS = [
 	["$STR_PGUN_Fall_Velocity", "$STR_PGUN_Fall_Velocity_Desc"],
 	[PG_VAR_MOD_NAME, "$STR_PGUN_Misc"],
 	[0, 10, 3, 2, false],
+	1,
+	{},
+	false
+] call CBA_fnc_addSetting;
+
+[
+	"PG_VAR_NUDGE_STRENGTH",
+	"SLIDER",
+	["$STR_PGUN_Nudge_Strength", "$STR_PGUN_Nudge_Strength_Desc"],
+	[PG_VAR_MOD_NAME, "$STR_PGUN_Misc"],
+	[0, 1, 0.04, 2, false],
 	1,
 	{},
 	false

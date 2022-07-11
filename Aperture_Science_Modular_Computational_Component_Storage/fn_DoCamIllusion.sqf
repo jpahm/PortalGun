@@ -23,6 +23,10 @@
 ///
 ///	Return value: None.
 
+#ifdef PG_VERBOSE_DEBUG
+PG_LOG_FUNC("DoCamIllusion");
+#endif
+
 params["_bPortal", "_oPortal"];
 
 private _blueCam = PG_REMOTE_BLUE_CAM;

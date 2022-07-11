@@ -18,6 +18,10 @@
 /// Parameters: None.
 ///	Return value: None.
 
+#ifdef PG_DEBUG
+PG_LOG_FUNC("SwapPortals");
+#endif
+
 private _temp = PG_VAR_CURRENT_PORTAL;
 PG_VAR_CURRENT_PORTAL = PG_VAR_OTHER_PORTAL;
 PG_VAR_OTHER_PORTAL = _temp;

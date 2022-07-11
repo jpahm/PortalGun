@@ -23,6 +23,10 @@
 ///
 ///	Return value: None.
 
+#ifdef PG_VERBOSE_DEBUG
+PG_LOG_FUNC("DoCamFollow");
+#endif
+
 params["_bPortal", "_oPortal"];
 
 // Don't do anything if PiP is disabled

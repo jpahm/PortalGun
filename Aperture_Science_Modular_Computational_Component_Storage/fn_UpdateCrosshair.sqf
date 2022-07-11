@@ -18,6 +18,10 @@
 /// Parameters: None.
 ///	Return value: None.
 
+#ifdef PG_DEBUG
+PG_LOG_FUNC("UpdateCrosshair");
+#endif
+
 if (PG_DUAL_PORTALS) then {
 	//	If neither portal open in dual mode, show both colors empty
 	if (!PG_VAR_BLUE_SPAWNED && {!PG_VAR_ORANGE_SPAWNED}) then {

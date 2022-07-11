@@ -20,6 +20,10 @@
 
 // Adapted from https://github.com/darkChozo/fa_crosshair
 
+#ifdef PG_VERBOSE_DEBUG
+PG_LOG_FUNC("DrawCrosshair");
+#endif
+
 // Don't show crosshair if player has it disabled
 if (PG_VAR_CROSSHAIR_ENABLED) then {
 

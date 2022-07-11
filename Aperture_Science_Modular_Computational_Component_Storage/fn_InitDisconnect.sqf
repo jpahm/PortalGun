@@ -18,6 +18,10 @@
 /// Parameters: None.
 ///	Return value: None.
 
+#ifdef PG_DEBUG
+PG_LOG_FUNC("InitDisconnect");
+#endif
+
 addMissionEventHandler ["PlayerDisconnected",
 {
 	params ["_id", "_uid", "_name", "_jip", "_owner", "_idstr"];

@@ -24,6 +24,10 @@
 ///
 ///	Return value: Bool, whether portal will fit or not.
 
+#ifdef PG_DEBUG
+PG_LOG_FUNC("DoBoundsCheck");
+#endif
+
 params["_portalObj", "_surfVectorUp", "_rayCast"];
 
 _rayCast params ["_pos", "_surfNormal", "_hitObject", "_hitObjectParent"];

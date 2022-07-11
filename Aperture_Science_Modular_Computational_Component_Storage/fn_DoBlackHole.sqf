@@ -22,6 +22,10 @@
 ///
 ///	Return value: Spawn handle.
 
+#ifdef PG_DEBUG
+PG_LOG_FUNC("DoBlackHole");
+#endif
+
 _this spawn {
 	params["_position"];
 

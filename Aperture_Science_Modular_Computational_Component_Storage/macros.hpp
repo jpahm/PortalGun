@@ -12,6 +12,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// Uncomment below line for normal debug
+//#define PG_DEBUG
+// Uncomment below line for verbose debug
+//#define PG_VERBOSE_DEBUG
+
+// Debug logging
+#define PG_LOG_FUNC(fnc) (systemChat format [localize "$STR_PGUN_LOG_STR", fnc, _this])
+// NOTE: Macros can't take array args, pass format args for this in PG_VAR_LOG_VARS!
+#define PG_LOG(str) (systemChat format ([localize str] + PG_VAR_LOG_VARS))
+
 // Values
 #define PG_VAR_PORTAL_HEIGHT_H (PG_VAR_PORTAL_HEIGHT / 2)
 #define PG_VAR_PORTAL_WIDTH_H (PG_VAR_PORTAL_WIDTH / 2)

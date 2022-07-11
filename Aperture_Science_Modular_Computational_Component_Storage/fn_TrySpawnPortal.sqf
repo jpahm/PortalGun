@@ -22,6 +22,10 @@
 ///
 ///	Return value: Boolean, whether portal was successfully spawned or not.
 
+#ifdef PG_DEBUG
+PG_LOG_FUNC("TrySpawnPortal");
+#endif
+
 params["_portalObj"];
 
 private _playerPos = eyePos player;

@@ -274,6 +274,32 @@
       <Portuguese>O alcance máximo em que os portais podem teleportar coisas que não sejam unidades, veículos e projécteis.</Portuguese>
       <Czech>Maximální vzdálenost, na kterou mohou portály teleportovat jiné věci než jednotky, vozidla a projektily.</Czech>
     </Key>
+	<Key ID="STR_PGUN_Nudge_Range">
+      <English>Nudge Range</English>
+      <Spanish>Alcance de los codazos</Spanish>
+      <German>Nudge-Bereich</German>
+      <Chinesesimp>推进范围</Chinesesimp>
+      <Japanese>ナッジレンジ</Japanese>
+      <Italian>Gamma Nudge</Italian>
+      <French>Gamme de coups de pouce</French>
+      <Polish>Zasięg</Polish>
+      <Russian>Диапазон подталкивания</Russian>
+      <Portuguese>Gama Nudge</Portuguese>
+      <Czech>Rozsah šťouchnutí</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Nudge_Range_Desc">
+      <English>The range from which players will be "nudged" towards portals they're falling towards.</English>
+      <Spanish>El rango a partir del cual los jugadores serán "empujados" hacia los portales hacia los que están cayendo.</Spanish>
+      <German>Der Bereich, aus dem die Spieler in Richtung der Portale "geschubst" werden, auf die sie zufallen.</German>
+      <Chinesesimp>玩家将被 "催促 "走向他们正在跌落的门户的范围。</Chinesesimp>
+      <Japanese>プレイヤーが落ちてくるポータルに向かって「ナデナデ」される範囲です。</Japanese>
+      <Italian>L'intervallo da cui i giocatori saranno "spinti" verso i portali verso cui stanno cadendo.</Italian>
+      <French>La portée à partir de laquelle les joueurs seront "poussés" vers les portails vers lesquels ils tombent.</French>
+      <Polish>Zasięg, z którego gracze będą "szturchani" w kierunku portali, do których spadają.</Polish>
+      <Russian>Диапазон, с которого игроки будут "подталкиваться" к порталам, к которым они падают.</Russian>
+      <Portuguese>O intervalo a partir do qual os jogadores serão "empurrados" para os portais para os quais estão a cair.</Portuguese>
+      <Czech>Rozsah, z něhož budou hráči "postrkováni" k portálům, k nimž padají.</Czech>
+    </Key>
     <Key ID="STR_PGUN_Tolerances">
       <English>Tolerances</English>
       <Spanish>Tolerancias</Spanish>
@@ -612,7 +638,7 @@
       <Portuguese>Se a batata será autorizada a falar ou não.</Portuguese>
       <Czech>Zda bude bramborám umožněno promluvit, nebo ne.</Czech>
     </Key>
-	<Key ID="STR_PGUN_Controls">
+    <Key ID="STR_PGUN_Controls">
       <English>Controls</English>
       <Spanish>Controla</Spanish>
       <German>Kontrolliert</German>
@@ -715,6 +741,32 @@
       <Russian>Скорость, которую объекты набирают при входе в порталы, направленные вверх (скорость добавляется за счет гравитации).</Russian>
       <Portuguese>A velocidade que os objetos ganharão ao entrar em portais voltados para cima (velocidade adicionada devido à gravidade).</Portuguese>
       <Czech>Rychlost, kterou objekty získají při vstupu do portálů směřujících vzhůru (rychlost přidaná v důsledku gravitace).</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Nudge_Strength">
+      <English>Nudge Strength</English>
+      <Spanish>Fuerza de los empujones</Spanish>
+      <German>Nudge-Stärke</German>
+      <Chinesesimp>推销力度</Chinesesimp>
+      <Japanese>ナッジの強さ</Japanese>
+      <Italian>Forza di spinta</Italian>
+      <French>Force de frappe</French>
+      <Polish>Siła nacisku</Polish>
+      <Russian>Сила подталкивания</Russian>
+      <Portuguese>Força de Pulsação</Portuguese>
+      <Czech>Síla šťouchnutí</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Nudge_Strength_Desc">
+      <English>The strength with which players will be "nudged" towards portals they're falling towards.</English>
+      <Spanish>La fuerza con la que los jugadores serán "empujados" hacia los portales hacia los que están cayendo.</Spanish>
+      <German>Die Stärke, mit der die Spieler in Richtung der Portale "gestupst" werden, in die sie fallen.</German>
+      <Chinesesimp>玩家将被 "催促 "走向他们正在跌落的门户的力度。</Chinesesimp>
+      <Japanese>プレイヤーが落ちてくるポータルに向かって「なでなで」される強さ。</Japanese>
+      <Italian>La forza con cui i giocatori saranno "spinti" verso i portali verso cui stanno cadendo.</Italian>
+      <French>La force avec laquelle les joueurs seront "poussés" vers les portails vers lesquels ils tombent.</French>
+      <Polish>Siła, z jaką gracze będą "szturchani" w kierunku portali, do których spadają.</Polish>
+      <Russian>Сила, с которой игроки будут "подталкиваться" к порталам, к которым они падают.</Russian>
+      <Portuguese>A força com que os jogadores serão "empurrados" para os portais para os quais estão a cair.</Portuguese>
+      <Czech>Síla, s jakou budou hráči "postrkováni" k portálům, ke kterým padají.</Czech>
     </Key>
     <Key ID="STR_PGUN_Projectile_Types">
       <English>Projectile Types</English>
@@ -1144,6 +1196,19 @@
       <Russian>Портальная пушка не может быть инициализирована при отсутствии порталов!</Russian>
       <Portuguese>Portal arma não pode ser inicializado sem portais!</Portuguese>
       <Czech>Portálovou zbraň nelze inicializovat bez portálů!</Czech>
+    </Key>
+    <Key ID="STR_PGUN_LOG_STR">
+      <English>PG_DEBUG: Ran function ""%1"" with params %2</English>
+      <Spanish>PG_DEBUG: Se ha ejecutado la función ""%1"" con los parámetros %2</Spanish>
+      <German>PG_DEBUG: Funktion ""%1"" mit Parametern %2 ausgeführt</German>
+      <Chinesesimp>PG_DEBUG。运行带有参数%2的函数""%1""</Chinesesimp>
+      <Japanese>PG_DEBUG:パラメータ %2 を指定して関数 ""%1"" を実行しました。</Japanese>
+      <Italian>PG_DEBUG: Eseguita funzione ""%1"" con parametri %2</Italian>
+      <French>PG_DEBUG : Exécution de la fonction ""%1"" avec les paramètres %2</French>
+      <Polish>PG_DEBUG: Uruchomiono funkcję ""%1"" z parametrami %2</Polish>
+      <Russian>PG_DEBUG: Запуск функции ""%1"" с параметрами %2</Russian>
+      <Portuguese>PG_DEBUG: Função Ran ""%1"" com params %2</Portuguese>
+      <Czech>PG_DEBUG: Spuštěna funkce ""%1"" s parametry %2</Czech>
     </Key>
   </Package>
 </Project>

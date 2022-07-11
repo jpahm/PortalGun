@@ -18,6 +18,10 @@
 /// Parameters: None.
 ///	Return value: None.
 
+#ifdef PG_DEBUG
+PG_LOG_FUNC("UpdatePortals");
+#endif
+
 if (!PG_VAR_BLUE_SPAWNED || {!PG_VAR_ORANGE_SPAWNED}) then {
 	// Unlink the portals if they're linked but either is no longer spawned
 	if (PG_VAR_PORTALS_LINKED) then {

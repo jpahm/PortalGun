@@ -14,6 +14,10 @@
 
 #include "macros.hpp"
 
+#ifdef PG_DEBUG
+PG_LOG_FUNC("PlaySound");
+#endif
+
 /// Description: MP compatibility function for say3D when used on objects that aren't "alive".
 /// Parameters:
 ///		PARAMETER		|		EXPECTED INPUT TYPE		|		DESCRIPTION

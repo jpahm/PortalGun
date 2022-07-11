@@ -23,6 +23,10 @@
 ///
 ///	Return value: None.
 
+#ifdef PG_DEBUG
+PG_LOG_FUNC("AnimatePortal");
+#endif
+
 params[["_portalObj", objNull, [objNull]], ["_opening", true, [true]]];
 
 // If animation currently in progress, terminate it

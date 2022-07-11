@@ -23,6 +23,10 @@
 ///
 ///	Return value: None.
 
+#ifdef PG_DEBUG
+PG_LOG_FUNC("InitPortals");
+#endif
+
 params[["_bPortal", true, [true]], ["_oPortal", true, [true]]];
 
 if (!_bPortal && {!_oPortal}) then {

@@ -23,6 +23,10 @@
 ///
 ///	Return value: None.
 
+#ifdef PG_DEBUG
+PG_LOG_FUNC("UpdateCams");
+#endif
+
 params["_bPortal", "_oPortal"];
 
 private _orangeDir = vectorDir _oPortal;

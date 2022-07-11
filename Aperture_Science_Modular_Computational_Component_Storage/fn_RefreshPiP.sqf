@@ -23,6 +23,10 @@
 ///
 ///	Return value: None.
 
+#ifdef PG_DEBUG
+PG_LOG_FUNC("RefreshPiP");
+#endif
+
 params["_bPortal", "_oPortal"];
 
 // Don't do anything with the cams if PiP not enabled

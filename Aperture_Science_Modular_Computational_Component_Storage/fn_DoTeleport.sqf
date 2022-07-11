@@ -23,6 +23,10 @@
 ///
 ///	Return value: None.
 
+#ifdef PG_VERBOSE_DEBUG
+PG_LOG_FUNC("DoTeleport");
+#endif
+
 params["_bPortal", "_oPortal"];
 
 // Get all the teleportable objects near both portals
@@ -48,11 +52,11 @@ if (count _nearBlue == 0 && {count _nearOrange == 0}) exitWith {};
 	// Direction of the top of the current portal
 	_curUp = vectorUp _curPortal;
 	// Direction of the top of the other portal
-	_otherUp = vectorUp _otherPortal;
+	//_otherUp = vectorUp _otherPortal;
 	// Direction to the side of the current portal
 	_curX = _curDir vectorCrossProduct _curUp;
 	// Direction to the side of the other portal
-	_otherX = _otherDir vectorCrossProduct _otherUp;
+	//_otherX = _otherDir vectorCrossProduct _otherUp;
 	
 	{
 		_x params ["_object", "_velocity", "_isProjectile"];
@@ -63,7 +67,7 @@ if (count _nearBlue == 0 && {count _nearOrange == 0}) exitWith {};
 		private _objPos = getPosWorld _object;
 		private _isMan = _object isKindOf "Man";
 		
-		// Raycast to determine trajectory
+		// // Raycast to determine trajectory
 		private _rayCast = lineIntersectsSurfaces [_objPos, _objPos vectorAdd ((_velocity) vectorMultiply PG_VAR_MAX_RANGE), _object, objNull, false, 2, "VIEW", "GEOM"];
 		private _portalIndex = _rayCast findIf {(_x#2) isEqualTo _curPortal};
 		
@@ -74,7 +78,7 @@ if (count _nearBlue == 0 && {count _nearOrange == 0}) exitWith {};
 			_posVector = [_objPos vectorDiff _curPos, _curDir] call PG_fnc_ProjectVector;
 		};
 		
-		// Add gravitational acceleration for non-projectiles
+		// // Add gravitational acceleration for non-projectiles
 		if (!_isProjectile) then {
 			// Only accelerate object if incline of surface is within vertical tolerance
 			if (acos((_curDir vectorMultiply -1) vectorCos [0, 0, 1]) < PG_VAR_VERTICAL_TOLERANCE) then {
@@ -83,16 +87,12 @@ if (count _nearBlue == 0 && {count _nearOrange == 0}) exitWith {};
 				};
 			};
 		};
-
-		private _posCos = _posVector vectorCos _curUp;
-		private _upOffsetAngle = [acos(_posCos), -acos(_posCos)] select (_posCos > 0); 
-	   
-		// Transform position between portals 
-		private _outPos = _otherUp vectorMultiply (vectorMagnitude _posVector); 
-		_outPos = [_outPos, _otherDir, _upOffsetAngle] call SUS_fnc_QRotateVec;
-		_outPos = _otherPos vectorAdd _outPos;
 		
-		// Properly space the position away from the portal
+		// Transform positioning between portals
+		private _modelOffsetDir = [_curPortal vectorWorldToModel (_posVector vectorMultiply -1), _curX, 180] call SUS_fnc_QRotateVec;
+		private _outPos = _otherPos vectorAdd (_otherPortal vectorModelToWorld _modelOffsetDir);
+		
+		// // Properly space the position away from the portal
 		if (_isMan && {acos((_otherDir vectorMultiply -1) vectorCos [0, 0, -1]) < PG_VAR_VERTICAL_TOLERANCE}) then {
 			_outPos = _outPos vectorAdd (_otherDir vectorMultiply -1);
 		} else {
@@ -102,22 +102,10 @@ if (count _nearBlue == 0 && {count _nearOrange == 0}) exitWith {};
 				_outPos = _outPos vectorAdd (_otherDir vectorMultiply -0.25);
 			};
 		};
-
-		// Project the velocity vector onto 3 planes for transform
-		//private _projectedVelocityPlane = [_velocity, _curDir] call PG_fnc_ProjectVector;
-		private _projectedVelocityDir = [_velocity, _curUp] call PG_fnc_ProjectVector;
-		private _projectedVelocityUp = [_velocity, _curX] call PG_fnc_ProjectVector;
 		
-		// Find the angular offset of each projected vector
-		//private _planeOffsetVel = acos(_projectedVelocityPlane vectorCos _curUp);
-		private _dirOffsetVel = acos(_projectedVelocityDir vectorCos _curX);
-		private _upOffsetVel = acos(_projectedVelocityUp vectorCos _curUp);
-
-		// Transform velocity between portals
-		private _outVel = _otherDir vectorMultiply (vectorMagnitude _velocity);
-		_outVel = [_outVel, _otherUp, 90 - _dirOffsetVel] call SUS_fnc_QRotateVec;
-		_outVel = [_outVel, _otherX, 90 + _upOffsetVel] call SUS_fnc_QRotateVec;
-		//_outVel = [_outVel, _otherDir, _planeOffsetVel] call SUS_fnc_QRotateVec;
+		// Transform the velocity between portals
+		private _modelOffsetVel = (_curPortal vectorWorldToModel _velocity) vectorMultiply -1;
+		private _outVel = _otherPortal vectorModelToWorld _modelOffsetVel;
 		
 		// If projectile, add the original projectile to PG_VAR_TP_CACHE and create the new projectile
 		if (_isProjectile) then {
@@ -152,7 +140,6 @@ if (count _nearBlue == 0 && {count _nearOrange == 0}) exitWith {};
 		};
 		_object setVectorDir _outDir;
 		_object setVelocity _outVel;
-		
 		false;
 	} count _nearObjs;
 	false;

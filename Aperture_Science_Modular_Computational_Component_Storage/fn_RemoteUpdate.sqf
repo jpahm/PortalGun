@@ -24,5 +24,10 @@
 ///
 ///	Return value: None.
 
+#ifdef PG_VERBOSE_DEBUG
+PG_LOG_FUNC("RemoteUpdate");
+#endif
+
 _this call PG_fnc_DoTeleport;
 _this call PG_fnc_DoCamIllusion;
+_this call PG_fnc_DoNudge;

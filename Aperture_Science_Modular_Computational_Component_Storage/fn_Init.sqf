@@ -18,6 +18,10 @@
 /// Parameters: None.
 ///	Return value: None.
 
+#ifdef PG_DEBUG
+PG_LOG_FUNC("Init");
+#endif
+
 // Verify core file exists
 if (!(fileExists CAKE_JPG)) exitWith {};
 

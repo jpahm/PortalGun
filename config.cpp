@@ -65,6 +65,7 @@ class CfgFunctions
 			class DoBoundsCheck {};
 			class DoCamFollow {};
 			class DoCamIllusion {};
+			class DoNudge {};
 			class DoTeleport {};
 			class DrawCrosshair {};
 			class FixArsenalBug {};

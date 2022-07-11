@@ -25,6 +25,10 @@
 ///
 ///	Return value: None.
 
+#ifdef PG_DEBUG
+PG_LOG_FUNC("SpeakPotato");
+#endif
+
 params[["_sound", "", [""]], ["_dialog", "", [""]], ["_delay", 0.02, [1]], ["_pauses", [[" ", 0.2], [",", 0.5], [".", 0.8], ["?", 0.8]], [[]]]];
 
 // Only play dialog if potatOS not disabled, not already speaking, and equipped

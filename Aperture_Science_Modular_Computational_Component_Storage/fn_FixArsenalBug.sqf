@@ -18,5 +18,9 @@
 /// Parameters: None.
 ///	Return value: None.
 
+#ifdef PG_DEBUG
+PG_LOG_FUNC("FixArsenalBug");
+#endif
+
 uiSleep 0.5; // Need this sleep here for some reason, otherwise PiP cameras remain black
 [PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_RefreshPiP"];

@@ -18,6 +18,10 @@
 /// Parameters: None.
 ///	Return value: None.
 
+#ifdef PG_DEBUG
+PG_LOG_FUNC("InitEvents");
+#endif
+
 // Handle shooting the portal gun, and creating/updating the portals accordingly
 player addEventHandler ["Fired", {
 	if ((_this#1) isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]) then {

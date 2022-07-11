@@ -22,6 +22,10 @@
 ///
 ///	Return value: None.
 
+#ifdef PG_DEBUG
+PG_LOG_FUNC("HandleWeaponSwitch");
+#endif
+
 params[["_isPrimary", ((currentWeapon player) isEqualTo (primaryWeapon player)), [true]]];
 
 // Player switched to portal gun
