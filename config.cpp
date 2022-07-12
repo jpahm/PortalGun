@@ -1342,14 +1342,14 @@ class CfgMagazines
 		author="Eisenhorn";
 		scope=2;
 		displayName="$STR_PGUN_Portal_Fuse";
-		picture="\A3\weapons_f\data\UI\m_M24_CA.paa";
+		picture="\PortalGun\ui\Data\Ammo_Icon.paa";
 		count=20;
 		ammo="Portal_Ammo";
 		model="\A3\weapons_f\empty";
 		modelSpecial= A3\weapons_f\empty;
 		modelSpecialIsProxy=1;
 		initSpeed=299792458;
-		descriptionShort="";
+		descriptionShort="$STR_PGUN_Portal_Fuse_Desc";
 		mass=20;
 	};
 	class Cylindrical_Baked_Substance_Mag: CA_Magazine

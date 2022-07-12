@@ -274,7 +274,7 @@
       <Portuguese>O alcance máximo em que os portais podem teleportar coisas que não sejam unidades, veículos e projécteis.</Portuguese>
       <Czech>Maximální vzdálenost, na kterou mohou portály teleportovat jiné věci než jednotky, vozidla a projektily.</Czech>
     </Key>
-	<Key ID="STR_PGUN_Nudge_Range">
+    <Key ID="STR_PGUN_Nudge_Range">
       <English>Nudge Range</English>
       <Spanish>Alcance de los codazos</Spanish>
       <German>Nudge-Bereich</German>
@@ -1118,6 +1118,19 @@
       <Russian>Портальный предохранитель</Russian>
       <Portuguese>Portal Fusível</Portuguese>
       <Czech>Pojistka portálu</Czech>
+    </Key>
+	<Key ID="STR_PGUN_Portal_Fuse_Desc">
+      <English>A replaceable portal fuse for usage in a handheld portal device.</English>
+      <Spanish>Un fusible de portal reemplazable para su uso en un dispositivo de portal de mano.</Spanish>
+      <German>Eine austauschbare Portalsicherung zur Verwendung in einem Handheld-Portalgerät.</German>
+      <Chinesesimp>用于手持式门户设备的可更换门户保险丝。</Chinesesimp>
+      <Japanese>携帯型ポータルサイトで使用するための交換可能なポータルヒューズです。</Japanese>
+      <Italian>Un fusibile a portale sostituibile da utilizzare in un dispositivo a portale portatile.</Italian>
+      <French>Fusible de portail remplaçable destiné à être utilisé dans un dispositif de portail portatif.</French>
+      <Polish>Wymienny bezpiecznik portalowy do stosowania w ręcznym urządzeniu portalowym.</Polish>
+      <Russian>Сменный портальный предохранитель для использования в портальном устройстве.</Russian>
+      <Portuguese>Um fusível de portal substituível para utilização num dispositivo de portal portátil.</Portuguese>
+      <Czech>Vyměnitelná portálová pojistka pro použití v ručním portálovém zařízení.</Czech>
     </Key>
     <Key ID="STR_PGUN_Companion_Cube">
       <English>Weighted Companion Cube</English>
