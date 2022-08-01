@@ -30,7 +30,7 @@ PG_LOG_FUNC("PlaySound");
 params[["_object", objNull, [objNull]], ["_sound", "", [""]]]; 
 
 // Create shell object for playing sound
-private _dummyObj = "HeliHEmpty" createVehicleLocal [0,0,0]; 
+private _dummyObj = "#particlesource" createVehicleLocal ASLToAGL getPosWorld _object;
 _dummyObj attachTo [_object, [0,0,0]];
 _dummyObj say3D _sound;
 // Delete the shell object after 5 seconds, should be long enough for all sound effects

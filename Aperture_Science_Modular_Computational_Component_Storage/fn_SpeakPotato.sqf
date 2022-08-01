@@ -51,7 +51,7 @@ private _hasItem = true;
 
 {
 	// Prepare to exit, just in case potato is unequipped mid-speech
-	if (!((currentWeapon player) isEqualTo "ASHPD_MK_SUS_P")) exitWith {};
+	if !((currentWeapon player) isEqualTo "ASHPD_MK_SUS_P") exitWith {};
 	private _char = _x;
 	// Check whether we need to pause on the current character
 	private _pauseIndex = _pauses findIf {(_x#0) == _char};
@@ -68,8 +68,7 @@ private _hasItem = true;
 		};
 		sleep _delay; // Sleep for standard char delay
 	};
-	false;
-} count _chars;
+} forEach _chars;
 
 player removePrimaryWeaponItem "GeneticLifeFormandDiskOperatingSystem"; // Turn off potato light
 

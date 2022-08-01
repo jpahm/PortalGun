@@ -29,23 +29,10 @@ PG_LOG_FUNC("AnimatePortal");
 
 params[["_portalObj", objNull, [objNull]], ["_opening", true, [true]]];
 
-// If animation currently in progress, terminate it
-if (!(PG_VAR_ANIM_HANDLE isEqualTo objNull)) then {
-	terminate PG_VAR_ANIM_HANDLE;
-};
-
-PG_VAR_ANIM_HANDLE = _this spawn {
-	
-	params[["_portalObj", objNull, [objNull]], ["_opening", true, [true]]];
-	
-	if (local _portalObj) then {
-		if (_opening) then {
-			_portalObj animateSource ["Portal_Grow_Source", 0, true];
-			_portalObj animateSource ["Portal_Grow_Source", 1, 1];
-		} else {
-			_portalObj animateSource ["Portal_Grow_Source", 1, true];
-			_portalObj animateSource ["Portal_Grow_Source", 0, 1];
-		};
-	};
-	
+if (_opening) then {
+	_portalObj animateSource ["Portal_Grow_Source", 0, true];
+	_portalObj animateSource ["Portal_Grow_Source", 1, 1];
+} else {
+	_portalObj animateSource ["Portal_Grow_Source", 1, true];
+	_portalObj animateSource ["Portal_Grow_Source", 0, 1];
 };

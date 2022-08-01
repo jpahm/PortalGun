@@ -1211,17 +1211,17 @@
       <Czech>Portálovou zbraň nelze inicializovat bez portálů!</Czech>
     </Key>
     <Key ID="STR_PGUN_LOG_STR">
-      <English>PG_DEBUG: Ran function ""%1"" with params %2</English>
-      <Spanish>PG_DEBUG: Se ha ejecutado la función ""%1"" con los parámetros %2</Spanish>
-      <German>PG_DEBUG: Funktion ""%1"" mit Parametern %2 ausgeführt</German>
-      <Chinesesimp>PG_DEBUG。运行带有参数%2的函数""%1""</Chinesesimp>
-      <Japanese>PG_DEBUG:パラメータ %2 を指定して関数 ""%1"" を実行しました。</Japanese>
-      <Italian>PG_DEBUG: Eseguita funzione ""%1"" con parametri %2</Italian>
-      <French>PG_DEBUG : Exécution de la fonction ""%1"" avec les paramètres %2</French>
-      <Polish>PG_DEBUG: Uruchomiono funkcję ""%1"" z parametrami %2</Polish>
-      <Russian>PG_DEBUG: Запуск функции ""%1"" с параметрами %2</Russian>
-      <Portuguese>PG_DEBUG: Função Ran ""%1"" com params %2</Portuguese>
-      <Czech>PG_DEBUG: Spuštěna funkce ""%1"" s parametry %2</Czech>
+      <English>[PG_DEBUG] Ran function ""%1"" with params %2</English>
+      <Spanish>[PG_DEBUG] Se ha ejecutado la función ""%1"" con los parámetros %2</Spanish>
+      <German>[PG_DEBUG] Funktion ""%1"" mit Parametern %2 ausgeführt</German>
+      <Chinesesimp>[PG_DEBUG] 运行带有参数%2的函数""%1""</Chinesesimp>
+      <Japanese>[PG_DEBUG] パラメータ %2 を指定して関数 ""%1"" を実行しました。</Japanese>
+      <Italian>[PG_DEBUG] Eseguita funzione ""%1"" con parametri %2</Italian>
+      <French>[PG_DEBUG] Exécution de la fonction ""%1"" avec les paramètres %2</French>
+      <Polish>[PG_DEBUG] Uruchomiono funkcję ""%1"" z parametrami %2</Polish>
+      <Russian>[PG_DEBUG] Запуск функции ""%1"" с параметрами %2</Russian>
+      <Portuguese>[PG_DEBUG] Função Ran ""%1"" com params %2</Portuguese>
+      <Czech>[PG_DEBUG] Spuštěna funkce ""%1"" s parametry %2</Czech>
     </Key>
   </Package>
 </Project>

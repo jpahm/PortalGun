@@ -32,11 +32,10 @@ params["_bPortal", "_oPortal"];
 // Don't do anything with the cams if PiP not enabled
 if (!isPiPEnabled || {!PG_VAR_PIP_ENABLED}) exitWith {};
 
-// Set up the blue portal and cams
-_bPortal animateSource ["Portal_Noise_Source", 0, true];
+// Set up the blue portal textures and cams
 _bPortal setObjectMaterial [1, PG_PIP_MAT];
 _bPortal setObjectTexture [1, format[PG_BLUE_PIP_TEX, remoteExecutedOwner]];
-missionNameSpace setVariable [format["PG_VAR_BLUE_CAM_%1", remoteExecutedOwner], "camera" camCreate [0,0,0]];
+missionNameSpace setVariable [format["PG_VAR_BCAM%1", remoteExecutedOwner], "camera" camCreate [0,0,0]];
 
 private _orangeDir = vectorDir _oPortal;
 private _blueDir = vectorDir _bPortal;
@@ -47,20 +46,25 @@ private _blueCam = PG_REMOTE_BLUE_CAM;
 
 _blueCam setPosWorld (getPosWorld _oPortal);
 _blueCam setVectorDirAndUp [_orangeDir vectorMultiply -1, _orangeUp];
-_blueCam cameraEffect ["Internal", "Back", format["piprenderbp%1", remoteExecutedOwner]]; 
+_blueCam cameraEffect PG_BLUE_PIP_EFFECT; 
 _blueCam camSetFov 1;
 _blueCam camCommit 0;
 
-// Set up the orange portal and cams
-_oPortal animateSource ["Portal_Noise_Source", 0, true];
+// Set up the orange portal textures and cams
 _oPortal setObjectMaterial [1, PG_PIP_MAT];
 _oPortal setObjectTexture [1, format[PG_ORANGE_PIP_TEX, remoteExecutedOwner]];  
-missionNameSpace setVariable [format["PG_VAR_ORANGE_CAM_%1", remoteExecutedOwner], "camera" camCreate [0,0,0]];
+missionNameSpace setVariable [format["PG_VAR_OCAM%1", remoteExecutedOwner], "camera" camCreate [0,0,0]];
 
 private _orangeCam = PG_REMOTE_ORANGE_CAM;
 
 _orangeCam setPosWorld (getPosWorld _bPortal);
 _orangeCam setVectorDirAndUp [_blueDir vectorMultiply -1, _blueUp];
-_orangeCam cameraEffect ["Internal", "Back", format["piprenderop%1", remoteExecutedOwner]]; 
+_orangeCam cameraEffect PG_ORANGE_PIP_EFFECT; 
 _orangeCam camSetFov 1;
 _orangeCam camCommit 0;
+
+// Only the owner of the portals should animate them
+if (remoteExecutedOwner == clientOwner) then { 
+	_bPortal animateSource ["Portal_Noise_Source", 0, true];
+	_oPortal animateSource ["Portal_Noise_Source", 0, true];
+};

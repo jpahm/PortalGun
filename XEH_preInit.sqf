@@ -212,9 +212,9 @@ PG_VAR_MOD_NAME = localize "$STR_PGUN_Name_Short";
 	{
 		if (PG_VAR_PORTALS_LINKED) then {
 			if (_this) then {
-				[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_LinkPortals", 0, true];
+				[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_LinkPortals", [0, -2] select PG_VAR_IS_DEDI, format ["PG_LINK_%1", clientOwner]];
 			} else {
-				[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_UnlinkPortals", 0, true];
+				[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_UnlinkPortals", [0, -2] select PG_VAR_IS_DEDI, format ["PG_LINK_%1", clientOwner]];
 			};
 		};
 	},
@@ -291,7 +291,7 @@ PG_VAR_FIZZLE_KEYS = [
 		removeUserActionEventHandler [PG_VAR_OLD_FIZZLE_KEY, "Activate", PG_VAR_FIZZLE_KEY_INDEX];
 		PG_VAR_FIZZLE_KEY_INDEX = addUserActionEventHandler [_this, "Activate", {
 			if (PG_VAR_PLAYER_FIZZLE_ENABLED && {(currentWeapon player) isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]}) then {
-				[] call PG_fnc_Fizzle;
+				[] spawn PG_fnc_Fizzle;
 			};
 		}];
 		PG_VAR_OLD_FIZZLE_KEY = _this;
@@ -348,7 +348,7 @@ PG_VAR_FIZZLE_KEYS = [
 	],
 	1,
 	{
-		_this remoteExecCall ["PG_fnc_InitPortals"];
+		_this remoteExecCall ["PG_fnc_InitGun", [0, -2] select PG_VAR_IS_DEDI, "PG_INIT_GUN"];
 	},
 	false
 ] call CBA_fnc_addSetting;

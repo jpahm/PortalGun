@@ -36,11 +36,11 @@ private _blueCam = PG_REMOTE_BLUE_CAM;
 private _orangeCam = PG_REMOTE_ORANGE_CAM;
 
 // If the cameras currently exist, refresh their PiP textures
-if (!isNull(_blueCam)) then {
+if !(isNull _blueCam) then {
 	_bPortal setObjectTexture [1, format[PG_BLUE_PIP_TEX, remoteExecutedOwner]];  
-	_blueCam cameraEffect ["Internal", "Back", format["piprenderbp%1", remoteExecutedOwner]];
+	_blueCam cameraEffect PG_BLUE_PIP_EFFECT;
 };
-if (!isNull(_orangeCam)) then {
+if !(isNull _orangeCam) then {
 	_oPortal setObjectTexture [1, format[PG_ORANGE_PIP_TEX, remoteExecutedOwner]];
-	_orangeCam cameraEffect ["Internal", "Back", format["piprenderop%1", remoteExecutedOwner]]; 
+	_orangeCam cameraEffect PG_ORANGE_PIP_EFFECT; 
 };

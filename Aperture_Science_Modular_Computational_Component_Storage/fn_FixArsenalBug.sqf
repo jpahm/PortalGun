@@ -23,4 +23,4 @@ PG_LOG_FUNC("FixArsenalBug");
 #endif
 
 uiSleep 0.5; // Need this sleep here for some reason, otherwise PiP cameras remain black
-[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_RefreshPiP"];
+[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_RefreshPiP", [0, -2] select PG_VAR_IS_DEDI, format ["PG_REFRESH_%1", clientOwner]];

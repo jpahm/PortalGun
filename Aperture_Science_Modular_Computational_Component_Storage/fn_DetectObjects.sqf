@@ -34,40 +34,37 @@ private _nearObjects = [[], []];
 	private _portalObj = _x;
 	private _portalPos = getPosWorld _portalObj;
 	private _nearPortal = [];
+	private _obj = objNull;
 	
 	// Detect all projectile types
 	{
+		private ["_objPos", "_rayCast", "_temp"];
 		// Iterate over all projectiles of a given type near the portal
 		{
-			if (!(_x in PG_VAR_TP_CACHE)) then {
-				private _objPos = getPosWorld _x;
+			if !(_x in PG_VAR_TP_CACHE) then {
+				_objPos = getPosWorld _x;
 				// Do a raycast to make sure we're only grabbing projectiles that are actually entering the portal
-				private _rayCast = lineIntersectsSurfaces [_objPos, _objPos vectorAdd ((velocity _x) vectorMultiply PG_VAR_MAX_RANGE), player, objNull, true, 2, "VIEW", "GEOM"];
-				if (count _rayCast != 0 && {count (_rayCast select {(_x#2) isKindOf "Portal"}) > 0}) then {
+				_rayCast = lineIntersectsSurfaces [_objPos, _objPos vectorAdd ((velocity _x) vectorMultiply PG_VAR_MAX_RANGE), player, objNull, true, 2, "VIEW", "GEOM"];
+				if ((_rayCast findIf {(_x#2) isKindOf "Portal"}) == 0) then {
 					// Delete the original projectile before it hits the portal, save its velocity for later
-					private _temp = [_x, velocity _x, true]; 
+					_temp = [_x, velocity _x, true]; 
 					deleteVehicle _x; 
-					_nearPortal pushBackUnique _temp;
+					_nearPortal pushBack _temp;
 				};
 			};
-			false
-		} count (_portalObj nearObjects [_x, PG_VAR_PROJECTILE_GRAB_RANGE]);
-		false;
-	} count PG_VAR_PROJECTILE_TYPES;
+		} forEach (_portalObj nearObjects [_x, PG_VAR_PROJECTILE_GRAB_RANGE]);
+	} forEach PG_VAR_PROJECTILE_TYPES;
 	
 	// Detect grenades, PhysX objects, units, and vehicles
 	{
 		_nearPortal pushBackUnique _x;
-		false;
-	} count (_portalObj nearObjects ["Grenade", PG_VAR_MAX_GRAB_RANGE] apply {[_x, velocity _x, false]});
+	} forEach (_portalObj nearObjects ["Grenade", PG_VAR_MAX_GRAB_RANGE] apply {[_x, velocity _x, false]});
 	{
 		_nearPortal pushBackUnique _x;
-		false;
-	} count (_portalObj nearObjects ["ThingX", PG_VAR_MAX_GRAB_RANGE] apply {[_x, velocity _x, false]});
+	} forEach (_portalObj nearObjects ["ThingX", PG_VAR_MAX_GRAB_RANGE] apply {[_x, velocity _x, false]});
 	{
 		_nearPortal pushBackUnique _x;
-		false;
-	} count (_portalObj nearObjects ["Man", PG_VAR_UNIT_GRAB_RANGE] apply {[_x, velocity _x, false]});
+	} forEach (_portalObj nearObjects ["Man", PG_VAR_UNIT_GRAB_RANGE] apply {[_x, velocity _x, false]});
 	{
 		private _vehicle = _x#0;
 		// Ignore units, those are detected differently above
@@ -79,20 +76,33 @@ private _nearObjects = [[], []];
 		if (_distance <= _vehicleSize * 3/4) then {
 			_nearPortal pushBackUnique _x;
 		};
-		false;
-	} count (_portalObj nearObjects ["AllVehicles", PG_VAR_VEHICLE_GRAB_RANGE] apply {[_x, velocity _x, false]});
+	} forEach (_portalObj nearObjects ["AllVehicles", PG_VAR_VEHICLE_GRAB_RANGE] apply {[_x, velocity _x, false]});
 	
 	// Filter out portals and portal surfaces
-	_nearPortal = _nearPortal select {!((_x#0) in _this) && {!((_x#0) in PG_VAR_PORTAL_SURFACES)}};
+	_nearPortal = _nearPortal select {
+		_obj = _x#0;
+		!(_obj in _this) && {!(_obj in PG_VAR_PORTAL_SURFACES)}
+	};
 	_nearObjects set [_forEachIndex, _nearPortal];
 	
 } forEach [_bPortal, _oPortal];
 
+private _nearBlue = (_nearObjects#0) apply {_x#0};
+private _nearOrange = (_nearObjects#1) apply {_x#0};
 // Remove objects from the cache that are no longer within the detection range of the portals
-PG_VAR_TP_CACHE = PG_VAR_TP_CACHE select {_x in ((_nearObjects#0) apply {_x#0}) || {_x in ((_nearObjects#1) apply {_x#0})}};
+PG_VAR_TP_CACHE = PG_VAR_TP_CACHE select {_x in _nearBlue || {_x in _nearOrange}};
 
-// Don't teleport any non-local objects or objects already in PG_VAR_TP_CACHE
-_nearObjects set [0, (_nearObjects#0) select {local (_x#0) && {!((_x#0) in PG_VAR_TP_CACHE)}}];
-_nearObjects set [1, (_nearObjects#1) select {local (_x#0) && {!((_x#0) in PG_VAR_TP_CACHE)}}];
+// Don't teleport any objects already in PG_VAR_TP_CACHE, add to-be-teleported objects to cache
+{
+	_nearObjects set [_forEachIndex, _x select {
+		_obj = _x#0;
+		if !(_obj in PG_VAR_TP_CACHE) then {
+			PG_VAR_TP_CACHE append [_obj];
+			true;
+		} else {
+			false;
+		};
+	}];
+} forEach _nearObjects;
 
 _nearObjects;

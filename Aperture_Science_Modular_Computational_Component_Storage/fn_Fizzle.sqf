@@ -14,7 +14,7 @@
 
 #include "macros.hpp"
 
-/// Description: "Fizzles" a portal, removing and disabling it.
+/// Description: "Fizzles" a portal, removing and disabling it. Needs to run in a scheduled environment.
 /// Parameters:
 ///		PARAMETER		|		EXPECTED INPUT TYPE		|		DESCRIPTION
 ///
@@ -30,22 +30,37 @@ params[["_portals", [PG_VAR_CURRENT_PORTAL, PG_VAR_OTHER_PORTAL], [[]]]];
 
 [player, "gun_fizzle"] remoteExecCall ["say3D"];
 
+private _fizzleSpawns = [];
+
+// Fizzle each given portal individually
 {
-	[_x, "portal_fizzle", false] remoteExec ["PG_fnc_PlaySound"];
-	// Animate portal closing
-	[_portalObj, false] call PG_fnc_AnimatePortal;
-	detach _x;
-	_x hideObjectGlobal true;
-	
-	if (_x isEqualTo PG_VAR_BLUE_PORTAL) then {
-		PG_VAR_BLUE_SS setPosWorld [0,0,0];
-		PG_VAR_BLUE_SPAWNED = false;
+	if (_x == "Blue") then {
+		_x = PG_VAR_BLUE_PORTAL;
 	} else {
-		PG_VAR_ORANGE_SS setPosWorld [0,0,0];
-		PG_VAR_ORANGE_SPAWNED = false;
+		_x = PG_VAR_ORANGE_PORTAL;
 	};
-	false;
-} count _portals; 
+	_fizzleSpawns pushBack (_x spawn {
+		[_this, "portal_fizzle", false] remoteExec ["PG_fnc_PlaySound"];
+		// Animate portal closing
+		[_this, false] call PG_fnc_AnimatePortal;
+		sleep 0.25;
+		detach _this;
+		[_this, true] remoteExecCall ["hideObjectGlobal", [0, 2] select PG_VAR_IS_DEDI];
+		
+		if (_this isEqualTo PG_VAR_BLUE_PORTAL) then {
+			PG_VAR_BLUE_PORTAL setPosWorld [0,0,0];
+			PG_VAR_BLUE_SS setPosWorld [0,0,0];
+			PG_VAR_BLUE_SPAWNED = false;
+		} else {
+			PG_VAR_ORANGE_PORTAL setPosWorld [0,0,0];
+			PG_VAR_ORANGE_SS setPosWorld [0,0,0];
+			PG_VAR_ORANGE_SPAWNED = false;
+		};
+	});
+} forEach _portals; 
+
+// Wait for individual fizzles to complete
+waitUntil { (_fizzleSpawns select { scriptDone _x }) isEqualTo _fizzleSpawns };
 
 // Update other systems with new portal info
-call PG_fnc_UpdatePortals;
+[] call PG_fnc_UpdatePortals;

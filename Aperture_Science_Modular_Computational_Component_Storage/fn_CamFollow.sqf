@@ -14,7 +14,7 @@
 
 #include "macros.hpp"
 
-/// Description: Moves the portal cameras to their current portal positions.
+/// Description: Allows the PiP cameras follow the portals when they're attached to moving objects. Needs to be remoteExec'd.
 /// Parameters:
 ///		PARAMETER		|		EXPECTED INPUT TYPE		|		DESCRIPTION
 ///
@@ -23,25 +23,31 @@
 ///
 ///	Return value: None.
 
-#ifdef PG_DEBUG
-PG_LOG_FUNC("UpdateCams");
+#ifdef PG_VERBOSE_DEBUG
+PG_LOG_FUNC("CamFollow");
 #endif
 
 params["_bPortal", "_oPortal"];
 
-private _orangeDir = vectorDir _oPortal;
-private _blueDir = vectorDir _bPortal;
-private _orangeUp = vectorUp _oPortal;
-private _blueUp = vectorUp _bPortal;
+// Don't do anything if PiP is disabled
+if (!isPiPEnabled || {!PG_VAR_PIP_ENABLED}) exitWith {};
+
+private _blueAttached = attachedTo _bPortal;
+private _orangeAttached = attachedTo _oPortal;
 
 private _blueCam = PG_REMOTE_BLUE_CAM;
 private _orangeCam = PG_REMOTE_ORANGE_CAM;
 
-if !(isNull _orangeCam) then {
-	_orangeCam setPosWorld (getPosWorld _bPortal);
-	_orangeCam setVectorDirAndUp [_blueDir vectorMultiply -1, _blueUp];
+// If the blue or orange portals are attached to something, move the cams along with the object's velocity
+if !(isNull _blueAttached) then {
+	private _attachVel = velocity _blueAttached;
+	private _newPos = (getPosWorld _bPortal) vectorAdd (_attachVel vectorMultiply -0.1);
+	_orangeCam setPosWorld _newPos;
+	PG_VAR_BLUE_SS setPosWorld _newPos;
 };
-if !(isNull _blueCam) then {
-	_blueCam setPosWorld (getPosWorld _oPortal);
-	_blueCam setVectorDirAndUp [_orangeDir vectorMultiply -1, _orangeUp];
+if !(isNull _orangeAttached) then {
+	private _attachVel = velocity _orangeAttached;
+	private _newPos = (getPosWorld _oPortal) vectorAdd (_attachVel vectorMultiply -0.1);
+	_blueCam setPosWorld _newPos;
+	PG_VAR_ORANGE_SS setPosWorld _newPos;
 };

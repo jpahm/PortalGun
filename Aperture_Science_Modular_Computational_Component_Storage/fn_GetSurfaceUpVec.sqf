@@ -29,7 +29,10 @@ PG_LOG_FUNC("GetSurfaceUpVec");
 params[["_surfNormal", [], [[]]]];
 
 // Find the incline of the surface
-private _incline = acos(_surfNormal vectorCos [0, 0, 1]) % 180;
+private _incline = acos(_surfNormal vectorCos [0, 0, 1]);
+if (_incline > 90) then {
+	_incline = 180 - _incline;
+};
 private _crossVector = [];
 
 // If on non-vertical surface, allow portal to rotate w/ player's view and counteract incline

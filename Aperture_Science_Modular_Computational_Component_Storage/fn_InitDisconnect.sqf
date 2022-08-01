@@ -30,6 +30,5 @@ addMissionEventHandler ["PlayerDisconnected",
 		if ((owner _x) isEqualTo _owner) then {
 			deleteVehicle _x;
 		};
-		false;
-	} count (allMissionObjects "Portal");
+	} forEach (allMissionObjects "Portal");
 }];

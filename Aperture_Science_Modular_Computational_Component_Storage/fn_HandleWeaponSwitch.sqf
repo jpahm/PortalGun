@@ -26,39 +26,38 @@
 PG_LOG_FUNC("HandleWeaponSwitch");
 #endif
 
-params[["_isPrimary", ((currentWeapon player) isEqualTo (primaryWeapon player)), [true]]];
+params["_unit", ["_currentWeapon", ""]];
 
 // Player switched to portal gun
-if (_isPrimary && {(primaryWeapon player) isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]}) then {
+if (_currentWeapon != "" && {_currentWeapon == primaryWeapon player && {_currentWeapon isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]}}) then {
 	// Only set up crosshair and other things if not already initialized
-	if (PG_VAR_CROSSHAIR_HANDLE isEqualTo objNull) then {
+	if (PG_VAR_CROSSHAIR_HANDLE isEqualTo scriptNull) then {
 		// Start drawing crosshair
 		PG_VAR_CROSSHAIR_HANDLE = addMissionEventHandler ["draw3D", PG_fnc_DrawCrosshair];
 		// Play delayed sound
-		[] spawn {
-			sleep 1;
+		if !(PG_VAR_EQUIP_HANDLE isEqualTo scriptNull) then {
+			terminate PG_VAR_EQUIP_HANDLE;
+		};
+		PG_VAR_EQUIP_HANDLE = [] spawn {
+			waitUntil {gestureState player isEqualTo "amovpercmstpsraswpstdnon_amovpercmstpsraswrfldnon_end"};
+			waitUntil {!(gestureState player isEqualTo "amovpercmstpsraswpstdnon_amovpercmstpsraswrfldnon_end")};
 			[player, "gun_activate"] remoteExecCall ["say3D"];
-			sleep 1;
-			// Re-initialize portal gun settings
-			PG_VAR_INIT_SETTINGS call PG_fnc_InitPortals;
-			// Make sure our current portal still matches the firemode, swap portals if not
-			if (
-				(PG_VAR_CURRENT_PORTAL == PG_VAR_BLUE_PORTAL && currentWeaponMode player != "Blue") ||
-				{PG_VAR_CURRENT_PORTAL == PG_VAR_ORANGE_PORTAL && currentWeaponMode player != "Orange"}
-			) then {
+			// Swap portals if current portal != current weapon mode
+			if (PG_VAR_CURRENT_PORTAL != currentWeaponMode player) then {
 				[] call PG_fnc_SwapPortals;
 			};
 		};
 	};
+	
 // Player switched to different weapon
 } else {
 	// Stop drawing the custom crosshair
-	if (!(PG_VAR_CROSSHAIR_HANDLE isEqualTo objNull)) then {
+	if !(PG_VAR_CROSSHAIR_HANDLE isEqualTo scriptNull) then {
 		removeMissionEventHandler ["draw3D", PG_VAR_CROSSHAIR_HANDLE];
-		PG_VAR_CROSSHAIR_HANDLE = objNull;
+		PG_VAR_CROSSHAIR_HANDLE = scriptNull;
 	};
 	// Let go of any grabbed items
 	if (PG_VAR_GRABBING) then {
-		call PG_fnc_TryGrab;
+		call PG_fnc_ToggleGrab;
 	};
 };

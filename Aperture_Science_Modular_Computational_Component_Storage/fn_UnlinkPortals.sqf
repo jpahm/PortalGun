@@ -32,20 +32,26 @@ params["_bPortal", "_oPortal"];
 private _blueCam = PG_REMOTE_BLUE_CAM;
 private _orangeCam = PG_REMOTE_ORANGE_CAM;
 
-// Reset blue portal and cams
+// Reset blue portal textures and cams
 _bPortal setObjectMaterial [1, PG_BLUE_NOISE_MAT];
 _bPortal setObjectTexture [1, PG_BLUE_NOISE_TEX];
-_bPortal animateSource ["Portal_Noise_Source", 100000, 1];
-_blueCam cameraEffect ["terminate", "back", format["piprenderbp%1", remoteExecutedOwner]];
-detach _blueCam;
-camDestroy _blueCam;
-PG_VAR_BLUE_SS setPosWorld [0,0,0];
+if !(isNull _blueCam) then {
+	_blueCam cameraEffect ["terminate", "back", format["piprenderbp%1", remoteExecutedOwner]];
+	detach _blueCam;
+	camDestroy _blueCam;
+};
 
-// Reset orange portal and cams
+// Reset orange portal textures and cams
 _oPortal setObjectMaterial [1, PG_ORANGE_NOISE_MAT];
-_oPortal setObjectTexture [1, PG_ORANGE_NOISE_TEX]; 
-_oPortal animateSource ["Portal_Noise_Source", 100000, 1];
-_orangeCam cameraEffect ["terminate", "back", format["piprenderop%1", remoteExecutedOwner]];
-detach _orangeCam;
-camDestroy _orangeCam;
-PG_VAR_ORANGE_SS setPosWorld [0,0,0];
+_oPortal setObjectTexture [1, PG_ORANGE_NOISE_TEX];
+if !(isNull _orangeCam) then {
+	_orangeCam cameraEffect ["terminate", "back", format["piprenderop%1", remoteExecutedOwner]];
+	detach _orangeCam;
+	camDestroy _orangeCam;
+};
+
+// Only owner of the portals should control animations
+if (remoteExecutedOwner == clientOwner) then {
+	_bPortal animateSource ["Portal_Noise_Source", 100000, 1];
+	_oPortal animateSource ["Portal_Noise_Source", 100000, 1];
+};

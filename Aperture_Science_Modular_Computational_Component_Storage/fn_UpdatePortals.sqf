@@ -26,11 +26,13 @@ if (!PG_VAR_BLUE_SPAWNED || {!PG_VAR_ORANGE_SPAWNED}) then {
 	// Unlink the portals if they're linked but either is no longer spawned
 	if (PG_VAR_PORTALS_LINKED) then {
 		// Unlink the portals on all clients
-		[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_UnlinkPortals", [0, -2] select isDedicated, true];
+		[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_UnlinkPortals", [0, -2] select PG_VAR_IS_DEDI, format ["PG_LINK_%1", clientOwner]];
+		// Stop teleporting
+		terminate PG_VAR_TP_HANDLE;
 		// Stop sending remote updates
-		["PG_RU_ID", "onEachFrame"] call BIS_fnc_removeStackedEventHandler;
+		["DistributedClient"] remoteExecCall ["PG_fnc_StopRemoteUpdate", [0, -2] select PG_VAR_IS_DEDI, format ["PG_DIST_%1", clientOwner]];
 		// Stop camera following (if it's running)
-		["PG_CF_ID", "onEachFrame"] call BIS_fnc_removeStackedEventHandler;
+		["CamFollow"] remoteExecCall ["PG_fnc_StopRemoteUpdate", [0, -2] select PG_VAR_IS_DEDI, format ["PG_CF_%1", clientOwner]];
 		// Mark cam follow as off
 		PG_VAR_CAM_FOLLOW = false;
 		// Set linked state to false
@@ -40,18 +42,30 @@ if (!PG_VAR_BLUE_SPAWNED || {!PG_VAR_ORANGE_SPAWNED}) then {
 	// Link the portals if they're unlinked but both are spawned
 	if (!PG_VAR_PORTALS_LINKED) then {
 		// Link the portals on all clients
-		[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_LinkPortals", [0, -2] select isDedicated, true];
-		// Start sending remote updates
-		["PG_RU_ID", "onEachFrame", {
-			[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_RemoteUpdate", [0, -2] select isDedicated];
-		}] call BIS_fnc_addStackedEventHandler;
+		[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_LinkPortals", [0, -2] select PG_VAR_IS_DEDI, format ["PG_LINK_%1", clientOwner]];
+		// Handle teleporting on local client
+		PG_VAR_TP_HANDLE = [] spawn {
+			while {true} do {
+				[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] call PG_fnc_Teleport;
+				uiSleep PG_VAR_UPDATE_INTERVAL;
+			};
+		};
+		// Delegate camera illusion and nudging to clients
+		[
+			[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL],
+			{
+				_this call PG_fnc_CamIllusion;
+				_this call PG_fnc_Nudge;
+			},
+			"DistributedClient"
+		] remoteExecCall ["PG_fnc_StartRemoteUpdate", [0, -2] select PG_VAR_IS_DEDI, format ["PG_DIST_%1", clientOwner]];
 		// Set linked state to true
 		PG_VAR_PORTALS_LINKED = true;
 	};
 };
 
 // Update the camera positions on all clients
-[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_UpdateCams", [0, -2] select isDedicated, true];
+[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_UpdateCams", [0, -2] select PG_VAR_IS_DEDI, format ["PG_UPCAM_%1", clientOwner]];
 
 // Update custom crosshair w/ new portal info
-call PG_fnc_UpdateCrosshair;
+[] call PG_fnc_UpdateCrosshair;

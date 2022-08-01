@@ -18,7 +18,7 @@
 /// Parameters:
 ///		PARAMETER		|		EXPECTED INPUT TYPE		|		DESCRIPTION
 ///
-///		portalObj		|		Object					|		The portal to be spawned.
+///		portal			|		String					|		The string representing the portal to be spawned.
 ///
 ///	Return value: Boolean, whether portal was successfully spawned or not.
 
@@ -26,13 +26,23 @@
 PG_LOG_FUNC("TrySpawnPortal");
 #endif
 
-params["_portalObj"];
+params["_portal"];
 
-private _playerPos = eyePos player;
+private _portalObj = objNull; 
+
+hint _portal;
+
+if (_portal == "Blue") then {
+	_portalObj = PG_VAR_BLUE_PORTAL;
+} else {
+	_portalObj = PG_VAR_ORANGE_PORTAL;
+};
+
+private _eyePos = eyePos player;
 private _castVector = (player weaponDirection currentWeapon player) vectorMultiply PG_VAR_MAX_RANGE;
 
 // Do a raycast from the player's weapon in the direction of the weapon, out to the max range
-private _rayCast = lineIntersectsSurfaces [_playerPos, _playerPos vectorAdd _castVector, player, _portalObj, true, 1, "VIEW", "GEOM"];
+private _rayCast = lineIntersectsSurfaces [_eyePos, _eyePos vectorAdd _castVector, player, _portalObj, true, 1, "VIEW", "GEOM"];
 
  // No surface detected, spawn failed
 if (count _rayCast == 0) exitWith {false};
@@ -48,7 +58,7 @@ private _surfNormal = _rayCast#1;
 private _surfVectorUp = [_surfNormal] call PG_fnc_GetSurfaceUpVec;
 
 // Make sure the portal can fit in the desired area
-if ([_portalObj, _surfVectorUp, _rayCast] call PG_fnc_DoBoundsCheck) then {
+if ([_portalObj, _surfVectorUp, _rayCast] call PG_fnc_BoundsCheck) then {
 
 	// Detach anything attached to the portal
 	detach _portalObj;
@@ -72,20 +82,26 @@ if ([_portalObj, _surfVectorUp, _rayCast] call PG_fnc_DoBoundsCheck) then {
 	
 	// Unhide the portal if it's been hidden (i.e. via fizzling)
 	if (isObjectHidden _portalObj) then {
-		_portalObj hideObjectGlobal false;
+		[_portalObj, false] remoteExecCall ["hideObjectGlobal", [0, 2] select PG_VAR_IS_DEDI];
 	};
 	
 	// If portal hits vehicle, attach it so that it follows the vehicle
 	if (_rayCast#2 isKindOf "AllVehicles") then {
 		_portalObj attachTo [_rayCast#2];
-		// If cams not yet following, add stacked event for PG_fnc_DoCamFollow
+		// If cams not yet following, add remote update for PG_fnc_CamFollow
 		if (!PG_VAR_CAM_FOLLOW) then {
-			["PG_CF_ID", "onEachFrame", {[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_DoCamFollow"]}] call BIS_fnc_addStackedEventHandler;
+			[
+				[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL],
+				{
+					_this call PG_fnc_CamFollow;
+				},
+				"CamFollow"
+			] remoteExecCall ["PG_fnc_StartRemoteUpdate", [0, -2] select PG_VAR_IS_DEDI, format ["PG_CF_%1", clientOwner]];
 			PG_VAR_CAM_FOLLOW = true;
 		};
-	} else { // If portal doesn't hit vehicle, check if PG_fnc_DoCamFollow handler needs to be detached
+	} else { // If portal doesn't hit vehicle, check if PG_fnc_CamFollow remote update needs to be stopped
 		if (PG_VAR_CAM_FOLLOW && {isNull attachedTo PG_VAR_OTHER_PORTAL}) then {
-			["PG_CF_ID", "onEachFrame"] call BIS_fnc_removeStackedEventHandler;
+			["CamFollow"] remoteExecCall ["PG_fnc_StopRemoteUpdate", [0, -2] select PG_VAR_IS_DEDI, format ["PG_CF_%1", clientOwner]];
 			PG_VAR_CAM_FOLLOW = false;
 		};
 	};

@@ -26,7 +26,7 @@ PG_LOG_FUNC("InitEvents");
 player addEventHandler ["Fired", {
 	if ((_this#1) isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]) then {
 	
-		// Keep ammo stocked if infinite ammo is enabled (only if there's already some ammo present)
+		// Keep ammo stocked if infinite ammo is enabled (only works if there's already a magazine present)
 		if (PG_VAR_INFINITE_AMMO_ENABLED) then {
 			private _muzzle = currentMuzzle player;
 			private _ammoCount = player ammo _muzzle;
@@ -39,7 +39,7 @@ player addEventHandler ["Fired", {
 	
 		// Only try to spawn portal if not grabbing anything
 		if (!PG_VAR_GRABBING && {PG_VAR_CURRENT_PORTAL call PG_fnc_TrySpawnPortal}) then {
-			if (PG_VAR_CURRENT_PORTAL isEqualTo PG_VAR_BLUE_PORTAL) then {
+			if (PG_VAR_CURRENT_PORTAL == "Blue") then {
 				[PG_VAR_BLUE_PORTAL, "portal_open_blue"] remoteExec ["PG_fnc_PlaySound"];
 				PG_VAR_BLUE_SS setPosWorld (getPosWorld PG_VAR_BLUE_PORTAL);
 				PG_VAR_BLUE_SPAWNED = true;
@@ -48,21 +48,21 @@ player addEventHandler ["Fired", {
 				PG_VAR_ORANGE_SS setPosWorld (getPosWorld PG_VAR_ORANGE_PORTAL);
 				PG_VAR_ORANGE_SPAWNED = true;
 			};
-			call PG_fnc_UpdatePortals;
+			[] call PG_fnc_UpdatePortals;
 		};
 	};
 }];
 
 // Handle player respawn
 player addMPEventHandler ["MPRespawn", {
-	PG_VAR_INIT_SETTINGS call PG_fnc_InitPortals;
-	[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_RefreshPiP"];
+	[] spawn PG_fnc_FixArsenalBug;
 }];
 
 // Handle player being killed
 player addMPEventHandler ["MPKilled", {
-	if (PG_VAR_FIZZLE_ON_DEATH_ENABLED) then {
-		[] call PG_fnc_Fizzle;
+	params ["_unit"];
+	if (player isEqualTo _unit && PG_VAR_FIZZLE_ON_DEATH_ENABLED) then {
+		[] spawn PG_fnc_Fizzle;
 	};
 }];
 
@@ -73,8 +73,10 @@ player addEventHandler ["Hit", {
 	// Only play dialog if potatOS not disabled, not already speaking, and equipped
 	if (
 		!PG_VAR_POTATO_ENABLED || 
-		{PG_VAR_POTATO_SPEAKING} || 
-		{!((currentWeapon player) isEqualTo "ASHPD_MK_SUS_P")}
+		{
+			PG_VAR_POTATO_SPEAKING || 
+			{!((currentWeapon player) isEqualTo "ASHPD_MK_SUS_P")}
+		}
 	) exitWith {};
 	
 	private _possibleLines = [objNull, 1];
@@ -104,7 +106,7 @@ player addEventHandler ["Hit", {
 	
 	// Pick and play a random line from the pool, or don't play anything if objNull is picked
 	private _randomLine = selectRandomWeighted _possibleLines;
-	if (!(_randomLine isEqualTo objNull)) then {
+	if !(_randomLine isEqualTo objNull) then {
 		_randomLine spawn PG_fnc_SpeakPotato;
 	};
 }];
@@ -120,7 +122,7 @@ player addEventHandler ["Hit", {
 		];
 		// Pick and play a random line from the pool, or don't play anything if objNull is picked
 		private _randomLine = selectRandomWeighted _possibleLines;
-		if (!(_randomLine isEqualTo objNull)) then {
+		if !(_randomLine isEqualTo objNull) then {
 			_randomLine spawn PG_fnc_SpeakPotato;
 		};
 		// Wait anywhere from 5 to 10 minutes before trying again
@@ -144,7 +146,7 @@ if (isNil "PG_VAR_LAST_BH_TIME") then {
 			if (_submerged && {_serverTime - PG_VAR_LAST_BH_TIME >= 600}) then {
 				if ((currentWeapon player) isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]) then {
 					// Portal gun equipped and the player is submerged, trigger the black hole above the player
-					[_position vectorAdd [0,0,300]] call PG_fnc_DoBlackHole;
+					[_position vectorAdd [0,0,300]] call PG_fnc_BlackHole;
 					// Set the last BH time to serverTime
 					PG_VAR_LAST_BH_TIME = _serverTime;
 					// Sync last BH time to all clients
@@ -156,23 +158,8 @@ if (isNil "PG_VAR_LAST_BH_TIME") then {
 	};
 };
 
-// Swap portals on firemode switch
-addUserActionEventHandler ["nextWeapon", "Activate", PG_fnc_SwapPortals];
-
-// Handle switching weapons
-addUserActionEventHandler ["SwitchPrimary", "Activate", {[true] call PG_fnc_HandleWeaponSwitch}];
-addUserActionEventHandler ["SwitchSecondary", "Activate", {[false] call PG_fnc_HandleWeaponSwitch}];
-addUserActionEventHandler ["SwitchHandgun", "Activate", {[false] call PG_fnc_HandleWeaponSwitch}];
-
-// // Handle toggling grab
-// PG_VAR_GRAB_KEY_INDEX = addUserActionEventHandler [PG_VAR_GRAB_KEY, "Activate", PG_fnc_TryGrab];
-
-// // Handle player fizzling portals
-// PG_VAR_FIZZLE_KEY_INDEX = addUserActionEventHandler [PG_VAR_FIZZLE_KEY, "Activate", {
-	// if (PG_VAR_PLAYER_FIZZLE_ENABLED && {(currentWeapon player) isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]}) then {
-		// [] call PG_fnc_Fizzle;
-	// };
-// }];
+PG_VAR_SWAP_HANDLE = ["weaponMode", PG_fnc_SwapPortals] call CBA_fnc_addPlayerEventHandler;
+["weapon", PG_fnc_HandleWeaponSwitch, true] call CBA_fnc_addPlayerEventHandler;
 
 // Fix the PiP camera bugs
 [missionnamespace, "arsenalClosed", {[] spawn PG_fnc_FixArsenalBug}] call bis_fnc_addScriptedEventhandler;

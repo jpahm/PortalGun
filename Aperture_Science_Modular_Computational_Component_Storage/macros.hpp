@@ -12,26 +12,35 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// ------------------ DEBUG OPTIONS ---------------------------
+
 // Uncomment below line for normal debug
-//#define PG_DEBUG
+
+#define PG_DEBUG
+
 // Uncomment below line for verbose debug
+
 //#define PG_VERBOSE_DEBUG
 
+// ------------------------------------------------------------
+
 // Debug logging
-#define PG_LOG_FUNC(fnc) (systemChat format [localize "$STR_PGUN_LOG_STR", fnc, _this])
+#define PG_LOG_FUNC(fnc) (diag_log text format [localize "$STR_PGUN_LOG_STR", fnc, _this])
 // NOTE: Macros can't take array args, pass format args for this in PG_VAR_LOG_VARS!
-#define PG_LOG(str) (systemChat format ([localize str] + PG_VAR_LOG_VARS))
+#define PG_LOG(str) (diag_log text format ([localize str] + PG_VAR_LOG_VARS))
 
 // Values
-#define PG_VAR_PORTAL_HEIGHT_H (PG_VAR_PORTAL_HEIGHT / 2)
-#define PG_VAR_PORTAL_WIDTH_H (PG_VAR_PORTAL_WIDTH / 2)
+#define PG_VAR_PORTAL_HEIGHT 2
+#define PG_VAR_PORTAL_WIDTH 1.2
+#define PG_VAR_PORTAL_HEIGHT_H 1
+#define PG_VAR_PORTAL_WIDTH_H 0.6
 
 // Error messages
 #define PG_ERROR(msg) ([] spawn {[localize msg, localize "$STR_PGUN_Error_Header", true, false, [] call BIS_fnc_displayMission, false, false] call BIS_fnc_guiMessage})
 
 // Cameras
-#define PG_REMOTE_BLUE_CAM (missionNameSpace getVariable [format["PG_VAR_BLUE_CAM_%1", remoteExecutedOwner], objNull])
-#define PG_REMOTE_ORANGE_CAM (missionNameSpace getVariable [format["PG_VAR_ORANGE_CAM_%1", remoteExecutedOwner], objNull])
+#define PG_REMOTE_BLUE_CAM (missionNameSpace getVariable [format["PG_VAR_BCAM%1", remoteExecutedOwner], objNull])
+#define PG_REMOTE_ORANGE_CAM (missionNameSpace getVariable [format["PG_VAR_OCAM%1", remoteExecutedOwner], objNull])
 
 // Portal gun settings
 #define PG_DUAL_PORTALS (PG_VAR_INIT_SETTINGS isEqualTo [true, true])
@@ -63,7 +72,11 @@
 #define PG_ORANGE_PIP_TEX "#(argb,512,512,1)r2t(piprenderop%1,1)"
 #define PG_PIP_MAT "\PortalGun\Aperture_Science_Woof_Containment_Vessel\PortalflatPiP.rvmat"
 
-// Portal colors
+// Camera effects
+#define PG_BLUE_PIP_EFFECT ["Internal", "Back", format["piprenderbp%1", remoteExecutedOwner]]
+#define PG_ORANGE_PIP_EFFECT ["Internal", "Back", format["piprenderop%1", remoteExecutedOwner]]
+
+// Portal colors (currently unused)
 #define PG_BLUE "0, 0.447, 0.823"
 #define PG_ORANGE "0.992, 0.510, 0"
 
