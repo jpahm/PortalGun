@@ -18,8 +18,8 @@
 /// Parameters: None.
 ///	Return value: None.
 
-#ifdef PG_DEBUG
-PG_LOG_FUNC("PreInit");
+#ifdef ASHPD_DEBUG
+ASHPD_LOG_FUNC("PreInit");
 #endif
 
 // Verify core file exists
@@ -27,26 +27,18 @@ if !(fileExists CAKE_JPG) exitWith {};
 
 // Set up disconnect EH if server
 if (isServer) then {
-	PG_VAR_IS_DEDI = isDedicated;
-	publicVariable "PG_VAR_IS_DEDI";
-	[] call PG_fnc_InitDisconnect;
+	ASHPD_VAR_IS_DEDI = isDedicated;
+	publicVariable "ASHPD_VAR_IS_DEDI";
+	[] call ASHPD_fnc_InitDisconnect;
 };
 
 // Globals (you shouldn't touch these unless you know what you're doing!)
-PG_VAR_PORTALS_LINKED = false;
-PG_VAR_CAM_FOLLOW = false;
-PG_VAR_TP_CACHE = [];
-PG_VAR_TP_HANDLE = scriptNull;
-PG_VAR_EQUIP_HANDLE = scriptNull;
-PG_VAR_SWAP_HANDLE = scriptNull;
-PG_VAR_CROSSHAIR_HANDLE = scriptNull;
-PG_VAR_CROSSHAIR_IMAGE = "EmptyCursor";
-PG_VAR_GRABBING = false;
-PG_VAR_GRABBED_OBJECT = objNull;
-PG_VAR_PROJECTILE_TYPES = PG_VAR_PROJECTILE_TYPES_SETTING splitString ", ";
-PG_VAR_GRAB_SS = objNull;
-PG_VAR_GRAB_HANDLE = scriptNull;
-PG_VAR_GRAB_PARTICLES = objNull;
-PG_VAR_POTATO_SPEAKING = false;
-PG_VAR_PORTAL_SURFACES = [objNull, objNull];
-PG_VAR_BH_EH_DISTANCE = 150;
+
+ASHPD_VAR_PORTALS_LINKED = false; // Whether the player's portals are "linked" (teleporting, camera illusion, etc. are enabled).
+ASHPD_VAR_CAM_FOLLOW = false; // Whether the player's portal cameras are set to follow the portals in real-time (used for vehicle-attached portals).
+ASHPD_VAR_TP_CACHE = []; // Cache used for preventing objects from infinitely teleporting back-and-forth between portals.
+ASHPD_VAR_TP_HANDLE = scriptNull; // Handle representing the teleport script spawn, can be terminated to disable teleporting between player's portals.
+ASHPD_VAR_CROSSHAIR_HANDLE = scriptNull; // Handle representing the crosshair drawing script spawn, can be terminated to disable the player's custom crosshair.
+ASHPD_VAR_GRABBING = false; // Whether the player's portal gun is currently grabbing something.
+ASHPD_VAR_POTATO_SPEAKING = false; // Whether the player's PotatOS (if equipped) is currently speaking.
+ASHPD_VAR_PORTAL_SURFACES = [objNull, objNull]; // The objects (surfaces) that each portal (blue, orange) is currently on.

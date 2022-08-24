@@ -14,11 +14,11 @@
 
 #include "macros.hpp"
 
-#ifdef PG_DEBUG
-PG_LOG_FUNC("PlaySound");
+#ifdef ASHPD_DEBUG
+ASHPD_LOG_FUNC("PlaySound");
 #endif
 
-/// Description: MP compatibility function for say3D when used on objects that aren't "alive".
+/// Description: Wrapper function for PlaySound3D.
 /// Parameters:
 ///		PARAMETER		|		EXPECTED INPUT TYPE		|		DESCRIPTION
 ///
@@ -28,11 +28,5 @@ PG_LOG_FUNC("PlaySound");
 ///	Return value: None.
 
 params[["_object", objNull, [objNull]], ["_sound", "", [""]]]; 
-
-// Create shell object for playing sound
-private _dummyObj = "#particlesource" createVehicleLocal ASLToAGL getPosWorld _object;
-_dummyObj attachTo [_object, [0,0,0]];
-_dummyObj say3D _sound;
-// Delete the shell object after 5 seconds, should be long enough for all sound effects
-uiSleep 5;
-deleteVehicle _dummyObj; 
+getArray(configFile >> "CfgSounds" >> _sound >> "sound") params ["_path", "_volume"];
+playSound3D [_path, _object, false, getPosASL _object, _volume];

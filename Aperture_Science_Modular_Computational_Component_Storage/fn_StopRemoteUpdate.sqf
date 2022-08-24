@@ -23,14 +23,14 @@
 ///
 ///	Return value: None.
 
-#ifdef PG_DEBUG
-PG_LOG_FUNC("StopRemoteUpdate");
+#ifdef ASHPD_DEBUG
+ASHPD_LOG_FUNC("StopRemoteUpdate");
 #endif
 
 params[["_id", "", [""]]];
 
 // Get client's remote update hashmap
-private _remoteUpdateHM = missionNameSpace getVariable [format ["PG_RU_%1", remoteExecutedOwner], createHashMapFromArray []];
+private _remoteUpdateHM = missionNameSpace getVariable [format ["ASHPD_VAR_RU_%1", remoteExecutedOwner], createHashMapFromArray []];
 
 // Terminate remote client's remote updates
 private _scriptHandle = _remoteUpdateHM get _id;
@@ -40,4 +40,4 @@ if !(isNull _scriptHandle) then {
 };
 
 // Update hashmap
-missionNameSpace setVariable [format ["PG_RU_%1", remoteExecutedOwner], _remoteUpdateHM];
+missionNameSpace setVariable [format ["ASHPD_VAR_RU_%1", remoteExecutedOwner], _remoteUpdateHM];

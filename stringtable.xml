@@ -92,19 +92,6 @@
       <Portuguese>Erro de Pistola do Portal</Portuguese>
       <Czech>Chyba portálové zbraně</Czech>
     </Key>
-    <Key ID="STR_PGUN_Scales">
-      <English>Scales</English>
-      <Spanish>Escalas</Spanish>
-      <German>Skalen</German>
-      <Chinesesimp>天平</Chinesesimp>
-      <Japanese>目からウロコ</Japanese>
-      <Italian>Bilancia</Italian>
-      <French>Balances</French>
-      <Polish>Skale</Polish>
-      <Russian>Весы</Russian>
-      <Portuguese>Balança</Portuguese>
-      <Czech>Váhy</Czech>
-    </Key>
     <Key ID="STR_PGUN_Crosshair_Scale">
       <English>Crosshair Scale</English>
       <Spanish>Escala del retículo</Spanish>
@@ -145,30 +132,30 @@
       <Czech>Rozsahy</Czech>
     </Key>
     <Key ID="STR_PGUN_Max_Range">
-      <English>Max Range</English>
-      <Spanish>Alcance máximo</Spanish>
-      <German>Maximale Reichweite</German>
-      <Chinesesimp>最大范围</Chinesesimp>
-      <Japanese>マックスレンジ</Japanese>
-      <Italian>Gamma massima</Italian>
-      <French>Portée maximale</French>
-      <Polish>Maks. zasięg</Polish>
-      <Russian>Максимальный диапазон</Russian>
-      <Portuguese>Alcance máximo</Portuguese>
-      <Czech>Maximální rozsah</Czech>
+      <English>Max Firing Range</English>
+      <Spanish>Alcance máximo de disparo</Spanish>
+      <German>Maximale Schussentfernung</German>
+      <Chinesesimp>最大射程</Chinesesimp>
+      <Japanese>最大射程距離</Japanese>
+      <Italian>Portata massima di tiro</Italian>
+      <French>Portée de tir maximale</French>
+      <Polish>Maksymalny zasięg strzału</Polish>
+      <Russian>Максимальная дальность стрельбы</Russian>
+      <Portuguese>Alcance máximo de queima</Portuguese>
+      <Czech>Maximální dostřel</Czech>
     </Key>
     <Key ID="STR_PGUN_Max_Range_Desc">
-      <English>The maximum range the gun can create portals from.</English>
-      <Spanish>El alcance máximo desde el que el arma puede crear portales.</Spanish>
-      <German>Die maximale Reichweite, aus der die Waffe Portale erzeugen kann.</German>
-      <Chinesesimp>该枪可以创建门户的最大范围。</Chinesesimp>
-      <Japanese>銃がポータルを作ることができる最大の範囲です。</Japanese>
-      <Italian>La portata massima da cui l'arma può creare portali.</Italian>
-      <French>La portée maximale à partir de laquelle le canon peut créer des portails.</French>
-      <Polish>Maksymalny zasięg, z jakiego działo może tworzyć portale.</Polish>
-      <Russian>Максимальная дальность, с которой пушка может создавать порталы.</Russian>
-      <Portuguese>O alcance máximo a partir do qual a arma pode criar portais.</Portuguese>
-      <Czech>Maximální vzdálenost, ze které může zbraň vytvářet portály.</Czech>
+      <English>The maximum range at which the portal gun can shoot portals.</English>
+      <Spanish>Alcance máximo al que el cañón de portales puede disparar portales.</Spanish>
+      <German>Die maximale Reichweite, über die die Portalkanone Portale schießen kann.</German>
+      <Chinesesimp>传送门枪可以发射传送门的最大范围。</Chinesesimp>
+      <Japanese>ポータルガンがポータルを発射できる最大距離。</Japanese>
+      <Italian>La gittata massima a cui la pistola a portale può sparare i portali.</Italian>
+      <French>La portée maximale à laquelle le canon à portails peut tirer des portails.</French>
+      <Polish>Maksymalny zasięg, przy którym działo portalowe może strzelać do portali.</Polish>
+      <Russian>Максимальная дальность, на которой портальная пушка может стрелять порталами.</Russian>
+      <Portuguese>O alcance máximo em que a arma do portal pode disparar portais.</Portuguese>
+      <Czech>Maximální vzdálenost, na kterou může portálová zbraň střílet portály.</Czech>
     </Key>
     <Key ID="STR_PGUN_Vehicle_Grab_Range">
       <English>Vehicle Grab Range</English>
@@ -249,17 +236,17 @@
       <Czech>Maximální vzdálenost, na kterou mohou portály teleportovat střely.</Czech>
     </Key>
     <Key ID="STR_PGUN_Grab_Range">
-      <English>Grab Range</English>
-      <Spanish>Rango de agarre</Spanish>
-      <German>Greifbereich</German>
-      <Chinesesimp>抓取范围</Chinesesimp>
-      <Japanese>グラブレンジ</Japanese>
-      <Italian>Gamma Grab</Italian>
-      <French>Gamme Grab</French>
-      <Polish>Grab Range</Polish>
-      <Russian>Диапазон захвата</Russian>
-      <Portuguese>Alcance de Agarrar</Portuguese>
-      <Czech>Rozsah uchopení</Czech>
+      <English>Miscellaneous Grab Range</English>
+      <Spanish>Gama de pinzas diversas</Spanish>
+      <German>Verschiedenes Greifbereich</German>
+      <Chinesesimp>杂项抓取范围</Chinesesimp>
+      <Japanese>その他 グラブレンジ</Japanese>
+      <Italian>Varie Gamma di presa</Italian>
+      <French>Divers Grab Range</French>
+      <Polish>Różne Grab Range</Polish>
+      <Russian>Разное</Russian>
+      <Portuguese>Gama de Agarras Diversas</Portuguese>
+      <Czech>Různé Grab Range</Czech>
     </Key>
     <Key ID="STR_PGUN_Grab_Range_Desc">
       <English>The maximum range at which portals can teleport things other than units, vehicles and projectiles.</English>
@@ -508,6 +495,32 @@
       <Portuguese>Se os portais podem ou não ter vistas de câmara PiP.</Portuguese>
       <Czech>Zda portály mohou mít zobrazení kamer PiP, nebo ne.</Czech>
     </Key>
+    <Key ID="STR_PGUN_Long_Fall_Boots_Enabled">
+      <English>Long Fall Boots Enabled</English>
+      <Spanish>Botas largas de otoño habilitadas</Spanish>
+      <German>Lange Herbststiefel Aktiviert</German>
+      <Chinesesimp>启用了长秋靴</Chinesesimp>
+      <Japanese>ロングフォールブーツ有効</Japanese>
+      <Italian>Stivali lunghi autunnali abilitati</Italian>
+      <French>Activation des longues bottes d'automne</French>
+      <Polish>Włączone długie buty jesienne</Polish>
+      <Russian>Длинные осенние сапоги Включено</Russian>
+      <Portuguese>Botas de Queda Longa Activadas</Portuguese>
+      <Czech>Povolení dlouhých podzimních bot</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Long_Fall_Boots_Enabled_Desc">
+      <English>Whether fall damage should be disabled for players while they have the portal gun equipped.</English>
+      <Spanish>Si se debe desactivar el daño por caída para los jugadores mientras tengan equipada la pistola de portales.</Spanish>
+      <German>Ob der Fallschaden für Spieler deaktiviert werden soll, wenn sie mit der Portalkanone ausgerüstet sind.</German>
+      <Chinesesimp>当玩家装备有传送门枪时，是否应该禁用坠落伤害。</Chinesesimp>
+      <Japanese>ポータルガンを装備しているプレイヤーに対して、落下ダメージを無効化するかどうか。</Japanese>
+      <Italian>Se i danni da caduta debbano essere disabilitati per i giocatori quando hanno la pistola a portale equipaggiata.</Italian>
+      <French>Si les dégâts de chute doivent être désactivés pour les joueurs lorsqu'ils ont le pistolet portail équipé.</French>
+      <Polish>Czy obrażenia od upadku powinny być wyłączone dla graczy, gdy mają wyposażoną broń portalową.</Polish>
+      <Russian>Должен ли быть отключен урон от падения для игроков, пока у них экипирована портальная пушка.</Russian>
+      <Portuguese>Se os danos da queda devem ser desactivados para os jogadores enquanto estes têm a arma do portal equipada.</Portuguese>
+      <Czech>Zda by mělo být poškození způsobené pádem zakázáno pro hráče, kteří mají portálovou zbraň.</Czech>
+    </Key>
     <Key ID="STR_PGUN_Grab_Enabled">
       <English>Grab Enabled</English>
       <Spanish>Agarre Activado</Spanish>
@@ -522,17 +535,17 @@
       <Czech>Povoleno uchopení</Czech>
     </Key>
     <Key ID="STR_PGUN_Grab_Enabled_Desc">
-      <English>Whether objects can be picked up with the gun or not.</English>
-      <Spanish>Si los objetos pueden ser recogidos con el arma o no.</Spanish>
-      <German>Ob Gegenstände mit der Pistole aufgenommen werden können oder nicht.</German>
-      <Chinesesimp>物体是否可以用枪捡起来。</Chinesesimp>
-      <Japanese>銃で物が拾えるかどうか。</Japanese>
-      <Italian>Se gli oggetti possono essere raccolti con la pistola o no.</Italian>
-      <French>Si les objets peuvent être ramassés avec l'arme ou non.</French>
-      <Polish>Czy przedmioty mogą być podnoszone z pistoletu czy nie.</Polish>
-      <Russian>Можно ли подбирать предметы с помощью оружия или нет.</Russian>
-      <Portuguese>Se os objectos podem ser apanhados com a arma ou não.</Portuguese>
-      <Czech>Zda lze předměty zvedat pomocí zbraně, nebo ne.</Czech>
+      <English>Whether PhysX objects can be picked up with the portal gun or not.</English>
+      <Spanish>Si los objetos PhysX pueden ser recogidos con la pistola de portales o no.</Spanish>
+      <German>Ob PhysX-Objekte mit der Portalkanone aufgenommen werden können oder nicht.</German>
+      <Chinesesimp>PhysX物体是否可以用传送枪拾取。</Chinesesimp>
+      <Japanese>PhysXオブジェクトをポータルガンで拾えるかどうか。</Japanese>
+      <Italian>Se gli oggetti PhysX possono essere raccolti con la pistola a portale o meno.</Italian>
+      <French>Si les objets PhysX peuvent être ramassés avec le pistolet portail ou non.</French>
+      <Polish>Czy obiekty PhysX mogą być podnoszone za pomocą pistoletu portalowego, czy nie.</Polish>
+      <Russian>Можно ли поднимать объекты PhysX с помощью портальной пушки или нет.</Russian>
+      <Portuguese>Quer os objectos PhysX possam ou não ser apanhados com a arma do portal.</Portuguese>
+      <Czech>Zda lze objekty PhysX zvedat pomocí portálové pistole, nebo ne.</Czech>
     </Key>
     <Key ID="STR_PGUN_Fizzle_On_Death_Enabled">
       <English>Fizzle on Death Enabled</English>
@@ -1119,7 +1132,7 @@
       <Portuguese>Portal Fusível</Portuguese>
       <Czech>Pojistka portálu</Czech>
     </Key>
-	<Key ID="STR_PGUN_Portal_Fuse_Desc">
+    <Key ID="STR_PGUN_Portal_Fuse_Desc">
       <English>A replaceable portal fuse for usage in a handheld portal device.</English>
       <Spanish>Un fusible de portal reemplazable para su uso en un dispositivo de portal de mano.</Spanish>
       <German>Eine austauschbare Portalsicherung zur Verwendung in einem Handheld-Portalgerät.</German>
@@ -1222,6 +1235,58 @@
       <Russian>[PG_DEBUG] Запуск функции ""%1"" с параметрами %2</Russian>
       <Portuguese>[PG_DEBUG] Função Ran ""%1"" com params %2</Portuguese>
       <Czech>[PG_DEBUG] Spuštěna funkce ""%1"" s parametry %2</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Cake_Bomb">
+      <English>Cake Bomb</English>
+      <Spanish>Pastel bomba</Spanish>
+      <German>Tortenbombe</German>
+      <Chinesesimp>蛋糕炸弹</Chinesesimp>
+      <Japanese>ケーキボム</Japanese>
+      <Italian>Bomba di torta</Italian>
+      <French>Cake Bomb</French>
+      <Polish>Ciastkowa bomba</Polish>
+      <Russian>Пирожное "Бомба</Russian>
+      <Portuguese>Bomba de bolo</Portuguese>
+      <Czech>Cake Bomb</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Lemon">
+      <English>Combustible Lemon</English>
+      <Spanish>Limón combustible</Spanish>
+      <German>Brennbare Zitrone</German>
+      <Chinesesimp>可燃柠檬</Chinesesimp>
+      <Japanese>可燃性レモン</Japanese>
+      <Italian>Limone combustibile</Italian>
+      <French>Citron combustible</French>
+      <Polish>Palna cytryna</Polish>
+      <Russian>Горючий лимон</Russian>
+      <Portuguese>Limão Combustível</Portuguese>
+      <Czech>Hořlavý citron</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Cake_Desc">
+      <English>Not a lie?</English>
+      <Spanish>¿No es una mentira?</Spanish>
+      <German>Keine Lüge?</German>
+      <Chinesesimp>不是谎言？</Chinesesimp>
+      <Japanese>嘘じゃない？</Japanese>
+      <Italian>Non è una bugia?</Italian>
+      <French>Pas un mensonge ?</French>
+      <Polish>To nie jest kłamstwo?</Polish>
+      <Russian>Не ложь?</Russian>
+      <Portuguese>Não é uma mentira?</Portuguese>
+      <Czech>Není to lež?</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Lemon_Desc">
+      <English>Can burn your house down!</English>
+      <Spanish>¡Puede quemar tu casa!</Spanish>
+      <German>Kann dein Haus niederbrennen!</German>
+      <Chinesesimp>能把你的房子烧掉!</Chinesesimp>
+      <Japanese>家を燃やせる！？</Japanese>
+      <Italian>Può bruciare la tua casa!</Italian>
+      <French>Peut brûler votre maison !</French>
+      <Polish>Może spalić twój dom!</Polish>
+      <Russian>Может сжечь ваш дом!</Russian>
+      <Portuguese>Pode incendiar a sua casa!</Portuguese>
+      <Czech>Může vám zapálit dům!</Czech>
     </Key>
   </Package>
 </Project>

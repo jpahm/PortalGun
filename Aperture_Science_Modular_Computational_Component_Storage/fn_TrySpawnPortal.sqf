@@ -22,27 +22,25 @@
 ///
 ///	Return value: Boolean, whether portal was successfully spawned or not.
 
-#ifdef PG_DEBUG
-PG_LOG_FUNC("TrySpawnPortal");
+#ifdef ASHPD_DEBUG
+ASHPD_LOG_FUNC("TrySpawnPortal");
 #endif
 
 params["_portal"];
 
 private _portalObj = objNull; 
 
-hint _portal;
-
 if (_portal == "Blue") then {
-	_portalObj = PG_VAR_BLUE_PORTAL;
+	_portalObj = ASHPD_VAR_BLUE_PORTAL;
 } else {
-	_portalObj = PG_VAR_ORANGE_PORTAL;
+	_portalObj = ASHPD_VAR_ORANGE_PORTAL;
 };
 
 private _eyePos = eyePos player;
-private _castVector = (player weaponDirection currentWeapon player) vectorMultiply PG_VAR_MAX_RANGE;
+private _castVector = (player weaponDirection currentWeapon player) vectorMultiply ASHPD_VAR_MAX_RANGE;
 
 // Do a raycast from the player's weapon in the direction of the weapon, out to the max range
-private _rayCast = lineIntersectsSurfaces [_eyePos, _eyePos vectorAdd _castVector, player, _portalObj, true, 1, "VIEW", "GEOM"];
+private _rayCast = lineIntersectsSurfaces [_eyePos, _eyePos vectorAdd _castVector, player, _portalObj, true, 1, "GEOM", "FIRE"];
 
  // No surface detected, spawn failed
 if (count _rayCast == 0) exitWith {false};
@@ -55,62 +53,62 @@ if (_rayCast#2 isKindOf "Portal" && {!(_rayCast#2 isEqualTo _portalObj)}) exitWi
 // Vector normal to the surface casted onto
 private _surfNormal = _rayCast#1;
 // Compute the desired up vector for the portal from the surface's normal vector
-private _surfVectorUp = [_surfNormal] call PG_fnc_GetSurfaceUpVec;
+private _surfVectorUp = [_surfNormal] call ASHPD_fnc_GetSurfaceUpVec;
 
 // Make sure the portal can fit in the desired area
-if ([_portalObj, _surfVectorUp, _rayCast] call PG_fnc_BoundsCheck) then {
+if ([_portalObj, _surfVectorUp, _rayCast] call ASHPD_fnc_BoundsCheck) then {
 
 	// Detach anything attached to the portal
 	detach _portalObj;
 	// Clear the teleport cache since we have a fresh portal
-	PG_VAR_TP_CACHE = [];
+	ASHPD_VAR_TP_CACHE = [];
 	
 	// Add new portal "surface" (object the portal is on) for object detection filtering
-	if (_portalObj isEqualTo PG_VAR_BLUE_PORTAL) then {
-		PG_VAR_PORTAL_SURFACES pushBack (PG_VAR_PORTAL_SURFACES#0);
-		PG_VAR_PORTAL_SURFACES set [0, _rayCast#2];
+	if (_portalObj isEqualTo ASHPD_VAR_BLUE_PORTAL) then {
+		ASHPD_VAR_PORTAL_SURFACES pushBack (ASHPD_VAR_PORTAL_SURFACES#0);
+		ASHPD_VAR_PORTAL_SURFACES set [0, _rayCast#2];
 	} else {
-		PG_VAR_PORTAL_SURFACES pushBack (PG_VAR_PORTAL_SURFACES#1);
-		PG_VAR_PORTAL_SURFACES set [1, _rayCast#2];
+		ASHPD_VAR_PORTAL_SURFACES pushBack (ASHPD_VAR_PORTAL_SURFACES#1);
+		ASHPD_VAR_PORTAL_SURFACES set [1, _rayCast#2];
 	};
 	
 	// Move the portal to the raycast intersection position
-	_portalObj setPosWorld _rayCast#0;
+	_portalObj setPosWorld (_rayCast#0);
 	
 	// Remove old portal "surface" now that portal has moved
-	PG_VAR_PORTAL_SURFACES resize 2;
+	ASHPD_VAR_PORTAL_SURFACES resize 2;
 	
 	// Unhide the portal if it's been hidden (i.e. via fizzling)
 	if (isObjectHidden _portalObj) then {
-		[_portalObj, false] remoteExecCall ["hideObjectGlobal", [0, 2] select PG_VAR_IS_DEDI];
+		ASHPD_HIDE_SERVER(_portalObj, false);
 	};
 	
 	// If portal hits vehicle, attach it so that it follows the vehicle
 	if (_rayCast#2 isKindOf "AllVehicles") then {
 		_portalObj attachTo [_rayCast#2];
-		// If cams not yet following, add remote update for PG_fnc_CamFollow
-		if (!PG_VAR_CAM_FOLLOW) then {
+		// If cams not yet following, add remote update for ASHPD_fnc_CamFollow
+		if (!ASHPD_VAR_CAM_FOLLOW) then {
 			[
-				[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL],
+				[ASHPD_VAR_BLUE_PORTAL, ASHPD_VAR_ORANGE_PORTAL],
 				{
-					_this call PG_fnc_CamFollow;
+					_this call ASHPD_fnc_CamFollow;
 				},
 				"CamFollow"
-			] remoteExecCall ["PG_fnc_StartRemoteUpdate", [0, -2] select PG_VAR_IS_DEDI, format ["PG_CF_%1", clientOwner]];
-			PG_VAR_CAM_FOLLOW = true;
+			] remoteExecCall ["ASHPD_fnc_StartRemoteUpdate", [0, -2] select ASHPD_VAR_IS_DEDI, format ["ASHPD_CF_%1", clientOwner]];
+			ASHPD_VAR_CAM_FOLLOW = true;
 		};
-	} else { // If portal doesn't hit vehicle, check if PG_fnc_CamFollow remote update needs to be stopped
-		if (PG_VAR_CAM_FOLLOW && {isNull attachedTo PG_VAR_OTHER_PORTAL}) then {
-			["CamFollow"] remoteExecCall ["PG_fnc_StopRemoteUpdate", [0, -2] select PG_VAR_IS_DEDI, format ["PG_CF_%1", clientOwner]];
-			PG_VAR_CAM_FOLLOW = false;
+	} else { // If portal doesn't hit vehicle, check if ASHPD_fnc_CamFollow remote update needs to be stopped
+		if (ASHPD_VAR_CAM_FOLLOW && {isNull attachedTo ([ASHPD_VAR_BLUE_PORTAL, ASHPD_VAR_ORANGE_PORTAL] select (ASHPD_VAR_OTHER_PORTAL == "Orange"))}) then {
+			["CamFollow"] remoteExecCall ["ASHPD_fnc_StopRemoteUpdate", [0, -2] select ASHPD_VAR_IS_DEDI, format ["ASHPD_CF_%1", clientOwner]];
+			ASHPD_VAR_CAM_FOLLOW = false;
 		};
 	};
 	
-	// Orient portal opposite of the surface normal, vectorUp derived from PG_fnc_GetSurfaceUpVec
+	// Orient portal opposite of the surface normal, vectorUp derived from ASHPD_fnc_GetSurfaceUpVec
 	_portalObj setVectorDirAndUp [_surfNormal vectorMultiply -1, _surfVectorUp];
 	
 	// Animate portal opening
-	[_portalObj, true] call PG_fnc_AnimatePortal;
+	[_portalObj, true] call ASHPD_fnc_SetPortalOpen;
 	
 	// Spawn succeeded, return true
 	true;
@@ -118,10 +116,10 @@ if ([_portalObj, _surfVectorUp, _rayCast] call PG_fnc_BoundsCheck) then {
 } else { // If the bound check fails
 
 	// Play the invalid surface SFX at the cast location
-	[_rayCast#2, "portal_invalid_surface"] remoteExec ["PG_fnc_PlaySound"];
+	[_rayCast#2, "portal_invalid_surface"] call ASHPD_fnc_PlaySound;
 	
 	// Play the gun's invalid surface SFX at the player's location
-	[player, "gun_invalid_surface"] remoteExecCall ["say3D"];
+	[player, "gun_invalid_surface"] call ASHPD_fnc_PlaySound;
 	
 	// Spawn failed, return false
 	false;

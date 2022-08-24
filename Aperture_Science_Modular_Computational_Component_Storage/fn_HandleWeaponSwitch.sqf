@@ -22,8 +22,8 @@
 ///
 ///	Return value: None.
 
-#ifdef PG_DEBUG
-PG_LOG_FUNC("HandleWeaponSwitch");
+#ifdef ASHPD_DEBUG
+ASHPD_LOG_FUNC("HandleWeaponSwitch");
 #endif
 
 params["_unit", ["_currentWeapon", ""]];
@@ -31,33 +31,35 @@ params["_unit", ["_currentWeapon", ""]];
 // Player switched to portal gun
 if (_currentWeapon != "" && {_currentWeapon == primaryWeapon player && {_currentWeapon isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]}}) then {
 	// Only set up crosshair and other things if not already initialized
-	if (PG_VAR_CROSSHAIR_HANDLE isEqualTo scriptNull) then {
+	if (ASHPD_VAR_CROSSHAIR_HANDLE isEqualTo scriptNull) then {
 		// Start drawing crosshair
-		PG_VAR_CROSSHAIR_HANDLE = addMissionEventHandler ["draw3D", PG_fnc_DrawCrosshair];
+		ASHPD_VAR_CROSSHAIR_HANDLE = addMissionEventHandler ["draw3D", ASHPD_fnc_DrawCrosshair];
 		// Play delayed sound
-		if !(PG_VAR_EQUIP_HANDLE isEqualTo scriptNull) then {
-			terminate PG_VAR_EQUIP_HANDLE;
+		if !(player getVariable ["ASHPD_VAR_equipHandle", scriptNull] isEqualTo scriptNull) then {
+			terminate (player getVariable "ASHPD_VAR_equipHandle");
 		};
-		PG_VAR_EQUIP_HANDLE = [] spawn {
-			waitUntil {gestureState player isEqualTo "amovpercmstpsraswpstdnon_amovpercmstpsraswrfldnon_end"};
-			waitUntil {!(gestureState player isEqualTo "amovpercmstpsraswpstdnon_amovpercmstpsraswrfldnon_end")};
-			[player, "gun_activate"] remoteExecCall ["say3D"];
-			// Swap portals if current portal != current weapon mode
-			if (PG_VAR_CURRENT_PORTAL != currentWeaponMode player) then {
-				[] call PG_fnc_SwapPortals;
+		player setVariable ["ASHPD_VAR_equipHandle", [] spawn {
+			if !(gestureState player isEqualTo "amovpercmstpsraswpstdnon_amovpercmstpsraswrfldnon_end") then {
+				waitUntil {gestureState player isEqualTo "amovpercmstpsraswpstdnon_amovpercmstpsraswrfldnon_end"};
 			};
-		};
+			waitUntil {!(gestureState player isEqualTo "amovpercmstpsraswpstdnon_amovpercmstpsraswrfldnon_end")};
+			[player, "gun_activate"] call ASHPD_fnc_PlaySound;
+			// Swap portals if current portal != current weapon mode
+			if (ASHPD_VAR_CURRENT_PORTAL != currentWeaponMode player) then {
+				[] call ASHPD_fnc_SwapPortals;
+			};
+		}];
 	};
 	
 // Player switched to different weapon
 } else {
 	// Stop drawing the custom crosshair
-	if !(PG_VAR_CROSSHAIR_HANDLE isEqualTo scriptNull) then {
-		removeMissionEventHandler ["draw3D", PG_VAR_CROSSHAIR_HANDLE];
-		PG_VAR_CROSSHAIR_HANDLE = scriptNull;
+	if !(ASHPD_VAR_CROSSHAIR_HANDLE isEqualTo scriptNull) then {
+		removeMissionEventHandler ["draw3D", ASHPD_VAR_CROSSHAIR_HANDLE];
+		ASHPD_VAR_CROSSHAIR_HANDLE = scriptNull;
 	};
 	// Let go of any grabbed items
-	if (PG_VAR_GRABBING) then {
-		call PG_fnc_ToggleGrab;
+	if (ASHPD_VAR_GRABBING) then {
+		call ASHPD_fnc_ToggleGrab;
 	};
 };

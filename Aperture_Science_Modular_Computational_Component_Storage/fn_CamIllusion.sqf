@@ -23,14 +23,14 @@
 ///
 ///	Return value: None.
 
-#ifdef PG_VERBOSE_DEBUG
-PG_LOG_FUNC("CamIllusion");
+#ifdef ASHPD_VERBOSE_DEBUG
+ASHPD_LOG_FUNC("CamIllusion");
 #endif
 
 params["_bPortal", "_oPortal"];
 
-private _blueCam = PG_REMOTE_BLUE_CAM;
-private _orangeCam = PG_REMOTE_ORANGE_CAM;
+private _blueCam = ASHPD_REMOTE_BLUE_CAM;
+private _orangeCam = ASHPD_REMOTE_ORANGE_CAM;
 
 // Position of player should remain constant so long as they're standing in the same spot
 private _playerPos = (getPosWorld player vectorAdd [0,0,1.5]);

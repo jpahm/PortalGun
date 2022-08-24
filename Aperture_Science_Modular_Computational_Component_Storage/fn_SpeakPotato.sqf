@@ -25,20 +25,20 @@
 ///
 ///	Return value: None.
 
-#ifdef PG_DEBUG
-PG_LOG_FUNC("SpeakPotato");
+#ifdef ASHPD_DEBUG
+ASHPD_LOG_FUNC("SpeakPotato");
 #endif
 
 params[["_sound", "", [""]], ["_dialog", "", [""]], ["_delay", 0.02, [1]], ["_pauses", [[" ", 0.2], [",", 0.5], [".", 0.8], ["?", 0.8]], [[]]]];
 
 // Only play dialog if potatOS not disabled, not already speaking, and equipped
 if (
-	!PG_VAR_POTATO_ENABLED || 
-	{PG_VAR_POTATO_SPEAKING} || 
+	!ASHPD_VAR_POTATO_ENABLED || 
+	{ASHPD_VAR_POTATO_SPEAKING} || 
 	{!((currentWeapon player) isEqualTo "ASHPD_MK_SUS_P")}
 ) exitWith {};
 
-PG_VAR_POTATO_SPEAKING = true;
+ASHPD_VAR_POTATO_SPEAKING = true;
 
 // Split dialog into chars
 private _chars = _dialog splitString "";
@@ -47,7 +47,7 @@ private _chars = _dialog splitString "";
 player addPrimaryWeaponItem "GeneticLifeFormandDiskOperatingSystem";
 private _hasItem = true;
 
-[player, _sound] remoteExecCall ["say3D"];
+[player, _sound] call ASHPD_fnc_PlaySound;
 
 {
 	// Prepare to exit, just in case potato is unequipped mid-speech
@@ -72,4 +72,4 @@ private _hasItem = true;
 
 player removePrimaryWeaponItem "GeneticLifeFormandDiskOperatingSystem"; // Turn off potato light
 
-PG_VAR_POTATO_SPEAKING = false;
+ASHPD_VAR_POTATO_SPEAKING = false;

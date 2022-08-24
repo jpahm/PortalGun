@@ -23,34 +23,52 @@
 ///
 ///	Return value: None.
 
-#ifdef PG_DEBUG
-PG_LOG_FUNC("InitGun");
+#ifdef ASHPD_DEBUG
+ASHPD_LOG_FUNC("InitGun");
 #endif
 
 params[["_bPortal", true, [true]], ["_oPortal", true, [true]]];
 
 if (!_bPortal && {!_oPortal}) then {
 	// Error, no portals given, default to dual
-	PG_ERROR("$STR_PGUN_EX_NoPortals");
+	ASHPD_ERROR("$STR_PGUN_EX_NoPortals");
 	_bPortal = true;
 	_oPortal = true;
 }; 
 
 // Save init settings for refresh purposes
-PG_VAR_INIT_SETTINGS = [_bPortal, _oPortal];
+ASHPD_VAR_INIT_SETTINGS = [_bPortal, _oPortal];
 
 if (_bPortal && _oPortal) then {
-	PG_VAR_CURRENT_PORTAL = "Blue";
-	PG_VAR_OTHER_PORTAL = "Orange";
+	ASHPD_VAR_CURRENT_PORTAL = "Blue";
+	ASHPD_VAR_OTHER_PORTAL = "Orange";
 } else { // If single portal mode
 	if (_bPortal && {!_oPortal}) then { // If only using blue portal
-		PG_VAR_CURRENT_PORTAL = "Blue";
-		PG_VAR_OTHER_PORTAL = "Blue";
+		ASHPD_VAR_CURRENT_PORTAL = "Blue";
+		ASHPD_VAR_OTHER_PORTAL = "Blue";
 	} else { // If only using orange portal
-		PG_VAR_CURRENT_PORTAL = "Orange";
-		PG_VAR_OTHER_PORTAL = "Orange";
+		ASHPD_VAR_CURRENT_PORTAL = "Orange";
+		ASHPD_VAR_OTHER_PORTAL = "Orange";
+	};
+};
+
+// Force weapon mode to match current portal if portal gun equipped
+if (currentWeapon player isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]) then {
+	[currentWeapon player] spawn {
+		params["_weapon"];
+		// Temporarily remove weaponMode EH so we can swap the mode without looping
+		["weaponMode", ASHPD_VAR_SWAP_EH_ID] call CBA_fnc_removePlayerEventHandler;
+		sleep 0.1;
+		// Make sure firemode matches current portal setting
+		private _ammo = player ammo _weapon;
+		player setAmmo [_weapon, 0];
+		player forceWeaponFire [_weapon, ASHPD_VAR_CURRENT_PORTAL];
+		player setAmmo [_weapon, _ammo];
+		sleep 0.1;
+		// Restore weaponMode EH
+		ASHPD_VAR_SWAP_EH_ID = ["weaponMode", ASHPD_fnc_SwapPortals] call CBA_fnc_addPlayerEventHandler;
 	};
 };
 
 // Update crosshair to match new portal gun settings
-[] call PG_fnc_UpdateCrosshair;
+[] call ASHPD_fnc_UpdateCrosshair;

@@ -18,8 +18,8 @@
 /// Parameters: None.
 ///	Return value: Time (in seconds) since the server started.
 
-#ifdef PG_VERBOSE_DEBUG
-PG_LOG_FUNC("GetServerTime");
+#ifdef ASHPD_VERBOSE_DEBUG
+ASHPD_LOG_FUNC("GetServerTime");
 #endif
 
 if (isMultiplayer) then {

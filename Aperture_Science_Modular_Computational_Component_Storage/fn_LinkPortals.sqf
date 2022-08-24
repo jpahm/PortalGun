@@ -23,43 +23,43 @@
 ///
 ///	Return value: None.
 
-#ifdef PG_DEBUG
-PG_LOG_FUNC("LinkPortals");
+#ifdef ASHPD_DEBUG
+ASHPD_LOG_FUNC("LinkPortals");
 #endif
 
 params["_bPortal", "_oPortal"];
 
 // Don't do anything with the cams if PiP not enabled
-if (!isPiPEnabled || {!PG_VAR_PIP_ENABLED}) exitWith {};
+if (!isPiPEnabled || {!ASHPD_VAR_PIP_ENABLED}) exitWith {};
 
 // Set up the blue portal textures and cams
-_bPortal setObjectMaterial [1, PG_PIP_MAT];
-_bPortal setObjectTexture [1, format[PG_BLUE_PIP_TEX, remoteExecutedOwner]];
-missionNameSpace setVariable [format["PG_VAR_BCAM%1", remoteExecutedOwner], "camera" camCreate [0,0,0]];
+_bPortal setObjectMaterial [1, ASHPD_PIP_MAT];
+_bPortal setObjectTexture [1, format[ASHPD_BLUE_PIP_TEX, remoteExecutedOwner]];
+missionNameSpace setVariable [format["ASHPD_VAR_BCAM%1", remoteExecutedOwner], "camera" camCreate [0,0,0]];
 
 private _orangeDir = vectorDir _oPortal;
 private _blueDir = vectorDir _bPortal;
 private _orangeUp = vectorUp _oPortal;
 private _blueUp = vectorUp _bPortal;
 
-private _blueCam = PG_REMOTE_BLUE_CAM;
+private _blueCam = ASHPD_REMOTE_BLUE_CAM;
 
 _blueCam setPosWorld (getPosWorld _oPortal);
 _blueCam setVectorDirAndUp [_orangeDir vectorMultiply -1, _orangeUp];
-_blueCam cameraEffect PG_BLUE_PIP_EFFECT; 
+_blueCam cameraEffect ASHPD_BLUE_PIP_EFFECT; 
 _blueCam camSetFov 1;
 _blueCam camCommit 0;
 
 // Set up the orange portal textures and cams
-_oPortal setObjectMaterial [1, PG_PIP_MAT];
-_oPortal setObjectTexture [1, format[PG_ORANGE_PIP_TEX, remoteExecutedOwner]];  
-missionNameSpace setVariable [format["PG_VAR_OCAM%1", remoteExecutedOwner], "camera" camCreate [0,0,0]];
+_oPortal setObjectMaterial [1, ASHPD_PIP_MAT];
+_oPortal setObjectTexture [1, format[ASHPD_ORANGE_PIP_TEX, remoteExecutedOwner]];  
+missionNameSpace setVariable [format["ASHPD_VAR_OCAM%1", remoteExecutedOwner], "camera" camCreate [0,0,0]];
 
-private _orangeCam = PG_REMOTE_ORANGE_CAM;
+private _orangeCam = ASHPD_REMOTE_ORANGE_CAM;
 
 _orangeCam setPosWorld (getPosWorld _bPortal);
 _orangeCam setVectorDirAndUp [_blueDir vectorMultiply -1, _blueUp];
-_orangeCam cameraEffect PG_ORANGE_PIP_EFFECT; 
+_orangeCam cameraEffect ASHPD_ORANGE_PIP_EFFECT; 
 _orangeCam camSetFov 1;
 _orangeCam camCommit 0;
 

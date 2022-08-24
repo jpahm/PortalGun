@@ -18,41 +18,41 @@
 /// Parameters: None.
 ///	Return value: None.
 
-#ifdef PG_DEBUG
-PG_LOG_FUNC("UpdateCrosshair");
+#ifdef ASHPD_DEBUG
+ASHPD_LOG_FUNC("UpdateCrosshair");
 #endif
 
-if (PG_DUAL_PORTALS) then {
+if (ASHPD_DUAL_PORTALS) then {
 	//	If neither portal open in dual mode, show both colors empty
-	if (!PG_VAR_BLUE_SPAWNED && {!PG_VAR_ORANGE_SPAWNED}) then {
-		PG_VAR_CROSSHAIR_IMAGE = PG_CROSSHAIR_DUAL_EMPTY;
+	if (!ASHPD_VAR_BLUE_OPEN && {!ASHPD_VAR_ORANGE_OPEN}) then {
+		ASHPD_VAR_CROSSHAIR_IMAGE = ASHPD_CROSSHAIR_DUAL_EMPTY;
 	} else {
 		//	If both portals open in dual mode, show both colors full
-		if (PG_VAR_BLUE_SPAWNED && {PG_VAR_ORANGE_SPAWNED}) then {
-			PG_VAR_CROSSHAIR_IMAGE = PG_CROSSHAIR_DUAL_FULL;
+		if (ASHPD_VAR_BLUE_OPEN && {ASHPD_VAR_ORANGE_OPEN}) then {
+			ASHPD_VAR_CROSSHAIR_IMAGE = ASHPD_CROSSHAIR_DUAL_FULL;
 		//	Else, if only one color open in dual mode, show one color full
 		} else {
-			if (PG_VAR_BLUE_SPAWNED) then {
-				PG_VAR_CROSSHAIR_IMAGE = PG_CROSSHAIR_DUAL_BLUE;
+			if (ASHPD_VAR_BLUE_OPEN) then {
+				ASHPD_VAR_CROSSHAIR_IMAGE = ASHPD_CROSSHAIR_DUAL_BLUE;
 			} else {
-				PG_VAR_CROSSHAIR_IMAGE = PG_CROSSHAIR_DUAL_ORANGE;
+				ASHPD_VAR_CROSSHAIR_IMAGE = ASHPD_CROSSHAIR_DUAL_ORANGE;
 			};
 		};
 	};
 } else {
 	//	If in blue only mode, show both full if blue open
-	if (PG_BLUE_ONLY) then {
-		if (PG_VAR_BLUE_SPAWNED) then {
-			PG_VAR_CROSSHAIR_IMAGE = PG_CROSSHAIR_BLUE;
+	if (ASHPD_BLUE_ONLY) then {
+		if (ASHPD_VAR_BLUE_OPEN) then {
+			ASHPD_VAR_CROSSHAIR_IMAGE = ASHPD_CROSSHAIR_BLUE;
 		} else {
-			PG_VAR_CROSSHAIR_IMAGE = PG_CROSSHAIR_BLUE_EMPTY;
+			ASHPD_VAR_CROSSHAIR_IMAGE = ASHPD_CROSSHAIR_BLUE_EMPTY;
 		};
 	//	Else, if in orange only mode, show both full if orange open
 	} else {
-		if (PG_VAR_ORANGE_SPAWNED) then {
-			PG_VAR_CROSSHAIR_IMAGE = PG_CROSSHAIR_ORANGE;
+		if (ASHPD_VAR_ORANGE_OPEN) then {
+			ASHPD_VAR_CROSSHAIR_IMAGE = ASHPD_CROSSHAIR_ORANGE;
 		} else {
-			PG_VAR_CROSSHAIR_IMAGE = PG_CROSSHAIR_ORANGE_EMPTY;
+			ASHPD_VAR_CROSSHAIR_IMAGE = ASHPD_CROSSHAIR_ORANGE_EMPTY;
 		};
 	};
 };

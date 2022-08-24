@@ -14,8 +14,8 @@
 
 #include "macros.hpp"
 
-#ifdef PG_DEBUG
-PG_LOG_FUNC("ProjectVector");
+#ifdef ASHPD_DEBUG
+ASHPD_LOG_FUNC("ProjectVector");
 #endif
 
 /// Description: Projects a vector onto a plane defined by a given normal vector.

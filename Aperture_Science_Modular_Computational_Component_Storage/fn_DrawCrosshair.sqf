@@ -20,12 +20,12 @@
 
 // Adapted from https://github.com/darkChozo/fa_crosshair
 
-#ifdef PG_VERBOSE_DEBUG
-PG_LOG_FUNC("DrawCrosshair");
+#ifdef ASHPD_VERBOSE_DEBUG
+ASHPD_LOG_FUNC("DrawCrosshair");
 #endif
 
 // Don't show crosshair if player has it disabled
-if (PG_VAR_CROSSHAIR_ENABLED) then {
+if (ASHPD_VAR_CROSSHAIR_ENABLED) then {
 
 	private _showCrosshair = false;
 
@@ -68,16 +68,16 @@ if (PG_VAR_CROSSHAIR_ENABLED) then {
 			_posLaser = _posLaser vectorAdd (_x vectorMultiply ([0.67, 0.77, 0.035] select _forEachIndex));
 		} forEach [_right, _forward, _up];
 
-		// Raycast collision check; up to PG_VAR_MAX_RANGE
-		private _posXhair = _posLaser vectorAdd (_forward vectorMultiply PG_VAR_MAX_RANGE);
+		// Raycast collision check; up to ASHPD_VAR_MAX_RANGE
+		private _posXhair = _posLaser vectorAdd (_forward vectorMultiply ASHPD_VAR_MAX_RANGE);
 		private _hitLaser = lineIntersectsSurfaces [_posLaser, _posXhair, player];
 
 		if (count _hitLaser > 0) then {
 			// If there's a hit, display crosshair
 			private _arXhair = ASLToAGL ((_hitLaser select 0) select 0);
-			private _scale = safeZoneW * safeZoneW * PG_VAR_CROSSHAIR_SCALE;
+			private _scale = safeZoneW * safeZoneW * ASHPD_VAR_CROSSHAIR_SCALE;
 			drawIcon3D [
-				PG_VAR_CROSSHAIR_IMAGE,
+				ASHPD_VAR_CROSSHAIR_IMAGE,
 				[1,1,1,1],
 				_arXhair,
 				_scale,

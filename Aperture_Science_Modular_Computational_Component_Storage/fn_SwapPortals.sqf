@@ -18,8 +18,8 @@
 /// Parameters: None.
 ///	Return value: None.
 
-#ifdef PG_DEBUG
-PG_LOG_FUNC("SwapPortals");
+#ifdef ASHPD_DEBUG
+ASHPD_LOG_FUNC("SwapPortals");
 #endif
 
 private _weapon = currentWeapon player;
@@ -27,22 +27,27 @@ private _weapon = currentWeapon player;
 // Only allow portal swap with portal gun equipped
 if !(_weapon isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]) exitWith {};
 
-private _temp = PG_VAR_CURRENT_PORTAL;
-PG_VAR_CURRENT_PORTAL = PG_VAR_OTHER_PORTAL;
-PG_VAR_OTHER_PORTAL = _temp;
+private _temp = ASHPD_VAR_CURRENT_PORTAL;
+ASHPD_VAR_CURRENT_PORTAL = ASHPD_VAR_OTHER_PORTAL;
+ASHPD_VAR_OTHER_PORTAL = _temp;
+
+private _weaponSwapHandle = player getVariable ["ASHPD_VAR_weaponSwapHandle", scriptNull];
+if !(_weaponSwapHandle isEqualTo scriptNull) then {
+	terminate _weaponSwapHandle;
+};
 
 // Force weapon mode to match current portal
-[_weapon] spawn {
+player setVariable ["ASHPD_VAR_weaponSwapHandle", [_weapon] spawn {
 	params["_weapon"];
 	// Temporarily remove weaponMode EH so we can swap the mode without looping
-	["weaponMode", PG_VAR_SWAP_HANDLE] call CBA_fnc_removePlayerEventHandler;
+	["weaponMode", ASHPD_VAR_SWAP_EH_ID] call CBA_fnc_removePlayerEventHandler;
 	sleep 0.1;
 	// Make sure firemode matches current portal setting
 	private _ammo = player ammo _weapon;
 	player setAmmo [_weapon, 0];
-	player forceWeaponFire [_weapon, PG_VAR_CURRENT_PORTAL];
+	player forceWeaponFire [_weapon, ASHPD_VAR_CURRENT_PORTAL];
 	player setAmmo [_weapon, _ammo];
 	sleep 0.1;
 	// Restore weaponMode EH
-	PG_VAR_SWAP_HANDLE = ["weaponMode", PG_fnc_SwapPortals] call CBA_fnc_addPlayerEventHandler;
-};
+	ASHPD_VAR_SWAP_EH_ID = ["weaponMode", ASHPD_fnc_SwapPortals] call CBA_fnc_addPlayerEventHandler;
+}];

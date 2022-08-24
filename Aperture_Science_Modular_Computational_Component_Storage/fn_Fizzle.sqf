@@ -22,45 +22,24 @@
 ///
 ///	Return value: None.
 
-#ifdef PG_DEBUG
-PG_LOG_FUNC("Fizzle");
+#ifdef ASHPD_DEBUG
+ASHPD_LOG_FUNC("Fizzle");
 #endif
 
-params[["_portals", [PG_VAR_CURRENT_PORTAL, PG_VAR_OTHER_PORTAL], [[]]]];
+params[["_portals", [ASHPD_VAR_CURRENT_PORTAL, ASHPD_VAR_OTHER_PORTAL], [[]]]];
 
-[player, "gun_fizzle"] remoteExecCall ["say3D"];
+[player, "gun_fizzle"] call ASHPD_fnc_PlaySound;
 
 private _fizzleSpawns = [];
 
 // Fizzle each given portal individually
 {
 	if (_x == "Blue") then {
-		_x = PG_VAR_BLUE_PORTAL;
+		_x = ASHPD_VAR_BLUE_PORTAL;
 	} else {
-		_x = PG_VAR_ORANGE_PORTAL;
+		_x = ASHPD_VAR_ORANGE_PORTAL;
 	};
-	_fizzleSpawns pushBack (_x spawn {
-		[_this, "portal_fizzle", false] remoteExec ["PG_fnc_PlaySound"];
-		// Animate portal closing
-		[_this, false] call PG_fnc_AnimatePortal;
-		sleep 0.25;
-		detach _this;
-		[_this, true] remoteExecCall ["hideObjectGlobal", [0, 2] select PG_VAR_IS_DEDI];
-		
-		if (_this isEqualTo PG_VAR_BLUE_PORTAL) then {
-			PG_VAR_BLUE_PORTAL setPosWorld [0,0,0];
-			PG_VAR_BLUE_SS setPosWorld [0,0,0];
-			PG_VAR_BLUE_SPAWNED = false;
-		} else {
-			PG_VAR_ORANGE_PORTAL setPosWorld [0,0,0];
-			PG_VAR_ORANGE_SS setPosWorld [0,0,0];
-			PG_VAR_ORANGE_SPAWNED = false;
-		};
-	});
+	[_x, "portal_fizzle"] call ASHPD_fnc_PlaySound;
+	// Animate portal closing
+	[_x, false] call ASHPD_fnc_SetPortalOpen;
 } forEach _portals; 
-
-// Wait for individual fizzles to complete
-waitUntil { (_fizzleSpawns select { scriptDone _x }) isEqualTo _fizzleSpawns };
-
-// Update other systems with new portal info
-[] call PG_fnc_UpdatePortals;

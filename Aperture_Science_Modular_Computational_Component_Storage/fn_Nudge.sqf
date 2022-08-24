@@ -23,27 +23,28 @@
 ///
 ///	Return value: None.
 
-#ifdef PG_VERBOSE_DEBUG
-PG_LOG_FUNC("Nudge");
+#ifdef ASHPD_VERBOSE_DEBUG
+ASHPD_LOG_FUNC("Nudge");
 #endif
 
 params["_bPortal", "_oPortal"];
 
-// Get the player's position
-private _playerPos = getPosWorld player;
+// Don't perform nudging unless the player is in free-fall outside of a vehicle
+if (isTouchingGround player || {vehicle player != player}) exitWith {};
 
 {
 	private _portal = _x;
 	private _portalDir = vectorDir _portal;
+	private _playerPos = getPosWorld player;
 	private _portalPos = getPosWorld _portal;
-	private _posOffset = _playerPos vectorDiff _portalPos;
-	// Ignore if not within range of the player or if the player is not elevated above the portal
-	if ((_posOffset#2) < 0.5 || {vectorMagnitude _posOffset > PG_VAR_NUDGE_RANGE}) then { continue };
+	private _posOffset = _portalPos vectorDiff _playerPos;
+	// Do nothing if not within nudge range of the player
+	if (vectorMagnitude _posOffset > ASHPD_VAR_NUDGE_RANGE) then { continue };
 	// Only check if we need to apply a nudge if the portal isn't vertical and is facing upwards
-	if (acos((_portalDir vectorMultiply -1) vectorCos [0, 0, 1]) < PG_VAR_VERTICAL_TOLERANCE) then {
+	if (acos((_portalDir vectorMultiply -1) vectorCos [0, 0, 1]) < ASHPD_VAR_VERTICAL_TOLERANCE) then {
 		// Calculate the position correction needed 
-		private _posCorrection = ([_posOffset, _portalDir vectorMultiply -1] call PG_fnc_ProjectVector) vectorMultiply -1;
+		private _posCorrection = [_posOffset, _portalDir vectorMultiply -1] call ASHPD_fnc_ProjectVector;
 		// Apply slight position correction
-		player setPosWorld (_playerPos vectorAdd (_posCorrection vectorMultiply (PG_VAR_NUDGE_STRENGTH * PG_VAR_UPDATE_INTERVAL * 144)));
+		player setPosWorld (_playerPos vectorAdd (_posCorrection vectorMultiply (ASHPD_VAR_NUDGE_STRENGTH * ASHPD_VAR_UPDATE_INTERVAL * ASHPD_SP_UPDATE_RATE)));
 	};
 } forEach [_bPortal, _oPortal];

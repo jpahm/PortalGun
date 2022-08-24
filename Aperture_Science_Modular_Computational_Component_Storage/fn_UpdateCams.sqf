@@ -23,8 +23,8 @@
 ///
 ///	Return value: None.
 
-#ifdef PG_DEBUG
-PG_LOG_FUNC("UpdateCams");
+#ifdef ASHPD_DEBUG
+ASHPD_LOG_FUNC("UpdateCams");
 #endif
 
 params["_bPortal", "_oPortal"];
@@ -34,8 +34,8 @@ private _blueDir = vectorDir _bPortal;
 private _orangeUp = vectorUp _oPortal;
 private _blueUp = vectorUp _bPortal;
 
-private _blueCam = PG_REMOTE_BLUE_CAM;
-private _orangeCam = PG_REMOTE_ORANGE_CAM;
+private _blueCam = ASHPD_REMOTE_BLUE_CAM;
+private _orangeCam = ASHPD_REMOTE_ORANGE_CAM;
 
 if !(isNull _orangeCam) then {
 	_orangeCam setPosWorld (getPosWorld _bPortal);

@@ -23,18 +23,18 @@
 ///
 ///	Return value: None.
 
-#ifdef PG_DEBUG
-PG_LOG_FUNC("UnlinkPortals");
+#ifdef ASHPD_DEBUG
+ASHPD_LOG_FUNC("UnlinkPortals");
 #endif
 
 params["_bPortal", "_oPortal"];
 
-private _blueCam = PG_REMOTE_BLUE_CAM;
-private _orangeCam = PG_REMOTE_ORANGE_CAM;
+private _blueCam = ASHPD_REMOTE_BLUE_CAM;
+private _orangeCam = ASHPD_REMOTE_ORANGE_CAM;
 
 // Reset blue portal textures and cams
-_bPortal setObjectMaterial [1, PG_BLUE_NOISE_MAT];
-_bPortal setObjectTexture [1, PG_BLUE_NOISE_TEX];
+_bPortal setObjectMaterial [1, ASHPD_BLUE_NOISE_MAT];
+_bPortal setObjectTexture [1, ASHPD_BLUE_NOISE_TEX];
 if !(isNull _blueCam) then {
 	_blueCam cameraEffect ["terminate", "back", format["piprenderbp%1", remoteExecutedOwner]];
 	detach _blueCam;
@@ -42,8 +42,8 @@ if !(isNull _blueCam) then {
 };
 
 // Reset orange portal textures and cams
-_oPortal setObjectMaterial [1, PG_ORANGE_NOISE_MAT];
-_oPortal setObjectTexture [1, PG_ORANGE_NOISE_TEX];
+_oPortal setObjectMaterial [1, ASHPD_ORANGE_NOISE_MAT];
+_oPortal setObjectTexture [1, ASHPD_ORANGE_NOISE_TEX];
 if !(isNull _orangeCam) then {
 	_orangeCam cameraEffect ["terminate", "back", format["piprenderop%1", remoteExecutedOwner]];
 	detach _orangeCam;

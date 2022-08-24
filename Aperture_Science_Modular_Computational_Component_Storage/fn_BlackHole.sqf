@@ -22,15 +22,15 @@
 ///
 ///	Return value: Spawn handle.
 
-#ifdef PG_DEBUG
-PG_LOG_FUNC("BlackHole");
+#ifdef ASHPD_DEBUG
+ASHPD_LOG_FUNC("BlackHole");
 #endif
 
 _this spawn {
 	params["_position"];
 
 	// Start playing music on all clients
-	["BlackHoleMusic"] remoteExecCall ["playMusic", [0, -2] select PG_VAR_IS_DEDI];
+	["BlackHoleMusic"] remoteExecCall ["playMusic", [0, -2] select ASHPD_VAR_IS_DEDI];
 
 	// Wait 16 seconds, until music intensifies
 	sleep 16;
@@ -38,19 +38,19 @@ _this spawn {
 	// Spawn the black hole
 	private _blackHole = createVehicle ["death", _position, [], 0, "CAN_COLLIDE"];
 	// Init pull range to EH distance
-	private _blackHoleRange = PG_VAR_BH_EH_DISTANCE;
+	private _blackHoleRange = ASHPD_VAR_BH_EH_DISTANCE;
 	// Gravitational constant * Black hole mass for gravForce calc
 	private _GM = 10000000;
 	// Pull physX objects into the black hole and destroy them
 	while {true} do {
 		// Destroy any non-player items that enter the event horizon
-		private _destroy = (_position nearObjects PG_VAR_BH_EH_DISTANCE) - [_blackHole];
+		private _destroy = (_position nearObjects ASHPD_VAR_BH_EH_DISTANCE) - [_blackHole];
 		{
 			_x setDamage 1;
 			// Hide object
-			_x hideObjectGlobal true;
+			ASHPD_HIDE_SERVER(_x, true);
 			// Delete all vehicles that aren't units
-			if (_x isKindOf "AllVehicles" && {!(_x isKindOf "Man")}) then {
+			if (_x isKindOf "AllVehicles" && {!(_x isKindOf "CAManBase")}) then {
 				deleteVehicle _x;
 			};
 		} forEach _destroy;

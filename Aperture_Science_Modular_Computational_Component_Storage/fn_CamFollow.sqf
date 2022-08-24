@@ -23,31 +23,37 @@
 ///
 ///	Return value: None.
 
-#ifdef PG_VERBOSE_DEBUG
-PG_LOG_FUNC("CamFollow");
+#ifdef ASHPD_VERBOSE_DEBUG
+ASHPD_LOG_FUNC("CamFollow");
 #endif
 
 params["_bPortal", "_oPortal"];
 
 // Don't do anything if PiP is disabled
-if (!isPiPEnabled || {!PG_VAR_PIP_ENABLED}) exitWith {};
+if (!isPiPEnabled || {!ASHPD_VAR_PIP_ENABLED}) exitWith {};
 
 private _blueAttached = attachedTo _bPortal;
 private _orangeAttached = attachedTo _oPortal;
 
-private _blueCam = PG_REMOTE_BLUE_CAM;
-private _orangeCam = PG_REMOTE_ORANGE_CAM;
+private _blueCam = ASHPD_REMOTE_BLUE_CAM;
+private _orangeCam = ASHPD_REMOTE_ORANGE_CAM;
 
-// If the blue or orange portals are attached to something, move the cams along with the object's velocity
+// If the blue or orange portals are attached to something, move the cams and sound sources along with the object's velocity
 if !(isNull _blueAttached) then {
 	private _attachVel = velocity _blueAttached;
 	private _newPos = (getPosWorld _bPortal) vectorAdd (_attachVel vectorMultiply -0.1);
 	_orangeCam setPosWorld _newPos;
-	PG_VAR_BLUE_SS setPosWorld _newPos;
+	// Only the owner of the portal should update its soundSource position
+	if (remoteExecutedOwner isEqualTo clientOwner) then {
+		(_bPortal getVariable "soundSource") setPosWorld _newPos;
+	};
 };
 if !(isNull _orangeAttached) then {
 	private _attachVel = velocity _orangeAttached;
 	private _newPos = (getPosWorld _oPortal) vectorAdd (_attachVel vectorMultiply -0.1);
 	_blueCam setPosWorld _newPos;
-	PG_VAR_ORANGE_SS setPosWorld _newPos;
+	// Only the owner of the portal should update its soundSource position
+	if (remoteExecutedOwner isEqualTo clientOwner) then {
+		(_oPortal getVariable "soundSource") setPosWorld _newPos;
+	};
 };

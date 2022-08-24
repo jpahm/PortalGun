@@ -18,54 +18,54 @@
 /// Parameters: None.
 ///	Return value: None.
 
-#ifdef PG_DEBUG
-PG_LOG_FUNC("UpdatePortals");
+#ifdef ASHPD_DEBUG
+ASHPD_LOG_FUNC("UpdatePortals");
 #endif
 
-if (!PG_VAR_BLUE_SPAWNED || {!PG_VAR_ORANGE_SPAWNED}) then {
+if (!ASHPD_VAR_BLUE_OPEN || {!ASHPD_VAR_ORANGE_OPEN}) then {
 	// Unlink the portals if they're linked but either is no longer spawned
-	if (PG_VAR_PORTALS_LINKED) then {
+	if (ASHPD_VAR_PORTALS_LINKED) then {
 		// Unlink the portals on all clients
-		[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_UnlinkPortals", [0, -2] select PG_VAR_IS_DEDI, format ["PG_LINK_%1", clientOwner]];
+		[ASHPD_VAR_BLUE_PORTAL, ASHPD_VAR_ORANGE_PORTAL] remoteExecCall ["ASHPD_fnc_UnlinkPortals", [0, -2] select ASHPD_VAR_IS_DEDI, format ["ASHPD_LINK_%1", clientOwner]];
 		// Stop teleporting
-		terminate PG_VAR_TP_HANDLE;
+		terminate ASHPD_VAR_TP_HANDLE;
 		// Stop sending remote updates
-		["DistributedClient"] remoteExecCall ["PG_fnc_StopRemoteUpdate", [0, -2] select PG_VAR_IS_DEDI, format ["PG_DIST_%1", clientOwner]];
+		["DistributedClient"] remoteExecCall ["ASHPD_fnc_StopRemoteUpdate", [0, -2] select ASHPD_VAR_IS_DEDI, format ["ASHPD_DIST_%1", clientOwner]];
 		// Stop camera following (if it's running)
-		["CamFollow"] remoteExecCall ["PG_fnc_StopRemoteUpdate", [0, -2] select PG_VAR_IS_DEDI, format ["PG_CF_%1", clientOwner]];
+		["CamFollow"] remoteExecCall ["ASHPD_fnc_StopRemoteUpdate", [0, -2] select ASHPD_VAR_IS_DEDI, format ["ASHPD_CF_%1", clientOwner]];
 		// Mark cam follow as off
-		PG_VAR_CAM_FOLLOW = false;
+		ASHPD_VAR_CAM_FOLLOW = false;
 		// Set linked state to false
-		PG_VAR_PORTALS_LINKED = false;
+		ASHPD_VAR_PORTALS_LINKED = false;
 	};
 } else {
 	// Link the portals if they're unlinked but both are spawned
-	if (!PG_VAR_PORTALS_LINKED) then {
+	if (!ASHPD_VAR_PORTALS_LINKED) then {
 		// Link the portals on all clients
-		[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_LinkPortals", [0, -2] select PG_VAR_IS_DEDI, format ["PG_LINK_%1", clientOwner]];
+		[ASHPD_VAR_BLUE_PORTAL, ASHPD_VAR_ORANGE_PORTAL] remoteExecCall ["ASHPD_fnc_LinkPortals", [0, -2] select ASHPD_VAR_IS_DEDI, format ["ASHPD_LINK_%1", clientOwner]];
 		// Handle teleporting on local client
-		PG_VAR_TP_HANDLE = [] spawn {
+		ASHPD_VAR_TP_HANDLE = [] spawn {
 			while {true} do {
-				[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] call PG_fnc_Teleport;
-				uiSleep PG_VAR_UPDATE_INTERVAL;
+				[ASHPD_VAR_BLUE_PORTAL, ASHPD_VAR_ORANGE_PORTAL] call ASHPD_fnc_Teleport;
+				uiSleep ASHPD_VAR_UPDATE_INTERVAL;
 			};
 		};
 		// Delegate camera illusion and nudging to clients
 		[
-			[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL],
+			[ASHPD_VAR_BLUE_PORTAL, ASHPD_VAR_ORANGE_PORTAL],
 			{
-				_this call PG_fnc_CamIllusion;
-				_this call PG_fnc_Nudge;
+				_this call ASHPD_fnc_CamIllusion;
+				_this call ASHPD_fnc_Nudge;
 			},
 			"DistributedClient"
-		] remoteExecCall ["PG_fnc_StartRemoteUpdate", [0, -2] select PG_VAR_IS_DEDI, format ["PG_DIST_%1", clientOwner]];
+		] remoteExecCall ["ASHPD_fnc_StartRemoteUpdate", [0, -2] select ASHPD_VAR_IS_DEDI, format ["ASHPD_DIST_%1", clientOwner]];
 		// Set linked state to true
-		PG_VAR_PORTALS_LINKED = true;
+		ASHPD_VAR_PORTALS_LINKED = true;
 	};
 };
 
 // Update the camera positions on all clients
-[PG_VAR_BLUE_PORTAL, PG_VAR_ORANGE_PORTAL] remoteExecCall ["PG_fnc_UpdateCams", [0, -2] select PG_VAR_IS_DEDI, format ["PG_UPCAM_%1", clientOwner]];
+[ASHPD_VAR_BLUE_PORTAL, ASHPD_VAR_ORANGE_PORTAL] remoteExecCall ["ASHPD_fnc_UpdateCams", [0, -2] select ASHPD_VAR_IS_DEDI, format ["ASHPD_UPCAM_%1", clientOwner]];
 
 // Update custom crosshair w/ new portal info
-[] call PG_fnc_UpdateCrosshair;
+[] call ASHPD_fnc_UpdateCrosshair;

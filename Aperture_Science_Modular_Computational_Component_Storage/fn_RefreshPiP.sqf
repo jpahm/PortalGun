@@ -23,24 +23,24 @@
 ///
 ///	Return value: None.
 
-#ifdef PG_DEBUG
-PG_LOG_FUNC("RefreshPiP");
+#ifdef ASHPD_DEBUG
+ASHPD_LOG_FUNC("RefreshPiP");
 #endif
 
 params["_bPortal", "_oPortal"];
 
 // Don't do anything with the cams if PiP not enabled
-if (!isPiPEnabled || {!PG_VAR_PIP_ENABLED}) exitWith {};
+if (!isPiPEnabled || {!ASHPD_VAR_PIP_ENABLED}) exitWith {};
 
-private _blueCam = PG_REMOTE_BLUE_CAM;
-private _orangeCam = PG_REMOTE_ORANGE_CAM;
+private _blueCam = ASHPD_REMOTE_BLUE_CAM;
+private _orangeCam = ASHPD_REMOTE_ORANGE_CAM;
 
 // If the cameras currently exist, refresh their PiP textures
 if !(isNull _blueCam) then {
-	_bPortal setObjectTexture [1, format[PG_BLUE_PIP_TEX, remoteExecutedOwner]];  
-	_blueCam cameraEffect PG_BLUE_PIP_EFFECT;
+	_bPortal setObjectTexture [1, format[ASHPD_BLUE_PIP_TEX, remoteExecutedOwner]];  
+	_blueCam cameraEffect ASHPD_BLUE_PIP_EFFECT;
 };
 if !(isNull _orangeCam) then {
-	_oPortal setObjectTexture [1, format[PG_ORANGE_PIP_TEX, remoteExecutedOwner]];
-	_orangeCam cameraEffect PG_ORANGE_PIP_EFFECT; 
+	_oPortal setObjectTexture [1, format[ASHPD_ORANGE_PIP_TEX, remoteExecutedOwner]];
+	_orangeCam cameraEffect ASHPD_ORANGE_PIP_EFFECT; 
 };

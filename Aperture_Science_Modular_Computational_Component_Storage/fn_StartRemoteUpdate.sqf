@@ -24,24 +24,24 @@
 ///
 ///	Return value: None.
 
-#ifdef PG_DEBUG
-PG_LOG_FUNC("StartRemoteUpdate");
+#ifdef ASHPD_DEBUG
+ASHPD_LOG_FUNC("StartRemoteUpdate");
 #endif
 
 params [["_codeParams", [], [[]]], ["_code", {}, [{}]], ["_id", "", [""]]]; 
 
 // Get client's remote update hashmap
-private _remoteUpdateHM = missionNameSpace getVariable [format ["PG_RU_%1", remoteExecutedOwner], createHashMapFromArray []];
+private _remoteUpdateHM = missionNameSpace getVariable [format ["ASHPD_VAR_RU_%1", remoteExecutedOwner], createHashMapFromArray []];
 
 // Start remote client's remote updates
 _remoteUpdateHM set [_id, 
 	[_codeParams, _code] spawn {
 		while {true} do {
 			(_this#0) call (_this#1);
-			uiSleep PG_VAR_UPDATE_INTERVAL;
+			uiSleep ASHPD_VAR_UPDATE_INTERVAL;
 		};
 	}
 ];
 
 // Update hashmap
-missionNameSpace setVariable [format ["PG_RU_%1", remoteExecutedOwner], _remoteUpdateHM];
+missionNameSpace setVariable [format ["ASHPD_VAR_RU_%1", remoteExecutedOwner], _remoteUpdateHM];

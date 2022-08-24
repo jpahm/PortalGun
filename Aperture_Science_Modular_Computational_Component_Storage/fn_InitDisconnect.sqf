@@ -18,8 +18,8 @@
 /// Parameters: None.
 ///	Return value: None.
 
-#ifdef PG_DEBUG
-PG_LOG_FUNC("InitDisconnect");
+#ifdef ASHPD_DEBUG
+ASHPD_LOG_FUNC("InitDisconnect");
 #endif
 
 addMissionEventHandler ["PlayerDisconnected",

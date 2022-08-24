@@ -22,8 +22,8 @@
 ///
 ///	Return value: Up vector of surface to use.
 
-#ifdef PG_DEBUG
-PG_LOG_FUNC("GetSurfaceUpVec");
+#ifdef ASHPD_DEBUG
+ASHPD_LOG_FUNC("GetSurfaceUpVec");
 #endif
 
 params[["_surfNormal", [], [[]]]];
@@ -36,7 +36,7 @@ if (_incline > 90) then {
 private _crossVector = [];
 
 // If on non-vertical surface, allow portal to rotate w/ player's view and counteract incline
-if (_incline < PG_VAR_VERTICAL_TOLERANCE) then {
+if (_incline < ASHPD_VAR_VERTICAL_TOLERANCE) then {
 	private _camVector = getCameraViewDirection player;
 	_crossVector = _surfNormal vectorCrossProduct _camVector;
 } else { // Else, simply place portal upright
