@@ -37,14 +37,14 @@ private _vectorSide = _surfNormal vectorCrossProduct _surfVectorUp;
 private _toleranceVector = _surfNormal vectorMultiply ASHPD_VAR_FLAT_TOLERANCE;
 // Inverse vector of _toleranceVector
 private _inverseToleranceVector = _toleranceVector vectorMultiply -1;
-// _vectorSide of length ASHPD_VAR_PORTAL_WIDTH_H (may not actually be left)
-private _leftVector = (_vectorSide vectorMultiply ASHPD_VAR_PORTAL_WIDTH_H);
+// _vectorSide of length ASHPD_PORTAL_WIDTH_H (may not actually be left)
+private _leftVector = (_vectorSide vectorMultiply ASHPD_PORTAL_WIDTH_H);
 // Inverse vector of _leftVector (may not actually be right)
 private _rightVector = (_leftVector vectorMultiply -1);
 // Vector parallel to the surface, points toward the top of the portal
-private _upVector = (_surfVectorUp vectorMultiply ASHPD_VAR_PORTAL_HEIGHT_H);
+private _upVector = (_surfVectorUp vectorMultiply ASHPD_PORTAL_HEIGHT_H);
 // Inverse vector of _upVector, points toward the bottom of the portal
-private _downVector = (_surfVectorUp vectorMultiply -ASHPD_VAR_PORTAL_HEIGHT_H);
+private _downVector = (_surfVectorUp vectorMultiply -ASHPD_PORTAL_HEIGHT_H);
 
 // Whether the portal is blocked from spawning in its current location
 private _portalBlocked = true;
@@ -52,7 +52,7 @@ private _portalBlocked = true;
 private _tries = ASHPD_VAR_MAX_FIT_TRIES;
 
 // Automatically fail if we're going to overlap another portal
-private _overlappingPortals = ((ASLtoAGL _pos) nearObjects ["Portal", ASHPD_VAR_PORTAL_WIDTH]) select {_x != _portalObj};
+private _overlappingPortals = ((ASLtoAGL _pos) nearObjects ["Portal", ASHPD_PORTAL_WIDTH]) select {_x != _portalObj};
 if (count _overlappingPortals != 0) exitWith { false };
 
 // Only try to fit the portal if it's blocked and has fit tries remaining
@@ -89,8 +89,8 @@ while {_portalBlocked && {_tries > 0}} do {
 	// Don't do any further checks if we already know the portal is blocked
 	if (_portalBlocked) then { continue };
 	// Make sure the surface under the portal is uniform within ASHPD_VAR_FLAT_TOLERANCE
-	if (abs((((_depthRayCasts#0)#0) distance ((_depthRayCasts#1)#0)) - ASHPD_VAR_PORTAL_WIDTH) > ASHPD_VAR_FLAT_TOLERANCE) then {_portalBlocked = true};
-	if (abs((((_depthRayCasts#2)#0) distance ((_depthRayCasts#3)#0)) - ASHPD_VAR_PORTAL_HEIGHT) > ASHPD_VAR_FLAT_TOLERANCE) then {_portalBlocked = true};
+	if (abs((((_depthRayCasts#0)#0) distance ((_depthRayCasts#1)#0)) - ASHPD_PORTAL_WIDTH) > ASHPD_VAR_FLAT_TOLERANCE) then {_portalBlocked = true};
+	if (abs((((_depthRayCasts#2)#0) distance ((_depthRayCasts#3)#0)) - ASHPD_PORTAL_HEIGHT) > ASHPD_VAR_FLAT_TOLERANCE) then {_portalBlocked = true};
 };
 
 // Update raycast position to adjusted position

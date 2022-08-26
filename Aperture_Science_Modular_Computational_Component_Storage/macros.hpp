@@ -34,11 +34,12 @@
 #define ASHPD_MP_UPDATE_RATE 60
 
 // Constants
-#define ASHPD_VAR_PORTAL_HEIGHT 2
-#define ASHPD_VAR_PORTAL_WIDTH 1.2
-#define ASHPD_VAR_PORTAL_HEIGHT_H 1
-#define ASHPD_VAR_PORTAL_WIDTH_H 0.6
-#define ASHPD_VAR_BH_EH_DISTANCE 150
+#define ASHPD_PORTAL_HEIGHT 2
+#define ASHPD_PORTAL_WIDTH 1.2
+#define ASHPD_PORTAL_HEIGHT_H 1
+#define ASHPD_PORTAL_WIDTH_H 0.6
+#define ASHPD_BH_FATAL_DISTANCE 150
+#define ASHPD_BH_COOLDOWN 600
 
 // Common macros
 #define ASHPD_DISABLED_POS [0,0,0]
@@ -59,6 +60,7 @@
 #define ASHPD_ORANGE_ONLY (ASHPD_VAR_INIT_SETTINGS isEqualTo [false, true])
 
 // Crosshair image paths
+#define ASHPD_CROSSHAIR_DEFAULT "\a3\ui_f\data\IGUI\Cfg\WeaponCursors\arifle_gs.paa"
 #define ASHPD_CROSSHAIR_DUAL_EMPTY "\PortalGun\Aperture_Science_Directional_Assistance_Navigational_Overlay_Correspondant\portal_dual_empty.paa"
 #define ASHPD_CROSSHAIR_DUAL_FULL "\PortalGun\Aperture_Science_Directional_Assistance_Navigational_Overlay_Correspondant\portal_dual_full.paa"
 #define ASHPD_CROSSHAIR_DUAL_BLUE "\PortalGun\Aperture_Science_Directional_Assistance_Navigational_Overlay_Correspondant\portal_dual_blue.paa"

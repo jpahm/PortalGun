@@ -39,8 +39,8 @@ if !(_weaponSwapHandle isEqualTo scriptNull) then {
 // Force weapon mode to match current portal
 player setVariable ["ASHPD_VAR_weaponSwapHandle", [_weapon] spawn {
 	params["_weapon"];
-	// Temporarily remove weaponMode EH so we can swap the mode without looping
-	["weaponMode", ASHPD_VAR_SWAP_EH_ID] call CBA_fnc_removePlayerEventHandler;
+	// Set swap flag so we can swap the mode without looping
+	player setVariable ["ASHPD_VAR_swapFlag", true];
 	sleep 0.1;
 	// Make sure firemode matches current portal setting
 	private _ammo = player ammo _weapon;
@@ -48,6 +48,4 @@ player setVariable ["ASHPD_VAR_weaponSwapHandle", [_weapon] spawn {
 	player forceWeaponFire [_weapon, ASHPD_VAR_CURRENT_PORTAL];
 	player setAmmo [_weapon, _ammo];
 	sleep 0.1;
-	// Restore weaponMode EH
-	ASHPD_VAR_SWAP_EH_ID = ["weaponMode", ASHPD_fnc_SwapPortals] call CBA_fnc_addPlayerEventHandler;
 }];

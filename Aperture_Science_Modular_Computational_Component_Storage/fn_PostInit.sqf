@@ -32,12 +32,14 @@ if (isDedicated) exitWith {};
 if (isNil "ASHPD_VAR_BLUE_PORTAL") then {
 	ASHPD_VAR_BLUE_PORTAL = createVehicle ["Portal", [0,0,0], [], 0, "CAN_COLLIDE"];
 	ASHPD_VAR_BLUE_PORTAL setVariable ["open", false];
+	[getPlayerUID player, [ASHPD_VAR_BLUE_PORTAL]] remoteExecCall ["ASHPD_fnc_AddToGC", 2];
 } else {
 	[ASHPD_VAR_BLUE_PORTAL, true] call ASHPD_fnc_SetPortalOpen;
 };
 if (isNil "ASHPD_VAR_ORANGE_PORTAL") then {
 	ASHPD_VAR_ORANGE_PORTAL = createVehicle ["Portal", [0,0,0], [], 0, "CAN_COLLIDE"];
 	ASHPD_VAR_ORANGE_PORTAL setVariable ["open", false];
+	[getPlayerUID player, [ASHPD_VAR_ORANGE_PORTAL]] remoteExecCall ["ASHPD_fnc_AddToGC", 2];
 } else {
 	[ASHPD_VAR_ORANGE_PORTAL, true] call ASHPD_fnc_SetPortalOpen;
 };
@@ -45,6 +47,9 @@ if (isNil "ASHPD_VAR_ORANGE_PORTAL") then {
 // Create the sound sources for the portal ambiance
 ASHPD_VAR_BLUE_PORTAL setVariable ["soundSource", createSoundSource ["PortalAmbientSource", ASHPD_VAR_BLUE_PORTAL, [], 0], true];
 ASHPD_VAR_ORANGE_PORTAL setVariable ["soundSource", createSoundSource ["PortalAmbientSource", ASHPD_VAR_ORANGE_PORTAL, [], 0], true];
+
+// Add sound sources to GC
+[getPlayerUID player, [ASHPD_VAR_BLUE_PORTAL getVariable "soundSource", ASHPD_VAR_ORANGE_PORTAL getVariable "soundSource"]] remoteExecCall ["ASHPD_fnc_AddToGC", 2];
 
 // Set the inner portals to the default noise texture and material
 ASHPD_VAR_BLUE_PORTAL setObjectTextureGlobal [1, ASHPD_BLUE_NOISE_TEX];

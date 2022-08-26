@@ -86,9 +86,9 @@ ASHPD_VAR_FIZZLE_KEYS = [
 		if (_this && ASHPD_VAR_ACEMED_ENABLED) then {
 			ASHPD_VAR_FALL_HANDLE = [] spawn {
 				while {true} do {
-					if (!isTouchingGround player && {speed player > 0.36}) then {
+					if (!isTouchingGround player && {vectorMagnitude velocity player > 0.1}) then {
 						player setVariable ["ace_medical_allowDamage", false];
-						waitUntil {speed player <= 0.36};
+						waitUntil {vectorMagnitude velocity player <= 0.1};
 						player setVariable ["ace_medical_allowDamage", true];
 					};
 					sleep 0.5;
@@ -185,7 +185,9 @@ ASHPD_VAR_FIZZLE_KEYS = [
 	[_modName, "$STR_PGUN_Toggles"],
 	true,
 	0,
-	{},
+	{
+		[] call ASHPD_fnc_UpdateCrosshair;
+	},
 	false
 ] call CBA_fnc_addSetting;
 

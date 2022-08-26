@@ -35,10 +35,10 @@ _this spawn {
 		_portalObj animateSource ["Portal_Grow_Source", 0, true];
 		_portalObj animateSource ["Portal_Grow_Source", 1, 1];
 	} else {
+		detach _portalObj;
 		_portalObj animateSource ["Portal_Grow_Source", 1, true];
 		_portalObj animateSource ["Portal_Grow_Source", 0, 1];
 		sleep 0.25;
-		detach _portalObj;
 		_portalObj setPosWorld ASHPD_DISABLED_POS;
 		(_portalObj getVariable "soundSource") setPosWorld ASHPD_DISABLED_POS;
 		ASHPD_HIDE_SERVER(_portalObj, true);

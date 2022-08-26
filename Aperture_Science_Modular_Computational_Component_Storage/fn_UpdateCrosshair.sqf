@@ -22,6 +22,11 @@
 ASHPD_LOG_FUNC("UpdateCrosshair");
 #endif
 
+// Don't show custom crosshair if player has it disabled
+if !(ASHPD_VAR_CROSSHAIR_ENABLED) exitWith {
+	ASHPD_VAR_CROSSHAIR_IMAGE = ASHPD_CROSSHAIR_DEFAULT;
+};
+
 if (ASHPD_DUAL_PORTALS) then {
 	//	If neither portal open in dual mode, show both colors empty
 	if (!ASHPD_VAR_BLUE_OPEN && {!ASHPD_VAR_ORANGE_OPEN}) then {

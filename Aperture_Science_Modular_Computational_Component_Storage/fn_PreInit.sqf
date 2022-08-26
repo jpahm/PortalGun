@@ -27,9 +27,13 @@ if !(fileExists CAKE_JPG) exitWith {};
 
 // Set up disconnect EH if server
 if (isServer) then {
-	ASHPD_VAR_IS_DEDI = isDedicated;
+	ASHPD_VAR_GC = createHashMap; // The "garbage collector" to use for cleaning up items spawned for players when they disconnect
+	ASHPD_VAR_IS_DEDI = isDedicated; // Easy variable for determining if the mod is running on a dedicated server or not
+	ASHPD_VAR_LAST_BH_TIME = -ASHPD_BH_COOLDOWN; // Last time a black hole was spawned, set to negative cooldown so one can be spawned immediately
+	// Broadcast global vars
 	publicVariable "ASHPD_VAR_IS_DEDI";
-	[] call ASHPD_fnc_InitDisconnect;
+	publicVariable "ASHPD_VAR_LAST_BH_TIME";
+	[] call ASHPD_fnc_InitGC;
 };
 
 // Globals (you shouldn't touch these unless you know what you're doing!)

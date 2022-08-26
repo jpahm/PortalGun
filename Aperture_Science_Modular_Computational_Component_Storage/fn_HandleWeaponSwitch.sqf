@@ -28,6 +28,11 @@ ASHPD_LOG_FUNC("HandleWeaponSwitch");
 
 params["_unit", ["_currentWeapon", ""]];
 
+// Unset swap flag and return if swap flag set, prevents looping with ASHPD_fnc_SwapPortals
+if (player getVariable ["ASHPD_VAR_swapFlag", false]) exitWith {
+	player setVariable ["ASHPD_VAR_swapFlag", false];
+};
+
 // Player switched to portal gun
 if (_currentWeapon != "" && {_currentWeapon == primaryWeapon player && {_currentWeapon isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]}}) then {
 	// Only set up crosshair and other things if not already initialized

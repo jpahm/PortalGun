@@ -1276,17 +1276,30 @@
       <Czech>Není to lež?</Czech>
     </Key>
     <Key ID="STR_PGUN_Lemon_Desc">
-      <English>Can burn your house down!</English>
-      <Spanish>¡Puede quemar tu casa!</Spanish>
-      <German>Kann dein Haus niederbrennen!</German>
-      <Chinesesimp>能把你的房子烧掉!</Chinesesimp>
-      <Japanese>家を燃やせる！？</Japanese>
-      <Italian>Può bruciare la tua casa!</Italian>
-      <French>Peut brûler votre maison !</French>
-      <Polish>Może spalić twój dom!</Polish>
-      <Russian>Может сжечь ваш дом!</Russian>
-      <Portuguese>Pode incendiar a sua casa!</Portuguese>
-      <Czech>Může vám zapálit dům!</Czech>
+      <English>When life gives you lemons...</English>
+      <Spanish>Cuando la vida te da limones...</Spanish>
+      <German>Wenn das Leben dir Zitronen gibt...</German>
+      <Chinesesimp>当生活给你柠檬的时候</Chinesesimp>
+      <Japanese>人生からレモンを与えられたら...</Japanese>
+      <Italian>Quando la vita ti dà i limoni...</Italian>
+      <French>Quand la vie vous donne des citrons...</French>
+      <Polish>Kiedy życie daje ci cytryny...</Polish>
+      <Russian>Когда жизнь дарит вам лимоны...</Russian>
+      <Portuguese>Quando a vida lhe dá limões...</Portuguese>
+      <Czech>Když vám život dá citrony...</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Toggle_Radio">
+      <English>Toggle Radio</English>
+      <Spanish>Radio Toggle</Spanish>
+      <German>Radio umschalten</German>
+      <Chinesesimp>拨动收音机</Chinesesimp>
+      <Japanese>トグルラジオ</Japanese>
+      <Italian>Radio Toggle</Italian>
+      <French>Toggle Radio</French>
+      <Polish>Toggle Radio</Polish>
+      <Russian>Toggle Radio</Russian>
+      <Portuguese>Rádio Toggle</Portuguese>
+      <Czech>Přepínání rádia</Czech>
     </Key>
   </Package>
 </Project>

@@ -103,9 +103,9 @@ private ["_posVector", "_objDir", "_objUp", "_objPos", "_isMan", "_rayCast", "_p
 		// Use boundingBox dimensions to properly space object from exit portal
 		(boundingBoxReal _object) params ["_minArr", "_maxArr"];
 		if (_isMan && {acos(_otherDir vectorCos [0, 0, -1]) < ASHPD_VAR_VERTICAL_TOLERANCE}) then {
-			_sizeArr = (_maxArr vectorAdd (_minArr vectorMultiply -1)) vectorMultiply 0.05;
+			_sizeArr = (_maxArr vectorDiff _minArr) vectorMultiply 0.05;
 		} else {
-			_sizeArr = (_maxArr vectorAdd (_minArr vectorMultiply -1)) vectorMultiply .75;
+			_sizeArr = (_maxArr vectorDiff _minArr) vectorMultiply .75;
 		};
 		_outPos = _outPos vectorAdd (_otherDir vectorMultiply -(vectorMagnitude ([[_sizeArr, _otherX] call ASHPD_fnc_ProjectVector, _otherUp] call ASHPD_fnc_ProjectVector)));
 		
@@ -120,7 +120,7 @@ private ["_posVector", "_objDir", "_objUp", "_objPos", "_isMan", "_rayCast", "_p
 		_otherAngle = [_otherAngle, 180 - _otherAngle] select (_otherAngle > 90);
 		
 		// Transform direction based on velocity if only the entrance portal is facing straight up/down
-		if (_curAngle < 1 && _otherAngle >= 1) then {
+		if (_curAngle < ASHPD_VAR_VERTICAL_TOLERANCE && _otherAngle >= ASHPD_VAR_VERTICAL_TOLERANCE) then {
 			_outDir = vectorNormalized _outVel;
 		// Else, perform normal direction transformation
 		} else {

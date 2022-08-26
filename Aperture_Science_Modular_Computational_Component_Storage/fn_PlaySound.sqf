@@ -28,5 +28,5 @@ ASHPD_LOG_FUNC("PlaySound");
 ///	Return value: None.
 
 params[["_object", objNull, [objNull]], ["_sound", "", [""]]]; 
-getArray(configFile >> "CfgSounds" >> _sound >> "sound") params ["_path", "_volume"];
-playSound3D [_path, _object, false, getPosASL _object, _volume];
+getArray(configFile >> "CfgSounds" >> _sound >> "sound") params ["_path", "_volume", ["_pitch", 1], ["_distance", 0]];
+playSound3D [_path, _object, false, getPosASL _object, _volume, _pitch, _distance];

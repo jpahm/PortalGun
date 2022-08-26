@@ -24,66 +24,62 @@
 ASHPD_LOG_FUNC("DrawCrosshair");
 #endif
 
-// Don't show crosshair if player has it disabled
-if (ASHPD_VAR_CROSSHAIR_ENABLED) then {
+private _showCrosshair = false;
 
-	private _showCrosshair = false;
+// Should crosshair be shown for animation? Animations in order: stopped, tactical pace, walking, deployed, FFV, limping, diving, bottom diving, surface diving
+{
+	if ([_x,animationState player] call BIS_fnc_inString) exitWith {_showCrosshair = true};
+} forEach [
+	"MstpSrasW",
+	"MtacSrasW",
+	"MwlkSrasW",
+	"bipod",
+	"aim",
+	"MlmpSrasW",
+	"AdvePercMstpSnonWrfl",
+	"AbdvPercMstpSnonWrfl",
+	"AsdvPercMstpSnonWrfl"
+];
 
-	// Should crosshair be shown for animation? Animations in order: stopped, tactical pace, walking, deployed, FFV, limping, diving, bottom diving, surface diving
+if (!_showCrosshair) exitWith {};
+
+// Only show crosshair if player alive, player not aiming down sights, animation correct and player has crosshair enabled
+if (alive player && {cameraView in ["INTERNAL", "EXTERNAL"]}) then {
+	private _posLaser = [0,0,0];
+	private _right = [0,0,0];
+	private _up = [0,0,0];
+	private _forward = [0,0,0];
+
+	// To estimate muzzle position, primary weapons (rifles) use the Weapon mempoint, pistols + launchers use RightHand mempoint.
+	// Weapon is more accurate but only tracks the primary weapon.
+	if (currentWeapon player == primaryWeapon player) then {
+		_posLaser = AGLToASL (player modelToWorld (player selectionPosition "Weapon"));
+
+		_right = _posLaser vectorFromTo AGLToASL (player modelToWorld (player selectionPosition "RightHand"));
+		_forward = player weaponDirection currentWeapon player;
+		_up = _right vectorCrossProduct _forward;
+		_right = _forward vectorCrossProduct _up;
+	};
+
 	{
-		if ([_x,animationState player] call BIS_fnc_inString) exitWith {_showCrosshair = true};
-	} forEach [
-		"MstpSrasW",
-		"MtacSrasW",
-		"MwlkSrasW",
-		"bipod",
-		"aim",
-		"MlmpSrasW",
-		"AdvePercMstpSnonWrfl",
-		"AbdvPercMstpSnonWrfl",
-		"AsdvPercMstpSnonWrfl"
-	];
-	
-	if (!_showCrosshair) exitWith {};
+		_posLaser = _posLaser vectorAdd (_x vectorMultiply ([0.67, 0.77, 0.035] select _forEachIndex));
+	} forEach [_right, _forward, _up];
 
-	// Only show crosshair if player alive, player not aiming down sights, animation correct and player has crosshair enabled
-	if (alive player && {cameraView in ["INTERNAL", "EXTERNAL"]}) then {
-		private _posLaser = [0,0,0];
-		private _right = [0,0,0];
-		private _up = [0,0,0];
-		private _forward = [0,0,0];
+	// Raycast collision check; up to ASHPD_VAR_MAX_RANGE
+	private _posXhair = _posLaser vectorAdd (_forward vectorMultiply ASHPD_VAR_MAX_RANGE);
+	private _hitLaser = lineIntersectsSurfaces [_posLaser, _posXhair, player];
 
-		// To estimate muzzle position, primary weapons (rifles) use the Weapon mempoint, pistols + launchers use RightHand mempoint.
-		// Weapon is more accurate but only tracks the primary weapon.
-		if (currentWeapon player == primaryWeapon player) then {
-			_posLaser = AGLToASL (player modelToWorld (player selectionPosition "Weapon"));
-
-			_right = _posLaser vectorFromTo AGLToASL (player modelToWorld (player selectionPosition "RightHand"));
-			_forward = player weaponDirection currentWeapon player;
-			_up = _right vectorCrossProduct _forward;
-			_right = _forward vectorCrossProduct _up;
-		};
-
-		{
-			_posLaser = _posLaser vectorAdd (_x vectorMultiply ([0.67, 0.77, 0.035] select _forEachIndex));
-		} forEach [_right, _forward, _up];
-
-		// Raycast collision check; up to ASHPD_VAR_MAX_RANGE
-		private _posXhair = _posLaser vectorAdd (_forward vectorMultiply ASHPD_VAR_MAX_RANGE);
-		private _hitLaser = lineIntersectsSurfaces [_posLaser, _posXhair, player];
-
-		if (count _hitLaser > 0) then {
-			// If there's a hit, display crosshair
-			private _arXhair = ASLToAGL ((_hitLaser select 0) select 0);
-			private _scale = safeZoneW * safeZoneW * ASHPD_VAR_CROSSHAIR_SCALE;
-			drawIcon3D [
-				ASHPD_VAR_CROSSHAIR_IMAGE,
-				[1,1,1,1],
-				_arXhair,
-				_scale,
-				_scale,
-				0
-			];
-		};
+	if (count _hitLaser > 0) then {
+		// If there's a hit, display crosshair
+		private _arXhair = ASLToAGL ((_hitLaser select 0) select 0);
+		private _scale = safeZoneW * safeZoneW * ASHPD_VAR_CROSSHAIR_SCALE;
+		drawIcon3D [
+			ASHPD_VAR_CROSSHAIR_IMAGE,
+			[1,1,1,1],
+			_arXhair,
+			_scale,
+			_scale,
+			0
+		];
 	};
 };
