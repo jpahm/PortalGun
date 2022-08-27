@@ -5,6 +5,8 @@ Congratulations! You are now (able to be) in possession of the Aperture Science 
 - Do not submerge The Device in liquid, even partially.
 - Most importantly, under no circumstances should you **[REDACTED]**
 
+![Aperture Logo](https://i.imgur.com/ZlJhDgP.png)
+
 ## **Features:**
 - **A 1:1 scale, 2K-textured fully functional and animated portal gun**
 - **Fully functional portals\*** that can transport units, vehicles, PhysX objects, and projectiles\*\*, as well as completely conserving the momentum of anything that passes through them
