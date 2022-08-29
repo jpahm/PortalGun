@@ -7,7 +7,7 @@ Congratulations! You are now (able to be) in possession of the Aperture Science 
 
 ![Aperture Logo](https://i.imgur.com/ZlJhDgP.png)
 
-## **Features:**
+# **Features:**
 - **A 1:1 scale, 2K-textured fully functional and animated portal gun**
 - **Fully functional portals\*** that can transport units, vehicles, PhysX objects, and projectiles\*\*, as well as completely conserving the momentum of anything that passes through them
 - **Portal gun grabber arms** that you can use to pick up and move PhysX objects
