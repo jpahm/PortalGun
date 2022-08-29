@@ -1,4 +1,4 @@
-# **Ready to think with portals in ArmA 3?**
+# **Ready to think with portals in Arma 3?**
 Congratulations! You are now (able to be) in possession of the Aperture Science Handheld Portal Device. With it, you can create your own portals. These intra-dimensional gates have proven to be completely safe. The Device, however, has not:
 - Do not touch the operational end of The Device.
 - Do not look directly at the operational end of The Device.
