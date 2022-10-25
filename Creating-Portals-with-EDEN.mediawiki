@@ -1,9 +1,0 @@
-This mod supports placing portals (which can be used by all players) in the [https://community.bistudio.com/wiki/Category:Eden_Editor EDEN editor]. This is intended to be combined with the "portal mode" setting in the addon options, with which you can limit players to creating only one color of portal. The other color of portal can then be placed in EDEN and used as part of the map. This is mainly to allow you to create single-portal puzzles like those in the Portal series. Alternatively, you could disallow players having portal guns altogether, and simply place down both portals in EDEN.
-
-=== Important notes about editor-placed portals ===
-* Will not work properly if placed with Zeus
-* Need to be named either <code>ASHPD_VAR_ORANGE_PORTAL</code> or <code>ASHPD_VAR_BLUE_PORTAL</code> for either an orange or blue portal, respectively
-* Will be able to be fizzled by players unless the portal gun mode setting is set appropriately (only allow the player to fire the non-editor portal color)
-* Will be much more stable in SP than MP
-* Will appear as black in the editor -- this is normal
-* In order to look normal in-game, will need to be placed on a surface with its [https://community.bistudio.com/wiki/Eden_Editor:_Transformation_Widget#Changing_the_Reference_System local Y-axis] (green axis) pointing into the surface

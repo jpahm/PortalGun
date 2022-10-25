@@ -1,7 +1,0 @@
-If you're wanting to delve into the SQF code that powers this mod, you'll want to look [https://github.com/hochladen/PortalGun/tree/master/Aperture_Science_Modular_Computational_Component_Storage here] for the source files.
-
-This mod's code is relatively large and complex, and as such I have tried my best to leave helpful comments throughout. In addition to this, '''every SQF file in the directory linked above has a section at the top where I denote the purpose, expected parameters, and return type of the function the file is defining.'''
-
-With the above in mind, you should have relatively little trouble making changes to the mod's code if you possess the prerequisite SQF knowledge. If not, you can always start learning [https://community.bistudio.com/wiki/Introduction_to_Arma_Scripting here]!
-
-Happy programming!
