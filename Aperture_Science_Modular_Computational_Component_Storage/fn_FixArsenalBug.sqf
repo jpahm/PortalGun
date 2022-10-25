@@ -23,4 +23,4 @@ ASHPD_LOG_FUNC("FixArsenalBug");
 #endif
 
 uiSleep 0.5; // Need this sleep here for some reason, otherwise PiP cameras remain black
-[ASHPD_VAR_BLUE_PORTAL, ASHPD_VAR_ORANGE_PORTAL] remoteExecCall ["ASHPD_fnc_RefreshPiP", [0, -2] select ASHPD_VAR_IS_DEDI, format ["ASHPD_REFRESH_%1", clientOwner]];
+[ASHPD_VAR_BLUE_PORTAL, ASHPD_VAR_ORANGE_PORTAL] remoteExecCall ["ASHPD_fnc_RefreshPiP", ASHPD_CLIENTS, format ["ASHPD_REFRESH_%1", clientOwner]];

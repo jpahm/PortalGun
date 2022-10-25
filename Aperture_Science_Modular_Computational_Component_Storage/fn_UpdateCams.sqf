@@ -14,12 +14,16 @@
 
 #include "macros.hpp"
 
-/// Description: Moves the portal cameras to their current portal positions.
+/// Description: Moves the portal cameras to their current portal positions on other clients. Must be remoteExec'd.
 /// Parameters:
 ///		PARAMETER		|		EXPECTED INPUT TYPE		|		DESCRIPTION
 ///
-///		bPortal			|		Object					|		The blue portal.
-///		oPortal			|		Object					|		The orange portal.
+///		bPortalPos		|		PositionWorld			|		The blue portal.
+///		blueDir			|		Vector3D				|		The blue portal's vectorDir.
+///		blueUp			|		Vector3D				|		The blue portal's vectorUp.
+///		oPortalPos		|		PositionWorld			|		The orange portal.
+///		orangeDir		|		Vector3D				|		The orange portal's vectorDir.
+///		orangeUp		|		Vector3D				|		The orange portal's vectorUp.
 ///
 ///	Return value: None.
 
@@ -27,21 +31,16 @@
 ASHPD_LOG_FUNC("UpdateCams");
 #endif
 
-params["_bPortal", "_oPortal"];
-
-private _orangeDir = vectorDir _oPortal;
-private _blueDir = vectorDir _bPortal;
-private _orangeUp = vectorUp _oPortal;
-private _blueUp = vectorUp _bPortal;
+params["_bPortalPos", "_blueDir", "_blueUp", "_oPortalPos", "_orangeDir", "_orangeUp"];
 
 private _blueCam = ASHPD_REMOTE_BLUE_CAM;
 private _orangeCam = ASHPD_REMOTE_ORANGE_CAM;
 
 if !(isNull _orangeCam) then {
-	_orangeCam setPosWorld (getPosWorld _bPortal);
+	_orangeCam setPosWorld _bPortalPos;
 	_orangeCam setVectorDirAndUp [_blueDir vectorMultiply -1, _blueUp];
 };
 if !(isNull _blueCam) then {
-	_blueCam setPosWorld (getPosWorld _oPortal);
+	_blueCam setPosWorld _oPortalPos;
 	_blueCam setVectorDirAndUp [_orangeDir vectorMultiply -1, _orangeUp];
 };

@@ -14,7 +14,7 @@
 
 #include "macros.hpp"
 
-/// Description: Creates the illusion of depth in the portals' PiP views.
+/// Description: Creates the illusion of depth in the portals' PiP views. Meant to be ran via StartRemoteUpdate.
 /// Parameters:
 ///		PARAMETER		|		EXPECTED INPUT TYPE		|		DESCRIPTION
 ///
@@ -62,19 +62,19 @@ private _orangeX = _orangeDir vectorCrossProduct _orangeUp;
 
 // Find the angular offsets for the relative positions
 private _dirOffsetBlue = acos(_relPosBlue vectorCos _blueX);
-private _upOffsetBlue = acos(_relPosBlue vectorCos (_blueUp vectorMultiply -1));
+private _upOffsetBlue = acos(_relPosBlue vectorCos _blueUp);
 
 // Set camera direction as mirrored offsets of the relative position
-private _bCamDir = [_orangeDir, _orangeUp, 270 + _dirOffsetBlue] call SUS_fnc_QRotateVec;
-_bCamDir = [_bCamDir, _orangeX, 90 + _upOffsetBlue] call SUS_fnc_QRotateVec;
+private _bCamDir = [_orangeDir, _orangeUp, 270 + _dirOffsetBlue] call CBA_fnc_vectRotate3D;
+_bCamDir = [_bCamDir, _orangeX, 270 - _upOffsetBlue] call CBA_fnc_vectRotate3D;
 
 // Find the angular offsets for the relative positions
 private _dirOffsetOrange = acos(_relPosOrange vectorCos _orangeX);
-private _upOffsetOrange = acos(_relPosOrange vectorCos (_orangeUp vectorMultiply -1));
+private _upOffsetOrange = acos(_relPosOrange vectorCos _orangeUp);
 
 // Set camera direction as mirrored offsets of the relative position
-private _oCamDir = [_blueDir, _blueUp, 270 + _dirOffsetOrange] call SUS_fnc_QRotateVec;
-_oCamDir = [_oCamDir, _blueX, 90 + _upOffsetOrange] call SUS_fnc_QRotateVec;
+private _oCamDir = [_blueDir, _blueUp, 270 + _dirOffsetOrange] call CBA_fnc_vectRotate3D;
+_oCamDir = [_oCamDir, _blueX, 270 - _upOffsetOrange] call CBA_fnc_vectRotate3D;
 
 // Constrain camera direction
 if (acos(_bCamDir vectorCos (_orangeDir vectorMultiply -1)) < 50) then {

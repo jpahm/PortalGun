@@ -74,7 +74,7 @@ if (ASHPD_VAR_GRABBING) then {
 		private _grabObject = _rayCast#2;
 		private _boundingRadius = ((boundingBoxReal _grabObject)#2)/2;
 		_grabObject attachTo [player, [_boundingRadius + 0.4, 0.1, -(_boundingRadius + 0.4)], "righthand", true];
-		_grabObject setVectorDirAndUp [[0.5,0,0.5], [0,1,0]];
+		[_grabObject, [[0.5,0,0.5], [0,1,0]]] remoteExecCall ["setVectorDirAndUp", _grabObject];
 		
 		// Attach grab particles
 		player setVariable ["ASHPD_VAR_grabBeams", "PortalBeams" createVehicle [0,0,0]];

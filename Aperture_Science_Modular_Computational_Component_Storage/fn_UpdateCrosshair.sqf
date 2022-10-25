@@ -29,15 +29,15 @@ if !(ASHPD_VAR_CROSSHAIR_ENABLED) exitWith {
 
 if (ASHPD_DUAL_PORTALS) then {
 	//	If neither portal open in dual mode, show both colors empty
-	if (!ASHPD_VAR_BLUE_OPEN && {!ASHPD_VAR_ORANGE_OPEN}) then {
+	if (!ASHPD_BLUE_OPEN && {!ASHPD_ORANGE_OPEN}) then {
 		ASHPD_VAR_CROSSHAIR_IMAGE = ASHPD_CROSSHAIR_DUAL_EMPTY;
 	} else {
 		//	If both portals open in dual mode, show both colors full
-		if (ASHPD_VAR_BLUE_OPEN && {ASHPD_VAR_ORANGE_OPEN}) then {
+		if (ASHPD_BLUE_OPEN && {ASHPD_ORANGE_OPEN}) then {
 			ASHPD_VAR_CROSSHAIR_IMAGE = ASHPD_CROSSHAIR_DUAL_FULL;
 		//	Else, if only one color open in dual mode, show one color full
 		} else {
-			if (ASHPD_VAR_BLUE_OPEN) then {
+			if (ASHPD_BLUE_OPEN) then {
 				ASHPD_VAR_CROSSHAIR_IMAGE = ASHPD_CROSSHAIR_DUAL_BLUE;
 			} else {
 				ASHPD_VAR_CROSSHAIR_IMAGE = ASHPD_CROSSHAIR_DUAL_ORANGE;
@@ -47,14 +47,14 @@ if (ASHPD_DUAL_PORTALS) then {
 } else {
 	//	If in blue only mode, show both full if blue open
 	if (ASHPD_BLUE_ONLY) then {
-		if (ASHPD_VAR_BLUE_OPEN) then {
+		if (ASHPD_BLUE_OPEN) then {
 			ASHPD_VAR_CROSSHAIR_IMAGE = ASHPD_CROSSHAIR_BLUE;
 		} else {
 			ASHPD_VAR_CROSSHAIR_IMAGE = ASHPD_CROSSHAIR_BLUE_EMPTY;
 		};
 	//	Else, if in orange only mode, show both full if orange open
 	} else {
-		if (ASHPD_VAR_ORANGE_OPEN) then {
+		if (ASHPD_ORANGE_OPEN) then {
 			ASHPD_VAR_CROSSHAIR_IMAGE = ASHPD_CROSSHAIR_ORANGE;
 		} else {
 			ASHPD_VAR_CROSSHAIR_IMAGE = ASHPD_CROSSHAIR_ORANGE_EMPTY;

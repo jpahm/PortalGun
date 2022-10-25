@@ -29,7 +29,7 @@
 // NOTE: Below macro can't take array for "args", use a #define instead!
 #define ASHPD_LOG(str, args) (diag_log text format ([localize str] + args))
 
-// Update rates
+// Update rates for remote updates (highest rate, not guaranteed!)
 #define ASHPD_SP_UPDATE_RATE 144
 #define ASHPD_MP_UPDATE_RATE 60
 
@@ -43,9 +43,12 @@
 
 // Common macros
 #define ASHPD_DISABLED_POS [0,0,0]
-#define ASHPD_VAR_BLUE_OPEN (ASHPD_VAR_BLUE_PORTAL getVariable ["open", false])
-#define ASHPD_VAR_ORANGE_OPEN (ASHPD_VAR_ORANGE_PORTAL getVariable ["open", false])
-#define ASHPD_HIDE_SERVER(obj, hide) ([obj, hide] remoteExecCall ["hideObjectGlobal", [0, 2] select ASHPD_VAR_IS_DEDI])
+#define ASHPD_BLUE_OPEN (ASHPD_VAR_BLUE_PORTAL getVariable ["open", false])
+#define ASHPD_ORANGE_OPEN (ASHPD_VAR_ORANGE_PORTAL getVariable ["open", false])
+#define ASHPD_FIREMODE (["Orange", "Blue"] select (ASHPD_VAR_CURRENT_PORTAL getVariable "isBlue"))
+#define ASHPD_CLIENTS ([0, -2] select ASHPD_VAR_IS_DEDI)
+#define ASHPD_SERVER ([0, 2] select ASHPD_VAR_IS_DEDI)
+#define ASHPD_HIDE_SERVER(obj, hide) ([obj, hide] remoteExecCall ["hideObjectGlobal", ASHPD_SERVER])
 
 // Error messages
 #define ASHPD_ERROR(msg) ([] spawn {[localize msg, localize "$STR_PGUN_Error_Header", true, false, [] call BIS_fnc_displayMission, false, false] call BIS_fnc_guiMessage})
@@ -53,11 +56,13 @@
 // Cameras
 #define ASHPD_REMOTE_BLUE_CAM (missionNameSpace getVariable [format["ASHPD_VAR_BCAM%1", remoteExecutedOwner], objNull])
 #define ASHPD_REMOTE_ORANGE_CAM (missionNameSpace getVariable [format["ASHPD_VAR_OCAM%1", remoteExecutedOwner], objNull])
+#define ASHPD_LOCAL_BLUE_CAM (missionNameSpace getVariable [format["ASHPD_VAR_BCAM%1", clientOwner], objNull])
+#define ASHPD_LOCAL_ORANGE_CAM (missionNameSpace getVariable [format["ASHPD_VAR_OCAM%1", clientOwner], objNull])
 
 // Portal gun settings
-#define ASHPD_DUAL_PORTALS (ASHPD_VAR_INIT_SETTINGS isEqualTo [true, true])
-#define ASHPD_BLUE_ONLY (ASHPD_VAR_INIT_SETTINGS isEqualTo [true, false])
-#define ASHPD_ORANGE_ONLY (ASHPD_VAR_INIT_SETTINGS isEqualTo [false, true])
+#define ASHPD_DUAL_PORTALS (ASHPD_VAR_PORTAL_GUN_MODE isEqualTo [true, true])
+#define ASHPD_BLUE_ONLY (ASHPD_VAR_PORTAL_GUN_MODE isEqualTo [true, false])
+#define ASHPD_ORANGE_ONLY (ASHPD_VAR_PORTAL_GUN_MODE isEqualTo [false, true])
 
 // Crosshair image paths
 #define ASHPD_CROSSHAIR_DEFAULT "\a3\ui_f\data\IGUI\Cfg\WeaponCursors\arifle_gs.paa"
@@ -88,6 +93,15 @@
 // Camera effects
 #define ASHPD_BLUE_PIP_EFFECT ["Internal", "Back", format["piprenderbp%1", remoteExecutedOwner]]
 #define ASHPD_ORANGE_PIP_EFFECT ["Internal", "Back", format["piprenderop%1", remoteExecutedOwner]]
+
+// Gestures for sound timing
+#define ASHPD_GESTURES [\
+	"aidlpercmstpsraswrfldnon_g01_player",\
+	"aidlpercmstpsraswrfldnon_g02_player",\
+	"aidlpercmstpsraswrfldnon_g03_player",\
+	"aidlpercmstpsraswrfldnon_g04_player",\
+	"<none>"\
+]
 
 // Portal colors (currently unused)
 #define ASHPD_BLUE "0, 0.447, 0.823"

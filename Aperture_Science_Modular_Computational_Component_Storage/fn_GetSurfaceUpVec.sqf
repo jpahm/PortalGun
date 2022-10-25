@@ -43,4 +43,4 @@ if (_incline < ASHPD_VAR_VERTICAL_TOLERANCE) then {
 	_crossVector = _surfNormal vectorCrossProduct [0, 0, 1];
 };
 // Rotate the normal vector 90 degrees on the cross vector axis to obtain up vector
-[_surfNormal, _crossVector, 90] call SUS_fnc_QRotateVec;
+[_surfNormal, _crossVector, 90] call CBA_fnc_vectRotate3D;

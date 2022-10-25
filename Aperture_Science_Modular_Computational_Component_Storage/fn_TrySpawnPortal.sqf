@@ -18,7 +18,7 @@
 /// Parameters:
 ///		PARAMETER		|		EXPECTED INPUT TYPE		|		DESCRIPTION
 ///
-///		portal			|		String					|		The string representing the portal to be spawned.
+///		portal			|		Object					|		The portal to be "spawned".
 ///
 ///	Return value: Boolean, whether portal was successfully spawned or not.
 
@@ -26,15 +26,7 @@
 ASHPD_LOG_FUNC("TrySpawnPortal");
 #endif
 
-params["_portal"];
-
-private _portalObj = objNull; 
-
-if (_portal == "Blue") then {
-	_portalObj = ASHPD_VAR_BLUE_PORTAL;
-} else {
-	_portalObj = ASHPD_VAR_ORANGE_PORTAL;
-};
+params["_portalObj"];
 
 private _eyePos = eyePos player;
 private _castVector = (player weaponDirection currentWeapon player) vectorMultiply ASHPD_VAR_MAX_RANGE;
@@ -58,34 +50,51 @@ private _surfVectorUp = [_surfNormal] call ASHPD_fnc_GetSurfaceUpVec;
 // Make sure the portal can fit in the desired area
 if ([_portalObj, _surfVectorUp, _rayCast] call ASHPD_fnc_BoundsCheck) then {
 
-	// Detach anything attached to the portal
-	detach _portalObj;
 	// Clear the teleport cache since we have a fresh portal
 	ASHPD_VAR_TP_CACHE = [];
 	
-	// Add new portal "surface" (object the portal is on) for object detection filtering
-	if (_portalObj isEqualTo ASHPD_VAR_BLUE_PORTAL) then {
+	// Close original portal
+	[_portalObj, false] call ASHPD_fnc_SetPortalOpen;
+	
+	// Create new portal object at raycast intersect position (clone of current _portalObj)
+	private _newPortalObj = createVehicle ["Portal", (ASLToAGL (_rayCast#0)) vectorDiff [0, 0, 1.0784421], [], 0, "CAN_COLLIDE"];
+	
+	// Clone all variables from old portal to new portal
+	{
+		_newPortalObj setVariable [_x, _portalObj getVariable _x, true];
+	} forEach (allVariables _portalObj);
+	
+	// Add new portal to GC
+	[getPlayerUID player, [_newPortalObj]] remoteExecCall ["ASHPD_fnc_UpdateGC", ASHPD_SERVER];
+	// Remove old portal from GC
+	[getPlayerUID player, [_portalObj], false] remoteExecCall ["ASHPD_fnc_UpdateGC", ASHPD_SERVER];
+	
+	// Delete original portal object
+	deleteVehicle _portalObj;
+	
+	// Move sound source to new portal location
+	(_newPortalObj getVariable "soundSource") setPosWorld (getPosWorld _newPortalObj);
+	
+	// Handle portal-specific setup for new portal, add new surface to ASHPD_VAR_PORTAL_SURFACES
+	if (_newPortalObj getVariable "isBlue") then {
 		ASHPD_VAR_PORTAL_SURFACES pushBack (ASHPD_VAR_PORTAL_SURFACES#0);
 		ASHPD_VAR_PORTAL_SURFACES set [0, _rayCast#2];
+		ASHPD_VAR_BLUE_PORTAL = _newPortalObj;
 	} else {
 		ASHPD_VAR_PORTAL_SURFACES pushBack (ASHPD_VAR_PORTAL_SURFACES#1);
 		ASHPD_VAR_PORTAL_SURFACES set [1, _rayCast#2];
+		ASHPD_VAR_ORANGE_PORTAL = _newPortalObj;
 	};
 	
-	// Move the portal to the raycast intersection position
-	_portalObj setPosWorld (_rayCast#0);
+	// Update current portal to new portal object
+	ASHPD_VAR_CURRENT_PORTAL = _newPortalObj;
 	
-	// Remove old portal "surface" now that portal has moved
+	// Remove old portal "surfaces" now that new surface has been set
 	ASHPD_VAR_PORTAL_SURFACES resize 2;
-	
-	// Unhide the portal if it's been hidden (i.e. via fizzling)
-	if (isObjectHidden _portalObj) then {
-		ASHPD_HIDE_SERVER(_portalObj, false);
-	};
 	
 	// If portal hits vehicle, attach it so that it follows the vehicle
 	if (_rayCast#2 isKindOf "AllVehicles") then {
-		_portalObj attachTo [_rayCast#2];
+		_newPortalObj attachTo [_rayCast#2];
 		// If cams not yet following, add remote update for ASHPD_fnc_CamFollow
 		if (!ASHPD_VAR_CAM_FOLLOW) then {
 			[
@@ -94,21 +103,21 @@ if ([_portalObj, _surfVectorUp, _rayCast] call ASHPD_fnc_BoundsCheck) then {
 					_this call ASHPD_fnc_CamFollow;
 				},
 				"CamFollow"
-			] remoteExecCall ["ASHPD_fnc_StartRemoteUpdate", [0, -2] select ASHPD_VAR_IS_DEDI, format ["ASHPD_CF_%1", clientOwner]];
+			] remoteExecCall ["ASHPD_fnc_StartRemoteUpdate", ASHPD_CLIENTS, format ["ASHPD_CF_%1", clientOwner]];
 			ASHPD_VAR_CAM_FOLLOW = true;
 		};
 	} else { // If portal doesn't hit vehicle, check if ASHPD_fnc_CamFollow remote update needs to be stopped
 		if (ASHPD_VAR_CAM_FOLLOW && {isNull attachedTo ([ASHPD_VAR_BLUE_PORTAL, ASHPD_VAR_ORANGE_PORTAL] select (ASHPD_VAR_OTHER_PORTAL == "Orange"))}) then {
-			["CamFollow"] remoteExecCall ["ASHPD_fnc_StopRemoteUpdate", [0, -2] select ASHPD_VAR_IS_DEDI, format ["ASHPD_CF_%1", clientOwner]];
+			["CamFollow"] remoteExecCall ["ASHPD_fnc_StopRemoteUpdate", ASHPD_CLIENTS, format ["ASHPD_CF_%1", clientOwner]];
 			ASHPD_VAR_CAM_FOLLOW = false;
 		};
 	};
 	
 	// Orient portal opposite of the surface normal, vectorUp derived from ASHPD_fnc_GetSurfaceUpVec
-	_portalObj setVectorDirAndUp [_surfNormal vectorMultiply -1, _surfVectorUp];
+	_newPortalObj setVectorDirAndUp [_surfNormal vectorMultiply -1, _surfVectorUp];
 	
-	// Animate portal opening
-	[_portalObj, true] call ASHPD_fnc_SetPortalOpen;
+	// Open new portal
+	[_newPortalObj, true] call ASHPD_fnc_SetPortalOpen;
 	
 	// Spawn succeeded, return true
 	true;

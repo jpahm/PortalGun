@@ -41,7 +41,7 @@ if (isServer) then {
 ASHPD_VAR_PORTALS_LINKED = false; // Whether the player's portals are "linked" (teleporting, camera illusion, etc. are enabled).
 ASHPD_VAR_CAM_FOLLOW = false; // Whether the player's portal cameras are set to follow the portals in real-time (used for vehicle-attached portals).
 ASHPD_VAR_TP_CACHE = []; // Cache used for preventing objects from infinitely teleporting back-and-forth between portals.
-ASHPD_VAR_TP_HANDLE = scriptNull; // Handle representing the teleport script spawn, can be terminated to disable teleporting between player's portals.
+ASHPD_VAR_TP_EHID = -1; // Stores the EachFrame mission event handler ID used for teleporting, can be disabled via removeMissionEventHandler to disable teleporting between player's portals.
 ASHPD_VAR_CROSSHAIR_HANDLE = scriptNull; // Handle representing the crosshair drawing script spawn, can be terminated to disable the player's custom crosshair.
 ASHPD_VAR_GRABBING = false; // Whether the player's portal gun is currently grabbing something.
 ASHPD_VAR_POTATO_SPEAKING = false; // Whether the player's PotatOS (if equipped) is currently speaking.

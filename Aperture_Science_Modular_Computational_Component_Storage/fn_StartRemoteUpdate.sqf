@@ -36,8 +36,9 @@ private _remoteUpdateHM = missionNameSpace getVariable [format ["ASHPD_VAR_RU_%1
 // Start remote client's remote updates
 _remoteUpdateHM set [_id, 
 	[_codeParams, _code] spawn {
+		params ["_codeParams", "_code"];
 		while {true} do {
-			(_this#0) call (_this#1);
+			_codeParams call _code;
 			uiSleep ASHPD_VAR_UPDATE_INTERVAL;
 		};
 	}

@@ -17,13 +17,14 @@ Congratulations! You are now (able to be) in possession of the Aperture Science 
 - **Optional updating custom portal crosshair** (with adjustable size)
 - **Full multiplayer compatibility**
 - Easily and heavily **customizable** via the CBA Addon Options menu
+- **Rebindable controls** via Controls > Configure Addons > Portal Gun
 - Full localization for **over 10 languages** (see end of file for details)
 - Fully **open source** with documentation, licensed under Apache 2.0
 - A cake-based IED that may or may not exist
 
 **\*NOTE:** Portals utilize teleportation rather than being actual "holes" in the geometry. This is due to the limitations of ArmA's engine. If BI ever makes actual holes possible, we will add them.
 
-**\*\*NOTE:** Aiming projectiles through portals can be difficult due to the distortion caused by ArmA's camera system. This is unavoidable due to the above point, so there's nothing we can do about this.
+**\*\*NOTE:** Aiming projectiles through portals can be difficult due to the distortion caused by Arma's camera system. This is unavoidable due to the above point, so there's nothing we can do about this.
 
 # **Mod Credits:**
 - **Sysroot**: Programming, Logistics, Config Work, Planning
