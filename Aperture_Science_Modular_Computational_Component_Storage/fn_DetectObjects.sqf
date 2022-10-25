@@ -32,7 +32,6 @@ params[["_bPortal", objNull, [objNull]], ["_oPortal", objNull, [objNull]]];
 private _nearObjects = [[], []];
 {
 	private _portalObj = _x;
-	private _portalPos = getPosWorld _portalObj;
 	private _nearPortal = [];
 	private _obj = objNull;
 	
@@ -41,16 +40,14 @@ private _nearObjects = [[], []];
 		private ["_objPos", "_rayCast", "_temp"];
 		// Iterate over all projectiles of a given type near the portal
 		{
-			if !(_x in ASHPD_VAR_TP_CACHE) then {
-				_objPos = getPosWorld _x;
-				// Do a raycast to make sure we're only grabbing projectiles that are actually entering the portal
-				_rayCast = lineIntersectsSurfaces [_objPos, _objPos vectorAdd ((velocity _x) vectorMultiply ASHPD_VAR_MAX_RANGE), player, objNull, true, 2, "VIEW", "GEOM"];
-				if ((_rayCast findIf {(_x#2) isKindOf "Portal"}) == 0) then {
-					// Delete the original projectile before it hits the portal, save its velocity for later
-					_temp = [_x, velocity _x, true]; 
-					deleteVehicle _x; 
-					_nearPortal pushBack _temp;
-				};
+			_temp = [_x, velocity _x, true];
+			_objPos = getPosWorld _x;
+			// Do a raycast to make sure we're only grabbing projectiles that are actually entering the portal
+			_rayCast = lineIntersectsSurfaces [_objPos, _objPos vectorAdd ((velocity _x) vectorMultiply ASHPD_VAR_MAX_RANGE), player, objNull, true, 1, "VIEW", "GEOM"];
+			if ((_rayCast findIf {(_x#2) isKindOf "Portal"}) == 0) then {
+				// Delete the original projectile before it hits the portal, save its velocity for later 
+				deleteVehicle _x; 
+				_nearPortal pushBack _temp;
 			};
 		} forEach (_portalObj nearObjects [_x, ASHPD_VAR_PROJECTILE_GRAB_RANGE]);
 	} forEach ASHPD_VAR_PROJECTILE_TYPES;
@@ -58,13 +55,13 @@ private _nearObjects = [[], []];
 	// Detect grenades, PhysX objects, units, and vehicles
 	{
 		_nearPortal pushBackUnique _x;
-	} forEach (_portalObj nearObjects ["Grenade", ASHPD_VAR_MAX_GRAB_RANGE] apply {[_x, velocity _x, false]});
+	} forEach ((_portalObj nearObjects ["Grenade", ASHPD_VAR_MAX_GRAB_RANGE]) apply {[_x, velocity _x, false]});
 	{
 		_nearPortal pushBackUnique _x;
-	} forEach (_portalObj nearObjects ["ThingX", ASHPD_VAR_MAX_GRAB_RANGE] apply {[_x, velocity _x, false]});
+	} forEach ((_portalObj nearObjects ["ThingX", ASHPD_VAR_MAX_GRAB_RANGE]) apply {[_x, velocity _x, false]});
 	{
 		_nearPortal pushBackUnique _x;
-	} forEach (_portalObj nearObjects ["CAManBase", ASHPD_VAR_UNIT_GRAB_RANGE] apply {[_x, velocity _x, false]});
+	} forEach ((_portalObj nearObjects ["CAManBase", ASHPD_VAR_UNIT_GRAB_RANGE]) apply {[_x, velocity _x, false]});
 	{
 		private _vehicle = _x#0;
 		// Ignore units, those are detected differently above
@@ -76,12 +73,12 @@ private _nearObjects = [[], []];
 		if (_distance <= _vehicleSize * 3/4) then {
 			_nearPortal pushBackUnique _x;
 		};
-	} forEach (_portalObj nearObjects ["AllVehicles", ASHPD_VAR_VEHICLE_GRAB_RANGE] apply {[_x, velocity _x, false]});
+	} forEach ((_portalObj nearObjects ["AllVehicles", ASHPD_VAR_VEHICLE_GRAB_RANGE]) apply {[_x, velocity _x, false]});
 	
 	// Filter out portals and portal surfaces
 	_nearPortal = _nearPortal select {
 		_obj = _x#0;
-		!(_obj in _this) && {!(_obj in ASHPD_VAR_PORTAL_SURFACES)}
+		!(_obj isKindOf "Portal") && {!(_obj in ASHPD_VAR_PORTAL_SURFACES)}
 	};
 	_nearObjects set [_forEachIndex, _nearPortal];
 	
@@ -89,15 +86,18 @@ private _nearObjects = [[], []];
 
 private _nearBlue = (_nearObjects#0) apply {_x#0};
 private _nearOrange = (_nearObjects#1) apply {_x#0};
-// Remove objects from the cache that are no longer within the detection range of the portals
-ASHPD_VAR_TP_CACHE = ASHPD_VAR_TP_CACHE select {_x in _nearBlue || {_x in _nearOrange}};
+// Only keep objects in the cache that have either not been teleported or are within the detection range of the portals
+ASHPD_VAR_TP_CACHE = ASHPD_VAR_TP_CACHE select {!(_x getVariable ["ASHPD_TPED", false]) || {_x in _nearBlue || {_x in _nearOrange}}};
 
 // Don't teleport any objects already in ASHPD_VAR_TP_CACHE, add to-be-teleported objects to cache
 {
 	_nearObjects set [_forEachIndex, _x select {
 		_obj = _x#0;
 		if !(_obj in ASHPD_VAR_TP_CACHE) then {
-			ASHPD_VAR_TP_CACHE append [_obj];
+			// Mark the object as not yet teleported
+			_obj setVariable ["ASHPD_TPED", false];
+			// Add object to cache
+			ASHPD_VAR_TP_CACHE pushBack _obj;
 			true;
 		} else {
 			false;

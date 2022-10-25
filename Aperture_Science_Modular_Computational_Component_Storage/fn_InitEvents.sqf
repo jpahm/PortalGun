@@ -22,37 +22,33 @@
 ASHPD_LOG_FUNC("InitEvents");
 #endif
 
-// Handle shooting the portal gun, and creating/updating the portals accordingly
+// Handle left-click firing the portal gun, and creating/updating the blue portal accordingly.
+// The handling for right-click firing can be found in ASHPD_fnc_HandleWeaponSwitch.
 player addEventHandler ["Fired", {
-	if ((_this#1) isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]) then {
-	
-		// Keep ammo stocked if infinite ammo is enabled (only works if there's already a magazine present)
+	params ["_unit", "_weapon", "_muzzle", "_mode", "_ammo", "_magazine", "_projectile", "_gunner"];
+	if (_weapon isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]) then {
+		
+		// Keep ammo stocked if infinite ammo is enabled
 		if (ASHPD_VAR_INFINITE_AMMO_ENABLED) then {
 			private _muzzle = currentMuzzle player;
 			private _ammoCount = player ammo _muzzle;
-			if (_ammoCount <= 1) then {
-				player setAmmo [_muzzle, 3];
+			if (_ammoCount == 0) then {
+				player addMagazine "AS_MBH";
 			} else {
 				player setAmmo [_muzzle, _ammoCount + 1];
 			};
 		};
 	
 		// Only try to spawn portal if not grabbing anything
-		if (!ASHPD_VAR_GRABBING && {ASHPD_VAR_CURRENT_PORTAL call ASHPD_fnc_TrySpawnPortal}) then {
-			if (ASHPD_VAR_CURRENT_PORTAL == "Blue") then {
-				[ASHPD_VAR_BLUE_PORTAL, "portal_open_blue"] call ASHPD_fnc_PlaySound;
-				(ASHPD_VAR_BLUE_PORTAL getVariable "soundSource") setPosWorld (getPosWorld ASHPD_VAR_BLUE_PORTAL);
-			} else {
-				[ASHPD_VAR_ORANGE_PORTAL, "portal_open_red"] call ASHPD_fnc_PlaySound;
-				(ASHPD_VAR_ORANGE_PORTAL getVariable "soundSource") setPosWorld (getPosWorld ASHPD_VAR_ORANGE_PORTAL);
-			};
+		if !(ASHPD_VAR_GRABBING) then {
+			ASHPD_VAR_CURRENT_PORTAL call ASHPD_fnc_TrySpawnPortal;
 		};
 	};
 }];
 
 // Handle player respawn
 player addEventHandler ["Respawn", {
-	[] spawn ASHPD_fnc_FixArsenalBug;
+	[ASHPD_VAR_BLUE_PORTAL, ASHPD_VAR_ORANGE_PORTAL] remoteExecCall ["ASHPD_fnc_RefreshPiP", clientOwner];
 }];
 
 // Handle player being killed
@@ -68,10 +64,12 @@ player addEventHandler ["HandleDamage", {
 	
 	params ["_unit", "_selection", "_damage", "_source", "_projectile", "_hitIndex", "_instigator", "_hitPoint"];
 	
-	// Disable fall damage if portal gun equipped and long fall boots enabled
+	// Disable fall damage if long fall boots enabled and portal gun equipped
 	if (
-		currentWeapon player isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"] && 
-		{_source isEqualTo player && _projectile == "" && ASHPD_VAR_LONG_FALL_BOOTS_ENABLED}
+		ASHPD_VAR_LONG_FALL_BOOTS_ENABLED && {
+			currentWeapon player isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"] && 
+			{_source isEqualTo player && _projectile == ""}
+		}
 	) then {
 		0;
 	} else {
@@ -143,7 +141,7 @@ player addEventHandler ["HandleDamage", {
 			if (_submerged && {_serverTime - ASHPD_VAR_LAST_BH_TIME >= ASHPD_BH_COOLDOWN}) then {
 				if ((currentWeapon player) isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]) then {
 					// Portal gun equipped and the player is submerged, trigger the black hole above the player
-					[_position vectorAdd [0,0,350]] remoteExec ["ASHPD_fnc_BlackHole", [0, 2] select ASHPD_VAR_IS_DEDI];
+					[_position vectorAdd [0,0,350]] remoteExec ["ASHPD_fnc_BlackHole", ASHPD_SERVER];
 					// Refresh serverTime
 					_serverTime = [] call ASHPD_fnc_GetServerTime;
 				};
@@ -156,8 +154,12 @@ player addEventHandler ["HandleDamage", {
 
 // Handle firemode swapping and weapon switching
 ASHPD_VAR_SWAP_EH_ID = ["weaponMode", ASHPD_fnc_SwapPortals] call CBA_fnc_addPlayerEventHandler;
-["weapon", ASHPD_fnc_HandleWeaponSwitch, true] call CBA_fnc_addPlayerEventHandler;
+["weapon", ASHPD_fnc_HandleWeaponSwitch] call CBA_fnc_addPlayerEventHandler;
 
-// Fix the PiP camera bugs
-["featureCamera", {[] spawn ASHPD_fnc_FixArsenalBug}] call CBA_fnc_addPlayerEventHandler;
-[missionnamespace, "OnGameInterrupt", {[] spawn ASHPD_fnc_FixArsenalBug}] call bis_fnc_addScriptedEventhandler;
+// Fix the PiP camera bug locally upon switching to a non-featureCamera
+["featureCamera", {
+	params ["_unit", "_camFeature"];
+	if (_camFeature == "") then {
+		[clientOwner] remoteExecCall ["ASHPD_fnc_RefreshPiP", ASHPD_CLIENTS];
+	};
+}] call CBA_fnc_addPlayerEventHandler;

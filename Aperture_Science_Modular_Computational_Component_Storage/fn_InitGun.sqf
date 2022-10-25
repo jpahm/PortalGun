@@ -36,38 +36,36 @@ if (!_bPortal && {!_oPortal}) then {
 	_oPortal = true;
 }; 
 
-// Save init settings for refresh purposes
-ASHPD_VAR_INIT_SETTINGS = [_bPortal, _oPortal];
+// Don't proceed further if the portals don't exist yet (preInit)
+if (isNil "ASHPD_VAR_BLUE_PORTAL" || isNil "ASHPD_VAR_ORANGE_PORTAL") exitWith {};
 
 if (_bPortal && _oPortal) then {
-	ASHPD_VAR_CURRENT_PORTAL = "Blue";
-	ASHPD_VAR_OTHER_PORTAL = "Orange";
+	ASHPD_VAR_CURRENT_PORTAL = ASHPD_VAR_BLUE_PORTAL;
+	ASHPD_VAR_OTHER_PORTAL = ASHPD_VAR_ORANGE_PORTAL;
 } else { // If single portal mode
 	if (_bPortal && {!_oPortal}) then { // If only using blue portal
-		ASHPD_VAR_CURRENT_PORTAL = "Blue";
-		ASHPD_VAR_OTHER_PORTAL = "Blue";
+		ASHPD_VAR_CURRENT_PORTAL = ASHPD_VAR_BLUE_PORTAL;
+		ASHPD_VAR_OTHER_PORTAL = ASHPD_VAR_BLUE_PORTAL;
 	} else { // If only using orange portal
-		ASHPD_VAR_CURRENT_PORTAL = "Orange";
-		ASHPD_VAR_OTHER_PORTAL = "Orange";
+		ASHPD_VAR_CURRENT_PORTAL = ASHPD_VAR_ORANGE_PORTAL;
+		ASHPD_VAR_OTHER_PORTAL = ASHPD_VAR_ORANGE_PORTAL;
 	};
 };
 
 // Force weapon mode to match current portal if portal gun equipped
 if (currentWeapon player isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]) then {
-	[currentWeapon player] spawn {
+	// Force weapon mode to match current portal
+	player setVariable ["ASHPD_VAR_modeChangeHandle", [currentWeapon player] spawn {
 		params["_weapon"];
-		// Temporarily remove weaponMode EH so we can swap the mode without looping
-		["weaponMode", ASHPD_VAR_SWAP_EH_ID] call CBA_fnc_removePlayerEventHandler;
 		sleep 0.1;
 		// Make sure firemode matches current portal setting
 		private _ammo = player ammo _weapon;
 		player setAmmo [_weapon, 0];
-		player forceWeaponFire [_weapon, ASHPD_VAR_CURRENT_PORTAL];
+		player forceWeaponFire [_weapon, ASHPD_FIREMODE];
 		player setAmmo [_weapon, _ammo];
 		sleep 0.1;
-		// Restore weaponMode EH
-		ASHPD_VAR_SWAP_EH_ID = ["weaponMode", ASHPD_fnc_SwapPortals] call CBA_fnc_addPlayerEventHandler;
-	};
+		player setVariable ["ASHPD_VAR_modeChangeHandle", scriptNull];
+	}];
 };
 
 // Update crosshair to match new portal gun settings

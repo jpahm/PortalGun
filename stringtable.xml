@@ -664,57 +664,31 @@
       <Portuguese>Controlos</Portuguese>
       <Czech>Ovládací prvky</Czech>
     </Key>
-    <Key ID="STR_PGUN_Grab_Key">
-      <English>Grab Key</English>
-      <Spanish>Llave de agarre</Spanish>
-      <German>Taste greifen</German>
-      <Chinesesimp>抓住钥匙</Chinesesimp>
-      <Japanese>グラブキー</Japanese>
-      <Italian>Chiave di presa</Italian>
-      <French>Clé d'accès</French>
-      <Polish>Chwyć klucz</Polish>
-      <Russian>Захват ключа</Russian>
-      <Portuguese>Agarrar chave</Portuguese>
-      <Czech>Uchopit klíč</Czech>
+    <Key ID="STR_PGUN_Fizzle">
+      <English>Fizzle portals</English>
+      <Spanish>Portales Fizzle</Spanish>
+      <German>Fizzle-Portale</German>
+      <Chinesesimp>咝咝的门户</Chinesesimp>
+      <Japanese>フィズル・ポータル</Japanese>
+      <Italian>Portali Fizzle</Italian>
+      <French>Portails Fizzle</French>
+      <Polish>Portale Fizzle</Polish>
+      <Russian>Шипучие порталы</Russian>
+      <Portuguese>Portais Fizzle</Portuguese>
+      <Czech>Portály Fizzle</Czech>
     </Key>
-    <Key ID="STR_PGUN_Grab_Key_Desc">
-      <English>The key to use for grabbing things with the portal gun.</English>
-      <Spanish>La llave que hay que usar para agarrar cosas con la pistola de portales.</Spanish>
-      <German>Der Schlüssel, mit dem man Dinge mit der Portalpistole greifen kann.</German>
-      <Chinesesimp>用传送门枪抓取东西时使用的钥匙。</Chinesesimp>
-      <Japanese>ポータルガンで物をつかむときに使う鍵。</Japanese>
-      <Italian>La chiave da usare per afferrare gli oggetti con la pistola a portale.</Italian>
-      <French>La clé à utiliser pour attraper des choses avec le pistolet portail.</French>
-      <Polish>Klucz używany do chwytania przedmiotów za pomocą pistoletu portalowego.</Polish>
-      <Russian>Ключ, который можно использовать для захвата предметов с помощью портальной пушки.</Russian>
-      <Portuguese>A chave a utilizar para agarrar coisas com a arma do portal.</Portuguese>
-      <Czech>Klíč k uchopení věcí pomocí portálové pistole.</Czech>
-    </Key>
-    <Key ID="STR_PGUN_Fizzle_Key">
-      <English>Fizzle Key</English>
-      <Spanish>Llave Fizzle</Spanish>
-      <German>Fizzle Schlüssel</German>
-      <Chinesesimp>菲兹尔钥匙</Chinesesimp>
-      <Japanese>フィズル・キー</Japanese>
-      <Italian>Chiave Fizzle</Italian>
-      <French>Clé Fizzle</French>
-      <Polish>Klucz Fizzle</Polish>
-      <Russian>Шипучий ключ</Russian>
-      <Portuguese>Chave Fizzle</Portuguese>
-      <Czech>Klíč Fizzle</Czech>
-    </Key>
-    <Key ID="STR_PGUN_Fizzle_Key_Desc">
-      <English>The key to use for fizzling portals.</English>
-      <Spanish>La clave para usar los portales que se desvanecen.</Spanish>
-      <German>Der Schlüssel für zischende Portale.</German>
-      <Chinesesimp>用于晕倒的门户网站的关键。</Chinesesimp>
-      <Japanese>ポータルの発泡に使用するキーです。</Japanese>
-      <Italian>La chiave da utilizzare per i portali che si spengono.</Italian>
-      <French>La clé à utiliser pour les portails qui pétillent.</French>
-      <Polish>Klucz, którego należy używać w przypadku portali, które nie działają.</Polish>
-      <Russian>Ключ, который следует использовать для шипящих порталов.</Russian>
-      <Portuguese>A chave a utilizar para os portais de efervescência.</Portuguese>
-      <Czech>Klíč k použití pro šumící portály.</Czech>
+    <Key ID="STR_PGUN_Grab">
+      <English>Grab object</English>
+      <Spanish>Agarra el objeto</Spanish>
+      <German>Objekt greifen</German>
+      <Chinesesimp>抓取物体</Chinesesimp>
+      <Japanese>グラブオブジェクト</Japanese>
+      <Italian>Afferrare l'oggetto</Italian>
+      <French>Saisir l'objet</French>
+      <Polish>Złapać obiekt</Polish>
+      <Russian>Захватить объект</Russian>
+      <Portuguese>Agarrar objecto</Portuguese>
+      <Czech>Uchopení objektu</Czech>
     </Key>
     <Key ID="STR_PGUN_Misc">
       <English>Miscellaneous</English>
@@ -1300,6 +1274,110 @@
       <Russian>Toggle Radio</Russian>
       <Portuguese>Rádio Toggle</Portuguese>
       <Czech>Přepínání rádia</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Offset_Up">
+      <English>Upward Unit Offset</English>
+      <Spanish>Desplazamiento de la unidad hacia arriba</Spanish>
+      <German>Offset der Einheit nach oben</German>
+      <Chinesesimp>向上的单位偏移</Chinesesimp>
+      <Japanese>上方ユニットオフセット</Japanese>
+      <Italian>Offset unità verso l'alto</Italian>
+      <French>Décalage d'unité vers le haut</French>
+      <Polish>Przesunięcie jednostki w górę</Polish>
+      <Russian>Смещение единицы измерения в сторону увеличения</Russian>
+      <Portuguese>Offset de unidade para cima</Portuguese>
+      <Czech>Posun jednotky směrem nahoru</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Offset_Up_Desc">
+      <English>The upward offset to apply to units when teleporting through upward-facing portals.</English>
+      <Spanish>El desplazamiento hacia arriba que se aplicará a las unidades cuando se teletransporten a través de portales orientados hacia arriba.</Spanish>
+      <German>Der nach oben gerichtete Offset, der auf Einheiten angewendet wird, wenn sie durch nach oben gerichtete Portale teleportieren.</German>
+      <Chinesesimp>在通过朝上的传送门传送时适用于单位的向上偏移。</Chinesesimp>
+      <Japanese>上向きのポータルからテレポートする際にユニットに適用される上方オフセット。</Japanese>
+      <Italian>L'offset verso l'alto da applicare alle unità quando si teletrasportano attraverso portali rivolti verso l'alto.</Italian>
+      <French>Le décalage vers le haut à appliquer aux unités lorsqu'elles se téléportent à travers des portails orientés vers le haut.</French>
+      <Polish>Przesunięcie w górę stosowane do jednostek podczas teleportacji przez portale skierowane w górę.</Polish>
+      <Russian>Смещение вверх, применяемое к юнитам при телепортации через порталы, направленные вверх.</Russian>
+      <Portuguese>A compensação ascendente a aplicar às unidades quando se teletransportam através de portais virados para cima.</Portuguese>
+      <Czech>Odsazení směrem nahoru, které se použije na jednotky při teleportaci portály směřujícími nahoru.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Offset_Down">
+      <English>Downward Unit Offset</English>
+      <Spanish>Desplazamiento de la unidad hacia abajo</Spanish>
+      <German>Offset der Einheit nach unten</German>
+      <Chinesesimp>下行单位偏移</Chinesesimp>
+      <Japanese>下方向の単位オフセット</Japanese>
+      <Italian>Offset unità verso il basso</Italian>
+      <French>Décalage de l'unité vers le bas</French>
+      <Polish>Przesunięcie w dół jednostki</Polish>
+      <Russian>Смещение единицы измерения в сторону уменьшения</Russian>
+      <Portuguese>Offset da unidade de descida</Portuguese>
+      <Czech>Posun jednotky směrem dolů</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Offset_Down_Desc">
+      <English>The downward offset to apply to units when teleporting through downward-facing portals.</English>
+      <Spanish>El desplazamiento hacia abajo que se aplicará a las unidades cuando se teletransporten a través de portales orientados hacia abajo.</Spanish>
+      <German>Der nach unten gerichtete Offset, der auf Einheiten angewendet wird, wenn sie sich durch nach unten gerichtete Portale teleportieren.</German>
+      <Chinesesimp>通过向下的传送门传送时，适用于单位的向下的偏移。</Chinesesimp>
+      <Japanese>下向きのポータルからテレポートする際にユニットに適用される下向きのオフセット。</Japanese>
+      <Italian>L'offset verso il basso da applicare alle unità quando si teletrasportano attraverso portali rivolti verso il basso.</Italian>
+      <French>Le décalage vers le bas à appliquer aux unités lorsqu'elles se téléportent à travers des portails orientés vers le bas.</French>
+      <Polish>Przesunięcie w dół stosowane do jednostek podczas teleportacji przez portale skierowane w dół.</Polish>
+      <Russian>Смещение вниз, применяемое к юнитам при телепортации через порталы, направленные вниз.</Russian>
+      <Portuguese>A compensação para baixo a aplicar às unidades quando se teletransportam através de portais virados para baixo.</Portuguese>
+      <Czech>Odsazení směrem dolů, které se použije na jednotky při teleportaci portály směřujícími dolů.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Offset_Unit">
+      <English>Standard Unit Offset</English>
+      <Spanish>Desplazamiento de la unidad estándar</Spanish>
+      <German>Standard Einheit Offset</German>
+      <Chinesesimp>标准单位偏移</Chinesesimp>
+      <Japanese>標準単位オフセット</Japanese>
+      <Italian>Offset unità standard</Italian>
+      <French>Décalage de l'unité standard</French>
+      <Polish>Jednostka standardowa Przesunięcie</Polish>
+      <Russian>Смещение стандартной единицы измерения</Russian>
+      <Portuguese>Offset de unidade padrão</Portuguese>
+      <Czech>Posun standardní jednotky</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Offset_Unit_Desc">
+      <English>The standard offset to apply to units when the upward and downward offsets do not apply.</English>
+      <Spanish>El desplazamiento estándar que se aplicará a las unidades cuando no se apliquen los desplazamientos hacia arriba y hacia abajo.</Spanish>
+      <German>Der Standard-Offset, der auf die Einheiten anzuwenden ist, wenn die Aufwärts- und Abwärts-Offsets nicht anwendbar sind.</German>
+      <Chinesesimp>当向上和向下的偏移量不适用时，适用于单位的标准偏移量。</Chinesesimp>
+      <Japanese>上方向オフセットおよび下方向オフセットが適用されない場合に、ユニットに適用する標準的なオフセット。</Japanese>
+      <Italian>L'offset standard da applicare alle unità quando non si applicano gli offset verso l'alto e verso il basso.</Italian>
+      <French>Le décalage standard à appliquer aux unités lorsque les décalages vers le haut et vers le bas ne s'appliquent pas.</French>
+      <Polish>Standardowe przesunięcie stosowane do jednostek, gdy przesunięcia w górę i w dół nie mają zastosowania.</Polish>
+      <Russian>Стандартное смещение, применяемое к единицам, когда повышающие и понижающие смещения не применяются.</Russian>
+      <Portuguese>A compensação padrão a aplicar às unidades quando as compensações para cima e para baixo não se aplicam.</Portuguese>
+      <Czech>Standardní odsazení, které se použije na jednotky, pokud se neuplatní odsazení směrem nahoru a dolů.</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Offset">
+      <English>Standard Offset</English>
+      <Spanish>Desplazamiento estándar</Spanish>
+      <German>Standard Versatz</German>
+      <Chinesesimp>标准偏移</Chinesesimp>
+      <Japanese>標準オフセット</Japanese>
+      <Italian>Offset standard</Italian>
+      <French>Décalage standard</French>
+      <Polish>Standardowe przesunięcie</Polish>
+      <Russian>Стандартное смещение</Russian>
+      <Portuguese>Compensação padrão</Portuguese>
+      <Czech>Standardní posun</Czech>
+    </Key>
+    <Key ID="STR_PGUN_Offset_Desc">
+      <English>The standard offset to apply when teleporting things that aren't units.</English>
+      <Spanish>El desplazamiento estándar que se aplica al teletransportar cosas que no son unidades.</Spanish>
+      <German>Der Standard-Offset, der beim Teleportieren von Dingen, die keine Einheiten sind, anzuwenden ist.</German>
+      <Chinesesimp>在传送不是单位的东西时适用的标准偏移。</Chinesesimp>
+      <Japanese>ユニットではないものをテレポートする際に適用される標準的なオフセット。</Japanese>
+      <Italian>L'offset standard da applicare quando si teletrasportano oggetti che non sono unità.</Italian>
+      <French>Le décalage standard à appliquer lors de la téléportation de choses qui ne sont pas des unités.</French>
+      <Polish>Standardowy offset stosowany przy teleportacji rzeczy, które nie są jednostkami.</Polish>
+      <Russian>Стандартное смещение, применяемое при телепортации предметов, не являющихся юнитами.</Russian>
+      <Portuguese>A compensação padrão a aplicar quando se teletransportam coisas que não são unidades.</Portuguese>
+      <Czech>Standardní posun, který se použije při teleportaci věcí, které nejsou jednotkami.</Czech>
     </Key>
   </Package>
 </Project>

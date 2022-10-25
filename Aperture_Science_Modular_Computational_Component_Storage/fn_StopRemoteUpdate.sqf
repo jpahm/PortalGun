@@ -33,7 +33,7 @@ params[["_id", "", [""]]];
 private _remoteUpdateHM = missionNameSpace getVariable [format ["ASHPD_VAR_RU_%1", remoteExecutedOwner], createHashMapFromArray []];
 
 // Terminate remote client's remote updates
-private _scriptHandle = _remoteUpdateHM get _id;
+private _scriptHandle = _remoteUpdateHM getOrDefault [_id, scriptNull];
 if !(isNull _scriptHandle) then {
 	terminate _scriptHandle;
 	_remoteUpdateHM deleteAt _id;

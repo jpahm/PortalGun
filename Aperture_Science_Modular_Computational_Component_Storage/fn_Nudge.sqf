@@ -14,7 +14,7 @@
 
 #include "macros.hpp"
 
-/// Description: Handles "nudging" the player towards portals they're falling towards.
+/// Description: Handles "nudging" the player towards portals they're falling towards. Meant to be ran via StartRemoteUpdate.
 /// Parameters:
 ///		PARAMETER		|		EXPECTED INPUT TYPE		|		DESCRIPTION
 ///

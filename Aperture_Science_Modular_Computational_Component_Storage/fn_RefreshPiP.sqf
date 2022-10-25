@@ -14,12 +14,11 @@
 
 #include "macros.hpp"
 
-/// Description: Refreshes the PiP textures. Needs to be remoteExec'd.
+/// Description: Refreshes the local PiP textures on the specified client.
 /// Parameters:
 ///		PARAMETER		|		EXPECTED INPUT TYPE		|		DESCRIPTION
 ///
-///		bPortal			|		Object					|		The blue portal.
-///		oPortal			|		Object					|		The orange portal.
+///		clientID		|		Number					|		The client ID of the client to refresh PiP for.
 ///
 ///	Return value: None.
 
@@ -27,20 +26,16 @@
 ASHPD_LOG_FUNC("RefreshPiP");
 #endif
 
-params["_bPortal", "_oPortal"];
+params["_clientID"];
 
-// Don't do anything with the cams if PiP not enabled
-if (!isPiPEnabled || {!ASHPD_VAR_PIP_ENABLED}) exitWith {};
-
-private _blueCam = ASHPD_REMOTE_BLUE_CAM;
-private _orangeCam = ASHPD_REMOTE_ORANGE_CAM;
-
-// If the cameras currently exist, refresh their PiP textures
-if !(isNull _blueCam) then {
-	_bPortal setObjectTexture [1, format[ASHPD_BLUE_PIP_TEX, remoteExecutedOwner]];  
-	_blueCam cameraEffect ASHPD_BLUE_PIP_EFFECT;
-};
-if !(isNull _orangeCam) then {
-	_oPortal setObjectTexture [1, format[ASHPD_ORANGE_PIP_TEX, remoteExecutedOwner]];
-	_orangeCam cameraEffect ASHPD_ORANGE_PIP_EFFECT; 
+// If the portals are linked, refresh their PiP textures on the specified client
+if (ASHPD_VAR_PORTALS_LINKED) then {
+	private _bPortal = ASHPD_VAR_BLUE_PORTAL;
+	private _oPortal = ASHPD_VAR_ORANGE_PORTAL;
+	[_bPortal, _oPortal] remoteExecCall ["ASHPD_fnc_UnlinkPortals", _clientID];
+	[_bPortal, _oPortal] remoteExecCall ["ASHPD_fnc_LinkPortals", _clientID];
+	[
+		getPosWorld _bPortal, vectorDir _bPortal, vectorUp _bPortal, 
+		getPosWorld _oPortal, vectorDir _oPortal, vectorUp _oPortal
+	] remoteExecCall ["ASHPD_fnc_UpdateCams", _clientID];
 };

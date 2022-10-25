@@ -14,7 +14,7 @@
 
 #include "macros.hpp"
 
-/// Description: Allows the PiP cameras follow the portals when they're attached to moving objects. Needs to be remoteExec'd.
+/// Description: Allows the PiP cameras follow the portals when they're attached to moving objects. Meant to be ran via StartRemoteUpdate.
 /// Parameters:
 ///		PARAMETER		|		EXPECTED INPUT TYPE		|		DESCRIPTION
 ///

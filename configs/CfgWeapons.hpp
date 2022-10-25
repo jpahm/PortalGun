@@ -57,6 +57,8 @@ class CfgWeapons
 		audibleFire = 1000;
 		audibleFireTime = 24;
 		scope = 0;
+		memoryPointCamera="";
+		cameraDir="";
 		magazines[] = { "AS_MBH" };
 		magazineWell[] = { "ASHPD_MBHCU" };
 		displayName = "$STR_PGUN_Name_Long";

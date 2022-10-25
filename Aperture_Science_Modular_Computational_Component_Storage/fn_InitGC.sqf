@@ -27,5 +27,6 @@ addMissionEventHandler ["PlayerDisconnected",
 	params ["_id", "_uid", "_name", "_jip", "_owner", "_idstr"];
 	{
 		deleteVehicle _x;
-	} forEach (ASHPD_VAR_GC get _uid);
+	} forEach (ASHPD_VAR_GC getOrDefault [_uid, []]);
+	ASHPD_VAR_GC deleteAt _uid;
 }];

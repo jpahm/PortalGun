@@ -30,16 +30,8 @@ params[["_portals", [ASHPD_VAR_CURRENT_PORTAL, ASHPD_VAR_OTHER_PORTAL], [[]]]];
 
 [player, "gun_fizzle"] call ASHPD_fnc_PlaySound;
 
-private _fizzleSpawns = [];
-
 // Fizzle each given portal individually
 {
-	if (_x == "Blue") then {
-		_x = ASHPD_VAR_BLUE_PORTAL;
-	} else {
-		_x = ASHPD_VAR_ORANGE_PORTAL;
-	};
-	[_x, "portal_fizzle"] call ASHPD_fnc_PlaySound;
 	// Animate portal closing
 	[_x, false] call ASHPD_fnc_SetPortalOpen;
 } forEach _portals; 

@@ -33,10 +33,12 @@ ASHPD_VAR_LAST_BH_TIME = [] call ASHPD_fnc_GetServerTime;
 publicVariable "ASHPD_VAR_LAST_BH_TIME";
 
 // Start playing music on all clients
-["BlackHoleMusic"] remoteExecCall ["playMusic", [0, -2] select ASHPD_VAR_IS_DEDI];
+["BlackHoleMusic"] remoteExecCall ["playMusic", ASHPD_CLIENTS];
+
+private _startTime = diag_tickTime;
 
 // Wait 16 seconds, until music intensifies
-waitUntil { getMusicPlayedTime >= 16 };
+waitUntil { diag_tickTime - _startTime >= 16 };
 
 // Spawn the black hole
 private _blackHole = createVehicle ["death", _position, [], 0, "CAN_COLLIDE"];
@@ -46,13 +48,13 @@ private _blackHoleRange = ASHPD_BH_FATAL_DISTANCE;
 // Gravitational constant * Black hole mass for gravForce calc
 private _GM = 10000000;
 // Pull physX objects into the black hole and destroy them while steadily growing the black hole's range of influence
-while {getMusicPlayedTime <= 345} do {
+while { diag_tickTime - _startTime <= 348 } do {
 	// Destroy any non-player items that enter the fatal radius
 	private _toDestroy = (_position nearObjects ASHPD_BH_FATAL_DISTANCE) - [_blackHole];
 	{
 		_x setDamage 1;
 		// Hide object
-		ASHPD_HIDE_SERVER(_x, true);
+		_x hideObjectGlobal true;
 		// Delete all vehicles that aren't units
 		if (_x isKindOf "AllVehicles" && {!(_x isKindOf "CAManBase")}) then {
 			deleteVehicle _x;
@@ -73,13 +75,18 @@ while {getMusicPlayedTime <= 345} do {
 		};
 		private _objCoM = getCenterOfMass _x;
 		private _gravForce = _GM * _objMass / (_distance^2); // Fg = GMm/r^2
-		_x addForce [_forceDir vectorMultiply _gravForce, _objCoM]; // Apply gravForce to object's CoM toward black hole
+		// Apply gravForce to object's CoM toward black hole
+		if (local _x) then {
+			_x addForce [_forceDir vectorMultiply _gravForce, _objCoM];
+		} else {
+			[_x, [_forceDir vectorMultiply _gravForce, _objCoM]] remoteExecCall ["addForce", _x];
+		};
 	} forEach _toPull;
 	_blackHoleRange = _blackHoleRange + 2.5; // Increase pull range
 	sleep 0.25;
 };
 
 // Stop playing music on all clients
-[""] remoteExecCall ["playMusic", [0, -2] select ASHPD_VAR_IS_DEDI];
+[""] remoteExecCall ["playMusic", ASHPD_CLIENTS];
 // Delete black hole
 deleteVehicle _blackHole;

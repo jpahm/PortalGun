@@ -6,16 +6,12 @@ class CfgFunctions
 		{
 			tag = "ASHPD";
 			file = "\PortalGun\Aperture_Science_Modular_Computational_Component_Storage";
-			class AddToGC {};
 			class BlackHole {};
 			class BoundsCheck {};
 			class CamFollow {};
 			class CamIllusion {};
 			class DetectObjects {};
 			class DrawCrosshair {};
-			class EzQuaternions {
-				preInit = 1;
-			};
 			class FixArsenalBug {};
 			class Fizzle {};
 			class GetServerTime {};
@@ -49,6 +45,7 @@ class CfgFunctions
 			class UnlinkPortals {};
 			class UpdateCams {};
 			class UpdateCrosshair {};
+			class UpdateGC {};
 			class UpdatePortals {};
 		};
 	};

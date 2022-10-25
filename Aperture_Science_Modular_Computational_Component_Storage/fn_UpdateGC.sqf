@@ -14,19 +14,30 @@
 
 #include "macros.hpp"
 
-/// Description: Adds items to the server's "garbage collector" for the player matching the given UID. Must be remoteExecuted on the server.
+/// Description: Adds or removes items from the server's "garbage collector" for the player matching the given UID. Must be remoteExecuted on the server.
 /// Parameters:
 ///		PARAMETER		|		EXPECTED INPUT TYPE		|		DESCRIPTION
 ///
 ///		UID				|		String					|		A player's UID.
-///		Objects			|		Array					|		The global objects to destroy when this player disconnects.
+///		Objects			|		Array					|		The global objects to add/remove from the garbage collector.
+///		Adding			|		Boolean					|		Whether the objects are being added or not.
 ///
 ///	Return value: None.
 
-params ["_uID", ["_objects", [], [[]]]];
+#ifdef ASHPD_DEBUG
+ASHPD_LOG_FUNC("UpdateGC");
+#endif
+
+params ["_uID", ["_objects", [], [[]]], ["_adding", true, [true]]];
 
 if !(_uID in ASHPD_VAR_GC) then {
-	ASHPD_VAR_GC set [_uID, _objects];
+	if (_adding) then {
+		ASHPD_VAR_GC set [_uID, _objects];
+	};
 } else {
-	(ASHPD_VAR_GC get _uID) append _objects;
+	if (_adding) then {
+		(ASHPD_VAR_GC get _uID) append _objects;
+	} else {
+		ASHPD_VAR_GC set [_uID, (ASHPD_VAR_GC get _uID) - _objects];
+	};
 };

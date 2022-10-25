@@ -29,6 +29,8 @@ ASHPD_LOG_FUNC("UnlinkPortals");
 
 params["_bPortal", "_oPortal"];
 
+private _owner = remoteExecutedOwner;
+
 private _blueCam = ASHPD_REMOTE_BLUE_CAM;
 private _orangeCam = ASHPD_REMOTE_ORANGE_CAM;
 
@@ -36,7 +38,7 @@ private _orangeCam = ASHPD_REMOTE_ORANGE_CAM;
 _bPortal setObjectMaterial [1, ASHPD_BLUE_NOISE_MAT];
 _bPortal setObjectTexture [1, ASHPD_BLUE_NOISE_TEX];
 if !(isNull _blueCam) then {
-	_blueCam cameraEffect ["terminate", "back", format["piprenderbp%1", remoteExecutedOwner]];
+	_blueCam cameraEffect ["terminate", "back", format["piprenderbp%1", _owner]];
 	detach _blueCam;
 	camDestroy _blueCam;
 };
@@ -45,13 +47,13 @@ if !(isNull _blueCam) then {
 _oPortal setObjectMaterial [1, ASHPD_ORANGE_NOISE_MAT];
 _oPortal setObjectTexture [1, ASHPD_ORANGE_NOISE_TEX];
 if !(isNull _orangeCam) then {
-	_orangeCam cameraEffect ["terminate", "back", format["piprenderop%1", remoteExecutedOwner]];
+	_orangeCam cameraEffect ["terminate", "back", format["piprenderop%1", _owner]];
 	detach _orangeCam;
 	camDestroy _orangeCam;
 };
 
 // Only owner of the portals should control animations
-if (remoteExecutedOwner == clientOwner) then {
+if (_owner == clientOwner) then {
 	_bPortal animateSource ["Portal_Noise_Source", 100000, 1];
 	_oPortal animateSource ["Portal_Noise_Source", 100000, 1];
 };

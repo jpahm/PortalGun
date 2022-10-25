@@ -28,53 +28,55 @@ ASHPD_VAR_UPDATE_INTERVAL = [1/ASHPD_SP_UPDATE_RATE, 1/ASHPD_MP_UPDATE_RATE] sel
 // Don't run any of the rest of this code on a dedicated server, exit here
 if (isDedicated) exitWith {};
 
-// Check whether portals already exist for this player (placed via Zeus, 3den, or createVehicle/createVehicleLocal) create them if not
+// Check whether portals already exist for this player (placed via Zeus, 3den, or createVehicle/createVehicleLocal), create them if not
 if (isNil "ASHPD_VAR_BLUE_PORTAL") then {
 	ASHPD_VAR_BLUE_PORTAL = createVehicle ["Portal", [0,0,0], [], 0, "CAN_COLLIDE"];
 	ASHPD_VAR_BLUE_PORTAL setVariable ["open", false];
-	[getPlayerUID player, [ASHPD_VAR_BLUE_PORTAL]] remoteExecCall ["ASHPD_fnc_AddToGC", 2];
+	ASHPD_VAR_BLUE_PORTAL setVariable ["isBlue", true];
+	// Add player-specific portal to GC so it gets cleaned up when they leave
+	[getPlayerUID player, [ASHPD_VAR_BLUE_PORTAL]] remoteExecCall ["ASHPD_fnc_UpdateGC", ASHPD_SERVER];
 } else {
+	ASHPD_VAR_BLUE_PORTAL setVariable ["isBlue", true];
 	[ASHPD_VAR_BLUE_PORTAL, true] call ASHPD_fnc_SetPortalOpen;
 };
+
 if (isNil "ASHPD_VAR_ORANGE_PORTAL") then {
 	ASHPD_VAR_ORANGE_PORTAL = createVehicle ["Portal", [0,0,0], [], 0, "CAN_COLLIDE"];
 	ASHPD_VAR_ORANGE_PORTAL setVariable ["open", false];
-	[getPlayerUID player, [ASHPD_VAR_ORANGE_PORTAL]] remoteExecCall ["ASHPD_fnc_AddToGC", 2];
+	ASHPD_VAR_ORANGE_PORTAL setVariable ["isBlue", false];
+	// Add player-specific portal to GC so it gets cleaned up when they leave
+	[getPlayerUID player, [ASHPD_VAR_ORANGE_PORTAL]] remoteExecCall ["ASHPD_fnc_UpdateGC", ASHPD_SERVER];
 } else {
+	ASHPD_VAR_ORANGE_PORTAL setVariable ["isBlue", false];
 	[ASHPD_VAR_ORANGE_PORTAL, true] call ASHPD_fnc_SetPortalOpen;
 };
 
-// Create the sound sources for the portal ambiance
-ASHPD_VAR_BLUE_PORTAL setVariable ["soundSource", createSoundSource ["PortalAmbientSource", ASHPD_VAR_BLUE_PORTAL, [], 0], true];
-ASHPD_VAR_ORANGE_PORTAL setVariable ["soundSource", createSoundSource ["PortalAmbientSource", ASHPD_VAR_ORANGE_PORTAL, [], 0], true];
+// Manage sound sources for local portals only
+if (local ASHPD_VAR_BLUE_PORTAL && local ASHPD_VAR_ORANGE_PORTAL) then {
+	// Create the sound sources for the portal ambience
+	ASHPD_VAR_BLUE_PORTAL setVariable ["soundSource", createSoundSource ["PortalAmbientSource", ASHPD_VAR_BLUE_PORTAL, [], 0], true];
+	ASHPD_VAR_ORANGE_PORTAL setVariable ["soundSource", createSoundSource ["PortalAmbientSource", ASHPD_VAR_ORANGE_PORTAL, [], 0], true];
 
-// Add sound sources to GC
-[getPlayerUID player, [ASHPD_VAR_BLUE_PORTAL getVariable "soundSource", ASHPD_VAR_ORANGE_PORTAL getVariable "soundSource"]] remoteExecCall ["ASHPD_fnc_AddToGC", 2];
-
-// Set the inner portals to the default noise texture and material
-ASHPD_VAR_BLUE_PORTAL setObjectTextureGlobal [1, ASHPD_BLUE_NOISE_TEX];
-ASHPD_VAR_ORANGE_PORTAL setObjectTextureGlobal [1, ASHPD_ORANGE_NOISE_TEX]; 
-ASHPD_VAR_BLUE_PORTAL setObjectMaterialGlobal [1, ASHPD_BLUE_NOISE_MAT];
-ASHPD_VAR_ORANGE_PORTAL setObjectMaterialGlobal [1, ASHPD_ORANGE_NOISE_MAT];
-
-// Set the portal edges to the proper edge textures and materials
-ASHPD_VAR_BLUE_PORTAL setObjectTextureGlobal [0, ASHPD_BLUE_EDGE_TEX]; 
-ASHPD_VAR_ORANGE_PORTAL setObjectTextureGlobal [0, ASHPD_ORANGE_EDGE_TEX];
-ASHPD_VAR_BLUE_PORTAL setObjectMaterialGlobal [0, ASHPD_BLUE_EDGE_MAT];
-ASHPD_VAR_ORANGE_PORTAL setObjectMaterialGlobal [0, ASHPD_ORANGE_EDGE_MAT]; 
-
-// Animate the edges and noise textures
-ASHPD_VAR_BLUE_PORTAL animateSource ["Portal_Flames_Source", 100000, 1];
-ASHPD_VAR_ORANGE_PORTAL animateSource ["Portal_Flames_Source", 100000, 1];
-ASHPD_VAR_BLUE_PORTAL animateSource ["Portal_Noise_Source", 100000, 1];
-ASHPD_VAR_ORANGE_PORTAL animateSource ["Portal_Noise_Source", 100000, 1];
-
-// Init the portal gun mode with addonOptions settings if they're not already set
-if (isNil "ASHPD_VAR_INIT_SETTINGS") then {
-	ASHPD_VAR_PORTAL_GUN_MODE call ASHPD_fnc_InitGun;
+	// Add sound sources to GC
+	[
+		getPlayerUID player, 
+		[
+			ASHPD_VAR_BLUE_PORTAL getVariable "soundSource", 
+			ASHPD_VAR_ORANGE_PORTAL getVariable "soundSource"
+		]
+	] remoteExecCall ["ASHPD_fnc_UpdateGC", ASHPD_SERVER];
 };
+
+// Init the portal gun mode with addonOptions settings since it doesn't work in preInit
+ASHPD_VAR_PORTAL_GUN_MODE call ASHPD_fnc_InitGun;
 
 // Update any existing portals
 [] call ASHPD_fnc_UpdatePortals;
 // Set up all of the event handlers
 [] call ASHPD_fnc_InitEvents;
+
+// Call HandleWeaponSwitch once the swap handle is free (used by InitGun above)
+[] spawn {
+	waitUntil {(player getVariable ["ASHPD_VAR_modeChangeHandle", scriptNull]) isEqualTo scriptNull};
+	[player, currentWeapon player] call ASHPD_fnc_HandleWeaponSwitch;
+};

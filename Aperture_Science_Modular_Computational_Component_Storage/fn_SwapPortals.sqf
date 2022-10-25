@@ -27,25 +27,23 @@ private _weapon = currentWeapon player;
 // Only allow portal swap with portal gun equipped
 if !(_weapon isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]) exitWith {};
 
+// Prevent duplicate swapping
+if !((player getVariable ["ASHPD_VAR_modeChangeHandle", scriptNull]) isEqualTo scriptNull) exitWith {};
+
+// Swap current and other portal
 private _temp = ASHPD_VAR_CURRENT_PORTAL;
 ASHPD_VAR_CURRENT_PORTAL = ASHPD_VAR_OTHER_PORTAL;
 ASHPD_VAR_OTHER_PORTAL = _temp;
 
-private _weaponSwapHandle = player getVariable ["ASHPD_VAR_weaponSwapHandle", scriptNull];
-if !(_weaponSwapHandle isEqualTo scriptNull) then {
-	terminate _weaponSwapHandle;
-};
-
 // Force weapon mode to match current portal
-player setVariable ["ASHPD_VAR_weaponSwapHandle", [_weapon] spawn {
+player setVariable ["ASHPD_VAR_modeChangeHandle", [_weapon] spawn {
 	params["_weapon"];
-	// Set swap flag so we can swap the mode without looping
-	player setVariable ["ASHPD_VAR_swapFlag", true];
 	sleep 0.1;
 	// Make sure firemode matches current portal setting
 	private _ammo = player ammo _weapon;
 	player setAmmo [_weapon, 0];
-	player forceWeaponFire [_weapon, ASHPD_VAR_CURRENT_PORTAL];
+	player forceWeaponFire [_weapon, ASHPD_FIREMODE];
 	player setAmmo [_weapon, _ammo];
 	sleep 0.1;
+	player setVariable ["ASHPD_VAR_modeChangeHandle", scriptNull];
 }];

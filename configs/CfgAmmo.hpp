@@ -13,43 +13,46 @@ class CfgAmmo
 		hit=8;
 		indirectHit=0;
 		indirectHitRange=0;
-		model="\A3\Weapons_f\ammo\shell";
+		model="";
 		caliber=1;
-		cartridge="FxCartridge_556";
+		cartridge="";
 		cost=1;
 		timeToLive=6;
 		deflecting=15;
 		tracerStartTime=-1;
 		muzzleEffect="";
 		waterEffectOffset=0.80000001;
-		effectFly="AmmoClassic";
+		effectFly="";
 		aiAmmoUsageFlags="64 + 128 + 256";
-
+		soundFly[] = {"",1,1,400};
+		soundEngine[] = {"",1,1,50};
+		supersonicCrackNear[] = {"",0,0,0};
+		supersonicCrackFar[] = {"",0,0,0};
 		class HitEffects
 		{
-			Hit_Foliage_green="ImpactLeavesGreen";
-			Hit_Foliage_Dead="ImpactLeavesDead";
-			Hit_Foliage_Green_big="ImpactLeavesGreenBig";
-			Hit_Foliage_Palm="ImpactLeavesPalm";
-			Hit_Foliage_Pine="ImpactLeavesPine";
-			hitFoliage="ImpactLeaves";
-			hitGlass="ImpactGlass";
-			hitGlassArmored="ImpactGlassThin";
-			hitWood="ImpactWood";
-			hitHay="ImpactHay";
-			hitMetal="ImpactMetal";
-			hitMetalPlate="ImpactMetal";
-			hitBuilding="ImpactPlaster";
-			hitPlastic="ImpactPlastic";
-			hitRubber="ImpactRubber";
-			hitTyre="ImpactTyre";
-			hitConcrete="ImpactConcrete";
-			hitMan="ImpactEffectsBlood";
-			hitGroundSoft="ImpactEffectsSmall";
-			hitGroundRed="ImpactEffectsRed";
-			hitGroundHard="ImpactEffectsHardGround";
-			hitWater="ImpactEffectsWater";
-			hitVirtual="ImpactMetal";
+			Hit_Foliage_green="";
+			Hit_Foliage_Dead="";
+			Hit_Foliage_Green_big="";
+			Hit_Foliage_Palm="";
+			Hit_Foliage_Pine="";
+			hitFoliage="";
+			hitGlass="";
+			hitGlassArmored="";
+			hitWood="";
+			hitHay="";
+			hitMetal="";
+			hitMetalPlate="";
+			hitBuilding="";
+			hitPlastic="";
+			hitRubber="";
+			hitTyre="";
+			hitConcrete="";
+			hitMan="";
+			hitGroundSoft="";
+			hitGroundRed="";
+			hitGroundHard="";
+			hitWater="";
+			hitVirtual="";
 		};
 		class CamShakeExplode
 		{
@@ -99,140 +102,48 @@ class CfgAmmo
 		visibleFireTime = 12;
 		audibleFire = 1000;
 		audibleFireTime = 24;
-		supersonicCrackNear[] = { "A3\sounds_f\arsenal\sfx\supersonic_crack\scrack_close",
-			3.1622777,
-			1,
-			1000
-		};
-		supersonicCrackFar[] = { "A3\sounds_f\arsenal\sfx\supersonic_crack\scrack_middle",
-			3.1622777,
-			1,
-			1000
-		};
+		supersonicCrackNear[] = {"",0,0,0};
+		supersonicCrackFar[] = {"",0,0,0};
 		class SuperSonicCrack
 		{
-			superSonicCrack[] = { "A3\sounds_f\arsenal\sfx\supersonic_crack\sc_meadow1",
-				3.1622777,
-				1,
-				1000
-			};
+			superSonicCrack[] = {"",0,0,0};
 			class SCrackForest
 			{
-				range[] = { 0,
-					500
-				};
-				sound1[] = { "A3\sounds_f\arsenal\sfx\supersonic_crack\sc_forest1",
-					1,
-					1,
-					4500
-				};
-				sound2[] = { "A3\sounds_f\arsenal\sfx\supersonic_crack\sc_forest2",
-					1,
-					1,
-					4500
-				};
-				sound3[] = { "A3\sounds_f\arsenal\sfx\supersonic_crack\sc_forest3",
-					1,
-					1,
-					4500
-				};
-				sounds[] = { "sound1",
-					0.333,
-					"sound2",
-					0.333,
-					"sound3",
-					0.333
-				};
+				range[] = { 0,0};
+				sound1[] = {"",0,0,0};
+				sound2[] = {"",0,0,0};
+				sound3[] = {"",0,0,0};
+				sounds[] = {"",0,0,0};
 				frequency = "((speed factor[330, 930]) *0.1) + 1.05";
 				trigger = "forest";
 			};
 			class SCrackTrees
 			{
-				range[] = { 0,
-					500
-				};
-				sound1[] = { "A3\sounds_f\arsenal\sfx\supersonic_crack\sc_trees1",
-					1,
-					1,
-					4500
-				};
-				sound2[] = { "A3\sounds_f\arsenal\sfx\supersonic_crack\sc_trees2",
-					1,
-					1,
-					4500
-				};
-				sound3[] = { "A3\sounds_f\arsenal\sfx\supersonic_crack\sc_trees3",
-					1,
-					1,
-					4500
-				};
-				sounds[] = { "sound1",
-					0.333,
-					"sound2",
-					0.333,
-					"sound3",
-					0.333
-				};
+				range[] = { 0,0};
+				sound1[] = {"",0,0,0};
+				sound2[] = {"",0,0,0};
+				sound3[] = {"",0,0,0};
+				sounds[] = {"",0,0,0};
 				frequency = "((speed factor[330, 930]) *0.1) + 1.05";
 				trigger = "trees";
 			};
 			class SCrackMeadow
 			{
-				range[] = { 0,
-					500
-				};
-				sound1[] = { "A3\sounds_f\arsenal\sfx\supersonic_crack\sc_meadow1",
-					1,
-					1,
-					4500
-				};
-				sound2[] = { "A3\sounds_f\arsenal\sfx\supersonic_crack\sc_meadow2",
-					1,
-					1,
-					4500
-				};
-				sound3[] = { "A3\sounds_f\arsenal\sfx\supersonic_crack\sc_meadow3",
-					1,
-					1,
-					4500
-				};
-				sounds[] = { "sound1",
-					0.333,
-					"sound2",
-					0.333,
-					"sound3",
-					0.333
-				};
+				range[] = { 0,0};
+				sound1[] = {"",0,0,0};
+				sound2[] = {"",0,0,0};
+				sound3[] = {"",0,0,0};
+				sounds[] = {"",0,0,0};
 				frequency = "((speed factor[330, 930]) *0.1) + 1.05";
 				trigger = "meadow max sea";
 			};
 			class SCrackHouses
 			{
-				range[] = { 0,
-					500
-				};
-				sound1[] = { "A3\sounds_f\arsenal\sfx\supersonic_crack\sc_houses1",
-					1,
-					1,
-					4500
-				};
-				sound2[] = { "A3\sounds_f\arsenal\sfx\supersonic_crack\sc_houses2",
-					1,
-					1,
-					4500
-				};
-				sound3[] = { "A3\sounds_f\arsenal\sfx\supersonic_crack\sc_houses3",
-					1,
-					1,
-					4500
-				};
-				sounds[] = { "sound1",
-					0.333,
-					"sound2",
-					0.333,
-					"sound3",
-					0.333
-				};
+				range[] = { 0,0};
+				sound1[] = {"",0,0,0};
+				sound2[] = {"",0,0,0};
+				sound3[] = {"",0,0,0};
+				sounds[] = {"",0,0,0};
 				frequency = "((speed factor[330, 930]) *0.1) + 1.05";
 				trigger = "houses max interior";
 			};

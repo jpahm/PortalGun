@@ -12,65 +12,36 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#include ".\Aperture_Science_Modular_Computational_Component_Storage\macros.hpp"
+#include "\a3\ui_f\hpp\defineDIKCodes.inc"
+
 private _modName = localize "$STR_PGUN_Name_Short";
 // ACE medical compatibility check
 ASHPD_VAR_ACEMED_ENABLED = isClass (configFile >> "CfgPatches" >> "ace_medical");
 
 /// Controls ///
 
-// Allowed keys for the grab control
-ASHPD_VAR_GRAB_KEYS = [
-	"fire", "User1", "User2", "User3", "User4", "User5", "User6", "User7", "User8", "User9", "User10",
-	"User11", "User12", "User13", "User14", "User15", "User16", "User17", "User18", "User19", "User20"
-];
-
-// Allowed keys for the fizzle control
-ASHPD_VAR_FIZZLE_KEYS = [
-	"deployWeaponAuto", "User1", "User2", "User3", "User4", "User5", "User6", "User7", "User8", "User9", "User10",
-	"User11", "User12", "User13", "User14", "User15", "User16", "User17", "User18", "User19", "User20"
-];
-
-[
-	"ASHPD_VAR_GRAB_KEY",
-	"LIST",
-	["$STR_PGUN_Grab_Key", "$STR_PGUN_Grab_Key_Desc"],
-	[_modName, "$STR_PGUN_Controls"],
-	[
-		ASHPD_VAR_GRAB_KEYS,
-		ASHPD_VAR_GRAB_KEYS apply {actionName _x},
-		0
-	],
+[_modName, "$STR_PGUN_Grab", "$STR_PGUN_Grab", 
+	ASHPD_fnc_ToggleGrab,
+    "",
+	[0xF1, [false, true, false]],
+	false,
 	0,
-	{
-		removeUserActionEventHandler [ASHPD_VAR_OLD_GRAB_KEY, "Activate", ASHPD_VAR_GRAB_KEY_INDEX];
-		ASHPD_VAR_GRAB_KEY_INDEX = addUserActionEventHandler [_this, "Activate", ASHPD_fnc_ToggleGrab];
-		ASHPD_VAR_OLD_GRAB_KEY = _this;
-	},
 	false
-] call CBA_fnc_addSetting;
+] call CBA_fnc_addKeybind;
 
-[
-	"ASHPD_VAR_FIZZLE_KEY",
-	"LIST",
-	["$STR_PGUN_Fizzle_Key", "$STR_PGUN_Fizzle_Key_Desc"],
-	[_modName, "$STR_PGUN_Controls"],
-	[
-		ASHPD_VAR_FIZZLE_KEYS,
-		ASHPD_VAR_FIZZLE_KEYS apply {actionName _x},
-		0
-	],
-	0,
+[_modName, "$STR_PGUN_Fizzle", "$STR_PGUN_Fizzle", 
 	{
-		removeUserActionEventHandler [ASHPD_VAR_OLD_FIZZLE_KEY, "Activate", ASHPD_VAR_FIZZLE_KEY_INDEX];
-		ASHPD_VAR_FIZZLE_KEY_INDEX = addUserActionEventHandler [_this, "Activate", {
-			if (ASHPD_VAR_PLAYER_FIZZLE_ENABLED && {(currentWeapon player) isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]}) then {
-				[] spawn ASHPD_fnc_Fizzle;
-			};
-		}];
-		ASHPD_VAR_OLD_FIZZLE_KEY = _this;
+		if (ASHPD_VAR_PLAYER_FIZZLE_ENABLED && {(currentWeapon player) isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]}) then {
+			[] spawn ASHPD_fnc_Fizzle;
+		};
 	},
+    "",
+	[DIK_TAB, [false, false, false]],
+	false,
+	0,
 	false
-] call CBA_fnc_addSetting;
+] call CBA_fnc_addKeybind;
 
 /// Toggles ///
 
@@ -86,7 +57,10 @@ ASHPD_VAR_FIZZLE_KEYS = [
 		if (_this && ASHPD_VAR_ACEMED_ENABLED) then {
 			ASHPD_VAR_FALL_HANDLE = [] spawn {
 				while {true} do {
-					if (!isTouchingGround player && {vectorMagnitude velocity player > 0.1}) then {
+					if (
+						currentWeapon player isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"] && 
+						{!isTouchingGround player && {vectorMagnitude velocity player > 0.1}}
+					) then {
 						player setVariable ["ace_medical_allowDamage", false];
 						waitUntil {vectorMagnitude velocity player <= 0.1};
 						player setVariable ["ace_medical_allowDamage", true];
@@ -167,13 +141,7 @@ ASHPD_VAR_FIZZLE_KEYS = [
 	true,
 	0,
 	{
-		if (ASHPD_VAR_PORTALS_LINKED) then {
-			if (_this) then {
-				[ASHPD_VAR_BLUE_PORTAL, ASHPD_VAR_ORANGE_PORTAL] remoteExecCall ["ASHPD_fnc_LinkPortals", [0, -2] select ASHPD_VAR_IS_DEDI, format ["ASHPD_LINK_%1", clientOwner]];
-			} else {
-				[ASHPD_VAR_BLUE_PORTAL, ASHPD_VAR_ORANGE_PORTAL] remoteExecCall ["ASHPD_fnc_UnlinkPortals", [0, -2] select ASHPD_VAR_IS_DEDI, format ["ASHPD_LINK_%1", clientOwner]];
-			};
-		};
+		[clientOwner] remoteExecCall ["ASHPD_fnc_RefreshPiP", ASHPD_CLIENTS];
 	},
 	false
 ] call CBA_fnc_addSetting;
@@ -316,6 +284,50 @@ ASHPD_VAR_FIZZLE_KEYS = [
 	false
 ] call CBA_fnc_addSetting;
 
+[
+	"ASHPD_VAR_OFFSET_UP",
+	"SLIDER",
+	["$STR_PGUN_Offset_Up", "$STR_PGUN_Offset_Up_Desc"],
+	[_modName, "$STR_PGUN_Ranges"],
+	[0, 1, 0.02, 2, false],
+	1,
+	{},
+	false
+] call CBA_fnc_addSetting;
+
+[
+	"ASHPD_VAR_OFFSET_DOWN",
+	"SLIDER",
+	["$STR_PGUN_Offset_Down", "$STR_PGUN_Offset_Down_Desc"],
+	[_modName, "$STR_PGUN_Ranges"],
+	[0, 1, 0.5, 2, false],
+	1,
+	{},
+	false
+] call CBA_fnc_addSetting;
+
+[
+	"ASHPD_VAR_OFFSET_UNIT",
+	"SLIDER",
+	["$STR_PGUN_Offset_Unit", "$STR_PGUN_Offset_Unit_Desc"],
+	[_modName, "$STR_PGUN_Ranges"],
+	[0, 1, 0.3, 2, false],
+	1,
+	{},
+	false
+] call CBA_fnc_addSetting;
+
+[
+	"ASHPD_VAR_OFFSET",
+	"SLIDER",
+	["$STR_PGUN_Offset", "$STR_PGUN_Offset_Desc"],
+	[_modName, "$STR_PGUN_Ranges"],
+	[0, 1, 0.5, 2, false],
+	1,
+	{},
+	false
+] call CBA_fnc_addSetting;
+
 /// Misc ///
 
 [
@@ -330,7 +342,7 @@ ASHPD_VAR_FIZZLE_KEYS = [
 	],
 	1,
 	{
-		_this remoteExecCall ["ASHPD_fnc_InitGun", [0, -2] select ASHPD_VAR_IS_DEDI, "ASHPD_INIT_GUN"];
+		_this remoteExecCall ["ASHPD_fnc_InitGun", ASHPD_CLIENTS, "ASHPD_INIT_GUN"];
 	},
 	false
 ] call CBA_fnc_addSetting;

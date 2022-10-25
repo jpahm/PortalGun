@@ -28,13 +28,12 @@ ASHPD_LOG_FUNC("HandleWeaponSwitch");
 
 params["_unit", ["_currentWeapon", ""]];
 
-// Unset swap flag and return if swap flag set, prevents looping with ASHPD_fnc_SwapPortals
-if (player getVariable ["ASHPD_VAR_swapFlag", false]) exitWith {
-	player setVariable ["ASHPD_VAR_swapFlag", false];
-};
+// Prevent looping with ASHPD_fnc_SwapPortals
+if !((player getVariable ["ASHPD_VAR_modeChangeHandle", scriptNull]) isEqualTo scriptNull) exitWith {};
 
 // Player switched to portal gun
-if (_currentWeapon != "" && {_currentWeapon == primaryWeapon player && {_currentWeapon isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]}}) then {
+if (_currentWeapon == primaryWeapon player && {_currentWeapon isKindOf ["ASHPD_MK_SUS_Base_F", configFile >> "CfgWeapons"]}) then {
+	
 	// Only set up crosshair and other things if not already initialized
 	if (ASHPD_VAR_CROSSHAIR_HANDLE isEqualTo scriptNull) then {
 		// Start drawing crosshair
@@ -44,13 +43,12 @@ if (_currentWeapon != "" && {_currentWeapon == primaryWeapon player && {_current
 			terminate (player getVariable "ASHPD_VAR_equipHandle");
 		};
 		player setVariable ["ASHPD_VAR_equipHandle", [] spawn {
-			if !(gestureState player isEqualTo "amovpercmstpsraswpstdnon_amovpercmstpsraswrfldnon_end") then {
-				waitUntil {gestureState player isEqualTo "amovpercmstpsraswpstdnon_amovpercmstpsraswrfldnon_end"};
+			waitUntil {
+				(gestureState player) in ASHPD_GESTURES
 			};
-			waitUntil {!(gestureState player isEqualTo "amovpercmstpsraswpstdnon_amovpercmstpsraswrfldnon_end")};
 			[player, "gun_activate"] call ASHPD_fnc_PlaySound;
 			// Swap portals if current portal != current weapon mode
-			if (ASHPD_VAR_CURRENT_PORTAL != currentWeaponMode player) then {
+			if (ASHPD_FIREMODE != currentWeaponMode player) then {
 				[] call ASHPD_fnc_SwapPortals;
 			};
 		}];

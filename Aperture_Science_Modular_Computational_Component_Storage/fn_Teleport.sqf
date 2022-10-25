@@ -14,7 +14,7 @@
 
 #include "macros.hpp"
 
-/// Description: Handles teleportation through portals.
+/// Description: Handles teleportation through portals. Meant to be ran via StartRemoteUpdate.
 /// Parameters:
 ///		PARAMETER		|		EXPECTED INPUT TYPE		|		DESCRIPTION
 ///
@@ -30,37 +30,39 @@ ASHPD_LOG_FUNC("Teleport");
 params["_bPortal", "_oPortal"];
 
 // Get all the teleportable objects near both portals
-private _near = [_bPortal, _oPortal] call ASHPD_fnc_DetectObjects;
-private _nearBlue = _near#0;
-private _nearOrange = _near#1;
+([_bPortal, _oPortal] call ASHPD_fnc_DetectObjects) params ["_nearBlue", "_nearOrange"];
 
 // Exit if we don't have anything to teleport
 if (count _nearBlue == 0 && {count _nearOrange == 0}) exitWith {};
 
 // Variables for outer loop
-private ["_curPos", "_otherPos", "_curDir", "_otherDir", "_curUp", "_otherUp", "_curX", "_otherX"];
+private ["_entrancePos", "_exitPos", "_entranceDir", "_exitDir", "_entranceUp", "_exitUp", "_entranceX", "_exitX"];
 // Variables for inner loop
-private ["_posVector", "_objDir", "_objUp", "_objPos", "_isMan", "_rayCast", "_portalIndex", "_modelOffsetPos", "_outPos", "_sizeArr", "_modelOffsetVel", "_outVel", "_curAngle", "_otherAngle", "_outDir", "_modelOffsetUp", "_outUp"];
+private [
+	"_objDir", "_objUp", "_objPos", "_isMan", "_isLocal", "_posVector",
+	"_modelOffsetPos", "_outPos", "_requiredSize", "_curSize", "_modelOffsetVel", 
+	"_outVel", "_entranceAngle", "_exitAngle", "_outDir", "_modelOffsetUp", "_outUp"
+];
 
 {
-	_x params ["_nearObjs", "_curPortal", "_otherPortal"];
+	_x params ["_nearObjs", "_entrancePortal", "_exitPortal"];
 
 	// The position of the current portal
-	_curPos = getPosWorld _curPortal;
+	_entrancePos = getPosWorld _entrancePortal;
 	// Position of the other portal
-	_otherPos = getPosWorld _otherPortal;
+	_exitPos = getPosWorld _exitPortal;
 	// Direction of the current portal (points into the portal)
-	_curDir = vectorDir _curPortal;
+	_entranceDir = vectorDir _entrancePortal;
 	// Direction of the other portal (points into the portal)
-	_otherDir = vectorDir _otherPortal;
+	_exitDir = vectorDir _exitPortal;
 	// Direction of the top of the current portal
-	_curUp = vectorUp _curPortal;
+	_entranceUp = vectorUp _entrancePortal;
 	// Direction of the top of the other portal
-	_otherUp = vectorUp _otherPortal;
+	_exitUp = vectorUp _exitPortal;
 	// Direction to the side of the current portal
-	_curX = _curDir vectorCrossProduct _curUp;
+	_entranceX = _entranceDir vectorCrossProduct _entranceUp;
 	// Direction to the side of the other portal
-	_otherX = _otherDir vectorCrossProduct _otherUp;
+	_exitX = _exitDir vectorCrossProduct _exitUp;
 	
 	{
 		_x params ["_object", "_velocity", "_isProjectile"];
@@ -68,22 +70,15 @@ private ["_posVector", "_objDir", "_objUp", "_objPos", "_isMan", "_rayCast", "_p
 		_objDir = vectorDir _object;
 		_objUp = vectorUp _object;
 		_objPos = getPosWorld _object;
-		_isMan = _object isKindOf "CAManBase";
-		
-		// Raycast to determine trajectory
-		_rayCast = lineIntersectsSurfaces [_objPos, _objPos vectorAdd ((_velocity) vectorMultiply ASHPD_VAR_MAX_RANGE), _object, objNull, false, 2, "VIEW", "GEOM"];
-		_portalIndex = _rayCast findIf {(_x#2) isEqualTo _curPortal};
-		// If raycast check passed, use raycast data for positioning
-		if (_portalIndex > -1) then {
-			_posVector = _curPos vectorDiff ((_rayCast#_portalIndex)#0);
-		} else { // Else, compute position as a simple offset from the portal center, less precise than above
-			_posVector = _curPos vectorDiff _objPos;
-		};
+		_isMan = (!_isProjectile && {_object isKindOf "CAManBase"});
+		_isLocal = local _object;
+		// Vector offset of the object's position from the entrance portal
+		_posVector = _entrancePos vectorDiff _objPos;
 		
 		// Add gravitational acceleration for non-projectiles
 		if (!_isProjectile) then {
 			// Only accelerate object if incline of surface is within vertical tolerance upwards
-			if (acos(_curDir vectorCos [0, 0, -1]) < ASHPD_VAR_VERTICAL_TOLERANCE) then {
+			if (acos(_entranceDir vectorCos [0, 0, -1]) < ASHPD_VAR_VERTICAL_TOLERANCE) then {
 				if (_velocity#2 >= 0) then {
 					_velocity set [2, (_velocity#2) - ASHPD_VAR_FALL_VELOCITY];
 				};
@@ -91,45 +86,70 @@ private ["_posVector", "_objDir", "_objUp", "_objPos", "_isMan", "_rayCast", "_p
 		};
 		
 		// Transform positioning between portals by rotating the projected position vector 180 degrees around the portal's dirVector
-		_modelOffsetPos = _curPortal vectorWorldToModel 
+		_modelOffsetPos = _entrancePortal vectorWorldToModel 
 		([
 			// Add horizontal and vertical vectors, only mirror horizontal vector
-			(([_posVector, _curUp] call ASHPD_fnc_ProjectVector) vectorMultiply -1) vectorAdd ([_posVector, _curX] call ASHPD_fnc_ProjectVector),
-			_curDir,
+			(([_posVector, _entranceUp] call ASHPD_fnc_ProjectVector) vectorMultiply -1) vectorAdd ([_posVector, _entranceX] call ASHPD_fnc_ProjectVector),
+			_entranceDir,
 			180
-		] call SUS_fnc_QRotateVec);
-		_outPos = _otherPos vectorAdd (_otherPortal vectorModelToWorld _modelOffsetPos);
+		] call CBA_fnc_vectRotate3D);
+		_outPos = _exitPos vectorAdd (_exitPortal vectorModelToWorld _modelOffsetPos);
 		
 		// Use boundingBox dimensions to properly space object from exit portal
 		(boundingBoxReal _object) params ["_minArr", "_maxArr"];
-		if (_isMan && {acos(_otherDir vectorCos [0, 0, -1]) < ASHPD_VAR_VERTICAL_TOLERANCE}) then {
-			_sizeArr = (_maxArr vectorDiff _minArr) vectorMultiply 0.05;
+		if (_isMan) then {
+			if (acos(_exitDir vectorCos [0, 0, -1]) < ASHPD_VAR_VERTICAL_TOLERANCE) then {
+				// Only apply a slight offset for units if the exit faces upwards
+				_requiredSize = (_maxArr vectorDiff _minArr) vectorMultiply ASHPD_VAR_OFFSET_UP;
+			} else {
+				if (acos(_exitDir vectorCos [0, 0, 1]) < ASHPD_VAR_VERTICAL_TOLERANCE) then {
+					// Apply a large offset for units if the exit faces downwards
+					_requiredSize = (_maxArr vectorDiff _minArr) vectorMultiply ASHPD_VAR_OFFSET_DOWN;
+				} else {
+					// Otherwise, apply standard unit offset
+					_requiredSize = (_maxArr vectorDiff _minArr) vectorMultiply ASHPD_VAR_OFFSET_UNIT;
+				};
+			};
 		} else {
-			_sizeArr = (_maxArr vectorDiff _minArr) vectorMultiply .75;
+			// Apply standard offset for non-units
+			_requiredSize = (_maxArr vectorDiff _minArr) vectorMultiply ASHPD_VAR_OFFSET;
 		};
-		_outPos = _outPos vectorAdd (_otherDir vectorMultiply -(vectorMagnitude ([[_sizeArr, _otherX] call ASHPD_fnc_ProjectVector, _otherUp] call ASHPD_fnc_ProjectVector)));
+		_curSize = [[_outPos vectorDiff _exitPos, _exitX] call ASHPD_fnc_ProjectVector, _exitUp] call ASHPD_fnc_ProjectVector;
+		//_requiredSize = [[_requiredSize, _exitX] call ASHPD_fnc_ProjectVector, _exitUp] call ASHPD_fnc_ProjectVector;
+		_outPos = _outPos vectorDiff (
+			_exitDir vectorMultiply vectorMagnitude (_requiredSize vectorDiff _curSize)
+		);
 		
 		// Transform the velocity between portals by rotating the velocity vector 180 degrees around the portal's upVector
-		_modelOffsetVel = _curPortal vectorWorldToModel ([_velocity, _curUp, 180] call SUS_fnc_QRotateVec);
-		_outVel = _otherPortal vectorModelToWorld _modelOffsetVel;
+		_modelOffsetVel = _entrancePortal vectorWorldToModel ([_velocity, _entranceUp, 180] call CBA_fnc_vectRotate3D);
+		_outVel = _exitPortal vectorModelToWorld _modelOffsetVel;
 		
 		// Calculate portal angles for direction transformation
-		_curAngle = acos(_curDir vectorCos [0, 0, 1]);
-		_curAngle = [_curAngle, 180 - _curAngle] select (_curAngle > 90);
-		_otherAngle = acos(_otherDir vectorCos [0, 0, 1]);
-		_otherAngle = [_otherAngle, 180 - _otherAngle] select (_otherAngle > 90);
+		_entranceAngle = acos(_entranceDir vectorCos [0, 0, 1]);
+		_entranceAngle = [_entranceAngle, 180 - _entranceAngle] select (_entranceAngle > 90);
+		_exitAngle = acos(_exitDir vectorCos [0, 0, 1]);
+		_exitAngle = [_exitAngle, 180 - _exitAngle] select (_exitAngle > 90);
 		
-		// Transform direction based on velocity if only the entrance portal is facing straight up/down
-		if (_curAngle < ASHPD_VAR_VERTICAL_TOLERANCE && _otherAngle >= ASHPD_VAR_VERTICAL_TOLERANCE) then {
-			_outDir = vectorNormalized _outVel;
+		// Check if the entrance portal is non-vertical
+		if (_entranceAngle < ASHPD_VAR_VERTICAL_TOLERANCE) then {
+			// Transform direction based on velocity if only the entrance portal is non-vertical
+			if (_exitAngle >= ASHPD_VAR_VERTICAL_TOLERANCE) then {
+				_outDir = vectorNormalized _outVel;
+			// Else, if both portals are vertical, keep direction the same
+			} else {
+				_outDir = _objDir;
+			}
 		// Else, perform normal direction transformation
 		} else {
-			_modelOffsetDir = _curPortal vectorWorldToModel ([_objDir, _curUp, 180] call SUS_fnc_QRotateVec);
-			_outDir = _otherPortal vectorModelToWorld _modelOffsetDir;
+			_modelOffsetDir = _entrancePortal vectorWorldToModel ([_objDir, _entranceUp, 180] call CBA_fnc_vectRotate3D);
+			_outDir = _exitPortal vectorModelToWorld _modelOffsetDir;
 		};
 		
 		// If projectile, create a new projectile at outpos
 		if (_isProjectile) then {
+			// Mark original projectile as teleported so it gets removed from the cache
+			_object setVariable ["ASHPD_TPED", true];
+			// Replace projectile with new projectile
 			_object = createVehicle [(typeOf _object), _outPos, [], 0, "NONE"];
 		};
 		
@@ -152,15 +172,30 @@ private ["_posVector", "_objDir", "_objUp", "_objPos", "_isMan", "_rayCast", "_p
 		
 		if (_isMan) then {
 			// Only set direction for units
-			_object setVectorDir _outDir;
+			if (_isLocal) then {
+				_object setVectorDir _outDir;
+			} else {
+				[_object, _outDir] remoteExecCall ["setVectorDir", _object];
+			};
 		} else {
 			// Transform the object's up direction between portals with a 180 degree upVector rotation
-			_modelOffsetUp = _curPortal vectorWorldToModel ([_objUp, _curUp, 180] call SUS_fnc_QRotateVec);
-			_outUp = _otherPortal vectorModelToWorld _modelOffsetUp;
-			_object setVectorDirAndUp [_outDir, _outUp];
+			_modelOffsetUp = _entrancePortal vectorWorldToModel ([_objUp, _entranceUp, 180] call CBA_fnc_vectRotate3D);
+			_outUp = _exitPortal vectorModelToWorld _modelOffsetUp;
+			if (_isLocal) then {
+				_object setVectorDirAndUp [_outDir, _outUp];
+			} else {
+				[_object, [_outDir, _outUp]] remoteExecCall ["setVectorDirAndUp", _object];
+			};
 		};
 		
-		_object setVelocity _outVel;
+		if (_isLocal) then {
+			_object setVelocity _outVel;
+		} else {
+			[_object, _outVel] remoteExecCall ["setVelocity", _object];
+		};
+		
+		// Mark object as teleported (locally)
+		_object setVariable ["ASHPD_TPED", true];
 		
 	} forEach _nearObjs;
 } forEach [
