@@ -1,0 +1,28 @@
+=== The directory names used in this project were humorously named in the same [https://half-life.fandom.com/wiki/1500_Megawatt_Aperture_Science_Heavy_Duty_Super-Colliding_Super_Button over-complicated style that Aperture Science uses for their products]. As such, it can understandably be confusing to decipher what each directory's purpose actually is. ===
+
+=== '''Below is a master guide to the directories and their contents:''' ===
+
+*Aperture Science Acoustic Joviation Device
+*:Radio Assets
+*Aperture Science Directional Assistance Navigational Overlay Correspondant
+*:Custom Crosshair Assets
+*Aperture Science Eccentric Contraction Coordinates
+*:RTM Assets
+*Aperture Science Long Band Frequency Air Disturbance Generator Container
+*:Audio Assets
+*Aperture Science Modular Computational Component Storage
+*:Script Assets
+*Aperture Science Three Dimensional Isomorphic Volume Chamber
+*:Core Model Assets (Gun, Portal, Black Hole)
+*Aperture Science Trusted Third Party Vendors
+*:Model Proxies
+*Aperture Science Woof Containment Vessel 
+*:Texture Assets
+*Celebratory Mendacious Moist Consolidated Sustenance
+*:Cake Assets
+*Esteemed Confidant Euclidean Trigonal Trapezohedron
+*:Cube Assets (including Edgeless Safety Cube)
+*Obtuse Attitude Adjustment Vegetable Return
+*:Combustible Lemon Assets
+
+=== The rest of the directory names should be straightforward in their purpose. Be sure to read the [[Code Guide]] if the SQF files are what you're after. ===
