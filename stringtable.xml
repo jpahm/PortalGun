@@ -5,7 +5,7 @@
       <English>Aperture Science Handheld Portal Device</English>
       <Spanish>Aperture Science Dispositivo de Portal de Mano</Spanish>
       <German>Aperture Science Handheld-Portalgerät</German>
-      <Chinesesimp>Aperture Science 手持式门户设备</Chinesesimp>
+      <Chinesesimp>Aperture Science 手持式传送设备</Chinesesimp>
       <Japanese>Aperture Science ハンドヘルドポータルデバイス</Japanese>
       <Italian>Aperture Science Dispositivo Portatile a Portale</Italian>
       <French>Aperture Science Dispositif de Portail Portable</French>
@@ -18,7 +18,7 @@
       <English>Portal Gun</English>
       <Spanish>Pistola del Portal</Spanish>
       <German>Portal-Kanone</German>
-      <Chinesesimp>传送门枪</Chinesesimp>
+      <Chinesesimp>传送枪</Chinesesimp>
       <Japanese>ポータルガン</Japanese>
       <Italian>Pistola a Portale</Italian>
       <French>Pistolet Portail</French>
@@ -44,7 +44,7 @@
       <English>Aperture Science Handheld Potato Device</English>
       <Spanish>Aperture Science Dispositivo portátil para patatas</Spanish>
       <German>Aperture Science Handheld-Kartoffelgerät</German>
-      <Chinesesimp>Aperture Science 手持式马铃薯装置</Chinesesimp>
+      <Chinesesimp>Aperture Science 手持式马铃薯传送装置</Chinesesimp>
       <Japanese>Aperture Science ハンドヘルド・ポテト・デバイス</Japanese>
       <Italian>Aperture Science Dispositivo portatile per patate</Italian>
       <French>Aperture Science Appareil portatif pour les pommes de terre</French>
@@ -70,7 +70,7 @@
       <English>Makes holes, but not bullet holes. Potato included.</English>
       <Spanish>Hace agujeros, pero no de bala. Patata incluida.</Spanish>
       <German>Macht Löcher, aber keine Einschusslöcher. Inklusive Kartoffel.</German>
-      <Chinesesimp>可以打洞，但不是子弹孔。包括土豆。</Chinesesimp>
+      <Chinesesimp>可以打洞，但不是子弹孔。包括马铃薯。</Chinesesimp>
       <Japanese>弾丸の穴ではなく、穴を開ける。ポテト付き。</Japanese>
       <Italian>Fa dei buchi, ma non dei fori di proiettile. Patata inclusa.</Italian>
       <French>Fait des trous, mais pas des trous de balle. Pomme de terre incluse.</French>
@@ -83,7 +83,7 @@
       <English>Portal Gun Error</English>
       <Spanish>Error de la pistola del portal</Spanish>
       <German>Portal Gun Fehler</German>
-      <Chinesesimp>传送门喷枪错误</Chinesesimp>
+      <Chinesesimp>传送枪错误</Chinesesimp>
       <Japanese>ポータルガンエラー</Japanese>
       <Italian>Errore della pistola del portale</Italian>
       <French>Erreur du pistolet portail</French>
@@ -148,7 +148,7 @@
       <English>The maximum range at which the portal gun can shoot portals.</English>
       <Spanish>Alcance máximo al que el cañón de portales puede disparar portales.</Spanish>
       <German>Die maximale Reichweite, über die die Portalkanone Portale schießen kann.</German>
-      <Chinesesimp>传送门枪可以发射传送门的最大范围。</Chinesesimp>
+      <Chinesesimp>传送门枪可以发射传送门的最大射程。</Chinesesimp>
       <Japanese>ポータルガンがポータルを発射できる最大距離。</Japanese>
       <Italian>La gittata massima a cui la pistola a portale può sparare i portali.</Italian>
       <French>La portée maximale à laquelle le canon à portails peut tirer des portails.</French>
@@ -161,7 +161,7 @@
       <English>Vehicle Grab Range</English>
       <Spanish>Rango de agarre del vehículo</Spanish>
       <German>Fahrzeug-Greifbereich</German>
-      <Chinesesimp>车辆抓取范围</Chinesesimp>
+      <Chinesesimp>载具抓取范围</Chinesesimp>
       <Japanese>車両グラブ範囲</Japanese>
       <Italian>Gamma di presa del veicolo</Italian>
       <French>Gamme de prise de véhicule</French>
@@ -174,7 +174,7 @@
       <English>The maximum range at which portals can teleport vehicles.</English>
       <Spanish>El alcance máximo al que los portales pueden teletransportar vehículos.</Spanish>
       <German>Die maximale Reichweite, über die Portale Fahrzeuge teleportieren können.</German>
-      <Chinesesimp>传送门可以传送车辆的最大范围。</Chinesesimp>
+      <Chinesesimp>传送门可以传送载具的最大范围。</Chinesesimp>
       <Japanese>ポータルが車両をテレポートできる最大の範囲です。</Japanese>
       <Italian>La portata massima alla quale i portali possono teletrasportare i veicoli.</Italian>
       <French>La distance maximale à laquelle les portails peuvent téléporter des véhicules.</French>
@@ -252,7 +252,7 @@
       <English>The maximum range at which portals can teleport things other than units, vehicles and projectiles.</English>
       <Spanish>El alcance máximo al que los portales pueden teletransportar cosas que no sean unidades, vehículos o proyectiles.</Spanish>
       <German>Die maximale Reichweite, über die Portale andere Dinge als Einheiten, Fahrzeuge und Geschosse teleportieren können.</German>
-      <Chinesesimp>传送门可以传送单位、车辆和射弹以外的东西的最大范围。</Chinesesimp>
+      <Chinesesimp>传送门可以传送单位、载具和射弹以外的东西的最大范围。</Chinesesimp>
       <Japanese>ポータルがユニット、車両、投射物以外のものをテレポートできる最大の範囲です。</Japanese>
       <Italian>La portata massima alla quale i portali possono teletrasportare cose diverse da unità, veicoli e proiettili.</Italian>
       <French>La portée maximale à laquelle les portails peuvent téléporter des choses autres que des unités, des véhicules et des projectiles.</French>
@@ -317,7 +317,7 @@
       <English>The maximum tolerated roughness for a portal surface (a surface offset in meters).</English>
       <Spanish>La rugosidad máxima tolerada para una superficie de pórtico (un desplazamiento de superficie en metros).</Spanish>
       <German>Die maximal tolerierte Rauheit für eine Portaloberfläche (ein Oberflächenversatz in Metern).</German>
-      <Chinesesimp>门户表面的最大容许粗糙度（以米为单位的表面偏移）。</Chinesesimp>
+      <Chinesesimp>传送门表面的最大容许粗糙度（以米为单位的表面偏移）。</Chinesesimp>
       <Japanese>ポータルサーフェス（メートル単位のサーフェスオフセット）の最大許容粗さ。</Japanese>
       <Italian>La massima rugosità tollerata per una superficie del portale (un offset di superficie in metri).</Italian>
       <French>La rugosité maximale tolérée pour une surface de portail (une surface décalée en mètres).</French>
@@ -343,7 +343,7 @@
       <English>The angle at which a portal surface must be inclined before it is considered vertical.</English>
       <Spanish>Ángulo con el que debe inclinarse una superficie de pórtico para que se considere vertical.</Spanish>
       <German>Der Winkel, in dem eine Portalfläche geneigt sein muss, bevor sie als vertikal gilt.</German>
-      <Chinesesimp>门户表面在被认为是垂直之前必须倾斜的角度。</Chinesesimp>
+      <Chinesesimp>传送门表面在被认为是垂直之前必须倾斜的角度。</Chinesesimp>
       <Japanese>門扉の表面が垂直とみなされるまでに傾斜しなければならない角度。</Japanese>
       <Italian>L'angolo al quale una superficie del portale deve essere inclinata prima di essere considerata verticale.</Italian>
       <French>L'angle auquel une surface de portail doit être inclinée avant d'être considérée comme verticale.</French>
@@ -356,7 +356,7 @@
       <English>Max Fit Tries</English>
       <Spanish>Pruebas de Max Fit</Spanish>
       <German>Max Fit Versucht</German>
-      <Chinesesimp>最大限度地适合尝试</Chinesesimp>
+      <Chinesesimp>传送门最多生成次数</Chinesesimp>
       <Japanese>マックスフィット・トライ</Japanese>
       <Italian>Prove di Max Fit</Italian>
       <French>Essais de Max Fit</French>
@@ -369,7 +369,7 @@
       <English>The maximum number of times the code will try to fit a portal onto a surface.</English>
       <Spanish>El número máximo de veces que el código intentará encajar un portal en una superficie.</Spanish>
       <German>Die maximale Anzahl, wie oft der Code versucht, einen Ausschnitt in eine Fläche einzupassen.</German>
-      <Chinesesimp>代码尝试在一个表面上安装一个门户的最大次数。</Chinesesimp>
+      <Chinesesimp>传送门在一个表面上尝试生成的最大次数。</Chinesesimp>
       <Japanese>コードがポータルをサーフェスにフィットさせようとする最大の回数です。</Japanese>
       <Italian>Il numero massimo di volte che il codice cercherà di inserire un portale su una superficie.</Italian>
       <French>Le nombre maximum de fois que le code essaiera d'adapter un portail sur une surface.</French>
@@ -395,7 +395,7 @@
       <English>The maximum mass in kilograms that the portal gun can grab and pick up.</English>
       <Spanish>La masa máxima en kilogramos que el cañón de pórtico puede agarrar y recoger.</Spanish>
       <German>Die maximale Masse in Kilogramm, die von der Portalkanone erfasst und aufgenommen werden kann.</German>
-      <Chinesesimp>传送门炮能够抓取和拾取的最大质量，单位为公斤。</Chinesesimp>
+      <Chinesesimp>传送枪能够抓取和拾取的最大质量，单位为公斤。</Chinesesimp>
       <Japanese>ポータルガンが掴んで拾える最大の質量（キログラム）。</Japanese>
       <Italian>La massa massima in chilogrammi che la pistola a portale può afferrare e raccogliere.</Italian>
       <French>La masse maximale en kilogrammes que le canon à portail peut saisir et ramasser.</French>
@@ -421,7 +421,7 @@
       <English>Infinite Ammo Enabled</English>
       <Spanish>Munición infinita habilitada</Spanish>
       <German>Unendliche Munition Aktiviert</German>
-      <Chinesesimp>启用了无限的弹药</Chinesesimp>
+      <Chinesesimp>启用无限弹药</Chinesesimp>
       <Japanese>Infinite Ammo Enabled</Japanese>
       <Italian>Munizioni infinite abilitate</Italian>
       <French>Munitions infinies activées</French>
@@ -434,7 +434,7 @@
       <English>Whether players' portal guns will have infinite ammo or not.</English>
       <Spanish>Si las armas de portal de los jugadores tendrán munición infinita o no.</Spanish>
       <German>Ob die Portalwaffen der Spieler unendlich viel Munition haben werden oder nicht.</German>
-      <Chinesesimp>玩家的传送门枪是否会有无限的弹药。</Chinesesimp>
+      <Chinesesimp>玩家的传送枪是否无限弹药。</Chinesesimp>
       <Japanese>プレイヤーのポータルガンの弾数が無限になるかどうか。</Japanese>
       <Italian>Se le pistole a portale dei giocatori avranno munizioni infinite o no.</Italian>
       <French>Si les pistolets portails des joueurs auront des munitions infinies ou non.</French>
@@ -460,7 +460,7 @@
       <English>Whether submerging the portal gun in liquid will spawn a black hole or not.</English>
       <Spanish>Si al sumergir la pistola de portales en líquido se genera un agujero negro o no.</Spanish>
       <German>Ob das Eintauchen der Portalkanone in Flüssigkeit ein schwarzes Loch erzeugt oder nicht.</German>
-      <Chinesesimp>将传送门枪浸泡在液体中是否会产生黑洞。</Chinesesimp>
+      <Chinesesimp>传送枪浸泡在液体中是否会产生黑洞。</Chinesesimp>
       <Japanese>ポータルガンを液体に沈めるとブラックホールが発生するかどうか。</Japanese>
       <Italian>Se immergere la pistola a portale in un liquido genera o meno un buco nero.</Italian>
       <French>Si immerger le pistolet portail dans du liquide va engendrer un trou noir ou non.</French>
@@ -486,7 +486,7 @@
       <English>Whether portals can have PiP camera views or not.</English>
       <Spanish>Si los portales pueden tener vistas de cámara PiP o no.</Spanish>
       <German>Ob Portale PiP-Kameraansichten haben können oder nicht.</German>
-      <Chinesesimp>门户是否可以有画中画的摄像机视图。</Chinesesimp>
+      <Chinesesimp>传送门是否启用画中画渲染。</Chinesesimp>
       <Japanese>ポータルのPiPカメラビューが可能かどうか。</Japanese>
       <Italian>Se i portali possono avere viste di telecamere PiP o no.</Italian>
       <French>Si les portails peuvent avoir des vues de caméra PiP ou non.</French>
@@ -499,7 +499,7 @@
       <English>Long Fall Boots Enabled</English>
       <Spanish>Botas largas de otoño habilitadas</Spanish>
       <German>Lange Herbststiefel Aktiviert</German>
-      <Chinesesimp>启用了长秋靴</Chinesesimp>
+      <Chinesesimp>启用距离跌落缓冲靴</Chinesesimp>
       <Japanese>ロングフォールブーツ有効</Japanese>
       <Italian>Stivali lunghi autunnali abilitati</Italian>
       <French>Activation des longues bottes d'automne</French>
@@ -512,7 +512,7 @@
       <English>Whether fall damage should be disabled for players while they have the portal gun equipped.</English>
       <Spanish>Si se debe desactivar el daño por caída para los jugadores mientras tengan equipada la pistola de portales.</Spanish>
       <German>Ob der Fallschaden für Spieler deaktiviert werden soll, wenn sie mit der Portalkanone ausgerüstet sind.</German>
-      <Chinesesimp>当玩家装备有传送门枪时，是否应该禁用坠落伤害。</Chinesesimp>
+      <Chinesesimp>当玩家装备有传送枪时，是否禁用坠落伤害。</Chinesesimp>
       <Japanese>ポータルガンを装備しているプレイヤーに対して、落下ダメージを無効化するかどうか。</Japanese>
       <Italian>Se i danni da caduta debbano essere disabilitati per i giocatori quando hanno la pistola a portale equipaggiata.</Italian>
       <French>Si les dégâts de chute doivent être désactivés pour les joueurs lorsqu'ils ont le pistolet portail équipé.</French>
@@ -551,7 +551,7 @@
       <English>Fizzle on Death Enabled</English>
       <Spanish>Fizzle en la muerte habilitada</Spanish>
       <German>Fizzle on death aktiviert</German>
-      <Chinesesimp>启用死亡时的咝咝声</Chinesesimp>
+      <Chinesesimp>启用死亡时关闭传送门</Chinesesimp>
       <Japanese>死亡時のフィズルが有効</Japanese>
       <Italian>Fizzle sulla morte abilitata</Italian>
       <French>Fizzle on death enabled</French>
@@ -564,7 +564,7 @@
       <English>Whether players' portals should fizzle (disappear) when they die.</English>
       <Spanish>Si los portales de los jugadores deben desaparecer al morir.</Spanish>
       <German>Ob die Portale von Spielern verpuffen (verschwinden) sollen, wenn sie sterben.</German>
-      <Chinesesimp>玩家死亡时，他们的传送门是否应该消逝（消失）。</Chinesesimp>
+      <Chinesesimp>玩家死亡时，他们的传送门是否应该消失。</Chinesesimp>
       <Japanese>プレイヤーが死亡したときにポータルが消滅するかどうか。</Japanese>
       <Italian>Se i portali dei giocatori debbano svanire (sparire) quando muoiono.</Italian>
       <French>Si les portails des joueurs doivent s'éteindre (disparaître) lorsqu'ils meurent.</French>
@@ -577,7 +577,7 @@
       <English>Player Fizzle Enabled</English>
       <Spanish>Jugador Fizzle Activado</Spanish>
       <German>Spieler Fizzle Aktiviert</German>
-      <Chinesesimp>启用了玩家晕眩功能</Chinesesimp>
+      <Chinesesimp>启用玩家关闭传送门</Chinesesimp>
       <Japanese>Player Fizzle Enabled</Japanese>
       <Italian>Sfarfallio del giocatore abilitato</Italian>
       <French>Activation de la fonction Fizzle des joueurs</French>
@@ -590,7 +590,7 @@
       <English>Whether players should be allowed to manually fizzle their own portals.</English>
       <Spanish>Si se debe permitir a los jugadores fundir manualmente sus propios portales.</Spanish>
       <German>Ob es Spielern erlaubt sein sollte, ihre eigenen Portale manuell zu zünden.</German>
-      <Chinesesimp>是否应该允许玩家手动晕染自己的门户。</Chinesesimp>
+      <Chinesesimp>是否应该允许玩家手动关闭传送门。</Chinesesimp>
       <Japanese>プレイヤーが自分のポータルを手動で消せるようにすべきかどうか。</Japanese>
       <Italian>Se i giocatori debbano essere autorizzati a far esplodere manualmente i propri portali.</Italian>
       <French>Si les joueurs doivent être autorisés à faire péter manuellement leurs propres portails.</French>
@@ -603,7 +603,7 @@
       <English>Crosshair Enabled</English>
       <Spanish>Cruceta habilitada</Spanish>
       <German>Fadenkreuz Aktiviert</German>
-      <Chinesesimp>启用了十字准星</Chinesesimp>
+      <Chinesesimp>启用传送门准星</Chinesesimp>
       <Japanese>クロスヘアの有効化</Japanese>
       <Italian>Mirino abilitato</Italian>
       <French>Crosshair activé</French>
@@ -616,7 +616,7 @@
       <English>Whether the custom crosshair will be used or not.</English>
       <Spanish>Si se utilizará la retícula personalizada o no.</Spanish>
       <German>Ob das benutzerdefinierte Fadenkreuz verwendet werden soll oder nicht.</German>
-      <Chinesesimp>是否会使用自定义的十字准线。</Chinesesimp>
+      <Chinesesimp>是否会使用传送门风格准星。</Chinesesimp>
       <Japanese>カスタムクロスヘアを使用するかどうか。</Japanese>
       <Italian>Se il mirino personalizzato sarà usato o meno.</Italian>
       <French>Si le réticule personnalisé sera utilisé ou non.</French>
@@ -629,7 +629,7 @@
       <English>Potato Dialog Enabled</English>
       <Spanish>Diálogo de la patata activado</Spanish>
       <German>Kartoffeldialog aktiviert</German>
-      <Chinesesimp>启用了土豆对话</Chinesesimp>
+      <Chinesesimp>启用马铃薯对话</Chinesesimp>
       <Japanese>Potato Dialog Enabled</Japanese>
       <Italian>Finestra di dialogo della patata abilitata</Italian>
       <French>Dialogue sur les pommes de terre activé</French>
@@ -642,7 +642,7 @@
       <English>Whether the potato will be allowed to speak or not.</English>
       <Spanish>Si la patata podrá hablar o no.</Spanish>
       <German>Ob der Kartoffel das Wort erteilt wird oder nicht.</German>
-      <Chinesesimp>是否会允许马铃薯发言。</Chinesesimp>
+      <Chinesesimp>是否允许马铃薯发言。</Chinesesimp>
       <Japanese>芋の発言が許されるかどうか。</Japanese>
       <Italian>Se la patata potrà parlare o meno.</Italian>
       <French>Si la pomme de terre sera autorisée à s'exprimer ou non.</French>
@@ -655,7 +655,7 @@
       <English>Controls</English>
       <Spanish>Controla</Spanish>
       <German>Kontrolliert</German>
-      <Chinesesimp>控制措施</Chinesesimp>
+      <Chinesesimp>控制</Chinesesimp>
       <Japanese>コントロールズ</Japanese>
       <Italian>Controlli</Italian>
       <French>Contrôles</French>
@@ -668,7 +668,7 @@
       <English>Fizzle portals</English>
       <Spanish>Portales Fizzle</Spanish>
       <German>Fizzle-Portale</German>
-      <Chinesesimp>咝咝的门户</Chinesesimp>
+      <Chinesesimp>关闭传送门</Chinesesimp>
       <Japanese>フィズル・ポータル</Japanese>
       <Italian>Portali Fizzle</Italian>
       <French>Portails Fizzle</French>
@@ -746,7 +746,7 @@
       <English>The strength with which players will be "nudged" towards portals they're falling towards.</English>
       <Spanish>La fuerza con la que los jugadores serán "empujados" hacia los portales hacia los que están cayendo.</Spanish>
       <German>Die Stärke, mit der die Spieler in Richtung der Portale "gestupst" werden, in die sie fallen.</German>
-      <Chinesesimp>玩家将被 "催促 "走向他们正在跌落的门户的力度。</Chinesesimp>
+      <Chinesesimp>玩家将被 "催促 "走向他们正在跌落的传送门的力度。</Chinesesimp>
       <Japanese>プレイヤーが落ちてくるポータルに向かって「なでなで」される強さ。</Japanese>
       <Italian>La forza con cui i giocatori saranno "spinti" verso i portali verso cui stanno cadendo.</Italian>
       <French>La force avec laquelle les joueurs seront "poussés" vers les portails vers lesquels ils tombent.</French>
@@ -785,7 +785,7 @@
       <English>Portal Gun Mode</English>
       <Spanish>Modo de pistola de portal</Spanish>
       <German>Portal Gun Modus</German>
-      <Chinesesimp>传送门炮模式</Chinesesimp>
+      <Chinesesimp>传送枪模式</Chinesesimp>
       <Japanese>ポータルガンモード</Japanese>
       <Italian>Modalità pistola a portale</Italian>
       <French>Mode pistolet portail</French>
@@ -798,7 +798,7 @@
       <English>Sets which portals portal guns are allowed to create. Can be overridden, see documentation for details.</English>
       <Spanish>Establece qué portales pueden crear los cañones del portal. Se puede anular, véase la documentación para más detalles.</Spanish>
       <German>Legt fest, welche Portale Portalkanonen erstellen dürfen. Kann außer Kraft gesetzt werden, siehe Dokumentation für Details.</German>
-      <Chinesesimp>设置哪些门户枪允许创建。可以被重写，详细情况见文档。</Chinesesimp>
+      <Chinesesimp>设置哪些传送枪允许创建。可以被重写，详细情况见文档。</Chinesesimp>
       <Japanese>ポータルガンが作成を許可されるポータルを設定します。オーバーライド可能です。詳細はドキュメントをご覧ください。</Japanese>
       <Italian>Imposta quali portali le pistole del portale sono autorizzate a creare. Può essere sovrascritto, vedere la documentazione per i dettagli.</Italian>
       <French>Définit les portails que les canons de portail sont autorisés à créer. Peut être surchargé, voir la documentation pour plus de détails.</French>
@@ -811,7 +811,7 @@
       <English>Dual Portals</English>
       <Spanish>Portales duales</Spanish>
       <German>Duale Portale</German>
-      <Chinesesimp>双重门户</Chinesesimp>
+      <Chinesesimp>双传送门</Chinesesimp>
       <Japanese>デュアルポータル</Japanese>
       <Italian>Portali doppi</Italian>
       <French>Portails doubles</French>
@@ -824,7 +824,7 @@
       <English>Blue Portals Only</English>
       <Spanish>Sólo portales azules</Spanish>
       <German>Nur blaue Portale</German>
-      <Chinesesimp>仅限蓝色门户</Chinesesimp>
+      <Chinesesimp>仅限蓝色传送门</Chinesesimp>
       <Japanese>ブルーポータルのみ</Japanese>
       <Italian>Solo portali blu</Italian>
       <French>Portails bleus uniquement</French>
@@ -837,7 +837,7 @@
       <English>Orange Portals Only</English>
       <Spanish>Sólo portales de color naranja</Spanish>
       <German>Nur orangefarbene Portale</German>
-      <Chinesesimp>仅限橙色门户网站</Chinesesimp>
+      <Chinesesimp>仅限橙色传送门</Chinesesimp>
       <Japanese>オレンジ ポータルのみ</Japanese>
       <Italian>Solo portali arancioni</Italian>
       <French>Portails Orange uniquement</French>
@@ -1097,7 +1097,7 @@
       <English>Portal Fuse</English>
       <Spanish>Fusible del portal</Spanish>
       <German>Portal-Sicherung</German>
-      <Chinesesimp>门户导火线</Chinesesimp>
+      <Chinesesimp>传送枪保险丝</Chinesesimp>
       <Japanese>ポータルヒューズ</Japanese>
       <Italian>Portale fusibile</Italian>
       <French>Fusible de portail</French>
@@ -1110,7 +1110,7 @@
       <English>A replaceable portal fuse for usage in a handheld portal device.</English>
       <Spanish>Un fusible de portal reemplazable para su uso en un dispositivo de portal de mano.</Spanish>
       <German>Eine austauschbare Portalsicherung zur Verwendung in einem Handheld-Portalgerät.</German>
-      <Chinesesimp>用于手持式门户设备的可更换门户保险丝。</Chinesesimp>
+      <Chinesesimp>用于手持式传送设备可更换的保险丝。</Chinesesimp>
       <Japanese>携帯型ポータルサイトで使用するための交換可能なポータルヒューズです。</Japanese>
       <Italian>Un fusibile a portale sostituibile da utilizzare in un dispositivo a portale portatile.</Italian>
       <French>Fusible de portail remplaçable destiné à être utilisé dans un dispositif de portail portatif.</French>
@@ -1188,7 +1188,7 @@
       <English>Portal gun cannot be initialized with no portals!</English>
       <Spanish>La pistola de portales no se puede inicializar sin portales.</Spanish>
       <German>Die Portalkanone kann nicht initialisiert werden, wenn keine Portale vorhanden sind!</German>
-      <Chinesesimp>在没有传送门的情况下，传送门枪不能被初始化!</Chinesesimp>
+      <Chinesesimp>在没有传送门的情况下，传送枪不能被初始化!</Chinesesimp>
       <Japanese>ポータルガンは、ポータルがないと初期化できません。</Japanese>
       <Italian>La pistola a portale non può essere inizializzata senza portali!</Italian>
       <French>Le canon à portails ne peut pas être initialisé sans portails!</French>
