@@ -16,7 +16,7 @@
 
 // Uncomment below line for normal debug
 
-#define ASHPD_DEBUG
+//#define ASHPD_DEBUG
 
 // Uncomment below line for verbose debug
 
