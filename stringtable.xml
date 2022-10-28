@@ -44,7 +44,7 @@
       <English>Aperture Science Handheld Potato Device</English>
       <Spanish>Aperture Science Dispositivo portátil para patatas</Spanish>
       <German>Aperture Science Handheld-Kartoffelgerät</German>
-      <Chinesesimp>Aperture Science 手持式马铃薯传送装置</Chinesesimp>
+      <Chinesesimp>Aperture Science 手持式土豆传送装置</Chinesesimp>
       <Japanese>Aperture Science ハンドヘルド・ポテト・デバイス</Japanese>
       <Italian>Aperture Science Dispositivo portatile per patate</Italian>
       <French>Aperture Science Appareil portatif pour les pommes de terre</French>
@@ -57,7 +57,7 @@
       <English>Potato Gun</English>
       <Spanish>Pistola de patatas</Spanish>
       <German>Kartoffelkanone</German>
-      <Chinesesimp>马铃薯枪</Chinesesimp>
+      <Chinesesimp>土豆枪</Chinesesimp>
       <Japanese>ポテトガン</Japanese>
       <Italian>Pistola per patate</Italian>
       <French>Pistolet à pommes de terre</French>
@@ -122,7 +122,7 @@
       <English>Ranges</English>
       <Spanish>Rangos</Spanish>
       <German>Bereiche</German>
-      <Chinesesimp>范围</Chinesesimp>
+      <Chinesesimp>射程</Chinesesimp>
       <Japanese>レンジ</Japanese>
       <Italian>Gamme</Italian>
       <French>Gammes</French>
@@ -265,7 +265,7 @@
       <English>Nudge Range</English>
       <Spanish>Alcance de los codazos</Spanish>
       <German>Nudge-Bereich</German>
-      <Chinesesimp>推进范围</Chinesesimp>
+      <Chinesesimp>轻推范围</Chinesesimp>
       <Japanese>ナッジレンジ</Japanese>
       <Italian>Gamma Nudge</Italian>
       <French>Gamme de coups de pouce</French>
@@ -278,7 +278,7 @@
       <English>The range from which players will be "nudged" towards portals they're falling towards.</English>
       <Spanish>El rango a partir del cual los jugadores serán "empujados" hacia los portales hacia los que están cayendo.</Spanish>
       <German>Der Bereich, aus dem die Spieler in Richtung der Portale "geschubst" werden, auf die sie zufallen.</German>
-      <Chinesesimp>玩家将被 "催促 "走向他们正在跌落的门户的范围。</Chinesesimp>
+      <Chinesesimp>玩家将被 "催促 "走向他们正在跌落传送门的范围。</Chinesesimp>
       <Japanese>プレイヤーが落ちてくるポータルに向かって「ナデナデ」される範囲です。</Japanese>
       <Italian>L'intervallo da cui i giocatori saranno "spinti" verso i portali verso cui stanno cadendo.</Italian>
       <French>La portée à partir de laquelle les joueurs seront "poussés" vers les portails vers lesquels ils tombent.</French>
@@ -343,7 +343,7 @@
       <English>The angle at which a portal surface must be inclined before it is considered vertical.</English>
       <Spanish>Ángulo con el que debe inclinarse una superficie de pórtico para que se considere vertical.</Spanish>
       <German>Der Winkel, in dem eine Portalfläche geneigt sein muss, bevor sie als vertikal gilt.</German>
-      <Chinesesimp>传送门表面在被认为是垂直之前必须倾斜的角度。</Chinesesimp>
+      <Chinesesimp>传送门表面倾斜角度大于等于该值时判定为垂直。</Chinesesimp>
       <Japanese>門扉の表面が垂直とみなされるまでに傾斜しなければならない角度。</Japanese>
       <Italian>L'angolo al quale una superficie del portale deve essere inclinata prima di essere considerata verticale.</Italian>
       <French>L'angle auquel une surface de portail doit être inclinée avant d'être considérée comme verticale.</French>
@@ -447,7 +447,7 @@
       <English>Black Hole Enabled</English>
       <Spanish>Agujero negro habilitado</Spanish>
       <German>Schwarzes Loch Aktiviert</German>
-      <Chinesesimp>启用了黑洞</Chinesesimp>
+      <Chinesesimp>启用黑洞</Chinesesimp>
       <Japanese>ブラックホール有効</Japanese>
       <Italian>Buco nero abilitato</Italian>
       <French>Trou noir activé</French>
@@ -499,7 +499,7 @@
       <English>Long Fall Boots Enabled</English>
       <Spanish>Botas largas de otoño habilitadas</Spanish>
       <German>Lange Herbststiefel Aktiviert</German>
-      <Chinesesimp>启用距离跌落缓冲靴</Chinesesimp>
+      <Chinesesimp>启用长距离坠落缓冲靴</Chinesesimp>
       <Japanese>ロングフォールブーツ有効</Japanese>
       <Italian>Stivali lunghi autunnali abilitati</Italian>
       <French>Activation des longues bottes d'automne</French>
@@ -512,7 +512,7 @@
       <English>Whether fall damage should be disabled for players while they have the portal gun equipped.</English>
       <Spanish>Si se debe desactivar el daño por caída para los jugadores mientras tengan equipada la pistola de portales.</Spanish>
       <German>Ob der Fallschaden für Spieler deaktiviert werden soll, wenn sie mit der Portalkanone ausgerüstet sind.</German>
-      <Chinesesimp>当玩家装备有传送枪时，是否禁用坠落伤害。</Chinesesimp>
+      <Chinesesimp>当玩家装备有传送枪时，禁用坠落伤害。</Chinesesimp>
       <Japanese>ポータルガンを装備しているプレイヤーに対して、落下ダメージを無効化するかどうか。</Japanese>
       <Italian>Se i danni da caduta debbano essere disabilitati per i giocatori quando hanno la pistola a portale equipaggiata.</Italian>
       <French>Si les dégâts de chute doivent être désactivés pour les joueurs lorsqu'ils ont le pistolet portail équipé.</French>
@@ -590,7 +590,7 @@
       <English>Whether players should be allowed to manually fizzle their own portals.</English>
       <Spanish>Si se debe permitir a los jugadores fundir manualmente sus propios portales.</Spanish>
       <German>Ob es Spielern erlaubt sein sollte, ihre eigenen Portale manuell zu zünden.</German>
-      <Chinesesimp>是否应该允许玩家手动关闭传送门。</Chinesesimp>
+      <Chinesesimp>是否允许玩家手动关闭传送门。</Chinesesimp>
       <Japanese>プレイヤーが自分のポータルを手動で消せるようにすべきかどうか。</Japanese>
       <Italian>Se i giocatori debbano essere autorizzati a far esplodere manualmente i propri portali.</Italian>
       <French>Si les joueurs doivent être autorisés à faire péter manuellement leurs propres portails.</French>
@@ -616,7 +616,7 @@
       <English>Whether the custom crosshair will be used or not.</English>
       <Spanish>Si se utilizará la retícula personalizada o no.</Spanish>
       <German>Ob das benutzerdefinierte Fadenkreuz verwendet werden soll oder nicht.</German>
-      <Chinesesimp>是否会使用传送门风格准星。</Chinesesimp>
+      <Chinesesimp>是否使用传送门风格准星。</Chinesesimp>
       <Japanese>カスタムクロスヘアを使用するかどうか。</Japanese>
       <Italian>Se il mirino personalizzato sarà usato o meno.</Italian>
       <French>Si le réticule personnalisé sera utilisé ou non.</French>
@@ -629,7 +629,7 @@
       <English>Potato Dialog Enabled</English>
       <Spanish>Diálogo de la patata activado</Spanish>
       <German>Kartoffeldialog aktiviert</German>
-      <Chinesesimp>启用马铃薯对话</Chinesesimp>
+      <Chinesesimp>启用土豆对话</Chinesesimp>
       <Japanese>Potato Dialog Enabled</Japanese>
       <Italian>Finestra di dialogo della patata abilitata</Italian>
       <French>Dialogue sur les pommes de terre activé</French>
@@ -642,7 +642,7 @@
       <English>Whether the potato will be allowed to speak or not.</English>
       <Spanish>Si la patata podrá hablar o no.</Spanish>
       <German>Ob der Kartoffel das Wort erteilt wird oder nicht.</German>
-      <Chinesesimp>是否允许马铃薯发言。</Chinesesimp>
+      <Chinesesimp>是否允许土豆发言。</Chinesesimp>
       <Japanese>芋の発言が許されるかどうか。</Japanese>
       <Italian>Se la patata potrà parlare o meno.</Italian>
       <French>Si la pomme de terre sera autorisée à s'exprimer ou non.</French>
@@ -733,7 +733,7 @@
       <English>Nudge Strength</English>
       <Spanish>Fuerza de los empujones</Spanish>
       <German>Nudge-Stärke</German>
-      <Chinesesimp>推销力度</Chinesesimp>
+      <Chinesesimp>轻推力度</Chinesesimp>
       <Japanese>ナッジの強さ</Japanese>
       <Italian>Forza di spinta</Italian>
       <French>Force de frappe</French>
@@ -824,7 +824,7 @@
       <English>Blue Portals Only</English>
       <Spanish>Sólo portales azules</Spanish>
       <German>Nur blaue Portale</German>
-      <Chinesesimp>仅限蓝色传送门</Chinesesimp>
+      <Chinesesimp>仅蓝色传送门</Chinesesimp>
       <Japanese>ブルーポータルのみ</Japanese>
       <Italian>Solo portali blu</Italian>
       <French>Portails bleus uniquement</French>
@@ -837,7 +837,7 @@
       <English>Orange Portals Only</English>
       <Spanish>Sólo portales de color naranja</Spanish>
       <German>Nur orangefarbene Portale</German>
-      <Chinesesimp>仅限橙色传送门</Chinesesimp>
+      <Chinesesimp>仅橙色传送门</Chinesesimp>
       <Japanese>オレンジ ポータルのみ</Japanese>
       <Italian>Solo portali arancioni</Italian>
       <French>Portails Orange uniquement</French>
@@ -1045,7 +1045,7 @@
       <English>Primary Portal</English>
       <Spanish>Portal principal</Spanish>
       <German>Primäres Portal</German>
-      <Chinesesimp>主要门户</Chinesesimp>
+      <Chinesesimp>主传送门</Chinesesimp>
       <Japanese>プライマリーポータル</Japanese>
       <Italian>Portale primario</Italian>
       <French>Portail primaire</French>
@@ -1058,7 +1058,7 @@
       <English>Secondary Portal</English>
       <Spanish>Portal secundario</Spanish>
       <German>Sekundäres Portal</German>
-      <Chinesesimp>二级门户</Chinesesimp>
+      <Chinesesimp>副传送门</Chinesesimp>
       <Japanese>セカンダリーポータル</Japanese>
       <Italian>Portale secondario</Italian>
       <French>Portail secondaire</French>
@@ -1071,7 +1071,7 @@
       <English>Portal</English>
       <Spanish>Portal</Spanish>
       <German>Portal</German>
-      <Chinesesimp>门户网站</Chinesesimp>
+      <Chinesesimp>传送门</Chinesesimp>
       <Japanese>ポータル</Japanese>
       <Italian>Portale</Italian>
       <French>Portail</French>
@@ -1110,7 +1110,7 @@
       <English>A replaceable portal fuse for usage in a handheld portal device.</English>
       <Spanish>Un fusible de portal reemplazable para su uso en un dispositivo de portal de mano.</Spanish>
       <German>Eine austauschbare Portalsicherung zur Verwendung in einem Handheld-Portalgerät.</German>
-      <Chinesesimp>用于手持式传送设备可更换的保险丝。</Chinesesimp>
+      <Chinesesimp>用于手持式传送设备更换的保险丝。</Chinesesimp>
       <Japanese>携帯型ポータルサイトで使用するための交換可能なポータルヒューズです。</Japanese>
       <Italian>Un fusibile a portale sostituibile da utilizzare in un dispositivo a portale portatile.</Italian>
       <French>Fusible de portail remplaçable destiné à être utilisé dans un dispositif de portail portatif.</French>
@@ -1279,7 +1279,7 @@
       <English>Upward Unit Offset</English>
       <Spanish>Desplazamiento de la unidad hacia arriba</Spanish>
       <German>Offset der Einheit nach oben</German>
-      <Chinesesimp>向上的单位偏移</Chinesesimp>
+      <Chinesesimp>向上单位偏移</Chinesesimp>
       <Japanese>上方ユニットオフセット</Japanese>
       <Italian>Offset unità verso l'alto</Italian>
       <French>Décalage d'unité vers le haut</French>
@@ -1292,7 +1292,7 @@
       <English>The upward offset to apply to units when teleporting through upward-facing portals.</English>
       <Spanish>El desplazamiento hacia arriba que se aplicará a las unidades cuando se teletransporten a través de portales orientados hacia arriba.</Spanish>
       <German>Der nach oben gerichtete Offset, der auf Einheiten angewendet wird, wenn sie durch nach oben gerichtete Portale teleportieren.</German>
-      <Chinesesimp>在通过朝上的传送门传送时适用于单位的向上偏移。</Chinesesimp>
+      <Chinesesimp>在通过朝上传送门传送时单位向上的偏移。</Chinesesimp>
       <Japanese>上向きのポータルからテレポートする際にユニットに適用される上方オフセット。</Japanese>
       <Italian>L'offset verso l'alto da applicare alle unità quando si teletrasportano attraverso portali rivolti verso l'alto.</Italian>
       <French>Le décalage vers le haut à appliquer aux unités lorsqu'elles se téléportent à travers des portails orientés vers le haut.</French>
@@ -1305,7 +1305,7 @@
       <English>Downward Unit Offset</English>
       <Spanish>Desplazamiento de la unidad hacia abajo</Spanish>
       <German>Offset der Einheit nach unten</German>
-      <Chinesesimp>下行单位偏移</Chinesesimp>
+      <Chinesesimp>向下单位偏移</Chinesesimp>
       <Japanese>下方向の単位オフセット</Japanese>
       <Italian>Offset unità verso il basso</Italian>
       <French>Décalage de l'unité vers le bas</French>
@@ -1318,7 +1318,7 @@
       <English>The downward offset to apply to units when teleporting through downward-facing portals.</English>
       <Spanish>El desplazamiento hacia abajo que se aplicará a las unidades cuando se teletransporten a través de portales orientados hacia abajo.</Spanish>
       <German>Der nach unten gerichtete Offset, der auf Einheiten angewendet wird, wenn sie sich durch nach unten gerichtete Portale teleportieren.</German>
-      <Chinesesimp>通过向下的传送门传送时，适用于单位的向下的偏移。</Chinesesimp>
+      <Chinesesimp>通过向下传送门传送时适用于单位的向下偏移。</Chinesesimp>
       <Japanese>下向きのポータルからテレポートする際にユニットに適用される下向きのオフセット。</Japanese>
       <Italian>L'offset verso il basso da applicare alle unità quando si teletrasportano attraverso portali rivolti verso il basso.</Italian>
       <French>Le décalage vers le bas à appliquer aux unités lorsqu'elles se téléportent à travers des portails orientés vers le bas.</French>
@@ -1344,7 +1344,7 @@
       <English>The standard offset to apply to units when the upward and downward offsets do not apply.</English>
       <Spanish>El desplazamiento estándar que se aplicará a las unidades cuando no se apliquen los desplazamientos hacia arriba y hacia abajo.</Spanish>
       <German>Der Standard-Offset, der auf die Einheiten anzuwenden ist, wenn die Aufwärts- und Abwärts-Offsets nicht anwendbar sind.</German>
-      <Chinesesimp>当向上和向下的偏移量不适用时，适用于单位的标准偏移量。</Chinesesimp>
+      <Chinesesimp>当向上和向下的偏移量不适用时，适用单位的标准偏移量。</Chinesesimp>
       <Japanese>上方向オフセットおよび下方向オフセットが適用されない場合に、ユニットに適用する標準的なオフセット。</Japanese>
       <Italian>L'offset standard da applicare alle unità quando non si applicano gli offset verso l'alto e verso il basso.</Italian>
       <French>Le décalage standard à appliquer aux unités lorsque les décalages vers le haut et vers le bas ne s'appliquent pas.</French>
@@ -1370,7 +1370,7 @@
       <English>The standard offset to apply when teleporting things that aren't units.</English>
       <Spanish>El desplazamiento estándar que se aplica al teletransportar cosas que no son unidades.</Spanish>
       <German>Der Standard-Offset, der beim Teleportieren von Dingen, die keine Einheiten sind, anzuwenden ist.</German>
-      <Chinesesimp>在传送不是单位的东西时适用的标准偏移。</Chinesesimp>
+      <Chinesesimp>在传送不是单位的物体时适用的标准偏移。</Chinesesimp>
       <Japanese>ユニットではないものをテレポートする際に適用される標準的なオフセット。</Japanese>
       <Italian>L'offset standard da applicare quando si teletrasportano oggetti che non sono unità.</Italian>
       <French>Le décalage standard à appliquer lors de la téléportation de choses qui ne sont pas des unités.</French>
