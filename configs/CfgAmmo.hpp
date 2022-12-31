@@ -26,8 +26,6 @@ class CfgAmmo
 		aiAmmoUsageFlags="64 + 128 + 256";
 		soundFly[] = {"",1,1,400};
 		soundEngine[] = {"",1,1,50};
-		supersonicCrackNear[] = {"",0,0,0};
-		supersonicCrackFar[] = {"",0,0,0};
 		class HitEffects
 		{
 			Hit_Foliage_green="";
@@ -102,58 +100,115 @@ class CfgAmmo
 		visibleFireTime = 12;
 		audibleFire = 1000;
 		audibleFireTime = 24;
-		supersonicCrackNear[] = {"",0,0,0};
-		supersonicCrackFar[] = {"",0,0,0};
+		supersonicCrackNear[]=
+		{
+			"A3\sounds_f\arsenal\sfx\supersonic_crack\scrack_close",3.1622777,1,1000
+		};
+		supersonicCrackFar[]=
+		{
+			"A3\sounds_f\arsenal\sfx\supersonic_crack\scrack_middle",3.1622777,1,1000
+		};
 		class SuperSonicCrack
 		{
-			superSonicCrack[] = {"",0,0,0};
+			superSonicCrack[]=
+			{
+				"A3\sounds_f\arsenal\sfx\supersonic_crack\sc_meadow1",3.1622777,1,1000
+			};
 			class SCrackForest
 			{
-				range[] = { 0,0};
-				sound1[] = {"",0,0,0};
-				sound2[] = {"",0,0,0};
-				sound3[] = {"",0,0,0};
-				sounds[] = {"",0,0,0};
-				frequency = "((speed factor[330, 930]) *0.1) + 1.05";
-				trigger = "forest";
+				range[]={0,500};
+				sound1[]=
+				{
+					"A3\sounds_f\arsenal\sfx\supersonic_crack\sc_forest1",1,1,4500
+				};
+				sound2[]=
+				{
+					"A3\sounds_f\arsenal\sfx\supersonic_crack\sc_forest2",1,1,4500
+				};
+				sound3[]=
+				{
+					"A3\sounds_f\arsenal\sfx\supersonic_crack\sc_forest3",1,1,4500
+				};
+				sounds[]=
+				{
+					"sound1",0.333,"sound2",0.333,"sound3",0.333
+				};
+				frequency="((speed factor [330, 930]) * 0.1) + 1.05";
+				trigger="forest";
 			};
 			class SCrackTrees
 			{
-				range[] = { 0,0};
-				sound1[] = {"",0,0,0};
-				sound2[] = {"",0,0,0};
-				sound3[] = {"",0,0,0};
-				sounds[] = {"",0,0,0};
-				frequency = "((speed factor[330, 930]) *0.1) + 1.05";
-				trigger = "trees";
+				range[]={0,500};
+				sound1[]=
+				{
+					"A3\sounds_f\arsenal\sfx\supersonic_crack\sc_trees1",1,1,4500
+				};
+				sound2[]=
+				{
+					"A3\sounds_f\arsenal\sfx\supersonic_crack\sc_trees2",1,1,4500
+				};
+				sound3[]=
+				{
+					"A3\sounds_f\arsenal\sfx\supersonic_crack\sc_trees3",1,1,4500
+				};
+				sounds[]=
+				{
+					"sound1",0.333,"sound2",0.333,"sound3",0.333
+				};
+				frequency="((speed factor [330, 930]) * 0.1) + 1.05";
+				trigger="trees";
 			};
 			class SCrackMeadow
 			{
-				range[] = { 0,0};
-				sound1[] = {"",0,0,0};
-				sound2[] = {"",0,0,0};
-				sound3[] = {"",0,0,0};
-				sounds[] = {"",0,0,0};
-				frequency = "((speed factor[330, 930]) *0.1) + 1.05";
-				trigger = "meadow max sea";
+				range[]={0,500};
+				sound1[]=
+				{
+					"A3\sounds_f\arsenal\sfx\supersonic_crack\sc_meadow1",1,1,4500
+				};
+				sound2[]=
+				{
+					"A3\sounds_f\arsenal\sfx\supersonic_crack\sc_meadow2",1,1,4500
+				};
+				sound3[]=
+				{
+					"A3\sounds_f\arsenal\sfx\supersonic_crack\sc_meadow3",1,1,4500
+				};
+				sounds[]=
+				{
+					"sound1",0.333,"sound2",0.333,"sound3",0.333
+				};
+				frequency="((speed factor [330, 930]) * 0.1) + 1.05";
+				trigger="meadow max sea";
 			};
 			class SCrackHouses
 			{
-				range[] = { 0,0};
-				sound1[] = {"",0,0,0};
-				sound2[] = {"",0,0,0};
-				sound3[] = {"",0,0,0};
-				sounds[] = {"",0,0,0};
-				frequency = "((speed factor[330, 930]) *0.1) + 1.05";
-				trigger = "houses max interior";
+				range[]={0,500};
+				sound1[]=
+				{
+					"A3\sounds_f\arsenal\sfx\supersonic_crack\sc_houses1",1,1,4500
+				};
+				sound2[]=
+				{
+					"A3\sounds_f\arsenal\sfx\supersonic_crack\sc_houses2",1,1,4500
+				};
+				sound3[]=
+				{
+					"A3\sounds_f\arsenal\sfx\supersonic_crack\sc_houses3",1,1,4500
+				};
+				sounds[]=
+				{
+					"sound1",0.333,"sound2",0.333,"sound3",0.333
+				};
+				frequency="((speed factor [330, 930]) * 0.1) + 1.05";
+				trigger="houses max interior";
 			};
-			dangerRadiusBulletClose = 18;
-			dangerRadiusHit = 12;
-			suppressionRadiusBulletClose = 12;
-			suppressionRadiusHit = 16;
-			cost = 20;
-			aiAmmoUsageFlags = "64 + 128 + 256";
-		};
+		    dangerRadiusBulletClose=18;
+		    dangerRadiusHit=12;
+		    suppressionRadiusBulletClose=12;
+		    suppressionRadiusHit=16;
+		    cost = 20;
+		    aiAmmoUsageFlags = "64 + 128 + 256";
+	    };
 	};
 	class Portal_Ammo: Portal_Base
 	{
